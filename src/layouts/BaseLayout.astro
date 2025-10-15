@@ -1,0 +1,187 @@
+---
+/**
+ * Layout de base pour toutes les pages
+ * Inclut Header, Footer, SEO, et structure HTML de base
+ */
+import SEOHead from '@/components/SEOHead.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  ogImage?: string;
+  schema?: object | object[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  ogImage,
+  schema,
+  noindex = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <SEOHead
+      title={title}
+      description={description}
+      keywords={keywords}
+      ogImage={ogImage}
+      schema={schema}
+      noindex={noindex}
+    />
+  </head>
+  <body class="antialiased">
+    <!-- Skip to content link pour accessibilité -->
+    <a href="#main-content" class="skip-to-content">
+      Aller au contenu principal
+    </a>
+
+    <!-- Header sticky -->
+    <Header />
+
+    <!-- Main content -->
+    <main id="main-content" role="main">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+
+    <!-- Script Lenis Smooth Scroll (chargé de façon différée) -->
+    <script>
+      // Initialisation du smooth scroll Lenis
+      import Lenis from 'lenis';
+
+      // Configuration Lenis pour smooth scroll ultra-fluide
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+      });
+
+      // Animation loop
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+
+      // Stop scroll quand modal ouverte
+      window.addEventListener('modal:open', () => {
+        lenis.stop();
+      });
+
+      window.addEventListener('modal:close', () => {
+        lenis.start();
+      });
+    </script>
+
+    <!-- Script GSAP ScrollTrigger pour animations au scroll -->
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Configuration globale GSAP
+      gsap.config({
+        force3D: true, // Force GPU acceleration
+        nullTargetWarn: false,
+      });
+
+      // Animation fade-in-up pour éléments avec classe .animate-on-scroll
+      document.addEventListener('DOMContentLoaded', () => {
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+        animateElements.forEach((element) => {
+          gsap.from(element, {
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 85%',
+              end: 'top 20%',
+              toggleActions: 'play none none reverse',
+            },
+            y: 60,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+          });
+        });
+
+        // Animation stagger pour éléments enfants
+        const staggerContainers = document.querySelectorAll('.stagger-container');
+
+        staggerContainers.forEach((container) => {
+          const children = Array.from(container.children);
+
+          gsap.from(children, {
+            scrollTrigger: {
+              trigger: container,
+              start: 'top 85%',
+              end: 'bottom 20%',
+              toggleActions: 'play none none reverse',
+              once: false,
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power2.out',
+            clearProps: 'all',
+          });
+        });
+      });
+    </script>
+
+    <!-- Analytics (Google Analytics 4 - à personnaliser avec votre ID) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+  </body>
+</html>
+
+<style is:global>
+  /* Progress bar au top pour indiquer scroll progress */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #7CB342, #0A2E1C);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+  }
+
+  /* Animation du progress bar via JS */
+  @supports (animation-timeline: scroll()) {
+    body::before {
+      animation: scroll-progress linear;
+      animation-timeline: scroll();
+    }
+  }
+
+  @keyframes scroll-progress {
+    to {
+      width: 100%;
+    }
+  }
+</style>

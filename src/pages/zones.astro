@@ -1,0 +1,75 @@
+---
+/**
+ * Page Zones d'intervention
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig } from '@/data/siteConfig';
+---
+
+<BaseLayout
+  title={`Zones d'intervention - ${siteConfig.business.name}`}
+  description={`${siteConfig.business.name} intervient dans toute la région ${siteConfig.serviceArea.department}. Découvrez notre zone de couverture.`}
+>
+  <div class="pt-32 pb-20 bg-neutral-cream">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center mb-16 animate-on-scroll">
+        <h1 class="text-display-1 font-display font-bold text-primary mb-6">
+          Nos zones d'intervention
+        </h1>
+        <p class="text-xl text-neutral-gray">
+          Nous intervenons dans un rayon de {siteConfig.serviceArea.radius} km autour de {siteConfig.serviceArea.mainCity}
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Carte (placeholder) -->
+        <div class="animate-on-scroll">
+          <div class="aspect-square bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl flex items-center justify-center">
+            <div class="text-center">
+              <svg class="w-24 h-24 text-primary/30 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+              </svg>
+              <p class="text-neutral-gray">Carte Google Maps à intégrer</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Liste des villes -->
+        <div class="animate-on-scroll">
+          <h2 class="text-2xl font-display font-bold text-primary mb-6">
+            Villes couvertes
+          </h2>
+          <p class="text-neutral-gray mb-8">
+            Nous intervenons régulièrement dans les villes suivantes du {siteConfig.serviceArea.department} :
+          </p>
+
+          <div class="grid grid-cols-2 gap-4">
+            {siteConfig.serviceArea.cities.map((city) => (
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-neutral-black">{city}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 p-6 bg-accent/10 rounded-xl">
+            <p class="text-neutral-black font-semibold mb-2">
+              Votre ville n'est pas dans la liste ?
+            </p>
+            <p class="text-neutral-gray text-sm mb-4">
+              Contactez-nous ! Nous pouvons intervenir dans d'autres communes selon la demande.
+            </p>
+            <a href="/contact" class="btn-primary inline-flex text-sm">
+              <span>Nous contacter</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

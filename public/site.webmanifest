@@ -1,0 +1,16 @@
+{
+  "name": "Nom Entreprise Élagage",
+  "short_name": "Élagage Pro",
+  "description": "Entreprise d'élagage professionnelle - Expert en élagage depuis 15 ans",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F5F0",
+  "theme_color": "#0A2E1C",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
