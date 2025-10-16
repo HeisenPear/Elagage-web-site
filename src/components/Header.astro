@@ -27,8 +27,9 @@ const navLinks = [
       <!-- Logo -->
       <a
         href="/"
-        class="flex items-center gap-3 text-white font-display font-bold text-xl md:text-2xl transition-colors duration-300 group"
+        class="flex items-center gap-3 text-white font-display font-bold text-xl md:text-2xl transition-all duration-500 group"
         aria-label="Retour à l'accueil"
+        data-header-logo
       >
         <!-- Logo SVG (à remplacer par votre vrai logo) -->
         <div class="w-10 h-10 md:w-12 md:h-12 relative">
@@ -60,7 +61,7 @@ const navLinks = [
       </a>
 
       <!-- Navigation desktop (cachée sur mobile) -->
-      <nav class="hidden lg:flex items-center gap-8" role="navigation" aria-label="Navigation principale">
+      <nav class="hidden lg:flex items-center gap-8 transition-all duration-500" role="navigation" aria-label="Navigation principale" data-header-nav>
         {
           navLinks.map((link) => (
             <a
@@ -79,8 +80,9 @@ const navLinks = [
         <!-- Bouton Appel (desktop) -->
         <a
           href={getPhoneLink()}
-          class="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover hover:scale-105 transition-all duration-300 hover:shadow-glow focus-visible:ring-4 focus-visible:ring-accent/30"
+          class="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover hover:scale-105 transition-all duration-500 hover:shadow-glow focus-visible:ring-4 focus-visible:ring-accent/30"
           aria-label={`Appeler ${siteConfig.business.phoneDisplay}`}
+          data-header-cta
         >
           <svg
             class="w-5 h-5"
@@ -108,39 +110,93 @@ const navLinks = [
 
 <script>
   /**
-   * Script pour gérer le header sticky avec effet de transparence
-   * - Transparent au chargement
-   * - Devient opaque avec backdrop blur au scroll
+   * Script pour gérer le header minimaliste après le hero
+   * - Affiche logo, nav et CTA dans le hero
+   * - Cache tout sauf le menu burger après le hero
+   * - Fond transparent → opaque avec backdrop blur
    */
   const header = document.querySelector('[data-header]') as HTMLElement;
 
   if (header) {
-    const scrollThreshold = 50;
+    const logo = document.querySelector('[data-header-logo]') as HTMLElement;
+    const nav = document.querySelector('[data-header-nav]') as HTMLElement;
+    const cta = document.querySelector('[data-header-cta]') as HTMLElement;
+
+    // Détecte la hauteur du hero (section #hero)
+    const heroSection = document.querySelector('#hero') as HTMLElement;
+    const heroHeight = heroSection ? heroSection.offsetHeight : 800;
+
+    const scrollThreshold = 50; // Pour le fond du header
+    const heroThreshold = heroHeight - 100; // Marge de 100px avant la fin du hero
 
     const updateHeader = () => {
       const currentScroll = window.pageYOffset;
 
+      // Gestion du fond du header
       if (currentScroll > scrollThreshold) {
-        // Header scrollé : fond opaque + backdrop blur
         header.classList.add('backdrop-glass', 'shadow-soft');
         header.classList.remove('bg-transparent');
       } else {
-        // Header en haut : transparent
         header.classList.remove('backdrop-glass', 'shadow-soft');
         header.classList.add('bg-transparent');
+      }
+
+      // Gestion de l'affichage des éléments
+      if (currentScroll > heroThreshold) {
+        // Après le hero : cache logo, nav et CTA
+        if (logo) {
+          logo.style.opacity = '0';
+          logo.style.pointerEvents = 'none';
+        }
+        if (nav) {
+          nav.style.opacity = '0';
+          nav.style.pointerEvents = 'none';
+        }
+        if (cta) {
+          cta.style.opacity = '0';
+          cta.style.pointerEvents = 'none';
+        }
+      } else {
+        // Dans le hero : affiche tout
+        if (logo) {
+          logo.style.opacity = '1';
+          logo.style.pointerEvents = 'auto';
+        }
+        if (nav) {
+          nav.style.opacity = '1';
+          nav.style.pointerEvents = 'auto';
+        }
+        if (cta) {
+          cta.style.opacity = '1';
+          cta.style.pointerEvents = 'auto';
+        }
       }
     };
 
     // Throttle pour performance
     let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateHeader();
-          ticking = false;
-        });
-        ticking = true;
-      }
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateHeader();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    // Update sur resize (pour recalculer heroHeight)
+    let resizeTimer: number;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const newHeroHeight = heroSection ? heroSection.offsetHeight : 800;
+        updateHeader();
+      }, 100) as unknown as number;
     });
 
     // Init au chargement
