@@ -37,9 +37,9 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
   <!-- Content -->
   <div class="container-custom relative z-10 text-center">
     <div class="max-w-5xl mx-auto space-y-8 animate-on-scroll">
-      <!-- H1 avec animation de lettres (géré par GSAP dans BaseLayout) -->
+      <!-- H1 avec animation de lettres + text-shadow pour contraste -->
       <h1
-        class="text-white font-display font-extrabold text-balance"
+        class="text-white font-display font-extrabold text-balance hero-text"
         style="font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1;"
         data-split-text
       >
@@ -47,9 +47,9 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
         <span class="block text-accent">{siteConfig.serviceArea.mainCity}</span>
       </h1>
 
-      <!-- Sous-titre -->
+      <!-- Sous-titre avec text-shadow pour contraste -->
       <p
-        class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed"
+        class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed hero-text"
         style="animation-delay: 0.2s;"
       >
         {siteConfig.business.tagline}. Devis gratuit sous 24h, intervention rapide.
@@ -199,6 +199,14 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
 </script>
 
 <style>
+  /* Text shadow pour lisibilité maximale sur tous les fonds */
+  .hero-text {
+    text-shadow:
+      0 2px 10px rgba(0, 0, 0, 0.3),
+      0 4px 20px rgba(0, 0, 0, 0.2),
+      0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
   @keyframes fadeInChar {
     from {
       opacity: 0;

@@ -3,6 +3,7 @@
  * Page Contact avec formulaire et informations
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContactForm from '@/components/react/ContactForm';
 import { siteConfig, getPhoneLink, getEmailLink, getWhatsAppLink } from '@/data/siteConfig';
 import { getBreadcrumbSchema } from '@/utils/schemas';
 
@@ -39,111 +40,7 @@ const schema = getBreadcrumbSchema(breadcrumbs);
               Demande de devis
             </h2>
 
-            <form action="/api/contact" method="POST" class="space-y-6">
-              <!-- Nom -->
-              <div>
-                <label for="name" class="block text-sm font-semibold text-neutral-black mb-2">
-                  Nom complet *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  class="w-full px-4 py-3 border-2 border-neutral-cream rounded-lg focus:border-accent focus:outline-none transition-colors"
-                  placeholder="Jean Dupont"
-                />
-              </div>
-
-              <!-- Email + Téléphone (grid) -->
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label for="email" class="block text-sm font-semibold text-neutral-black mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    class="w-full px-4 py-3 border-2 border-neutral-cream rounded-lg focus:border-accent focus:outline-none transition-colors"
-                    placeholder="jean.dupont@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label for="phone" class="block text-sm font-semibold text-neutral-black mb-2">
-                    Téléphone *
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    class="w-full px-4 py-3 border-2 border-neutral-cream rounded-lg focus:border-accent focus:outline-none transition-colors"
-                    placeholder="06 12 34 56 78"
-                  />
-                </div>
-              </div>
-
-              <!-- Type de service -->
-              <div>
-                <label for="service" class="block text-sm font-semibold text-neutral-black mb-2">
-                  Type de service *
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  required
-                  class="w-full px-4 py-3 border-2 border-neutral-cream rounded-lg focus:border-accent focus:outline-none transition-colors"
-                >
-                  <option value="">Sélectionnez un service</option>
-                  {siteConfig.services.map((service) => (
-                    <option value={service.id}>{service.name}</option>
-                  ))}
-                </select>
-              </div>
-
-              <!-- Message -->
-              <div>
-                <label for="message" class="block text-sm font-semibold text-neutral-black mb-2">
-                  Votre message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows="6"
-                  class="w-full px-4 py-3 border-2 border-neutral-cream rounded-lg focus:border-accent focus:outline-none transition-colors resize-none"
-                  placeholder="Décrivez votre projet en quelques lignes..."
-                ></textarea>
-              </div>
-
-              <!-- RGPD Checkbox -->
-              <div class="flex items-start gap-3">
-                <input
-                  type="checkbox"
-                  id="rgpd"
-                  name="rgpd"
-                  required
-                  class="mt-1 w-5 h-5 border-2 border-neutral-cream rounded focus:ring-accent accent-accent"
-                />
-                <label for="rgpd" class="text-sm text-neutral-gray">
-                  J'accepte que mes données soient utilisées pour me recontacter dans le cadre de ma demande. *
-                </label>
-              </div>
-
-              <!-- Submit -->
-              <button
-                type="submit"
-                class="btn-primary w-full justify-center text-lg py-4"
-              >
-                <span>Envoyer ma demande</span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                </svg>
-              </button>
-            </form>
+            <ContactForm client:load />
           </div>
         </div>
 
