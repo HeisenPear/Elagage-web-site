@@ -244,4 +244,31 @@ const navLinks = [
   #header[data-theme] {
     animation: themeChange 0.3s ease-out;
   }
+
+  /* Responsive mobile */
+  @media (max-width: 640px) {
+    /* Header plus compact sur mobile */
+    #header {
+      height: auto;
+    }
+
+    /* Logo plus petit sur mobile */
+    #header [data-header-logo] {
+      font-size: 1rem;
+      gap: 0.5rem;
+    }
+
+    /* Container avec moins de padding sur mobile */
+    #header .container-custom {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  /* Responsive tablette */
+  @media (min-width: 641px) and (max-width: 1023px) {
+    #header {
+      height: auto;
+    }
+  }
 </style>

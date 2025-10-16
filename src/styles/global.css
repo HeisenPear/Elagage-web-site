@@ -34,6 +34,18 @@
     @apply bg-neutral-cream text-neutral-black font-sans;
     font-size: 18px;
     line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Prévenir les débordements horizontaux */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Tous les éléments doivent rester dans leur conteneur */
+  * {
+    max-width: 100%;
   }
 
   /* Typographie hiérarchique */
