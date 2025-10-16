@@ -17,6 +17,21 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ navLinks }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Détecter le scroll pour adapter la couleur du burger
+  useEffect(() => {
+    const updateBurgerColor = () => {
+      const scrolled = window.pageYOffset;
+      // Si scrollé > 50px, le header devient blanc (backdrop-glass)
+      // Donc le burger doit être noir
+      setIsDarkMode(scrolled > 50);
+    };
+
+    updateBurgerColor();
+    window.addEventListener('scroll', updateBurgerColor, { passive: true });
+    return () => window.removeEventListener('scroll', updateBurgerColor);
+  }, []);
 
   // Empêcher le scroll quand le menu est ouvert
   useEffect(() => {
@@ -99,7 +114,11 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
       {/* Bouton burger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-[60] w-12 h-12 flex lg:hidden items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 focus-visible:ring-4 focus-visible:ring-accent/30"
+        className={`relative z-[60] w-12 h-12 flex lg:hidden items-center justify-center rounded-lg backdrop-blur-sm transition-all duration-300 focus-visible:ring-4 ${
+          isDarkMode
+            ? 'bg-primary/10 hover:bg-primary/20 focus-visible:ring-primary/30'
+            : 'bg-white/10 hover:bg-white/20 focus-visible:ring-accent/30'
+        }`}
         aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
@@ -108,17 +127,23 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
           <motion.span
             animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="block h-0.5 w-full bg-white rounded-full"
+            className={`block h-0.5 w-full rounded-full transition-colors duration-300 ${
+              isDarkMode ? 'bg-primary' : 'bg-white'
+            }`}
           />
           <motion.span
             animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
             transition={{ duration: 0.2 }}
-            className="block h-0.5 w-full bg-white rounded-full"
+            className={`block h-0.5 w-full rounded-full transition-colors duration-300 ${
+              isDarkMode ? 'bg-primary' : 'bg-white'
+            }`}
           />
           <motion.span
             animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="block h-0.5 w-full bg-white rounded-full"
+            className={`block h-0.5 w-full rounded-full transition-colors duration-300 ${
+              isDarkMode ? 'bg-primary' : 'bg-white'
+            }`}
           />
         </div>
       </button>
