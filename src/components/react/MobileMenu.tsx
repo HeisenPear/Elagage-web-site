@@ -145,13 +145,14 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed inset-0 w-full sm:w-96 sm:left-auto bg-primary z-[56] overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-full sm:w-96 sm:max-w-[90vw] bg-primary z-[56] overflow-y-auto"
               role="navigation"
               aria-label="Menu mobile"
+              style={{ height: '100vh', height: '100dvh' }}
             >
-              <div className="flex flex-col h-full p-8 pt-24">
+              <div className="flex flex-col min-h-full p-6 sm:p-8 pt-20 sm:pt-24">
                 {/* Navigation links avec animation stagger */}
-                <div className="flex-1 flex flex-col gap-2">
+                <div className="flex-1 flex flex-col justify-center gap-1">
                   {navLinks.map((link, i) => (
                     <motion.a
                       key={link.href}
@@ -160,7 +161,7 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
                       variants={linkVariants}
                       initial="closed"
                       animate="open"
-                      className="text-3xl font-display font-bold text-white hover:text-accent transition-colors duration-300 py-4 border-b border-white/10"
+                      className="text-2xl sm:text-3xl font-display font-bold text-white hover:text-accent transition-colors duration-300 py-4 border-b border-white/10 last:border-0"
                       onClick={() => setIsOpen(false)}
                     >
                       {link.name}
