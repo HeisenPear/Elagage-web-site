@@ -99,7 +99,7 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
       {/* Bouton burger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-[60] w-12 h-12 flex items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 focus-visible:ring-4 focus-visible:ring-accent/30"
+        className="relative z-[60] w-12 h-12 flex lg:hidden items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 focus-visible:ring-4 focus-visible:ring-accent/30"
         aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
