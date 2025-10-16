@@ -145,11 +145,11 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 bottom-0 w-full sm:w-96 bg-primary z-[56] overflow-y-auto"
+              className="fixed inset-0 w-full sm:w-96 sm:left-auto bg-primary z-[56] overflow-y-auto"
               role="navigation"
               aria-label="Menu mobile"
             >
-              <div className="flex flex-col min-h-full p-8 pt-28">
+              <div className="flex flex-col h-full p-8 pt-24">
                 {/* Navigation links avec animation stagger */}
                 <div className="flex-1 flex flex-col gap-2">
                   {navLinks.map((link, i) => (
