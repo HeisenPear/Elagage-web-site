@@ -19,7 +19,7 @@ const navLinks = [
 
 <header
   id="header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+  class="fixed top-0 left-0 right-0 z-50 bg-primary shadow-soft transition-all duration-500"
   data-header
 >
   <div class="container-custom">
@@ -113,7 +113,6 @@ const navLinks = [
    * Script pour gérer le header minimaliste après le hero
    * - Affiche logo, nav et CTA dans le hero
    * - Cache tout sauf le menu burger après le hero
-   * - Fond transparent → opaque avec backdrop blur
    */
   const header = document.querySelector('[data-header]') as HTMLElement;
 
@@ -126,21 +125,11 @@ const navLinks = [
     const heroSection = document.querySelector('#hero') as HTMLElement;
     const heroHeight = heroSection ? heroSection.offsetHeight : 800;
 
-    const scrollThreshold = 50; // Pour le fond du header
     const heroThreshold = heroHeight - 100; // Marge de 100px avant la fin du hero
 
     const updateHeader = () => {
       const currentScroll = window.pageYOffset;
       const isDesktop = window.innerWidth >= 1024; // Breakpoint lg de Tailwind
-
-      // Gestion du fond du header
-      if (currentScroll > scrollThreshold) {
-        header.classList.add('backdrop-glass', 'shadow-soft');
-        header.classList.remove('bg-transparent');
-      } else {
-        header.classList.remove('backdrop-glass', 'shadow-soft');
-        header.classList.add('bg-transparent');
-      }
 
       // Gestion de l'affichage des éléments
       if (currentScroll > heroThreshold) {
@@ -207,44 +196,9 @@ const navLinks = [
 </script>
 
 <style>
-  /* Header avec transitions fluides pour changement de thème */
-  #header {
-    background: transparent;
-    transition: background-color 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  /* Logo avec transition de couleur */
-  #header a[aria-label="Retour à l'accueil"] {
-    transition: color 0.4s ease;
-  }
-
-  /* Logo SVG avec transition */
-  #header svg {
-    transition: color 0.4s ease;
-  }
-
-  /* Navigation links avec transition */
-  #header nav a {
-    transition: color 0.4s ease;
-  }
-
   /* Smooth scroll anchor offset */
   :target {
     scroll-margin-top: 100px;
-  }
-
-  /* Animation subtile au changement de thème */
-  @keyframes themeChange {
-    0% {
-      opacity: 0.95;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  #header[data-theme] {
-    animation: themeChange 0.3s ease-out;
   }
 
   /* Responsive mobile */
