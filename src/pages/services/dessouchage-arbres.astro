@@ -1,0 +1,318 @@
+---
+/**
+ * Page détaillée : Dessouchage d'arbres
+ * Contenu détaillé sur les différentes méthodes de dessouchage
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig } from '@/data/siteConfig';
+
+const pageTitle = "Dessouchage d'arbres - Extraction de souches";
+const pageDescription = "Spécialistes du dessouchage d'arbres. Extraction mécanique, rognage de souche, dessouchage manuel. Intervention rapide dans toute la France.";
+---
+
+<BaseLayout
+  title={`${pageTitle} | ${siteConfig.business.name}`}
+  description={pageDescription}
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[50vh] bg-gradient-to-br from-primary-900 to-primary flex items-center justify-center overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-20 left-10 w-64 h-64 bg-accent rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="container-custom relative z-10 py-20 text-center text-white">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <!-- Breadcrumb -->
+        <nav class="flex justify-center items-center gap-2 text-sm text-white/70 mb-8">
+          <a href="/" class="hover:text-accent transition-colors">Accueil</a>
+          <span>/</span>
+          <a href="/#services" class="hover:text-accent transition-colors">Services</a>
+          <span>/</span>
+          <span class="text-white">Dessouchage</span>
+        </nav>
+
+        <h1 class="text-display-1 font-display font-bold mb-6">
+          Dessouchage d'arbres
+        </h1>
+        <p class="text-2xl text-white/90 max-w-3xl mx-auto">
+          Extraction complète des souches d'arbres avec matériel professionnel. Intervention dans toute la France.
+        </p>
+
+        <!-- CTA -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+          <a href="/contact" class="btn-primary inline-flex">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span>Devis gratuit</span>
+          </a>
+          <a href={`tel:${siteConfig.business.phone}`} class="inline-flex items-center gap-3 px-8 py-4 border-2 border-white text-white font-bold rounded-xl transition-all duration-300 hover:bg-white hover:text-primary">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            <span>{siteConfig.business.phoneDisplay}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Dessouchage mécanique -->
+  <section class="section-spacing bg-white">
+    <div class="container-custom">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <span class="inline-block px-4 py-2 bg-accent/10 text-accent font-semibold rounded-full text-sm uppercase tracking-wider">
+            Méthode professionnelle
+          </span>
+          <h2 class="text-display-2 font-display font-bold text-primary">
+            Dessouchage mécanique
+          </h2>
+          <div class="space-y-4 text-lg text-neutral-gray leading-relaxed">
+            <p>
+              Nous éliminons votre souche d'arbre en la rabotant avec une rogneuse mécanique professionnelle. Le dessouchage consiste à extraire les racines et la souche de l'arbre abattu à l'aide d'une pelle mécanique.
+            </p>
+            <p>
+              Le rognage de souche remplace le dessouchage traditionnel et se pratique avec une rogneuse de souche. Cette technique est plus rapide et moins invasive pour votre terrain.
+            </p>
+          </div>
+
+          <!-- Points clés -->
+          <div class="space-y-4 pt-4">
+            {[
+              "Extraction complète de la souche",
+              "Utilisation de rogneuse professionnelle",
+              "Rognage des racines en profondeur",
+              "Terrain prêt pour nouveaux aménagements"
+            ].map((point) => (
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <span class="text-neutral-gray">{point}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Image placeholder -->
+        <div class="relative rounded-2xl overflow-hidden shadow-lift">
+          <div class="aspect-[4/3] bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+            <svg class="w-32 h-32 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Dessouchage manuel -->
+  <section class="section-spacing bg-neutral-cream">
+    <div class="container-custom">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Image placeholder (à gauche sur desktop) -->
+        <div class="relative rounded-2xl overflow-hidden shadow-lift order-2 lg:order-1">
+          <div class="aspect-[4/3] bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
+            <svg class="w-32 h-32 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="space-y-6 order-1 lg:order-2">
+          <span class="inline-block px-4 py-2 bg-primary/10 text-primary font-semibold rounded-full text-sm uppercase tracking-wider">
+            Méthode naturelle
+          </span>
+          <h2 class="text-display-2 font-display font-bold text-primary">
+            Dessouchage manuel
+          </h2>
+          <div class="space-y-4 text-lg text-neutral-gray leading-relaxed">
+            <p>
+              La souche peut être laissée à elle-même et se meurt avec le temps. L'accélération de ce processus naturel peut se faire par l'ajout d'engrais, lequel va favoriser le développement des champignons et bactéries responsables de la putréfaction.
+            </p>
+            <p>
+              Cette méthode est plus écologique mais nécessite plusieurs mois pour être efficace. Elle convient aux situations où la souche n'est pas gênante et peut être laissée en place temporairement.
+            </p>
+          </div>
+
+          <!-- Avantages -->
+          <div class="bg-white rounded-xl p-6 space-y-3">
+            <h3 class="font-bold text-primary text-lg">Avantages :</h3>
+            <ul class="space-y-2">
+              {[
+                "Méthode écologique et naturelle",
+                "Moins invasive pour le terrain",
+                "Coût réduit",
+                "Enrichit le sol en se décomposant"
+              ].map((point) => (
+                <li class="flex items-start gap-2 text-neutral-gray">
+                  <span class="text-accent mt-1">•</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Pourquoi retirer une souche -->
+  <section class="section-spacing bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto text-center mb-12">
+        <span class="inline-block px-4 py-2 bg-accent/10 text-accent font-semibold rounded-full text-sm uppercase tracking-wider mb-4">
+          Pourquoi agir ?
+        </span>
+        <h2 class="text-display-2 font-display font-bold text-primary mb-6">
+          Pourquoi retirer une souche ?
+        </h2>
+        <p class="text-xl text-neutral-gray leading-relaxed">
+          L'arbre continue à vivre même si son tronc est coupé. Et si jamais les souches meurent, elles vont pourrir et encombrer le jardin.
+        </p>
+      </div>
+
+      <!-- Cards avec risques -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          {
+            icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
+            title: "Risque pour les fondations",
+            description: "Les racines continuent à se développer et risquent d'atteindre les fondations de la maison."
+          },
+          {
+            icon: "M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4",
+            title: "Dommages aux canalisations",
+            description: "Les systèmes installés sous le sol (canalisations, entrées et sorties d'eau) peuvent être endommagés."
+          },
+          {
+            icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01",
+            title: "Obstacle aux travaux",
+            description: "Les souches constituent un obstacle aux futurs projets de construction ou d'aménagement extérieur."
+          }
+        ].map((item) => (
+          <article class="card group">
+            <div class="w-16 h-16 bg-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent transition-all duration-300">
+              <svg class="w-8 h-8 text-accent group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon}/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-display font-bold text-primary mb-3">
+              {item.title}
+            </h3>
+            <p class="text-neutral-gray leading-relaxed">
+              {item.description}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Besoin de retirer une souche -->
+  <section class="section-spacing bg-gradient-to-br from-primary-900 to-primary text-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-display-2 font-display font-bold mb-6">
+            Besoin de retirer une souche ?
+          </h2>
+          <p class="text-xl text-white/90 leading-relaxed">
+            Vous avez une souche dans votre jardin et vous ignorez comment vous en débarrasser ? Au contraire, vous hésitez à demander son arrachage ?
+          </p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 space-y-6">
+          <p class="text-lg text-white/90 leading-relaxed">
+            Vous pouvez bien évidemment laisser la souche en place et opter pour la décomposition naturelle mais le processus est long et n'est pas sans risques.
+          </p>
+          <p class="text-lg text-white/90 leading-relaxed">
+            C'est pourquoi il peut être nécessaire de faire appel à une entreprise spécialisée pour procéder au dessouchage dans le respect des normes. Prenez votre temps pour faire le bon choix afin de réaliser l'arrachage de votre souche au meilleur prix.
+          </p>
+
+          <!-- CTA Section -->
+          <div class="pt-8 text-center space-y-6">
+            <h3 class="text-2xl font-bold">
+              Nous intervenons dans toute la France
+            </h3>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/contact" class="btn-primary inline-flex bg-white text-primary hover:bg-neutral-cream">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span>Demander un devis gratuit</span>
+              </a>
+              <a href={`tel:${siteConfig.business.phone}`} class="inline-flex items-center gap-3 px-8 py-4 border-2 border-white text-white font-bold rounded-xl transition-all duration-300 hover:bg-white hover:text-primary">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                <span>Appeler maintenant</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section tarifs / FAQ -->
+  <section class="section-spacing bg-neutral-cream">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-display-2 font-display font-bold text-primary text-center mb-12">
+          Questions fréquentes
+        </h2>
+
+        <div class="space-y-6">
+          {[
+            {
+              question: "Combien coûte un dessouchage ?",
+              answer: "Le tarif varie selon la taille de la souche, sa profondeur, l'accessibilité du terrain et la méthode utilisée. Nous proposons un devis gratuit personnalisé après évaluation de votre situation."
+            },
+            {
+              question: "Combien de temps prend un dessouchage ?",
+              answer: "Le dessouchage mécanique prend généralement quelques heures selon la taille de la souche. Le dessouchage naturel peut prendre plusieurs mois."
+            },
+            {
+              question: "Faut-il une autorisation pour retirer une souche ?",
+              answer: "Dans la majorité des cas, aucune autorisation n'est nécessaire. Toutefois, dans certaines zones protégées, une déclaration peut être requise. Nous vous accompagnons dans ces démarches si nécessaire."
+            },
+            {
+              question: "Que faites-vous des déchets après le dessouchage ?",
+              answer: "Nous évacuons systématiquement tous les débris (souche, racines, copeaux) et laissons le terrain propre et prêt pour vos futurs aménagements."
+            }
+          ].map((faq, index) => (
+            <details class="card group cursor-pointer">
+              <summary class="flex items-center justify-between font-bold text-primary text-lg cursor-pointer list-none">
+                <span>{faq.question}</span>
+                <svg class="w-6 h-6 text-accent transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </summary>
+              <p class="mt-4 text-neutral-gray leading-relaxed pt-4 border-t border-neutral-gray/20">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Animation pour les details */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[open] summary {
+    color: var(--color-accent);
+  }
+</style>
