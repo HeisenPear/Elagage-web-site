@@ -6,7 +6,8 @@ import compress from 'astro-compress';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://votre-domaine.com', // À remplacer par le domaine réel
+  site: 'https://paysagiste-touraine.vercel.app', // URL Vercel
+  output: 'static',
   integrations: [
     react(),
     tailwind({
