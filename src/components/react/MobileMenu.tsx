@@ -148,7 +148,7 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
               className="fixed top-0 right-0 bottom-0 w-full sm:w-96 sm:max-w-[90vw] bg-primary z-[56] overflow-y-auto"
               role="navigation"
               aria-label="Menu mobile"
-              style={{ height: '100vh', height: '100dvh' }}
+              style={{ height: '100dvh' }}
             >
               <div className="flex flex-col min-h-full p-6 sm:p-8 pt-20 sm:pt-24">
                 {/* Navigation links avec animation stagger */}

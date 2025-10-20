@@ -8,21 +8,19 @@ const currentYear = new Date().getFullYear();
 
 const footerLinks = {
   services: [
-    { name: 'Élagage d\'arbres', href: '/services/elagage-arbres' },
-    { name: 'Abattage sécurisé', href: '/services/abattage-securise' },
-    { name: 'Dessouchage', href: '/services/dessouchage' },
+    { name: 'Élagage', href: '/services/elagage-arbres' },
+    { name: 'Abattage d\'arbres', href: '/services/abattage-arbres' },
+    { name: 'Dessouchage', href: '/services/dessouchage-arbres' },
     { name: 'Taille de haies', href: '/services/taille-haies' },
+    { name: 'Entretien des gazons', href: '/services/entretien-gazons' },
+    { name: 'Étêtage d\'arbre', href: '/services/etetage-arbre' },
   ],
   company: [
-    { name: 'À propos', href: '/#about' },
-    { name: 'Nos zones', href: '/zones' },
-    { name: 'Galerie', href: '/galerie' },
+    { name: 'Accueil', href: '/' },
     { name: 'Contact', href: '/contact' },
   ],
   legal: [
     { name: 'Mentions légales', href: '/mentions-legales' },
-    { name: 'Politique de confidentialité', href: '/politique-confidentialite' },
-    { name: 'CGV', href: '/cgv' },
   ],
 };
 ---
@@ -93,7 +91,7 @@ const footerLinks = {
       <div class="space-y-6">
         <h4 class="text-lg font-display font-bold uppercase tracking-wider">Contact</h4>
         <address class="not-italic space-y-4">
-          <!-- Téléphone -->
+          <!-- Téléphone principal -->
           <a
             href={getPhoneLink()}
             class="flex items-start gap-3 text-white/70 hover:text-accent transition-colors duration-300 group"
@@ -101,7 +99,10 @@ const footerLinks = {
             <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
             </svg>
-            <span>{siteConfig.business.phoneDisplay}</span>
+            <div>
+              <p>{siteConfig.business.phoneDisplay}</p>
+              <p class="text-sm">{siteConfig.business.phoneSecondaryDisplay}</p>
+            </div>
           </a>
 
           <!-- Email -->
@@ -168,9 +169,10 @@ const footerLinks = {
     <div class="container-custom py-6">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
         <!-- Copyright -->
-        <p>
-          © {currentYear} {siteConfig.business.name}. Tous droits réservés.
-        </p>
+        <div class="text-center md:text-left">
+          <p>© {currentYear} {siteConfig.business.name}. Tous droits réservés.</p>
+          <p class="text-xs mt-1">SIRET : {siteConfig.business.siret}</p>
+        </div>
 
         <!-- Legal links -->
         <div class="flex flex-wrap justify-center gap-6">

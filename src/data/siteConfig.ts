@@ -6,68 +6,77 @@
 export const siteConfig = {
   // Informations entreprise
   business: {
-    name: "Nom Entreprise Élagage", // À PERSONNALISER
-    tagline: "Expert en élagage depuis 15 ans",
-    description: "Entreprise d'élagage professionnelle spécialisée dans l'entretien d'arbres, l'abattage sécurisé et la taille de haies. Intervention rapide, devis gratuit.",
+    name: "PAYSAGISTE TOURAINE 37",
+    tagline: "Expert en élagage et paysagisme depuis plus de 10 ans",
+    description: "Entreprise familiale spécialisée dans l'élagage, l'abattage d'arbres, le dessouchage et l'entretien paysager. Plus de 10 ans d'expérience avec des centaines de clients particuliers et professionnels satisfaits dans la région de Tours.",
 
     // Coordonnées
-    phone: "+33 X XX XX XX XX", // À PERSONNALISER
-    phoneDisplay: "0X XX XX XX XX",
-    email: "contact@domain.com", // À PERSONNALISER
-    whatsapp: "+33XXXXXXXXX", // Numéro sans espaces
+    phone: "+33668823113",
+    phoneDisplay: "06 68 82 31 13",
+    phoneSecondary: "+33770368400",
+    phoneSecondaryDisplay: "07 70 36 84 00",
+    email: "paysagistetouraine@gmail.com",
+    whatsapp: "+33668823113", // Numéro sans espaces
 
     // Adresse physique
     address: {
-      street: "123 Rue Exemple", // À PERSONNALISER
-      city: "Tours", // À PERSONNALISER
-      postalCode: "37000", // À PERSONNALISER
+      street: "9, bis Avenue des Couzières",
+      city: "Veigné",
+      postalCode: "37250",
       region: "Indre-et-Loire",
       country: "France",
       countryCode: "FR",
     },
 
-    // Coordonnées GPS pour Google Maps
+    // Coordonnées GPS pour Google Maps (Veigné, 37250)
     coordinates: {
-      lat: 47.394144, // À PERSONNALISER
-      lng: 0.68484,
+      lat: 47.2867,
+      lng: 0.7389,
     },
 
     // Horaires d'ouverture
     openingHours: {
       weekdays: "08:00-18:00",
-      saturday: "08:00-12:00",
+      saturday: "08:00-18:00",
       sunday: "Fermé",
     },
 
     // Certifications et labels
     certifications: [
-      "Certifié professionnel",
-      "Assurance décennale",
-      "15 ans d'expérience",
+      "Élagueur grimpeur certifié",
+      "Plus de 10 ans d'expérience",
+      "Centaines de clients satisfaits",
     ],
+
+    // Informations légales
+    siret: "900 358 409 00010",
 
     // Réseaux sociaux
     social: {
-      facebook: "https://facebook.com/votepage", // À PERSONNALISER ou laisser vide
-      instagram: "https://instagram.com/votrecompte",
+      facebook: "",
+      instagram: "",
       linkedin: "",
     },
   },
 
   // Configuration SEO par défaut
   seo: {
-    title: "Élagueur Tours | Expert Élagage & Abattage Indre-et-Loire",
-    description: "Élagueur professionnel à Tours. Élagage, abattage, taille de haies. Devis gratuit 24h. Certifié, assuré. Intervention Indre-et-Loire.",
+    title: "PAYSAGISTE TOURAINE 37 | Élagage & Paysagisme Veigné, Tours",
+    description: "Paysagiste et élagueur professionnel à Veigné (37). Entretien gazons, élagage, abattage, dessouchage, taille de haies. Plus de 10 ans d'expérience. Devis gratuit.",
     keywords: [
-      "élagueur Tours",
+      "paysagiste Touraine",
+      "élagueur Veigné",
       "élagage Tours",
-      "abattage arbre Tours",
-      "taille haie Indre-et-Loire",
-      "élagueur professionnel",
-      "élagage 37",
+      "abattage arbre 37",
+      "entretien gazon Indre-et-Loire",
+      "taille haie Tours",
+      "dessouchage 37",
+      "paysagiste Tours",
+      "élagueur professionnel Indre-et-Loire",
+      "entretien jardin Touraine",
     ],
     ogImage: "/images/og-image.jpg", // Image 1200x630px
-    twitterHandle: "@votrecompte", // Optionnel
+    twitterHandle: "", // Optionnel
   },
 
   // Zone d'intervention (pour SEO local)
@@ -102,59 +111,59 @@ export const siteConfig = {
   // Services proposés
   services: [
     {
+      id: "entretien-gazons",
+      slug: "entretien-gazons",
+      name: "Entretien des gazons",
+      shortDescription: "Votre jardin sera plus vert que jamais grâce à notre programme d'entretien sur 12 mois.",
+      icon: "hedge",
+      featured: true,
+    },
+    {
+      id: "taille-haies",
+      slug: "taille-haies",
+      name: "Taille des haies",
+      shortDescription: "Entretien de pelouse avec tonte, débroussaillage, plantations et coupe de plantes grimpantes ou mauvaises herbes.",
+      icon: "hedge",
+      featured: true,
+    },
+    {
       id: "elagage",
       slug: "elagage-arbres",
-      name: "Élagage d'arbres",
-      shortDescription: "Élagage professionnel pour tous types d'arbres, en hauteur ou nacelle.",
+      name: "Élagage",
+      shortDescription: "Nous vous recommanderons les arbres d'ombrage, les arbres fruitiers et les arbres ornementaux les plus adaptés à votre espace.",
       icon: "tree",
       featured: true,
     },
     {
       id: "abattage",
-      slug: "abattage-securise",
-      name: "Abattage sécurisé",
-      shortDescription: "Abattage d'arbres dangereux avec techniques professionnelles.",
+      slug: "abattage-arbres",
+      name: "Abattage d'arbres",
+      shortDescription: "Opération réalisée par élagueur grimpeur compétent depuis 13 années. Prestations de grande précision pour raisons sanitaires ou de sécurité.",
       icon: "axe",
       featured: true,
     },
     {
       id: "dessouchage",
-      slug: "dessouchage",
-      name: "Dessouchage",
-      shortDescription: "Extraction complète des souches avec matériel professionnel.",
+      slug: "dessouchage-arbres",
+      name: "Dessouchage d'arbres",
+      shortDescription: "Extraction de souches par creusement de tranchées et coupe des racines. Intervention dans toute la France avec tire-fort.",
       icon: "tool",
-      featured: false,
-    },
-    {
-      id: "taille-haies",
-      slug: "taille-haies",
-      name: "Taille de haies",
-      shortDescription: "Taille et entretien de haies, formation artistique.",
-      icon: "hedge",
       featured: true,
     },
     {
-      id: "elagage-fruitiers",
-      slug: "elagage-fruitiers",
-      name: "Élagage fruitiers",
-      shortDescription: "Taille spécialisée d'arbres fruitiers pour optimiser la production.",
-      icon: "apple",
-      featured: false,
-    },
-    {
-      id: "entretien",
-      slug: "entretien-annuel",
-      name: "Entretien annuel",
-      shortDescription: "Contrat d'entretien annuel pour vos espaces verts.",
-      icon: "calendar",
-      featured: false,
+      id: "etetage",
+      slug: "etetage-arbre",
+      name: "Étêtage d'arbre",
+      shortDescription: "Coupe de la cime et des branches principales pour réduire la hauteur. Idéal pour espaces limités ou arbres trop imposants.",
+      icon: "tree",
+      featured: true,
     },
   ],
 
   // Statistiques (pour section chiffres clés)
   stats: {
     treesPerYear: 500,
-    yearsExperience: 15,
+    yearsExperience: 10,
     satisfactionRate: 98,
     responseTime: "48h",
   },
