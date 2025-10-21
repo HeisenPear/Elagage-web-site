@@ -4,24 +4,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Palette de couleurs verte naturelle (élagueur)
+        // Palette de couleurs verte vive (dégradé #A4BD01 → #679436)
         primary: {
-          DEFAULT: '#2D5016', // Vert foncé naturel (feuillage)
-          50: '#F0F5EC',
-          100: '#E1EBD9',
-          200: '#C3D7B3',
-          300: '#A5C38D',
-          400: '#87AF67',
-          500: '#569B41',
-          600: '#2D5016',
-          700: '#254211',
-          800: '#1D340E',
-          900: '#15260A',
+          DEFAULT: '#679436', // Vert moyen (base du dégradé)
+          50: '#F3F7EB',
+          100: '#E7EFD7',
+          200: '#CFDFAF',
+          300: '#B7CF87',
+          400: '#9FBF5F',
+          500: '#87AF37',
+          600: '#679436', // Vert foncé du dégradé
+          700: '#527629',
+          800: '#3E591F',
+          900: '#293B14',
         },
         accent: {
-          DEFAULT: '#7CB342', // Vert vif naturel (printemps)
-          hover: '#689F38',
-          light: '#9CCC65',
+          DEFAULT: '#A4BD01', // Vert vif (haut du dégradé)
+          hover: '#8FA401',
+          light: '#B8CC33',
         },
         secondary: {
           DEFAULT: '#FFA500', // Orange (CTA secondaires, accents)
@@ -85,7 +85,7 @@ export default {
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
         'lift': '0 10px 40px -10px rgba(0, 0, 0, 0.15)',
-        'glow': '0 0 20px rgba(124, 179, 66, 0.4)', // Vert naturel pour glow
+        'glow': '0 0 20px rgba(164, 189, 1, 0.4)', // Vert vif #A4BD01 pour glow
       },
     },
   },
