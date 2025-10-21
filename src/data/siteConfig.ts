@@ -6,50 +6,71 @@
 export const siteConfig = {
   // Informations entreprise
   business: {
-    name: "PAYSAGISTE TOURAINE 37",
-    tagline: "Expert en élagage et paysagisme depuis plus de 10 ans",
-    description: "Entreprise familiale spécialisée dans l'élagage, l'abattage d'arbres, le dessouchage et l'entretien paysager. Plus de 10 ans d'expérience avec des centaines de clients particuliers et professionnels satisfaits dans la région de Tours.",
+    name: "Élagage Abattage 37",
+    tagline: "Votre élagueur professionnel à Tours et en Indre-et-Loire",
+    description: "Entreprise d'élagage et d'abattage d'arbres professionnelle à Tours (37). Plus de 10 ans d'expérience. Réduction fiscale jusqu'à 2 500€. Assuré RC Pro 8M€. Paiement en plusieurs fois possible.",
 
     // Coordonnées
-    phone: "+33668823113",
-    phoneDisplay: "06 68 82 31 13",
-    phoneSecondary: "+33770368400",
-    phoneSecondaryDisplay: "07 70 36 84 00",
-    email: "paysagistetouraine@gmail.com",
-    whatsapp: "+33668823113", // Numéro sans espaces
+    phone: "+33252566856",
+    phoneDisplay: "02 52 56 68 56",
+    phoneTracking: "+33XXXXXXXXX", // Numéro de tracking dédié au site (à définir)
+    phoneTrackingDisplay: "02 XX XX XX XX",
+    email: "contact@elagage-abattage-37.fr",
+    whatsapp: "+33252566856", // Même numéro que le principal pour l'instant
 
     // Adresse physique
     address: {
-      street: "9, bis Avenue des Couzières",
-      city: "Veigné",
-      postalCode: "37250",
+      street: "Tours",
+      city: "Tours",
+      postalCode: "37000",
       region: "Indre-et-Loire",
       country: "France",
       countryCode: "FR",
     },
 
-    // Coordonnées GPS pour Google Maps (Veigné, 37250)
+    // Coordonnées GPS pour Google Maps (Tours centre)
     coordinates: {
-      lat: 47.2867,
-      lng: 0.7389,
+      lat: 47.394144,
+      lng: 0.68484,
     },
 
     // Horaires d'ouverture
     openingHours: {
       weekdays: "08:00-18:00",
-      saturday: "08:00-18:00",
+      saturday: "09:00-17:00",
       sunday: "Fermé",
     },
 
-    // Certifications et labels
-    certifications: [
-      "Élagueur grimpeur certifié",
-      "Plus de 10 ans d'expérience",
-      "Centaines de clients satisfaits",
+    // Badges de réassurance (nouveauté)
+    reassuranceBadges: [
+      {
+        icon: "target",
+        text: "Réduction fiscale jusqu'à 2 500€",
+        highlight: true,
+      },
+      {
+        icon: "credit-card",
+        text: "Paiement en plusieurs fois",
+        highlight: false,
+      },
+      {
+        icon: "shield-check",
+        text: "Assuré RC Pro 8M€",
+        highlight: false,
+      },
     ],
 
-    // Informations légales
-    siret: "900 358 409 00010",
+    // Certifications et labels
+    certifications: [
+      "Élagueur professionnel certifié",
+      "Plus de 10 ans d'expérience",
+      "Assurance RC Pro 8 000 000€",
+      "Réduction fiscale jusqu'à 2 500€",
+      "Paiement facilité en plusieurs fois",
+    ],
+
+    // Informations légales (placeholder)
+    siret: "XXX XXX XXX 00000",
 
     // Réseaux sociaux
     social: {
@@ -61,19 +82,20 @@ export const siteConfig = {
 
   // Configuration SEO par défaut
   seo: {
-    title: "PAYSAGISTE TOURAINE 37 | Élagage & Paysagisme Veigné, Tours",
-    description: "Paysagiste et élagueur professionnel à Veigné (37). Entretien gazons, élagage, abattage, dessouchage, taille de haies. Plus de 10 ans d'expérience. Devis gratuit.",
+    title: "Élagage Abattage 37 | Élagueur Tours & Indre-et-Loire | Devis Gratuit",
+    description: "Élagueur professionnel à Tours (37). Élagage, abattage, taille de haies. Réduction fiscale 2500€. Assuré 8M€. Devis gratuit 02 52 56 68 56",
     keywords: [
-      "paysagiste Touraine",
-      "élagueur Veigné",
       "élagage Tours",
-      "abattage arbre 37",
-      "entretien gazon Indre-et-Loire",
+      "abattage arbre Tours",
+      "élagueur Tours",
+      "élagueur 37",
+      "élagage Indre-et-Loire",
+      "abattage Tours",
       "taille haie Tours",
-      "dessouchage 37",
-      "paysagiste Tours",
-      "élagueur professionnel Indre-et-Loire",
-      "entretien jardin Touraine",
+      "dessouchage Tours",
+      "élagueur professionnel Tours",
+      "élagage Tours 37",
+      "réduction fiscale élagage",
     ],
     ogImage: "/images/og-image.jpg", // Image 1200x630px
     twitterHandle: "", // Optionnel
@@ -111,26 +133,10 @@ export const siteConfig = {
   // Services proposés
   services: [
     {
-      id: "entretien-gazons",
-      slug: "entretien-gazons",
-      name: "Entretien des gazons",
-      shortDescription: "Votre jardin sera plus vert que jamais grâce à notre programme d'entretien sur 12 mois.",
-      icon: "hedge",
-      featured: true,
-    },
-    {
-      id: "taille-haies",
-      slug: "taille-haies",
-      name: "Taille des haies",
-      shortDescription: "Entretien de pelouse avec tonte, débroussaillage, plantations et coupe de plantes grimpantes ou mauvaises herbes.",
-      icon: "hedge",
-      featured: true,
-    },
-    {
       id: "elagage",
       slug: "elagage-arbres",
-      name: "Élagage",
-      shortDescription: "Nous vous recommanderons les arbres d'ombrage, les arbres fruitiers et les arbres ornementaux les plus adaptés à votre espace.",
+      name: "Élagage d'arbres",
+      shortDescription: "Élagage professionnel de tous types d'arbres (ombrage, fruitiers, ornementaux). Travail soigné et sécurisé en hauteur.",
       icon: "tree",
       featured: true,
     },
@@ -138,25 +144,41 @@ export const siteConfig = {
       id: "abattage",
       slug: "abattage-arbres",
       name: "Abattage d'arbres",
-      shortDescription: "Opération réalisée par élagueur grimpeur compétent depuis 13 années. Prestations de grande précision pour raisons sanitaires ou de sécurité.",
+      shortDescription: "Abattage sécurisé d'arbres dangereux ou gênants. Techniques professionnelles avec matériel adapté.",
       icon: "axe",
+      featured: true,
+    },
+    {
+      id: "taille-haies",
+      slug: "taille-haies",
+      name: "Taille de haies",
+      shortDescription: "Taille et entretien de haies. Formation, restructuration et taille d'entretien régulière.",
+      icon: "hedge",
       featured: true,
     },
     {
       id: "dessouchage",
       slug: "dessouchage-arbres",
-      name: "Dessouchage d'arbres",
-      shortDescription: "Extraction de souches par creusement de tranchées et coupe des racines. Intervention dans toute la France avec tire-fort.",
+      name: "Dessouchage",
+      shortDescription: "Extraction complète des souches avec rogneuse professionnelle. Terrain prêt pour nouvel aménagement.",
       icon: "tool",
       featured: true,
     },
     {
-      id: "etetage",
-      slug: "etetage-arbre",
-      name: "Étêtage d'arbre",
-      shortDescription: "Coupe de la cime et des branches principales pour réduire la hauteur. Idéal pour espaces limités ou arbres trop imposants.",
-      icon: "tree",
+      id: "entretien-espaces-verts",
+      slug: "entretien-espaces-verts",
+      name: "Entretien espaces verts",
+      shortDescription: "Entretien complet de vos espaces verts : tonte, débroussaillage, taille, nettoyage.",
+      icon: "hedge",
       featured: true,
+    },
+    {
+      id: "elagage-fruitiers",
+      slug: "elagage-fruitiers",
+      name: "Élagage fruitiers",
+      shortDescription: "Taille spécialisée d'arbres fruitiers pour optimiser la production et la santé de vos arbres.",
+      icon: "apple",
+      featured: false,
     },
   ],
 
@@ -215,7 +237,15 @@ export const siteConfig = {
     },
     {
       question: "Êtes-vous assurés pour les travaux en hauteur ?",
-      answer: "Oui, nous disposons d'une assurance décennale et responsabilité civile professionnelle couvrant tous nos chantiers. Tous nos élagueurs sont certifiés et formés aux techniques de grimpe et de sécurité.",
+      answer: "Oui, nous disposons d'une assurance Responsabilité Civile Professionnelle de 8 000 000€ couvrant tous nos chantiers. Tous nos élagueurs sont certifiés et formés aux techniques de grimpe et de sécurité.",
+    },
+    {
+      question: "Puis-je bénéficier d'une réduction fiscale ?",
+      answer: "Oui ! Les travaux d'entretien de jardin, incluant l'élagage et la taille de haies, donnent droit à un crédit d'impôt de 50% dans la limite de 2 500€ par an (soit 5 000€ de dépenses). Nous vous fournissons tous les documents nécessaires.",
+    },
+    {
+      question: "Proposez-vous un paiement en plusieurs fois ?",
+      answer: "Oui, nous proposons des facilités de paiement en plusieurs fois pour les chantiers importants. Contactez-nous pour étudier ensemble la solution de paiement la plus adaptée à votre situation.",
     },
     {
       question: "Que faites-vous des déchets verts après l'élagage ?",

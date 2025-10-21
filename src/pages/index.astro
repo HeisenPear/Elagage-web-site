@@ -7,6 +7,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import ServicesSection from '@/components/sections/ServicesSection.astro';
 import StatsCounter from '@/components/react/StatsCounter';
+import ContactForm from '@/components/react/ContactForm';
 import { siteConfig } from '@/data/siteConfig';
 import {
   getLocalBusinessSchema,
@@ -54,6 +55,26 @@ const stats = [
 >
   <!-- Hero Section Fullscreen -->
   <HeroSection />
+
+  <!-- Section Formulaire Contact (juste après hero) -->
+  <section class="py-20 bg-gradient-to-br from-neutral-cream to-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12 animate-on-scroll">
+          <h2 class="text-display-2 font-display font-bold text-primary mb-4">
+            Demandez votre devis gratuit
+          </h2>
+          <p class="text-xl text-neutral-gray">
+            Réponse sous 24h • Déplacement gratuit • Devis sans engagement
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lift p-8 md:p-12">
+          <ContactForm client:visible />
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Services Section -->
   <ServicesSection />
