@@ -20,12 +20,15 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
 
   <!-- Image de fond Rudy Capello avec parallax subtil -->
   <div class="absolute inset-0 -z-5 opacity-30">
-    <div
-      class="w-full h-full bg-cover bg-center"
-      style="background-image: url('/images/hero/rudy-capello-elagueur.webp'); will-change: transform;"
+    <img
+      src="/images/hero/rudy-capello-elagueur.webp"
+      alt="Rudy Capello, élagueur professionnel certifié devant son camion d'élagage à Tours, Indre-et-Loire (37)"
+      class="w-full h-full object-cover object-center"
+      style="will-change: transform;"
       data-parallax
-    >
-    </div>
+      loading="eager"
+      fetchpriority="high"
+    />
   </div>
 
   <!-- Gradient overlay pour meilleure lisibilité -->
@@ -40,8 +43,8 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
         style="font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1;"
         data-split-text
       >
-        Expert en élagage
-        <span class="block text-accent">{siteConfig.serviceArea.mainCity}</span>
+        Élagueur Professionnel à <span class="text-accent">{siteConfig.serviceArea.mainCity}</span>
+        <span class="block text-xl md:text-3xl font-normal mt-4 text-white/95">Élagage Abattage 37</span>
       </h1>
 
       <!-- Sous-titre avec text-shadow pour contraste -->
@@ -172,7 +175,7 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
    * Parallax effect pour l'image de fond
    * Mouvement subtil au scroll pour effet de profondeur
    */
-  const parallaxElements = document.querySelectorAll('[data-parallax]');
+  const parallaxElements = document.querySelectorAll<HTMLElement>('[data-parallax]');
 
   if (parallaxElements.length > 0) {
     let ticking = false;
@@ -183,7 +186,7 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
       parallaxElements.forEach((element) => {
         const speed = 0.3; // Vitesse du parallax (plus petit = plus subtil)
         const yPos = -(scrolled * speed);
-        (element as HTMLElement).style.transform = `translate3d(0, ${yPos}px, 0)`;
+        element.style.transform = `translate3d(0, ${yPos}px, 0)`;
       });
 
       ticking = false;
@@ -194,7 +197,7 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
         window.requestAnimationFrame(updateParallax);
         ticking = true;
       }
-    });
+    }, { passive: true });
   }
 
   /**
