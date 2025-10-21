@@ -12,11 +12,11 @@ export const siteConfig = {
 
     // Coordonnées
     phone: "+33252566856",
-    phoneDisplay: "02 52 56 68 56",
-    phoneTracking: "+33XXXXXXXXX", // Numéro de tracking dédié au site (à définir)
+    phoneDisplay: "02 47 56 68 56",
+    phoneTracking: "+33782760284", // Numéro de tracking dédié au site (à définir)
     phoneTrackingDisplay: "02 XX XX XX XX",
     email: "contact@elagage-abattage-37.fr",
-    whatsapp: "+33252566856", // Même numéro que le principal pour l'instant
+    whatsapp: "+33247566856", // Même numéro que le principal pour l'instant
 
     // Adresse physique
     address: {
