@@ -6,6 +6,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import ServicesSection from '@/components/sections/ServicesSection.astro';
+import CertificationsSection from '@/components/sections/CertificationsSection.astro';
 import StatsCounter from '@/components/react/StatsCounter';
 import ContactForm from '@/components/react/ContactForm';
 import { siteConfig } from '@/data/siteConfig';
@@ -280,6 +281,9 @@ const stats = [
       </div>
     </div>
   </section>
+
+  <!-- Section Certifications & Garanties -->
+  <CertificationsSection />
 
   <!-- Section Chiffres clés avec animations counter -->
   <section class="section-spacing bg-gradient-to-br from-primary-800 to-primary text-white">
