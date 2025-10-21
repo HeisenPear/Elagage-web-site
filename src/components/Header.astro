@@ -7,6 +7,7 @@
  */
 import { siteConfig } from '@/data/siteConfig';
 import MobileMenu from '@/components/react/MobileMenu';
+import ZonesDropdown from '@/components/react/ZonesDropdown';
 
 const navLinks = [
   { name: 'Accueil', href: '/' },
@@ -70,6 +71,9 @@ const navLinks = [
             </a>
           ))
         }
+
+        <!-- Menu déroulant Zones d'intervention -->
+        <ZonesDropdown client:load />
       </nav>
 
       <!-- Menu burger -->
