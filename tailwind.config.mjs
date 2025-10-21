@@ -4,24 +4,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Palette de couleurs WhatsApp (inspirée du brief)
+        // Palette de couleurs verte naturelle (élagueur)
         primary: {
-          DEFAULT: '#128C7E', // Vert foncé WhatsApp (texte, header)
-          50: '#E6F7F5',
-          100: '#CCEFEB',
-          200: '#99DFD7',
-          300: '#66CFC3',
-          400: '#33BFAF',
-          500: '#128C7E',
-          600: '#0E7065',
-          700: '#0B544C',
-          800: '#073832',
-          900: '#041C19',
+          DEFAULT: '#2D5016', // Vert foncé naturel (feuillage)
+          50: '#F0F5EC',
+          100: '#E1EBD9',
+          200: '#C3D7B3',
+          300: '#A5C38D',
+          400: '#87AF67',
+          500: '#569B41',
+          600: '#2D5016',
+          700: '#254211',
+          800: '#1D340E',
+          900: '#15260A',
         },
         accent: {
-          DEFAULT: '#25D366', // Vert vif WhatsApp (CTA principaux)
-          hover: '#20BA5A',
-          light: '#4ADE80',
+          DEFAULT: '#7CB342', // Vert vif naturel (printemps)
+          hover: '#689F38',
+          light: '#9CCC65',
         },
         secondary: {
           DEFAULT: '#FFA500', // Orange (CTA secondaires, accents)
@@ -85,7 +85,7 @@ export default {
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
         'lift': '0 10px 40px -10px rgba(0, 0, 0, 0.15)',
-        'glow': '0 0 20px rgba(37, 211, 102, 0.3)', // Vert WhatsApp pour glow
+        'glow': '0 0 20px rgba(124, 179, 66, 0.4)', // Vert naturel pour glow
       },
     },
   },
