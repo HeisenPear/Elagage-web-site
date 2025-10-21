@@ -82,20 +82,26 @@ export const siteConfig = {
 
   // Configuration SEO par défaut
   seo: {
-    title: "Élagage Abattage 37 | Élagueur Tours & Indre-et-Loire | Devis Gratuit",
-    description: "Élagueur professionnel à Tours (37). Élagage, abattage, taille de haies. Réduction fiscale 2500€. Assuré 8M€. Devis gratuit 02 52 56 68 56",
+    title: "Élagueur Professionnel Tours (37) | Élagage Abattage 37 | Devis Gratuit 24h",
+    description: "🌳 Élagueur professionnel à Tours (37) | Élagage, abattage d'arbres en Indre-et-Loire | ✅ Assuré 8M€ ✅ Crédit d'impôt -50% | Devis gratuit 24h ☎️ 02 52 56 68 56",
     keywords: [
       "élagage Tours",
-      "abattage arbre Tours",
       "élagueur Tours",
-      "élagueur 37",
+      "abattage arbre Tours",
+      "élagueur professionnel Tours",
+      "élagueur près de chez moi Tours",
       "élagage Indre-et-Loire",
-      "abattage Tours",
+      "élagueur 37",
+      "prix élagage Tours",
+      "tarif élagueur Tours",
       "taille haie Tours",
       "dessouchage Tours",
-      "élagueur professionnel Tours",
       "élagage Tours 37",
       "réduction fiscale élagage",
+      "crédit impôt élagage",
+      "élagueur certifié Tours",
+      "entreprise élagage Tours",
+      "devis élagage gratuit Tours",
     ],
     ogImage: "/images/og-image.jpg", // Image 1200x630px
     twitterHandle: "", // Optionnel
