@@ -35,6 +35,10 @@
     font-size: 18px;
     line-height: 1.7;
     overflow-x: hidden;
+    /* Éviter les coupures de mots inappropriées */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   /* Prévenir les débordements horizontaux */
@@ -46,12 +50,17 @@
   /* Tous les éléments doivent rester dans leur conteneur */
   * {
     max-width: 100%;
+    box-sizing: border-box;
   }
 
   /* Typographie hiérarchique */
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-bold;
     letter-spacing: 0.02em;
+    /* Éviter les coupures dans les titres */
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: manual;
   }
 
   h1 {
@@ -64,6 +73,23 @@
 
   h3 {
     @apply text-display-3;
+  }
+
+  /* Paragraphes avec meilleure gestion du texte */
+  p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  /* Sur mobile, désactiver la justification */
+  @media (max-width: 768px) {
+    p {
+      text-align: left;
+      hyphens: auto;
+    }
   }
 
   /* Focus visible pour accessibilité clavier (WCAG 2.1) */
@@ -94,12 +120,36 @@
     @apply max-w-[1400px] mx-auto;
     padding-left: clamp(20px, 5vw, 80px);
     padding-right: clamp(20px, 5vw, 80px);
+    /* Éviter les débordements */
+    width: 100%;
+    box-sizing: border-box;
   }
 
   /* Section spacing */
   .section-spacing {
     padding-top: clamp(80px, 12vh, 160px);
     padding-bottom: clamp(80px, 12vh, 160px);
+  }
+
+  /* Classe pour texte responsive sans coupure */
+  .text-responsive {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+
+  /* Responsive mobile pour tous les textes */
+  @media (max-width: 640px) {
+    .container-custom {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    h1, h2, h3 {
+      word-break: break-word;
+      hyphens: auto;
+    }
   }
 
   /* Bouton primaire avec animations optimisées (GPU accelerated) */
