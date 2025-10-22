@@ -36,9 +36,12 @@
     line-height: 1.7;
     overflow-x: hidden;
     /* Éviter les coupures de mots inappropriées */
-    word-wrap: break-word;
+    word-break: normal;
     overflow-wrap: break-word;
-    hyphens: auto;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
   }
 
   /* Prévenir les débordements horizontaux */
@@ -51,16 +54,24 @@
   * {
     max-width: 100%;
     box-sizing: border-box;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
   }
 
   /* Typographie hiérarchique */
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-bold;
     letter-spacing: 0.02em;
-    /* Éviter les coupures dans les titres */
+    /* Jamais de césure dans les titres */
     word-break: keep-all;
-    overflow-wrap: break-word;
-    hyphens: manual;
+    overflow-wrap: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
   }
 
   h1 {
@@ -76,19 +87,36 @@
   }
 
   /* Paragraphes avec meilleure gestion du texte */
-  p {
-    word-wrap: break-word;
+  p, li, span, div {
+    word-break: normal;
     overflow-wrap: break-word;
-    hyphens: auto;
-    text-align: justify;
-    text-justify: inter-word;
+    hyphens: none;
   }
 
-  /* Sur mobile, désactiver la justification */
+  /* Boutons et CTA : Toujours sur une ligne si possible */
+  button, .btn, .btn-primary, .btn-secondary, a.button {
+    white-space: nowrap;
+  }
+
+  /* Textes importants (hero, slogans) : Jamais coupés */
+  .hero-title,
+  .hero-subtitle,
+  .hero-text,
+  .tagline,
+  .slogan {
+    word-break: keep-all;
+    hyphens: none;
+  }
+
+  /* Sur mobile : Plus de souplesse mais pas de césure */
   @media (max-width: 768px) {
-    p {
-      text-align: left;
-      hyphens: auto;
+    h1, h2, h3 {
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+
+    button, .btn, .btn-primary, .cta {
+      white-space: normal;
     }
   }
 
