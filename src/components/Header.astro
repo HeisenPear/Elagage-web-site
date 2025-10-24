@@ -18,7 +18,7 @@ const navLinks = [
 
 <header
   id="header"
-  class="fixed top-0 left-0 right-0 z-50 bg-primary shadow-soft transition-all duration-500"
+  class="fixed top-0 left-0 right-0 z-50 bg-white shadow-soft transition-all duration-500"
   data-header
 >
   <div class="container-custom">
@@ -26,34 +26,18 @@ const navLinks = [
       <!-- Logo -->
       <a
         href="/"
-        class="flex items-center gap-3 text-white font-display font-bold text-xl md:text-2xl transition-all duration-500 group"
+        class="flex items-center gap-3 text-primary font-display font-bold text-xl md:text-2xl transition-all duration-500 group"
         aria-label="Retour à l'accueil"
       >
-        <!-- Logo SVG (à remplacer par votre vrai logo) -->
-        <div class="w-10 h-10 md:w-12 md:h-12 relative">
-          <svg
-            viewBox="0 0 48 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-full h-full transition-transform duration-300 group-hover:scale-110"
-            aria-hidden="true"
-          >
-            <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2" />
-            <path
-              d="M24 8 L24 28 M18 20 L24 14 L30 20"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M16 32 Q20 28 24 32 T32 32"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              fill="none"
-            />
-          </svg>
+        <!-- Logo entreprise -->
+        <div class="w-16 h-16 md:w-20 md:h-20 relative">
+          <img
+            src="/images/logos/Logo abatteur.webp"
+            alt="Logo Élagage Abattage 37"
+            class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+            width="80"
+            height="80"
+          />
         </div>
         <span class="hidden sm:inline">{siteConfig.business.name}</span>
       </a>
@@ -64,7 +48,7 @@ const navLinks = [
           navLinks.map((link) => (
             <a
               href={link.href}
-              class="text-white/90 hover:text-white font-medium transition-colors duration-300 relative group"
+              class="text-primary/90 hover:text-primary font-medium transition-colors duration-300 relative group"
             >
               {link.name}
               <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
