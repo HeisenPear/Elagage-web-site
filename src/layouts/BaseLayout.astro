@@ -6,6 +6,7 @@
 import SEOHead from '@/components/SEOHead.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import FloatingContactButton from '@/components/react/FloatingContactButton';
 import '@/styles/global.css';
 
 interface Props {
@@ -55,6 +56,9 @@ const {
 
     <!-- Footer -->
     <Footer />
+
+    <!-- Boutons de contact flottants (téléphone + WhatsApp) -->
+    <FloatingContactButton client:load />
 
     <!-- Scroll natif fluide via CSS uniquement (pas de JS lourd) -->
 
