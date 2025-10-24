@@ -12,9 +12,18 @@
  */
 export function protectTypography(text: string): string {
   return text
-    // Protège les villes d'Indre-et-Loire (CRITIQUE pour SEO)
-    .replace(/(à|de|en|sur|vers|dans)\s+(Tours|Indre-et-Loire|Joué-lès-Tours|Saint-Pierre-des-Corps|Saint-Avertin|Chambray-lès-Tours|La Riche|Fondettes|Ballan-Miré|Saint-Cyr-sur-Loire|Amboise|Vouvray|Loches|Chinon|Langeais|Azay-le-Rideau|Montlouis-sur-Loire|Rochecorbon|Véretz|Montbazon|Bléré)/gi,
+    // PROTECTION MAXIMALE pour "Tours" - AVEC ou SANS préposition
+    .replace(/(à|de|en|sur|vers|dans|pour)\s+(Tours)/gi, '$1\u00A0$2')
+    .replace(/\s+(Tours)(?=\s|$|,|\.|\)|\?|!|:|;)/gi, '\u00A0$1')
+
+    // Protège "Élagage" et "Abattage" individuellement
+    .replace(/\s+(Élagage|élagage)(?=\s|$|,|\.|\)|\?|!|:|;)/gi, '\u00A0$1')
+    .replace(/\s+(Abattage|abattage)(?=\s|$|,|\.|\)|\?|!|:|;)/gi, '\u00A0$1')
+
+    // Protège les autres villes d'Indre-et-Loire (CRITIQUE pour SEO)
+    .replace(/(à|de|en|sur|vers|dans|pour)\s+(Indre-et-Loire|Joué-lès-Tours|Saint-Pierre-des-Corps|Saint-Avertin|Chambray-lès-Tours|La Riche|Fondettes|Ballan-Miré|Saint-Cyr-sur-Loire|Amboise|Vouvray|Loches|Chinon|Langeais|Azay-le-Rideau|Montlouis-sur-Loire|Rochecorbon|Véretz|Montbazon|Bléré)/gi,
              '$1\u00A0$2')
+    .replace(/\s+(Indre-et-Loire)(?=\s|$|,|\.|\)|\?|!)/gi, '\u00A0$1')
 
     // Protège le département (37)
     .replace(/(\d{2})\s*\)/g, '$1\u00A0)')
@@ -32,6 +41,8 @@ export function protectTypography(text: string): string {
     .replace(/Élagage\s+Abattage/gi, 'Élagage\u00A0Abattage')
     .replace(/crédit\s+d'impôt/gi, 'crédit\u00A0d\'impôt')
     .replace(/service\s+à\s+la\s+personne/gi, 'service\u00A0à\u00A0la\u00A0personne')
+    .replace(/élagueur\s+professionnel/gi, 'élagueur\u00A0professionnel')
+    .replace(/intervention\s+rapide/gi, 'intervention\u00A0rapide')
 
     // Protège les numéros de téléphone
     .replace(/(\d{2})\s+(\d{2})\s+(\d{2})\s+(\d{2})\s+(\d{2})/g, '$1\u00A0$2\u00A0$3\u00A0$4\u00A0$5');

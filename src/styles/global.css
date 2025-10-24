@@ -163,7 +163,7 @@
   .text-responsive {
     word-wrap: break-word;
     overflow-wrap: break-word;
-    hyphens: auto;
+    hyphens: none;
     max-width: 100%;
   }
 
@@ -175,8 +175,9 @@
     }
 
     h1, h2, h3 {
-      word-break: break-word;
-      hyphens: auto;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      hyphens: none !important;
     }
   }
 
@@ -311,5 +312,103 @@
 
   a[href^="http"]::after {
     content: " (" attr(href) ")";
+  }
+}
+
+/* Boutons de contact flottants (FloatingContactButton) */
+.floating-phone-btn,
+.floating-whatsapp-btn {
+  position: fixed;
+  z-index: 1000;
+  background: #A4BD01;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(164, 189, 1, 0.4);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+.floating-phone-btn.visible,
+.floating-whatsapp-btn.visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+  animation: slideInFloating 0.4s ease-out;
+}
+
+.floating-phone-btn {
+  bottom: 20px;
+  right: 20px;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  animation: pulseFloating 2s infinite;
+}
+
+.floating-whatsapp-btn {
+  bottom: 90px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+}
+
+@keyframes pulseFloating {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(164, 189, 1, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(164, 189, 1, 0.7);
+  }
+}
+
+@keyframes slideInFloating {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.floating-phone-btn:hover,
+.floating-whatsapp-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(164, 189, 1, 0.6);
+  background: #8FA401;
+}
+
+/* Desktop : masquer le bouton téléphone (numéro dans header) */
+@media (min-width: 1024px) {
+  .floating-phone-btn {
+    display: none;
+  }
+
+  .floating-whatsapp-btn {
+    bottom: 20px;
+  }
+}
+
+/* Petits écrans : texte plus court */
+@media (max-width: 360px) {
+  .phone-label {
+    display: none;
+  }
+
+  .floating-phone-btn {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border-radius: 50%;
   }
 }
