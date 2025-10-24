@@ -100,7 +100,7 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
       {/* Bouton burger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-[60] w-12 h-12 flex lg:hidden items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 focus-visible:ring-4 focus-visible:ring-accent/30"
+        className="relative z-[60] w-12 h-12 flex lg:hidden items-center justify-center rounded-lg bg-primary/10 backdrop-blur-sm hover:bg-primary/20 transition-all duration-300 focus-visible:ring-4 focus-visible:ring-accent/30"
         aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
@@ -109,17 +109,17 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
           <motion.span
             animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="block h-0.5 w-full bg-white rounded-full"
+            className="block h-0.5 w-full bg-primary rounded-full"
           />
           <motion.span
             animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
             transition={{ duration: 0.2 }}
-            className="block h-0.5 w-full bg-white rounded-full"
+            className="block h-0.5 w-full bg-primary rounded-full"
           />
           <motion.span
             animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="block h-0.5 w-full bg-white rounded-full"
+            className="block h-0.5 w-full bg-primary rounded-full"
           />
         </div>
       </button>

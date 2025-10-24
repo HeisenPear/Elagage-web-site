@@ -78,7 +78,7 @@ export default function ZonesDropdown({ isMobile = false }: ZonesDropdownProps) 
       <button
         onMouseEnter={() => setIsOpen(true)}
         onClick={() => setIsOpen(!isOpen)}
-        className="text-white/90 hover:text-white font-medium transition-colors duration-300 relative group flex items-center gap-2"
+        className="text-primary/90 hover:text-primary font-medium transition-colors duration-300 relative group flex items-center gap-2"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
