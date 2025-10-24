@@ -40,11 +40,11 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
       <!-- H1 avec animation de lettres + text-shadow pour contraste -->
       <h1
         class="text-white font-display font-extrabold hero-title hero-text"
-        style="font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.2; word-break: keep-all; overflow-wrap: normal; hyphens: none;"
+        style="font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.2; word-break: keep-all !important; overflow-wrap: normal !important; hyphens: none !important;"
         data-split-text
       >
-        Élagueur Professionnel à&nbsp;<span class="text-accent whitespace-nowrap">{siteConfig.serviceArea.mainCity}</span>
-        <span class="block text-xl md:text-3xl font-normal mt-4 text-white/95" style="word-break: keep-all; white-space: nowrap;">Élagage&nbsp;Abattage&nbsp;37</span>
+        Élagueur&nbsp;Professionnel à&nbsp;<span class="text-accent whitespace-nowrap" style="word-break: keep-all !important;">{siteConfig.serviceArea.mainCity}</span>
+        <span class="block text-xl md:text-3xl font-normal mt-4 text-white/95" style="word-break: keep-all !important; white-space: nowrap !important; hyphens: none !important;">Élagage&nbsp;Abattage&nbsp;37</span>
       </h1>
 
       <!-- Sous-titre avec text-shadow pour contraste -->
