@@ -315,9 +315,8 @@
   }
 }
 
-/* Boutons de contact flottants (FloatingContactButton) */
-.floating-phone-btn,
-.floating-whatsapp-btn {
+/* Bouton de contact flottant (FloatingContactButton) */
+.floating-phone-btn {
   position: fixed;
   z-index: 1000;
   background: #A4BD01;
@@ -333,17 +332,6 @@
   opacity: 0;
   transform: scale(0.8);
   pointer-events: none;
-}
-
-.floating-phone-btn.visible,
-.floating-whatsapp-btn.visible {
-  opacity: 1;
-  transform: scale(1);
-  pointer-events: all;
-  animation: slideInFloating 0.4s ease-out;
-}
-
-.floating-phone-btn {
   bottom: 20px;
   right: 20px;
   padding: 1rem 1.5rem;
@@ -352,13 +340,11 @@
   animation: pulseFloating 2s infinite;
 }
 
-.floating-whatsapp-btn {
-  bottom: 90px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  font-size: 1.8rem;
+.floating-phone-btn.visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+  animation: slideInFloating 0.4s ease-out;
 }
 
 @keyframes pulseFloating {
@@ -381,8 +367,7 @@
   }
 }
 
-.floating-phone-btn:hover,
-.floating-whatsapp-btn:hover {
+.floating-phone-btn:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(164, 189, 1, 0.6);
   background: #8FA401;
@@ -392,10 +377,6 @@
 @media (min-width: 1024px) {
   .floating-phone-btn {
     display: none;
-  }
-
-  .floating-whatsapp-btn {
-    bottom: 20px;
   }
 }
 

@@ -12,26 +12,23 @@ export const siteConfig = {
 
     // Coordonnées
     phone: "+33252566856",
-    phoneDisplay: "02 47 56 68 56",
-    phoneTracking: "+33782760284", // Numéro de tracking dédié au site (à définir)
-    phoneTrackingDisplay: "02 XX XX XX XX",
-    email: "contact@elagage-abattage-37.fr",
-    whatsapp: "+33247566856", // Même numéro que le principal pour l'instant
+    phoneDisplay: "02 52 56 68 56",
+    email: "elagueur.abatteur37@gmail.com",
 
     // Adresse physique
     address: {
-      street: "Tours",
-      city: "Tours",
-      postalCode: "37000",
+      street: "2 rue du manoir",
+      city: "Joué-lès-Tours",
+      postalCode: "37300",
       region: "Indre-et-Loire",
       country: "France",
       countryCode: "FR",
     },
 
-    // Coordonnées GPS pour Google Maps (Tours centre)
+    // Coordonnées GPS pour Google Maps (Joué-lès-Tours)
     coordinates: {
-      lat: 47.394144,
-      lng: 0.68484,
+      lat: 47.3524,
+      lng: 0.6642,
     },
 
     // Horaires d'ouverture
@@ -259,11 +256,6 @@ export const siteConfig = {
     },
   ],
 };
-
-// Helper pour générer l'URL WhatsApp
-export function getWhatsAppLink(message = "Bonjour, je souhaite un devis pour...") {
-  return `https://wa.me/${siteConfig.business.whatsapp}?text=${encodeURIComponent(message)}`;
-}
 
 // Helper pour générer le lien téléphone
 export function getPhoneLink() {
