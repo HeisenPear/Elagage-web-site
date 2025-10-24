@@ -1,0 +1,316 @@
+/* Global styles avec optimisation performance et accessibilité */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Import des fonts Google (Space Grotesk + Inter) avec preload optimisé */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap');
+
+  /* Configuration de base avec smooth scroll natif */
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Respect de prefers-reduced-motion pour l'accessibilité */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-neutral-cream text-neutral-black font-sans;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    /* Éviter les coupures de mots inappropriées */
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+  }
+
+  /* Prévenir les débordements horizontaux */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Tous les éléments doivent rester dans leur conteneur */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+  }
+
+  /* Typographie hiérarchique */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+    letter-spacing: 0.02em;
+    /* Jamais de césure dans les titres */
+    word-break: keep-all;
+    overflow-wrap: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+  }
+
+  h1 {
+    @apply text-display-1;
+  }
+
+  h2 {
+    @apply text-display-2;
+  }
+
+  h3 {
+    @apply text-display-3;
+  }
+
+  /* Paragraphes avec meilleure gestion du texte */
+  p, li, span, div {
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  /* Boutons et CTA : Toujours sur une ligne si possible */
+  button, .btn, .btn-primary, .btn-secondary, a.button {
+    white-space: nowrap;
+  }
+
+  /* Textes importants (hero, slogans) : Jamais coupés */
+  .hero-title,
+  .hero-subtitle,
+  .hero-text,
+  .tagline,
+  .slogan {
+    word-break: keep-all;
+    hyphens: none;
+  }
+
+  /* Sur mobile : Plus de souplesse mais pas de césure */
+  @media (max-width: 768px) {
+    h1, h2, h3 {
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+
+    button, .btn, .btn-primary, .cta {
+      white-space: normal;
+    }
+  }
+
+  /* Focus visible pour accessibilité clavier (WCAG 2.1) */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+    outline-style: solid;
+  }
+
+  /* Optimisation des images pour performance */
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  /* Links accessibles */
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  /* Selection personnalisée */
+  ::selection {
+    @apply bg-accent text-white;
+  }
+}
+
+@layer components {
+  /* Container fluide avec padding responsive */
+  .container-custom {
+    @apply max-w-[1400px] mx-auto;
+    padding-left: clamp(20px, 5vw, 80px);
+    padding-right: clamp(20px, 5vw, 80px);
+    /* Éviter les débordements */
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Section spacing */
+  .section-spacing {
+    padding-top: clamp(80px, 12vh, 160px);
+    padding-bottom: clamp(80px, 12vh, 160px);
+  }
+
+  /* Classe pour texte responsive sans coupure */
+  .text-responsive {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: none;
+    max-width: 100%;
+  }
+
+  /* Responsive mobile pour tous les textes */
+  @media (max-width: 640px) {
+    .container-custom {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    h1, h2, h3 {
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      hyphens: none !important;
+    }
+  }
+
+  /* Bouton primaire avec animations optimisées (GPU accelerated) */
+  .btn-primary {
+    @apply inline-flex items-center gap-3 px-8 py-4 bg-accent text-white font-semibold rounded-lg;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-accent-hover hover:scale-105 hover:shadow-glow;
+    @apply active:scale-[0.98] focus-visible:ring-4 focus-visible:ring-accent/30;
+    will-change: transform;
+  }
+
+  /* Bouton secondaire */
+  .btn-secondary {
+    @apply inline-flex items-center gap-3 px-8 py-4 border-2 border-primary text-primary font-semibold rounded-lg;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-primary hover:text-white hover:scale-105;
+    @apply active:scale-[0.98] focus-visible:ring-4 focus-visible:ring-primary/30;
+    will-change: transform;
+  }
+
+  /* Card avec effet lift */
+  .card {
+    @apply bg-white rounded-xl p-8 transition-all duration-300;
+    @apply shadow-soft border border-neutral-cream/50;
+    @apply hover:shadow-lift hover:-translate-y-2 hover:border-accent/20;
+    will-change: transform, box-shadow;
+  }
+
+  /* Backdrop blur pour overlays modernes */
+  .backdrop-glass {
+    @apply backdrop-blur-md bg-white/80;
+  }
+
+  /* Gradient text effect */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  /* Classe pour animations GPU-accelerated uniquement */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Skip to content link pour accessibilité */
+  .skip-to-content {
+    @apply absolute left-0 top-0 bg-accent text-white px-4 py-2 -translate-y-full;
+    @apply focus:translate-y-0 z-50 transition-transform;
+  }
+
+  /* Text balance pour de meilleurs titres */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animations au scroll ultra-performantes (CSS pur) */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Ensure stagger container children are visible by default */
+  .stagger-container > * {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Aspect ratios pour images */
+  .aspect-video-16-9 {
+    aspect-ratio: 16 / 9;
+  }
+
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+
+  .aspect-portrait {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+/* Animations personnalisées avec @keyframes */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Loading skeleton effect */
+.skeleton {
+  @apply bg-gradient-to-r from-neutral-cream via-gray-200 to-neutral-cream bg-[length:1000px_100%];
+  animation: shimmer 2s infinite linear;
+}
+
+/* Smooth scroll anchor offset pour header sticky */
+:target {
+  scroll-margin-top: 100px;
+}
+
+/* Print styles pour meilleure accessibilité */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    @apply bg-white text-black;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+  }
+}

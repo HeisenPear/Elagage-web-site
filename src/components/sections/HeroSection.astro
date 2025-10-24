@@ -37,14 +37,13 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
   <!-- Content -->
   <div class="container-custom relative z-10 text-center">
     <div class="max-w-5xl mx-auto space-y-8 animate-on-scroll">
-      <!-- H1 avec animation de lettres + text-shadow pour contraste -->
+      <!-- H1 avec animation fade-in simple (SANS split-text pour préserver espaces insécables) -->
       <h1
-        class="text-white font-display font-extrabold hero-title hero-text"
-        style="font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.2; word-break: keep-all !important; overflow-wrap: normal !important; hyphens: none !important;"
-        data-split-text
+        class="text-white font-display font-extrabold hero-title hero-text animate-fade-in-up"
+        style="font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.2; word-break: keep-all !important; overflow-wrap: normal !important; hyphens: none !important; white-space: normal !important;"
       >
-        Élagueur&nbsp;Professionnel à&nbsp;<span class="text-accent whitespace-nowrap" style="word-break: keep-all !important;">{siteConfig.serviceArea.mainCity}</span>
-        <span class="block text-xl md:text-3xl font-normal mt-4 text-white/95" style="word-break: keep-all !important; white-space: nowrap !important; hyphens: none !important;">Élagage&nbsp;Abattage&nbsp;37</span>
+        Élagueur Professionnel à <span class="whitespace-nowrap" style="word-break: keep-all !important;">Tours</span>
+        <span class="block text-xl md:text-3xl font-normal mt-4 text-white/95" style="word-break: keep-all !important; hyphens: none !important;">Élagage Abattage 37</span>
       </h1>
 
       <!-- Sous-titre avec text-shadow pour contraste -->
@@ -201,22 +200,9 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
   }
 
   /**
-   * Animation de lettres avec GSAP SplitText
-   * (Simplifié ici, peut être enrichi avec la lib SplitType)
+   * Script split-text RETIRÉ pour préserver les espaces insécables
+   * Animation CSS simple utilisée à la place (.animate-fade-in-up)
    */
-  const splitTextElements = document.querySelectorAll('[data-split-text]');
-
-  splitTextElements.forEach((element) => {
-    const text = element.textContent || '';
-    const chars = text.split('');
-
-    element.innerHTML = chars
-      .map(
-        (char, i) =>
-          `<span style="display: inline-block; opacity: 0; animation: fadeInChar 0.5s ease-out forwards; animation-delay: ${i * 0.03}s;">${char === ' ' ? '&nbsp;' : char}</span>`
-      )
-      .join('');
-  });
 </script>
 
 <style>
@@ -228,10 +214,16 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
       0 1px 3px rgba(0, 0, 0, 0.4);
   }
 
-  @keyframes fadeInChar {
+  /* Animation fade-in simple pour le titre (sans découper le texte) */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
