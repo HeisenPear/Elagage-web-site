@@ -46,18 +46,18 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, [isOpen]);
 
-  // Animations variants
+  // Animations variants (optimisées pour performance)
   const overlayVariants = {
     closed: {
       opacity: 0,
       transition: {
-        duration: 0.3,
+        duration: 0.2,
       },
     },
     open: {
       opacity: 1,
       transition: {
-        duration: 0.3,
+        duration: 0.2,
       },
     },
   };
@@ -66,14 +66,14 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
     closed: {
       x: '100%',
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: [0.87, 0, 0.13, 1],
       },
     },
     open: {
       x: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: [0.87, 0, 0.13, 1],
       },
     },
@@ -82,14 +82,14 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
   const linkVariants = {
     closed: {
       opacity: 0,
-      x: 50,
+      x: 30,
     },
     open: (i: number) => ({
       opacity: 1,
       x: 0,
       transition: {
-        delay: 0.1 + i * 0.1,
-        duration: 0.5,
+        delay: 0.05 + i * 0.05,
+        duration: 0.3,
         ease: [0.87, 0, 0.13, 1],
       },
     }),
@@ -100,7 +100,11 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
       {/* Bouton burger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-[60] w-12 h-12 flex lg:hidden items-center justify-center rounded-lg bg-primary/10 backdrop-blur-sm hover:bg-primary/20 transition-all duration-300 focus-visible:ring-4 focus-visible:ring-accent/30"
+        className={`relative z-[60] w-12 h-12 flex lg:hidden items-center justify-center rounded-lg backdrop-blur-sm transition-all duration-300 focus-visible:ring-4 ${
+          isOpen
+            ? 'bg-white/10 hover:bg-white/20 focus-visible:ring-white/30'
+            : 'bg-primary/10 hover:bg-primary/20 focus-visible:ring-accent/30'
+        }`}
         aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
@@ -108,8 +112,10 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
         <div className="w-6 h-5 flex flex-col justify-between">
           <motion.span
             animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="block h-0.5 w-full bg-primary rounded-full"
+            transition={{ duration: 0.3, ease: [0.87, 0, 0.13, 1] }}
+            className={`block h-0.5 w-full rounded-full transition-colors duration-300 ${
+              isOpen ? 'bg-white' : 'bg-primary'
+            }`}
           />
           <motion.span
             animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
@@ -118,8 +124,10 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
           />
           <motion.span
             animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="block h-0.5 w-full bg-primary rounded-full"
+            transition={{ duration: 0.3, ease: [0.87, 0, 0.13, 1] }}
+            className={`block h-0.5 w-full rounded-full transition-colors duration-300 ${
+              isOpen ? 'bg-white' : 'bg-primary'
+            }`}
           />
         </div>
       </button>
@@ -149,7 +157,7 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
               className="fixed top-0 right-0 bottom-0 w-full sm:w-96 sm:max-w-[90vw] bg-primary z-[56] overflow-y-auto"
               role="navigation"
               aria-label="Menu mobile"
-              style={{ height: '100dvh' }}
+              style={{ height: '100dvh', willChange: 'transform' }}
             >
               <div className="flex flex-col min-h-full p-6 sm:p-8 pt-20 sm:pt-24">
                 {/* Navigation links avec animation stagger */}
@@ -185,7 +193,7 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
+                  transition={{ delay: 0.3, duration: 0.3 }}
                   className="mt-8 space-y-4"
                 >
                   {/* Appel */}
@@ -215,7 +223,7 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6, duration: 0.5 }}
+                  transition={{ delay: 0.4, duration: 0.3 }}
                   className="mt-8 pt-8 border-t border-white/10 text-white/70 text-sm"
                 >
                   <p className="mb-2">{siteConfig.business.address.street}</p>
