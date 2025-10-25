@@ -1,0 +1,180 @@
+---
+/**
+ * Section Services avec FlipCards interactives 3D
+ * - Cards avec effet flip au hover (desktop) et tap (mobile)
+ * - Toutes les infos affichées dans la card (pas de redirection)
+ * - SEO préservé avec contenu dans le HTML
+ */
+import FlipCard from '@/components/react/FlipCard';
+
+// Icônes SVG
+const icons = {
+  tree: `<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>`,
+  axe: `<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>`,
+  stump: `<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+  hedge: `<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+  garden: `<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+  brush: `<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>`,
+};
+
+// Données des 6 services avec détails complets
+const servicesData = [
+  {
+    icon: icons.stump,
+    title: "Dessouchage",
+    price: "Dès 150€",
+    description: "Élimination complète des souches d'arbres avec rogneuse professionnelle. Intervention rapide dans toute la France.",
+    features: [
+      "Dessouchage mécanique avec rogneuse",
+      "Évacuation complète des déchets",
+      "Remise en état du terrain",
+      "Intervention rapide 48h",
+      "Devis gratuit sous 24h"
+    ],
+    gradientFrom: "from-[#679436]",
+    gradientTo: "to-[#A4BD01]",
+  },
+  {
+    icon: icons.tree,
+    title: "Élagage d'arbres",
+    price: "Dès 200€",
+    description: "Taille et entretien d'arbres pour leur santé et sécurité. Élagueur grimpeur certifié avec 10 ans d'expérience.",
+    features: [
+      "Élagage raisonné et sanitaire",
+      "Respect de la biologie de l'arbre",
+      "Équipement professionnel",
+      "Élagueur certifié et assuré",
+      "Réduction fiscale jusqu'à 2500€"
+    ],
+    gradientFrom: "from-emerald-600",
+    gradientTo: "to-emerald-400",
+  },
+  {
+    icon: icons.axe,
+    title: "Abattage d'arbres",
+    price: "Sur devis",
+    description: "Abattage sécurisé d'arbres dangereux ou gênants. Techniques de démontage adaptées à votre terrain.",
+    features: [
+      "Techniques de démontage professionnel",
+      "Évacuation totale des végétaux",
+      "Assurance RC Pro 8M€",
+      "Devis gratuit sous 24h",
+      "Intervention sécurisée"
+    ],
+    gradientFrom: "from-amber-600",
+    gradientTo: "to-amber-400",
+  },
+  {
+    icon: icons.hedge,
+    title: "Taille de haies",
+    price: "Dès 80€",
+    description: "Taille et entretien de haies pour un jardin soigné. Toutes hauteurs, toutes essences.",
+    features: [
+      "Taille précise et esthétique",
+      "Toutes hauteurs accessibles",
+      "Ramassage des déchets",
+      "Forfaits annuels disponibles",
+      "Intervention rapide"
+    ],
+    gradientFrom: "from-lime-600",
+    gradientTo: "to-lime-400",
+  },
+  {
+    icon: icons.garden,
+    title: "Entretien de jardin",
+    price: "Forfaits dispo",
+    description: "Entretien complet de vos espaces verts. Tonte, taille, débroussaillage et contrats annuels.",
+    features: [
+      "Tonte et scarification",
+      "Taille arbustes et massifs",
+      "Débroussaillage complet",
+      "Contrats d'entretien annuel",
+      "Paiement en plusieurs fois"
+    ],
+    gradientFrom: "from-teal-600",
+    gradientTo: "to-teal-400",
+  },
+  {
+    icon: icons.brush,
+    title: "Débroussaillage",
+    price: "Sur devis",
+    description: "Nettoyage et débroussaillage de terrains. Prévention des incendies et accès difficiles.",
+    features: [
+      "Tous types de terrains",
+      "Évacuation des végétaux",
+      "Prévention incendie",
+      "Accès difficiles OK",
+      "Matériel professionnel"
+    ],
+    gradientFrom: "from-orange-600",
+    gradientTo: "to-orange-400",
+  },
+];
+---
+
+<section id="services" class="section-spacing bg-neutral-cream relative overflow-hidden">
+  <!-- Background decorative element -->
+  <div class="absolute top-20 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-0" aria-hidden="true"></div>
+
+  <div class="container-custom relative z-10">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+      <span class="inline-block px-4 py-2 bg-accent/10 text-accent font-semibold rounded-full text-sm uppercase tracking-wider mb-4">
+        Nos services
+      </span>
+      <h2 class="text-display-2 font-display font-bold text-primary mb-6">
+        Prestations d'élagage professionnelles
+      </h2>
+      <p class="text-lg text-neutral-gray">
+        De l'élagage d'arbres en hauteur à l'entretien de haies, nous intervenons pour tous vos besoins d'entretien paysager.
+      </p>
+    </div>
+
+    <!-- FlipCards grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {servicesData.map((service) => (
+        <FlipCard
+          client:visible
+          icon={service.icon}
+          title={service.title}
+          price={service.price}
+          description={service.description}
+          features={service.features}
+          gradientFrom={service.gradientFrom}
+          gradientTo={service.gradientTo}
+          ctaText="Demander un devis"
+          ctaHref="/contact"
+        />
+      ))}
+    </div>
+
+    <!-- SEO Hidden content for crawlers -->
+    <div class="sr-only">
+      {servicesData.map((service) => (
+        <article itemscope itemtype="https://schema.org/Service">
+          <h3 itemprop="name">{service.title}</h3>
+          <meta itemprop="price" content={service.price} />
+          <p itemprop="description">{service.description}</p>
+          <ul>
+            {service.features.map((feature) => (
+              <li>{feature}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA Voir tous les services -->
+    <div class="text-center mt-16 animate-on-scroll">
+      <p class="text-neutral-gray mb-6">
+        Besoin d'un service spécifique ou d'un devis personnalisé ?
+      </p>
+      <a href="/contact" class="btn-primary inline-flex">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <span>Contactez-nous</span>
+      </a>
+    </div>
+  </div>
+</section>
