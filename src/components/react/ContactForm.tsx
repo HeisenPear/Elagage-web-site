@@ -4,9 +4,11 @@
  * - Messages d'erreur en français
  * - Animation de succès
  * - Protection anti-spam (honeypot)
+ * - Envoi via EmailJS
  */
 import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 interface FormData {
   name: string;
@@ -176,16 +178,35 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      // Simuler envoi (remplacer par vraie API)
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Récupération des variables d'environnement
+      const serviceId = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
 
-      // TODO: Remplacer par vraie soumission de formulaire
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // });
+      // Vérifier que les variables sont définies
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS credentials are missing. Please check your .env file.');
+        throw new Error('Configuration EmailJS manquante');
+      }
 
+      // Préparer les données pour EmailJS
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message,
+      };
+
+      // Envoi via EmailJS
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      console.log('Email sent successfully:', response);
       setSubmitStatus('success');
 
       // Reset form après 3 secondes
@@ -207,6 +228,11 @@ export default function ContactForm() {
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
+
+      // Reset error après 5 secondes
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
     } finally {
       setIsSubmitting(false);
     }
