@@ -1,0 +1,56 @@
+---
+/**
+ * Section Galerie de Réalisations
+ * - Grid 3 colonnes avec photos
+ * - Lightbox intégrée
+ * - SEO optimisé
+ */
+import RealisationsGallery from '@/components/react/RealisationsGallery';
+---
+
+<section id="realisations" class="section-spacing bg-white">
+  <div class="container-custom">
+    <!-- Header section -->
+    <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+      <span class="inline-block px-4 py-2 bg-accent/10 text-accent font-semibold rounded-full text-sm uppercase tracking-wider mb-4">
+        Nos réalisations
+      </span>
+      <h2 class="text-display-2 font-display font-bold text-primary mb-6">
+        Découvrez nos interventions d'élagage à Tours
+      </h2>
+      <p class="text-lg text-neutral-gray leading-relaxed">
+        Élagage, abattage, dessouchage et entretien d'espaces verts en Indre-et-Loire.
+        Plus de 500 chantiers réalisés avec satisfaction client garantie.
+      </p>
+    </div>
+
+    <!-- Galerie React avec Lightbox -->
+    <RealisationsGallery client:visible />
+
+    <!-- CTA Voir plus -->
+    <div class="text-center mt-12 animate-on-scroll">
+      <p class="text-neutral-gray mb-6 text-lg">
+        Envie de voir votre jardin transformé comme nos clients ?
+      </p>
+      <a href="/contact" class="btn-primary inline-flex">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <span>Demander un devis gratuit</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SEO Hidden content for crawlers -->
+<div class="sr-only">
+  <h3>Galerie photos élagage Tours</h3>
+  <p>Photos de nos interventions d'élagage, abattage et dessouchage à Tours et dans l'Indre-et-Loire (37)</p>
+  <ul>
+    <li>Élagage de grands arbres en hauteur avec nacelle</li>
+    <li>Abattage sécurisé d'arbres dangereux près des habitations</li>
+    <li>Dessouchage professionnel avec rogneuse</li>
+    <li>Taille de haies et entretien d'espaces verts</li>
+    <li>Chantiers complets d'aménagement paysager</li>
+  </ul>
+</div>

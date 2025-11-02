@@ -7,6 +7,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import HeroSection from '@/components/sections/HeroSection.astro';
 import ServicesFlipSection from '@/components/sections/ServicesFlipSection.astro';
 import CertificationsSection from '@/components/sections/CertificationsSection.astro';
+import TrustBadgesSection from '@/components/sections/TrustBadgesSection.astro';
+import RealisationsSection from '@/components/sections/RealisationsSection.astro';
 import StatsCounter from '@/components/react/StatsCounter';
 import ContactForm from '@/components/react/ContactForm';
 import { siteConfig } from '@/data/siteConfig';
@@ -79,6 +81,9 @@ const stats = [
       </div>
     </div>
   </section>
+
+  <!-- Section Badges de Confiance -->
+  <TrustBadgesSection />
 
   <!-- Section Intro SEO (élagueur près de chez moi Tours) -->
   <section class="py-20 bg-white">
@@ -182,6 +187,9 @@ const stats = [
   <!-- Services Section -->
   <!-- Section Services avec FlipCards 3D -->
   <ServicesFlipSection />
+
+  <!-- Section Galerie de Réalisations -->
+  <RealisationsSection />
 
   <!-- Section Pourquoi nous choisir (Split screen) -->
   <section class="section-spacing bg-primary text-white relative overflow-hidden">
