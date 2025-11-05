@@ -46,6 +46,9 @@ const absoluteOgImage = new URL(ogImage, Astro.site).href;
 <!-- Robots -->
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 
+<!-- Google Search Console Verification -->
+<meta name="google-site-verification" content="google5134ab9840b5a242" />
+
 <!-- Geo Tags pour SEO local -->
 <meta name="geo.region" content={`${siteConfig.business.address.countryCode}-${siteConfig.business.address.postalCode.substring(0, 2)}`} />
 <meta name="geo.placename" content={siteConfig.business.address.city} />
