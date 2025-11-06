@@ -11,8 +11,8 @@ export const siteConfig = {
     description: "Entreprise d'élagage et d'abattage d'arbres professionnelle à Tours (37). Plus de 10 ans d'expérience. Réduction fiscale jusqu'à 2 500€. Assuré RC Pro 8M€. Paiement en plusieurs fois possible.",
 
     // Coordonnées
-    phone: "+33252566856",
-    phoneDisplay: "02 52 56 68 56",
+    phone: "+33631464350",
+    phoneDisplay: "06 31 46 43 50",
     email: "elagueur.abatteur37@gmail.com",
 
     // Adresse physique
@@ -80,7 +80,7 @@ export const siteConfig = {
   // Configuration SEO par défaut
   seo: {
     title: "Élagueur Professionnel Tours (37) | Élagage Abattage 37 | Devis Gratuit 24h",
-    description: "🌳 Élagueur professionnel à Tours (37) | Élagage, abattage d'arbres en Indre-et-Loire | ✅ Assuré 8M€ ✅ Crédit d'impôt -50% | Devis gratuit 24h ☎️ 02 52 56 68 56",
+    description: "🌳 Élagueur professionnel à Tours (37) | Élagage, abattage d'arbres en Indre-et-Loire | ✅ Assuré 8M€ ✅ Crédit d'impôt -50% | Devis gratuit 24h ☎️ 06 31 46 43 50",
     keywords: [
       "élagage Tours",
       "élagueur Tours",

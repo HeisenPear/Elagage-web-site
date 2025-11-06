@@ -19,7 +19,7 @@ L'image doit contenir :
 2. **Titre principal** : "Élagueur Professionnel à Tours"
 3. **Sous-titre** : "Élagage • Abattage • Taille de haies"
 4. **USP** : "Crédit d'impôt -50% | Assuré 8M€"
-5. **Téléphone** : "02 52 56 68 56"
+5. **Téléphone** : "06 31 46 43 50"
 6. **Image de fond** : Photo d'élagueur en action ou camion d'élagage
 
 ### Couleurs à utiliser
@@ -41,7 +41,7 @@ L'image doit contenir :
 │           ✓ Assuré RC Pro 8M€                         │
 │           ✓ Intervention rapide 48h                   │
 │                                                        │
-│           ☎ 02 52 56 68 56                            │
+│           ☎ 06 31 46 43 50                            │
 │                                                        │
 │  [Image de fond : élagueur en action / camion]        │
 │                                                        │
@@ -86,7 +86,7 @@ Après création, tester l'image avec :
 ✓ Assuré RC Pro 8 000 000€
 ✓ Intervention rapide sous 48h
 
-☎ 02 52 56 68 56
+☎ 06 31 46 43 50
 elagage-abattage-37.fr
 ```
 
