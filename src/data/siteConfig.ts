@@ -228,7 +228,7 @@ export const siteConfig = {
   faq: [
     {
       question: "Combien coûte un élagage d'arbre ?",
-      answer: "Le prix d'un élagage varie selon la hauteur de l'arbre, sa complexité et son accessibilité. Comptez entre 150€ et 800€ en moyenne. Nous proposons un devis gratuit personnalisé sous 24h pour évaluer précisément vos besoins.",
+      answer: "Le tarif d'un élagage varie selon la hauteur de l'arbre, sa complexité et son accessibilité. Le prix est établi sur devis personnalisé. Nous proposons un devis gratuit sous 24h pour évaluer précisément vos besoins.",
     },
     {
       question: "Quelle est la meilleure période pour élaguer ?",

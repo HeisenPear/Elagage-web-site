@@ -22,7 +22,7 @@ const servicesData = [
   {
     icon: icons.stump,
     title: "Dessouchage",
-    price: "Dès 150€",
+    price: "Sur devis",
     description: "Élimination complète des souches d'arbres avec rogneuse professionnelle. Intervention rapide dans toute la France.",
     features: [
       "Dessouchage mécanique avec rogneuse",
@@ -37,7 +37,7 @@ const servicesData = [
   {
     icon: icons.tree,
     title: "Élagage d'arbres",
-    price: "Dès 200€",
+    price: "Sur devis",
     description: "Taille et entretien d'arbres pour leur santé et sécurité. Élagueur grimpeur certifié avec 10 ans d'expérience.",
     features: [
       "Élagage raisonné et sanitaire",
@@ -67,13 +67,13 @@ const servicesData = [
   {
     icon: icons.hedge,
     title: "Taille de haies",
-    price: "Dès 80€",
+    price: "Sur devis",
     description: "Taille et entretien de haies pour un jardin soigné. Toutes hauteurs, toutes essences.",
     features: [
       "Taille précise et esthétique",
       "Toutes hauteurs accessibles",
       "Ramassage des déchets",
-      "Forfaits annuels disponibles",
+      "Sur devis personnalisé",
       "Intervention rapide"
     ],
     gradientFrom: "from-lime-600",
@@ -82,7 +82,7 @@ const servicesData = [
   {
     icon: icons.garden,
     title: "Entretien de jardin",
-    price: "Forfaits dispo",
+    price: "Sur devis",
     description: "Entretien complet de vos espaces verts. Tonte, taille, débroussaillage et contrats annuels.",
     features: [
       "Tonte et scarification",
@@ -134,7 +134,7 @@ const servicesData = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {servicesData.map((service) => (
         <FlipCard
-          client:visible
+          client:idle
           icon={service.icon}
           title={service.title}
           price={service.price}

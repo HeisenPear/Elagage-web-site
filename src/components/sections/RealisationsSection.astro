@@ -24,8 +24,8 @@ import RealisationsGallery from '@/components/react/RealisationsGallery';
       </p>
     </div>
 
-    <!-- Galerie React avec Lightbox -->
-    <RealisationsGallery client:visible />
+    <!-- Galerie React avec Lightbox (defer pour performance) -->
+    <RealisationsGallery client:idle />
 
     <!-- CTA Voir plus -->
     <div class="text-center mt-12 animate-on-scroll">
