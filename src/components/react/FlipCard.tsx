@@ -4,9 +4,9 @@
  * - Face arrière : Description + Liste avantages + CTA
  * - Mobile : Toggle au tap
  * - Desktop : Flip au hover
+ * - OPTIMISÉ : CSS pur au lieu de Framer Motion pour performance
  */
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 
 export interface FlipCardProps {
   // Face avant
@@ -78,19 +78,13 @@ export default function FlipCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <motion.div
-        className="flip-card-inner relative w-full h-full transition-transform duration-700 ease-out"
+      <div
+        className="flip-card-inner relative w-full h-full"
         style={{
           transformStyle: 'preserve-3d',
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-        }}
-        initial={false}
-        animate={{
-          rotateY: isFlipped ? 180 : 0,
-        }}
-        transition={{
-          duration: 0.7,
-          ease: [0.87, 0, 0.13, 1],
+          transition: 'transform 0.7s cubic-bezier(0.87, 0, 0.13, 1)',
+          willChange: 'transform',
         }}
       >
         {/* FACE AVANT */}
@@ -222,7 +216,7 @@ export default function FlipCard({
             </button>
           )}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

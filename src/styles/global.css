@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 @layer base {
-  /* Import des fonts Google (Space Grotesk + Inter) avec preload optimisé */
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap');
+  /* Fonts Google chargées via preload dans <head> pour performance optimale */
+  /* @import supprimé car il bloque le rendu critique (render-blocking) */
 
   /* Configuration de base avec smooth scroll natif */
   html {

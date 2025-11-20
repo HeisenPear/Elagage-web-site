@@ -15,19 +15,20 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
   id="hero"
   class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary to-primary-900"
 >
-  <!-- Particules WebGL background -->
-  <ParticlesBackground client:load particleCount={400} />
+  <!-- Particules WebGL background - DÉSACTIVÉ pour performance mobile -->
+  <!-- <ParticlesBackground client:idle particleCount={200} /> -->
 
-  <!-- Image de fond Loire Hero avec parallax subtil -->
+  <!-- Image de fond Loire Hero (optimisée pour LCP et CLS) -->
   <div class="absolute inset-0 -z-5 opacity-30">
     <img
-      src="/images/hero/Loire Hero.webp"
+      src="/images/hero/loire-hero.webp"
       alt="Paysage de la Loire à Tours, zone d'intervention de l'élagueur professionnel Élagage Abattage 37 en Indre-et-Loire"
       class="w-full h-full object-cover object-center"
-      style="will-change: transform;"
-      data-parallax
+      width="1500"
+      height="730"
       loading="eager"
       fetchpriority="high"
+      decoding="async"
     />
   </div>
 
@@ -171,37 +172,13 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
 
 <script>
   /**
-   * Parallax effect pour l'image de fond
-   * Mouvement subtil au scroll pour effet de profondeur
-   */
-  const parallaxElements = document.querySelectorAll<HTMLElement>('[data-parallax]');
-
-  if (parallaxElements.length > 0) {
-    let ticking = false;
-
-    const updateParallax = () => {
-      const scrolled = window.pageYOffset;
-
-      parallaxElements.forEach((element) => {
-        const speed = 0.3; // Vitesse du parallax (plus petit = plus subtil)
-        const yPos = -(scrolled * speed);
-        element.style.transform = `translate3d(0, ${yPos}px, 0)`;
-      });
-
-      ticking = false;
-    };
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
-  /**
-   * Script split-text RETIRÉ pour préserver les espaces insécables
-   * Animation CSS simple utilisée à la place (.animate-fade-in-up)
+   * Script parallax SUPPRIMÉ pour optimisation performance mobile
+   * - Causait des animations non composées (modifie transform à chaque scroll)
+   * - Travail supplémentaire sur le thread principal
+   * - Impact négatif sur TBT et FID
+   *
+   * Alternative : CSS parallax natif avec background-attachment: fixed
+   * (non implémenté car moins fluide sur mobile)
    */
 </script>
 

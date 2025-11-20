@@ -57,8 +57,8 @@ const {
     <!-- Footer -->
     <Footer />
 
-    <!-- Bouton de contact flottant (téléphone) -->
-    <FloatingContactButton client:load />
+    <!-- Bouton de contact flottant (téléphone) - defer pour performance -->
+    <FloatingContactButton client:idle />
 
     <!-- Scroll natif fluide via CSS uniquement (pas de JS lourd) -->
 
