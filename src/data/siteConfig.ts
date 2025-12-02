@@ -66,8 +66,8 @@ export const siteConfig = {
       "Paiement facilité en plusieurs fois",
     ],
 
-    // Informations légales (placeholder)
-    siret: "XXX XXX XXX 00000",
+    // Informations légales
+    siret: "510 816 473 00019",
 
     // Réseaux sociaux
     social: {
