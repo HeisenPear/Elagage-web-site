@@ -16,6 +16,7 @@ export function getLocalBusinessSchema() {
     url: import.meta.env.SITE,
     telephone: siteConfig.business.phone,
     email: siteConfig.business.email,
+    taxID: siteConfig.business.siret,
     priceRange: '€€',
     image: `${import.meta.env.SITE}/images/logo.jpg`,
     logo: `${import.meta.env.SITE}/images/logo.jpg`,
