@@ -130,8 +130,8 @@ const servicesData = [
       </p>
     </div>
 
-    <!-- FlipCards grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- FlipCards grid - 2 colonnes mobile pour compacité -->
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-8">
       {servicesData.map((service) => (
         <FlipCard
           client:idle
