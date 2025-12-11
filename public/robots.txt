@@ -1,18 +1,38 @@
+# Robots.txt optimisé pour SEO - Élagage Abattage 37
+
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_astro/
 
-# Block AI crawlers
-User-agent: GPTBot
+# Sitemaps
+Sitemap: https://elagage-abattage-37.fr/sitemap-index.xml
+
+# Crawl-delay pour éviter surcharge serveur
+Crawl-delay: 1
+
+# Bots spécifiques optimisés
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /images/
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Bloque bots inutiles/malveillants
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
 Disallow: /
 
-User-agent: ChatGPT-User
+User-agent: DotBot
 Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-# Sitemap
-Sitemap: https://votre-domaine.com/sitemap-index.xml
