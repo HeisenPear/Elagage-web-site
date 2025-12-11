@@ -43,7 +43,7 @@ export default function ZonesDropdown({ isMobile = false }: ZonesDropdownProps) 
           onClick={() => setIsOpen(!isOpen)}
           className="w-full text-left py-4 text-white hover:text-accent transition-colors duration-300 flex items-center justify-between"
         >
-          <span className="text-xl font-medium">Zones d'intervention</span>
+          <span className="text-2xl sm:text-3xl font-display font-bold">Zones d'intervention</span>
           <svg
             className={`w-5 h-5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
             fill="none"

@@ -33,9 +33,9 @@ export const siteConfig = {
 
     // Horaires d'ouverture
     openingHours: {
-      weekdays: "08:00-18:00",
-      saturday: "09:00-17:00",
-      sunday: "Fermé",
+      weekdays: "24h/24",
+      saturday: "24h/24",
+      sunday: "24h/24",
     },
 
     // Badges de réassurance (nouveauté)
