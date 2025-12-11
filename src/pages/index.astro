@@ -85,96 +85,199 @@ const stats = [
   <!-- Section Badges de Confiance -->
   <TrustBadgesSection />
 
-  <!-- Section Intro SEO (élagueur près de chez moi Tours) -->
-  <section class="py-20 bg-white">
+  <!-- Section Intro SEO (élagueur près de chez moi Tours) - VERSION MOBILE OPTIMISÉE -->
+  <section class="py-12 md:py-20 bg-white">
     <div class="container-custom">
       <div class="max-w-5xl mx-auto animate-on-scroll">
-        <div class="text-center mb-12">
-          <span class="inline-block px-4 py-2 bg-accent/10 text-accent font-semibold rounded-full text-sm uppercase tracking-wider mb-4">
+        <!-- Header section -->
+        <div class="text-center mb-8 md:mb-12">
+          <span class="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-accent/10 text-accent font-semibold rounded-full text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4">
             Votre élagueur local
           </span>
-          <h2 class="text-display-2 font-display font-bold text-primary mb-6">
+          <h2 class="text-2xl md:text-4xl lg:text-5xl font-display font-bold text-primary mb-3 md:mb-6 px-4">
             Besoin d'un élagueur près de chez vous à Tours ?
           </h2>
+          <!-- Version mobile : texte intro court -->
+          <p class="md:hidden text-base text-neutral-gray px-4 mb-6">
+            <strong>{siteConfig.business.name}</strong> intervient rapidement dans toute l'<strong>Indre-et-Loire (37)</strong> pour vos travaux d'élagage et d'abattage.
+          </p>
+          <!-- Version desktop : texte complet -->
+          <div class="hidden md:block text-lg lg:text-xl text-neutral-gray max-w-3xl mx-auto space-y-4">
+            <p>
+              Vous cherchez un <strong>élagueur près de chez moi à Tours</strong> pour l'entretien de vos arbres ?
+              <strong>{siteConfig.business.name}</strong> intervient rapidement dans toute l'<strong>Indre-et-Loire (37)</strong>
+              pour tous vos travaux d'<strong>élagage, abattage et taille de haies</strong>.
+            </p>
+          </div>
         </div>
 
-        <div class="prose prose-lg max-w-none space-y-6 text-neutral-gray leading-relaxed text-responsive">
-          <p class="text-xl">
-            Vous cherchez un <strong class="whitespace-nowrap">élagueur&nbsp;près&nbsp;de&nbsp;chez&nbsp;moi à&nbsp;Tours</strong> pour l'entretien de vos arbres ?
-            <strong>{siteConfig.business.name}</strong> intervient rapidement dans toute l'<strong class="whitespace-nowrap">Indre-et-Loire&nbsp;(37)</strong>
-            pour tous vos travaux d'<strong>élagage,&nbsp;abattage et&nbsp;taille&nbsp;de&nbsp;haies</strong>.
-          </p>
-
-          <p>
-            Basés à <strong>Tours</strong>, nous sommes votre <strong>élagueur&nbsp;professionnel de&nbsp;proximité</strong> pour
-            toutes les communes du département : <a href="/zones/tours" class="text-primary hover:text-accent underline whitespace-nowrap">Tours</a>, <a href="/zones/amboise" class="text-primary hover:text-accent underline whitespace-nowrap">Amboise</a>, <a href="/zones/joue-les-tours" class="text-primary hover:text-accent underline whitespace-nowrap">Joué-lès-Tours</a>, {siteConfig.serviceArea.cities.slice(3, 8).join(', ')}, et <a href="/zones" class="text-primary hover:text-accent underline">bien&nbsp;d'autres&nbsp;villes</a>.
-            Notre entreprise familiale compte <strong>plus&nbsp;de&nbsp;{siteConfig.stats.yearsExperience}&nbsp;ans&nbsp;d'expérience</strong>
-            dans l'élagage et l'entretien d'espaces&nbsp;verts.
-          </p>
-
-          <div class="grid md:grid-cols-2 gap-6 my-8">
-            <div class="bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl p-6 border border-primary/10">
-              <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-3">
-                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- VERSION MOBILE : Cards compactes avec points clés -->
+        <div class="md:hidden grid grid-cols-1 gap-4 mb-8 px-4">
+          <!-- Card 1: Élagueur local -->
+          <div class="bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl p-5 border border-primary/10">
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                Pourquoi choisir un élagueur local ?
-              </h3>
-              <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">→</span>
-                  <span>Intervention rapide sous 48h maximum</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">→</span>
-                  <span>Connaissance des essences locales d'Indre-et-Loire</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">→</span>
-                  <span>Déplacement gratuit pour établir votre devis</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">→</span>
-                  <span>Disponibilité et proximité garanties</span>
-                </li>
-              </ul>
+              </div>
+              <h3 class="text-lg font-bold text-primary">Élagueur local Tours</h3>
             </div>
-
-            <div class="bg-gradient-to-br from-secondary/5 to-accent/5 rounded-xl p-6 border border-secondary/20">
-              <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-3">
-                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                Réduction fiscale jusqu'à 2 500€
-              </h3>
-              <p class="text-sm mb-3">
-                Profitez de <strong>50% de crédit d'impôt</strong> sur vos travaux d'élagage et d'entretien de jardin
-                (limite de 5 000€ de dépenses par an pour les particuliers).
-              </p>
-              <p class="text-xs text-neutral-gray/80">
-                ✅ Attestation fiscale fournie • ✅ Paiement facilité en plusieurs fois disponible
-              </p>
-            </div>
+            <ul class="space-y-2 text-sm text-neutral-gray">
+              <li class="flex items-center gap-2">
+                <span class="text-accent text-lg">•</span>
+                <span>Intervention rapide sous 48h</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-accent text-lg">•</span>
+                <span>Déplacement gratuit pour devis</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-accent text-lg">•</span>
+                <span>{siteConfig.stats.yearsExperience} ans d'expérience</span>
+              </li>
+            </ul>
           </div>
 
-          <p>
-            En tant qu'<strong>élagueur certifié à Tours</strong>, nous respectons toutes les normes de sécurité
-            et disposons d'une <strong>assurance RC Professionnelle de 8 millions d'euros</strong>. Chaque chantier
-            est réalisé par des <strong>élagueurs grimpeurs professionnels</strong> équipés de matériel récent et conforme.
-          </p>
+          <!-- Card 2: Réduction fiscale -->
+          <div class="bg-gradient-to-br from-secondary/5 to-accent/5 rounded-xl p-5 border border-secondary/20">
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-primary">Crédit d'impôt -50%</h3>
+            </div>
+            <p class="text-sm text-neutral-gray mb-2">
+              <strong>Réduction fiscale jusqu'à 2 500€</strong> sur vos travaux d'élagage et d'entretien de jardin.
+            </p>
+            <p class="text-xs text-neutral-gray/80">
+              ✅ Attestation fournie • ✅ Paiement en plusieurs fois
+            </p>
+          </div>
 
+          <!-- Card 3: Certifications -->
+          <div class="bg-gradient-to-br from-accent/5 to-primary/5 rounded-xl p-5 border border-accent/20">
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-primary">Certifié & Assuré</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-neutral-gray">
+              <li class="flex items-center gap-2">
+                <span class="text-accent text-lg">•</span>
+                <span>Assurance RC Pro 8M€</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-accent text-lg">•</span>
+                <span>Élagueurs grimpeurs pros</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-accent text-lg">•</span>
+                <span>Matériel récent et conforme</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- VERSION DESKTOP : Layout original avec 2 cards -->
+        <div class="hidden md:block">
+          <div class="prose prose-lg max-w-none space-y-6 text-neutral-gray leading-relaxed">
+            <p>
+              Basés à <strong>Tours</strong>, nous sommes votre <strong>élagueur professionnel de proximité</strong> pour
+              toutes les communes du département : <a href="/zones/tours" class="text-primary hover:text-accent underline whitespace-nowrap">Tours</a>, <a href="/zones/amboise" class="text-primary hover:text-accent underline whitespace-nowrap">Amboise</a>, <a href="/zones/joue-les-tours" class="text-primary hover:text-accent underline whitespace-nowrap">Joué-lès-Tours</a>, {siteConfig.serviceArea.cities.slice(3, 8).join(', ')}, et <a href="/zones" class="text-primary hover:text-accent underline">bien d'autres villes</a>.
+              Notre entreprise familiale compte <strong>plus de {siteConfig.stats.yearsExperience} ans d'expérience</strong>
+              dans l'élagage et l'entretien d'espaces verts.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 my-8">
+              <div class="bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl p-6 border border-primary/10">
+                <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-3">
+                  <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  Pourquoi choisir un élagueur local ?
+                </h3>
+                <ul class="space-y-2 text-sm">
+                  <li class="flex items-start gap-2">
+                    <span class="text-accent font-bold">→</span>
+                    <span>Intervention rapide sous 48h maximum</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-accent font-bold">→</span>
+                    <span>Connaissance des essences locales d'Indre-et-Loire</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-accent font-bold">→</span>
+                    <span>Déplacement gratuit pour établir votre devis</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-accent font-bold">→</span>
+                    <span>Disponibilité et proximité garanties</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-gradient-to-br from-secondary/5 to-accent/5 rounded-xl p-6 border border-secondary/20">
+                <h3 class="text-xl font-bold text-primary mb-3 flex items-center gap-3">
+                  <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  Réduction fiscale jusqu'à 2 500€
+                </h3>
+                <p class="text-sm mb-3">
+                  Profitez de <strong>50% de crédit d'impôt</strong> sur vos travaux d'élagage et d'entretien de jardin
+                  (limite de 5 000€ de dépenses par an pour les particuliers).
+                </p>
+                <p class="text-xs text-neutral-gray/80">
+                  ✅ Attestation fiscale fournie • ✅ Paiement facilité en plusieurs fois disponible
+                </p>
+              </div>
+            </div>
+
+            <p>
+              En tant qu'<strong>élagueur certifié à Tours</strong>, nous respectons toutes les normes de sécurité
+              et disposons d'une <strong>assurance RC Professionnelle de 8 millions d'euros</strong>. Chaque chantier
+              est réalisé par des <strong>élagueurs grimpeurs professionnels</strong> équipés de matériel récent et conforme.
+            </p>
+
+            <p>
+              Nous intervenons pour tous types de travaux : <a href="/#services" class="text-primary hover:text-accent underline">élagage d'arbres d'ombrage</a>,
+              <strong>taille d'arbres fruitiers</strong>, <strong>abattage d'arbres dangereux</strong>,
+              <a href="/services/dessouchage-arbres" class="text-primary hover:text-accent underline">dessouchage professionnel</a>, <strong>taille de haies</strong> et <strong>entretien d'espaces verts</strong>.
+              Que vous soyez particulier ou professionnel (syndics, mairies, entreprises), nous adaptons nos prestations
+              à vos besoins spécifiques.
+            </p>
+          </div>
+        </div>
+
+        <!-- SEO: Texte complet caché pour crawlers (préservation SEO) -->
+        <div class="sr-only">
           <p>
-            Nous intervenons pour tous types de travaux : <a href="/#services" class="text-primary hover:text-accent underline">élagage d'arbres d'ombrage</a>,
-            <strong>taille d'arbres fruitiers</strong>, <strong>abattage d'arbres dangereux</strong>,
-            <a href="/services/dessouchage-arbres" class="text-primary hover:text-accent underline">dessouchage professionnel</a>, <strong>taille de haies</strong> et <strong>entretien d'espaces verts</strong>.
+            Vous cherchez un élagueur près de chez moi à Tours pour l'entretien de vos arbres ?
+            Élagage Abattage 37 intervient rapidement dans toute l'Indre-et-Loire (37)
+            pour tous vos travaux d'élagage, abattage et taille de haies.
+            Basés à Tours, nous sommes votre élagueur professionnel de proximité pour
+            toutes les communes du département. Notre entreprise familiale compte plus de {siteConfig.stats.yearsExperience} ans d'expérience
+            dans l'élagage et l'entretien d'espaces verts.
+            En tant qu'élagueur certifié à Tours, nous respectons toutes les normes de sécurité
+            et disposons d'une assurance RC Professionnelle de 8 millions d'euros. Chaque chantier
+            est réalisé par des élagueurs grimpeurs professionnels équipés de matériel récent et conforme.
+            Nous intervenons pour tous types de travaux : élagage d'arbres d'ombrage,
+            taille d'arbres fruitiers, abattage d'arbres dangereux, dessouchage professionnel, taille de haies et entretien d'espaces verts.
             Que vous soyez particulier ou professionnel (syndics, mairies, entreprises), nous adaptons nos prestations
             à vos besoins spécifiques.
           </p>
         </div>
 
-        <div class="text-center mt-12">
-          <a href="#contact" class="btn-primary inline-flex text-lg">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- CTA Button -->
+        <div class="text-center mt-8 md:mt-12 px-4">
+          <a href="#contact" class="btn-primary inline-flex text-base md:text-lg">
+            <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
             <span>Demander mon devis gratuit</span>
