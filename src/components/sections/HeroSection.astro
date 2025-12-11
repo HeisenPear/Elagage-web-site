@@ -36,7 +36,7 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
   <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent -z-5"></div>
 
   <!-- Content -->
-  <div class="container-custom relative z-10 text-center pt-20 md:pt-24 pb-32">
+  <div class="container-custom relative z-10 text-center pt-32 md:pt-24 pb-32">
     <div class="max-w-5xl mx-auto space-y-8 animate-on-scroll">
       <!-- H1 avec animation fade-in simple (SANS split-text pour préserver espaces insécables) -->
       <h1
@@ -148,26 +148,28 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
   </div>
 
   <!-- Scroll indicator animé -->
-  <a
-    href="#services"
-    class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center gap-2 text-white/60 hover:text-white transition-colors duration-300 group animate-on-scroll"
-    aria-label="Défiler vers les services"
-  >
-    <span class="text-sm font-medium uppercase tracking-wider text-center">Découvrir</span>
-    <svg
-      class="w-6 h-10 animate-bounce mx-auto"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
+  <div class="absolute bottom-12 left-0 right-0 w-full flex justify-center">
+    <a
+      href="#services"
+      class="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors duration-300 group animate-on-scroll"
+      aria-label="Défiler vers les services"
     >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M19 14l-7 7m0 0l-7-7m7 7V3"
-      />
-    </svg>
-  </a>
+      <span class="text-sm font-medium uppercase tracking-wider">Découvrir</span>
+      <svg
+        class="w-6 h-10 animate-bounce"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"
+        />
+      </svg>
+    </a>
+  </div>
 </section>
 
 <script>
