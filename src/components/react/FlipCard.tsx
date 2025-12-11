@@ -72,7 +72,7 @@ export default function FlipCard({
 
   return (
     <div
-      className="flip-card-container min-h-[28rem] w-full cursor-pointer"
+      className="flip-card-container min-h-[20rem] md:min-h-[26rem] lg:min-h-[28rem] w-full cursor-pointer"
       style={{ perspective: '1000px' }}
       onClick={handleCardClick}
       onMouseEnter={handleMouseEnter}
@@ -115,16 +115,17 @@ export default function FlipCard({
               </div>
 
               {/* Contenu par-dessus l'image */}
-              <div className="relative z-10 h-full flex flex-col justify-end p-6 text-white">
-                <h3 className="text-2xl md:text-3xl font-display font-bold mb-2">
+              <div className="relative z-10 h-full flex flex-col justify-end p-3 md:p-5 lg:p-6 text-white">
+                <h3 className="text-base md:text-xl lg:text-2xl font-display font-bold mb-1 md:mb-2">
                   {title}
                 </h3>
-                <p className="text-lg font-semibold mb-3 text-accent">
+                <p className="text-xs md:text-sm lg:text-base font-semibold mb-2 md:mb-3 text-accent">
                   {price}
                 </p>
-                <span className="text-xs opacity-80 flex items-center gap-2">
-                  {isMobile ? 'Appuyez pour plus d\'infos' : 'Survolez pour plus d\'infos'}
-                  <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="text-[10px] md:text-xs opacity-80 flex items-center gap-1 md:gap-2">
+                  <span className="hidden md:inline">{isMobile ? 'Appuyez pour plus d\'infos' : 'Survolez pour plus d\'infos'}</span>
+                  <span className="md:hidden">Appuyer</span>
+                  <svg className="w-3 h-3 md:w-4 md:h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
                 </span>
@@ -132,27 +133,28 @@ export default function FlipCard({
             </>
           ) : (
             /* Version sans photo (icône classique) */
-            <div className="bg-white p-8 flex flex-col items-center justify-center text-center h-full">
-              {/* Icon */}
+            <div className="bg-white p-3 md:p-6 lg:p-8 flex flex-col items-center justify-center text-center h-full">
+              {/* Icon - caché sur très petit mobile */}
               <div
-                className="w-20 h-20 bg-accent/10 rounded-2xl flex items-center justify-center mb-6 text-accent transition-all duration-300 group-hover:bg-accent group-hover:text-white group-hover:scale-110"
+                className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-accent/10 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 md:mb-5 lg:mb-6 text-accent transition-all duration-300 group-hover:bg-accent group-hover:text-white group-hover:scale-110"
                 dangerouslySetInnerHTML={{ __html: icon }}
               />
 
               {/* Titre */}
-              <h3 className="text-2xl md:text-3xl font-display font-bold text-primary mb-3">
+              <h3 className="text-sm md:text-xl lg:text-2xl font-display font-bold text-primary mb-1 md:mb-2 lg:mb-3 leading-tight">
                 {title}
               </h3>
 
               {/* Prix */}
-              <p className="text-lg text-neutral-gray mb-6">
+              <p className="text-xs md:text-base lg:text-lg text-neutral-gray mb-3 md:mb-6">
                 {price}
               </p>
 
               {/* Indicateur */}
-              <span className="text-sm text-accent font-semibold flex items-center gap-2 mt-auto">
-                {isMobile ? 'Appuyez pour plus d\'infos' : 'Survolez pour plus d\'infos'}
-                <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="text-[10px] md:text-xs lg:text-sm text-accent font-semibold flex items-center gap-1 md:gap-2 mt-auto">
+                <span className="hidden md:inline">{isMobile ? 'Appuyez pour plus d\'infos' : 'Survolez pour plus d\'infos'}</span>
+                <span className="md:hidden">Appuyer</span>
+                <svg className="w-3 h-3 md:w-4 md:h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
               </span>
@@ -162,7 +164,7 @@ export default function FlipCard({
 
         {/* FACE ARRIÈRE */}
         <div
-          className={`flip-card-face flip-card-back absolute inset-0 w-full h-full bg-gradient-to-br ${gradientFrom} ${gradientTo} rounded-2xl p-6 md:p-8 shadow-lg text-white flex flex-col overflow-y-auto`}
+          className={`flip-card-face flip-card-back absolute inset-0 w-full h-full bg-gradient-to-br ${gradientFrom} ${gradientTo} rounded-xl md:rounded-2xl p-3 md:p-6 lg:p-8 shadow-lg text-white flex flex-col overflow-y-auto`}
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
@@ -170,20 +172,20 @@ export default function FlipCard({
           }}
         >
           {/* Titre */}
-          <h3 className="text-lg md:text-xl font-display font-bold mb-3">
+          <h3 className="text-sm md:text-lg lg:text-xl font-display font-bold mb-2 md:mb-3">
             {title}
           </h3>
 
-          {/* Description */}
-          <p className="text-xs md:text-sm text-white/90 mb-4 leading-relaxed">
+          {/* Description - cachée sur mobile pour gagner de la place */}
+          <p className="hidden md:block text-xs md:text-sm text-white/90 mb-4 leading-relaxed">
             {description}
           </p>
 
           {/* Liste avantages */}
-          <ul className="space-y-2 mb-4 flex-1">
+          <ul className="space-y-1 md:space-y-2 mb-3 md:mb-4 flex-1">
             {features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2 text-xs md:text-sm">
-                <svg className="w-4 h-4 text-white flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <li key={index} className="flex items-start gap-1.5 md:gap-2 text-[10px] md:text-xs lg:text-sm">
+                <svg className="w-3 h-3 md:w-4 md:h-4 text-white flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <span className="text-white/95 leading-tight">{feature}</span>
@@ -194,11 +196,12 @@ export default function FlipCard({
           {/* CTA */}
           <a
             href={ctaHref}
-            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white text-primary font-bold text-sm rounded-lg hover:bg-neutral-cream transition-all duration-300 hover:scale-105 shadow-lg mt-auto flex-shrink-0"
+            className="inline-flex items-center justify-center gap-1 md:gap-2 px-3 py-2 md:px-5 md:py-2.5 bg-white text-primary font-bold text-[10px] md:text-xs lg:text-sm rounded-lg hover:bg-neutral-cream transition-all duration-300 hover:scale-105 shadow-lg mt-auto flex-shrink-0"
             onClick={(e) => e.stopPropagation()} // Éviter de fermer la card au clic sur CTA
           >
-            <span>{ctaText}</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span className="hidden md:inline">{ctaText}</span>
+            <span className="md:hidden">Devis</span>
+            <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </a>
@@ -206,7 +209,7 @@ export default function FlipCard({
           {/* Bouton retour (mobile uniquement) */}
           {isMobile && (
             <button
-              className="mt-3 text-white/70 text-xs underline hover:text-white transition-colors flex-shrink-0"
+              className="mt-2 md:mt-3 text-white/70 text-[10px] md:text-xs underline hover:text-white transition-colors flex-shrink-0"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsFlipped(false);
