@@ -82,23 +82,53 @@ export const siteConfig = {
     title: "Élagueur Professionnel Tours (37) | Élagage Abattage 37 | Devis Gratuit 24h",
     description: "🌳 Élagueur professionnel à Tours (37) | Élagage, abattage d'arbres en Indre-et-Loire | ✅ Assuré 8M€ ✅ Crédit d'impôt -50% | Devis gratuit 24h ☎️ 06 31 46 43 50",
     keywords: [
+      // Mots-clés principaux longue traîne
+      "élagueur près de chez moi Tours",
+      "élagueur professionnel Tours",
       "élagage Tours",
       "élagueur Tours",
       "abattage arbre Tours",
-      "élagueur professionnel Tours",
-      "élagueur près de chez moi Tours",
+      "entreprise élagage Tours",
+
+      // Mots-clés géolocalisés
       "élagage Indre-et-Loire",
       "élagueur 37",
-      "prix élagage Tours",
-      "tarif élagueur Tours",
+      "élagage Tours 37",
+      "élagueur Joué-lès-Tours",
+      "élagage Amboise",
+      "élagueur Saint-Cyr-sur-Loire",
+
+      // Mots-clés services
       "taille haie Tours",
       "dessouchage Tours",
-      "élagage Tours 37",
+      "abattage arbre dangereux",
+      "élagage arbre fruitier",
+      "entretien jardin Tours",
+      "débroussaillage Tours",
+
+      // Mots-clés commerciaux
+      "prix élagage Tours",
+      "tarif élagueur Tours",
+      "devis élagage gratuit Tours",
+      "élagueur pas cher Tours",
+      "coût élagage arbre",
+
+      // Mots-clés techniques
+      "élagueur certifié Tours",
+      "élagueur grimpeur Tours",
+      "élagage raisonné",
+      "taille douce arbre",
+
+      // Mots-clés avantages fiscaux
       "réduction fiscale élagage",
       "crédit impôt élagage",
-      "élagueur certifié Tours",
-      "entreprise élagage Tours",
-      "devis élagage gratuit Tours",
+      "crédit impôt jardin",
+      "aide fiscale entretien jardin",
+
+      // Mots-clés urgence
+      "élagueur urgence Tours",
+      "abattage arbre d'urgence",
+      "élagage après tempête",
     ],
     ogImage: "/images/og-image.jpg", // Image 1200x630px
     twitterHandle: "", // Optionnel

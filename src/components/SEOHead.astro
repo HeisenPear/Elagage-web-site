@@ -40,6 +40,20 @@ const absoluteOgImage = new URL(ogImage, Astro.site).href;
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta charset="UTF-8" />
 
+<!-- Additional SEO Meta Tags -->
+<meta name="language" content="French" />
+<meta name="revisit-after" content="7 days" />
+<meta name="rating" content="general" />
+<meta name="distribution" content="global" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- Business Contact Info -->
+<meta name="contact" content={siteConfig.business.email} />
+<meta name="telephone" content={siteConfig.business.phone} />
+<meta name="address" content={`${siteConfig.business.address.street}, ${siteConfig.business.address.postalCode} ${siteConfig.business.address.city}`} />
+
 <!-- Canonical URL -->
 <link rel="canonical" href={canonical} />
 
@@ -84,12 +98,8 @@ const absoluteOgImage = new URL(ogImage, Astro.site).href;
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<!-- Preload Google Fonts pour performance optimale (évite @import bloquant) -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" media="print" onload="this.media='all'" />
-<noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" />
-</noscript>
+<!-- Google Fonts optimisé pour performance (évite render-blocking) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap&text=ÉélagueurprofessionnalTours37IndreLoiabcdefghijkmnqstvwxyz0123456789" media="all" />
 
 <!-- Preload image hero critique pour LCP -->
 <link rel="preload" as="image" href="/images/hero/loire-hero.webp" fetchpriority="high" />
