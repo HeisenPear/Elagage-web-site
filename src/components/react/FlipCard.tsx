@@ -164,7 +164,7 @@ export default function FlipCard({
 
         {/* FACE ARRIÈRE */}
         <div
-          className={`flip-card-face flip-card-back absolute inset-0 w-full h-full bg-gradient-to-br ${gradientFrom} ${gradientTo} rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 shadow-lg text-white flex flex-col overflow-y-auto`}
+          className={`flip-card-face flip-card-back absolute inset-0 w-full h-full bg-gradient-to-br ${gradientFrom} ${gradientTo} rounded-xl md:rounded-2xl p-3 md:p-6 lg:p-8 shadow-lg text-white flex flex-col`}
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
@@ -176,27 +176,32 @@ export default function FlipCard({
             {title}
           </h3>
 
-          {/* Description - version courte sur mobile, complète sur desktop */}
-          <p className="text-xs md:text-sm text-white/90 mb-3 md:mb-4 leading-relaxed line-clamp-2 md:line-clamp-none">
+          {/* Description - cachée sur mobile pour gagner de l'espace, visible desktop */}
+          <p className="hidden md:block text-sm text-white/90 mb-4 leading-relaxed">
             {description}
           </p>
 
-          {/* Liste avantages - meilleure lisibilité mobile */}
-          <ul className="space-y-2 md:space-y-2.5 mb-4 md:mb-5 flex-1">
-            {features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2 md:gap-2.5 text-xs md:text-sm lg:text-base">
-                <svg className="w-4 h-4 md:w-5 md:h-5 text-white flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span className="text-white leading-relaxed">{feature}</span>
-              </li>
-            ))}
+          {/* Liste avantages - limitée à 4 items sur mobile, tous sur desktop */}
+          <ul className="space-y-1.5 md:space-y-2.5 mb-3 md:mb-5 flex-1">
+            {features.map((feature, index) => {
+              // Sur mobile, afficher seulement les 4 premiers items
+              if (isMobile && index >= 4) return null;
+
+              return (
+                <li key={index} className="flex items-start gap-1.5 md:gap-2.5 text-xs md:text-sm lg:text-base">
+                  <svg className="w-3.5 h-3.5 md:w-5 md:h-5 text-white flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-white leading-snug">{feature}</span>
+                </li>
+              );
+            })}
           </ul>
 
-          {/* CTA - plus grand et lisible sur mobile */}
+          {/* CTA - compact sur mobile */}
           <a
             href={ctaHref}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 md:px-5 md:py-3 bg-white text-primary font-bold text-xs md:text-sm lg:text-base rounded-lg hover:bg-neutral-cream transition-all duration-300 hover:scale-105 shadow-lg mt-auto flex-shrink-0"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 md:px-5 md:py-3 bg-white text-primary font-bold text-xs md:text-sm lg:text-base rounded-lg hover:bg-neutral-cream transition-all duration-300 hover:scale-105 shadow-lg mt-auto flex-shrink-0"
             onClick={(e) => e.stopPropagation()} // Éviter de fermer la card au clic sur CTA
           >
             <span>{ctaText}</span>
@@ -205,10 +210,10 @@ export default function FlipCard({
             </svg>
           </a>
 
-          {/* Bouton retour (mobile uniquement) - plus visible */}
+          {/* Bouton retour (mobile uniquement) - compact */}
           {isMobile && (
             <button
-              className="mt-3 text-white/80 text-xs underline hover:text-white transition-colors flex-shrink-0 font-medium"
+              className="mt-2 text-white/80 text-[10px] underline hover:text-white transition-colors flex-shrink-0"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsFlipped(false);
