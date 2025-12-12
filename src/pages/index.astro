@@ -70,9 +70,28 @@ const stats = [
           <h2 class="text-display-2 font-display font-bold text-primary mb-4">
             Demandez votre devis gratuit
           </h2>
-          <p class="text-xl text-neutral-gray">
-            Réponse sous 24h • Déplacement gratuit • Devis sans engagement
-          </p>
+
+          <!-- Mini-badges avec icônes -->
+          <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4 max-w-2xl mx-auto">
+            <span class="inline-flex items-center gap-1.5 px-3 py-2 md:px-4 md:py-2.5 bg-accent/10 text-accent rounded-xl text-sm md:text-base font-semibold">
+              <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span>Réponse sous 24h</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-2 md:px-4 md:py-2.5 bg-primary/10 text-primary rounded-xl text-sm md:text-base font-semibold">
+              <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span>Déplacement gratuit</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-2 md:px-4 md:py-2.5 bg-secondary/10 text-secondary rounded-xl text-sm md:text-base font-semibold">
+              <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+              <span>Sans engagement</span>
+            </span>
+          </div>
         </div>
 
         <div class="bg-white rounded-2xl shadow-lift p-8 md:p-12">
@@ -319,24 +338,32 @@ const stats = [
             Notre entreprise a été fondée il y a 10 ans, et nous sommes fiers de proposer des services de haute qualité à des prix abordables. Notre plus grand plaisir est la satisfaction de nos clients.
           </p>
 
-          <!-- Points clés avec icônes -->
+          <!-- Points clés avec icônes et badges -->
           <div class="space-y-3 md:space-y-6 pt-2 md:pt-4">
             {[
               {
                 title: 'Élagueur grimpeur certifié',
                 description: 'Plus de 13 années d\'expérience dans les travaux d\'élagage et d\'abattage en hauteur.',
+                badge: 'CERTIFIÉ',
+                badgeColor: 'bg-blue-500/20 text-blue-300',
               },
               {
                 title: `${siteConfig.stats.yearsExperience} ans d'expérience`,
                 description: 'Centaines de clients particuliers et professionnels satisfaits dans la région de Tours.',
+                badge: 'EXPERT',
+                badgeColor: 'bg-accent/20 text-accent',
               },
               {
                 title: 'Entreprise familiale',
                 description: 'Totalement dévoués à notre métier, nous proposons des services de haute qualité à prix abordables.',
+                badge: 'LOCAL',
+                badgeColor: 'bg-emerald-500/20 text-emerald-300',
               },
               {
                 title: `Intervention rapide (${siteConfig.stats.responseTime})`,
                 description: 'Disponibilité maximale pour répondre à vos urgences.',
+                badge: 'RAPIDE',
+                badgeColor: 'bg-orange-500/20 text-orange-300',
               },
             ].map((point) => (
               <div class="flex gap-3 md:gap-4 group">
@@ -345,8 +372,13 @@ const stats = [
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                   </svg>
                 </div>
-                <div>
-                  <h3 class="text-base md:text-xl font-bold mb-1 md:mb-2">{point.title}</h3>
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-2 mb-1 md:mb-2">
+                    <h3 class="text-base md:text-xl font-bold">{point.title}</h3>
+                    <span class={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] md:text-xs font-bold uppercase tracking-wider ${point.badgeColor}`}>
+                      {point.badge}
+                    </span>
+                  </div>
                   <p class="text-sm md:text-base text-white/70">{point.description}</p>
                 </div>
               </div>
@@ -664,12 +696,36 @@ const stats = [
         </div>
 
         <div class="mt-6 md:mt-8 p-4 md:p-6 bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl border-2 border-accent/20">
-          <p class="text-center text-sm md:text-base font-semibold text-primary mb-1 md:mb-2">
+          <p class="text-center text-sm md:text-base font-semibold text-primary mb-3 md:mb-4">
             Besoin d'un élagueur professionnel certifié à Tours ?
           </p>
-          <p class="text-center text-xs md:text-sm text-neutral-gray">
-            <strong>Devis gratuit sous 24h</strong> • <strong>Intervention rapide</strong> • <strong>Assuré RC Pro 8M€</strong> • <strong>Crédit d'impôt -50%</strong>
-          </p>
+          <!-- Mini-badges avantages -->
+          <div class="flex flex-wrap items-center justify-center gap-2 md:gap-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1.5 md:px-3 md:py-2 bg-accent/10 text-accent rounded-lg text-xs md:text-sm font-bold">
+              <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span>Devis gratuit 24h</span>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1.5 md:px-3 md:py-2 bg-primary/10 text-primary rounded-lg text-xs md:text-sm font-bold">
+              <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+              <span>Intervention rapide</span>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1.5 md:px-3 md:py-2 bg-blue-100 text-blue-700 rounded-lg text-xs md:text-sm font-bold">
+              <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+              <span>Assuré 8M€</span>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1.5 md:px-3 md:py-2 bg-secondary/10 text-secondary rounded-lg text-xs md:text-sm font-bold">
+              <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span>Crédit d'impôt -50%</span>
+            </span>
+          </div>
         </div>
       </div>
     </div>
