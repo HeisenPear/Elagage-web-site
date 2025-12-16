@@ -6,7 +6,7 @@ import compress from 'astro-compress';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://paysagiste-touraine.vercel.app', // URL Vercel
+  site: 'https://elagage-abattage-37.fr', // Nom de domaine principal
   output: 'static',
   integrations: [
     react(),

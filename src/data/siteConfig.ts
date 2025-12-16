@@ -130,7 +130,7 @@ export const siteConfig = {
       "abattage arbre d'urgence",
       "élagage après tempête",
     ],
-    ogImage: "/images/og-image.jpg", // Image 1200x630px
+    ogImage: "/images/og-image.svg", // Image 1200x630px
     twitterHandle: "", // Optionnel
   },
 
