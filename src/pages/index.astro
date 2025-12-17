@@ -14,13 +14,15 @@ import ContactForm from '@/components/react/ContactForm';
 import { siteConfig } from '@/data/siteConfig';
 import {
   getLocalBusinessSchema,
+  getOrganizationSchema,
   getFAQSchema,
   getWebSiteSchema,
   combineSchemas,
 } from '@/utils/schemas';
 
-// Schémas JSON-LD pour SEO
+// Schémas JSON-LD pour SEO - Organization en premier pour priorité Google
 const schemas = combineSchemas(
+  getOrganizationSchema(),
   getLocalBusinessSchema(),
   getWebSiteSchema(),
   getFAQSchema()
