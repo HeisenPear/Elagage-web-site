@@ -93,13 +93,15 @@ const absoluteOgImage = new URL(ogImage, Astro.site).href;
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
-
-<!-- Preconnect pour optimisation -->
+<!-- Preconnect pour optimisation Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<!-- Google Fonts optimisé pour performance (évite render-blocking) -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap&text=ÉélagueurprofessionnalTours37IndreLoiabcdefghijkmnqstvwxyz0123456789" media="all" />
+<!-- Google Fonts avec chargement asynchrone (évite render-blocking) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" media="print" onload="this.media='all'" />
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" />
+</noscript>
 
 <!-- Preload image hero critique pour LCP -->
 <link rel="preload" as="image" href="/images/hero/loire-hero.webp" fetchpriority="high" />

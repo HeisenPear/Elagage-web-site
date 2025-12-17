@@ -116,7 +116,13 @@ const servicesData = [
 export async function getStaticPaths() {
   return siteConfig.serviceArea.cities.map((city) => ({
     params: {
-      city: city.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      // Normalise les accents avant de générer le slug (é → e, è → e, etc.)
+      city: city
+        .toLowerCase()
+        .normalize('NFD') // Décompose les caractères accentués
+        .replace(/[\u0300-\u036f]/g, '') // Retire les accents
+        .replace(/[^a-z0-9]+/g, '-') // Remplace caractères spéciaux par tirets
+        .replace(/^-+|-+$/g, ''), // Retire tirets début/fin
     },
     props: {
       cityName: city,

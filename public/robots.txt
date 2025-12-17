@@ -7,7 +7,7 @@ Disallow: /private/
 Disallow: /_astro/
 
 # Sitemaps
-Sitemap: https://elagage-abattage-37.fr/sitemap-index.xml
+Sitemap: https://www.elagageabattage37.com/sitemap-index.xml
 
 # Crawl-delay pour éviter surcharge serveur
 Crawl-delay: 1
