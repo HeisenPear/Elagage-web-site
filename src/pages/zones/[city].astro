@@ -7,7 +7,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ContactForm from '@/components/react/ContactForm';
 import FlipCard from '@/components/react/FlipCard';
 import { siteConfig } from '@/data/siteConfig';
-import { getLocalBusinessSchema } from '@/utils/schemas';
+import { getLocalBusinessSchema, getBreadcrumbSchema, combineSchemas } from '@/utils/schemas';
 
 // Icônes SVG pour les FlipCards
 const icons = {
@@ -161,13 +161,23 @@ const localBusinessSchema = {
     },
   },
 };
+
+// Schema.org BreadcrumbList pour améliorer le SEO
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: 'Accueil', url: Astro.site?.href || '' },
+  { name: 'Zones d\'intervention', url: new URL('/zones', Astro.site).href },
+  { name: `Élagueur ${cityName}`, url: Astro.url.href },
+]);
+
+// Combiner les schemas
+const schemas = combineSchemas(localBusinessSchema, breadcrumbSchema);
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
   keywords={keywords}
-  schema={localBusinessSchema}
+  schema={schemas}
 >
   <!-- Hero Section ville - Mobile optimisé -->
   <section class="relative pt-32 md:pt-40 pb-12 md:pb-20 bg-gradient-to-br from-primary to-primary-900 text-white">
