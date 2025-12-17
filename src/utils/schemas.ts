@@ -206,6 +206,39 @@ export function getArticleSchema(
 }
 
 /**
+ * Schema Organization - Définit clairement l'organisation pour Google
+ */
+export function getOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${import.meta.env.SITE}/#organization`,
+    name: siteConfig.business.name,
+    alternateName: siteConfig.business.name,
+    legalName: siteConfig.business.name,
+    url: import.meta.env.SITE,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
+      width: 400,
+      height: 400,
+    },
+    description: siteConfig.business.description,
+    email: siteConfig.business.email,
+    telephone: siteConfig.business.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteConfig.business.address.street,
+      addressLocality: siteConfig.business.address.city,
+      postalCode: siteConfig.business.address.postalCode,
+      addressRegion: siteConfig.business.address.region,
+      addressCountry: siteConfig.business.address.countryCode,
+    },
+    sameAs: Object.values(siteConfig.business.social).filter(Boolean),
+  };
+}
+
+/**
  * Schema WebSite - Search box (si recherche ajoutée)
  */
 export function getWebSiteSchema() {
@@ -217,7 +250,13 @@ export function getWebSiteSchema() {
     name: siteConfig.business.name,
     description: siteConfig.business.description,
     publisher: {
+      '@type': 'Organization',
       '@id': `${import.meta.env.SITE}/#organization`,
+      name: siteConfig.business.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
+      },
     },
     inLanguage: 'fr-FR',
   };
