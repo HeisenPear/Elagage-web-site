@@ -18,8 +18,8 @@ export function getLocalBusinessSchema() {
     email: siteConfig.business.email,
     taxID: siteConfig.business.siret,
     priceRange: '€€',
-    image: `${import.meta.env.SITE}/images/logo.jpg`,
-    logo: `${import.meta.env.SITE}/images/logo.jpg`,
+    image: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
+    logo: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: siteConfig.business.address.street,
@@ -199,7 +199,7 @@ export function getArticleSchema(
       name: siteConfig.business.name,
       logo: {
         '@type': 'ImageObject',
-        url: `${import.meta.env.SITE}/images/logo.jpg`,
+        url: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
       },
     },
   };
