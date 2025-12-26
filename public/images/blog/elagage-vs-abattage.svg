@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d3d1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e5a30;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#grad3)"/>
+
+  <!-- Ligne de séparation verticale -->
+  <line x1="600" y1="100" x2="600" y2="530" stroke="#7CB342" stroke-width="3" stroke-dasharray="10,5"/>
+
+  <!-- Côté ÉLAGAGE (gauche) -->
+  <text x="300" y="180" font-family="Arial, sans-serif" font-size="48" fill="#7CB342" text-anchor="middle" font-weight="bold">ÉLAGAGE</text>
+  <text x="300" y="250" font-family="Arial, sans-serif" font-size="60" fill="#fff" text-anchor="middle">🌳</text>
+  <text x="300" y="310" font-family="Arial, sans-serif" font-size="22" fill="#e0f2e0" text-anchor="middle">Taille de branches</text>
+  <text x="300" y="345" font-family="Arial, sans-serif" font-size="22" fill="#e0f2e0" text-anchor="middle">Arbre conservé</text>
+  <text x="300" y="380" font-family="Arial, sans-serif" font-size="22" fill="#e0f2e0" text-anchor="middle">Entretien régulier</text>
+
+  <!-- Côté ABATTAGE (droite) -->
+  <text x="900" y="180" font-family="Arial, sans-serif" font-size="48" fill="#ff6b6b" text-anchor="middle" font-weight="bold">ABATTAGE</text>
+  <text x="900" y="250" font-family="Arial, sans-serif" font-size="60" fill="#fff" text-anchor="middle">🪓</text>
+  <text x="900" y="310" font-family="Arial, sans-serif" font-size="22" fill="#e0f2e0" text-anchor="middle">Coupe totale</text>
+  <text x="900" y="345" font-family="Arial, sans-serif" font-size="22" fill="#e0f2e0" text-anchor="middle">Arbre supprimé</text>
+  <text x="900" y="380" font-family="Arial, sans-serif" font-size="22" fill="#e0f2e0" text-anchor="middle">Solution définitive</text>
+
+  <!-- Titre du bas -->
+  <text x="600" y="480" font-family="Arial, sans-serif" font-size="36" fill="#fff" text-anchor="middle" font-weight="bold">QUELLE SOLUTION CHOISIR ?</text>
+  <text x="600" y="530" font-family="Arial, sans-serif" font-size="24" fill="#7CB342" text-anchor="middle">Guide complet pour prendre la bonne décision</text>
+</svg>
