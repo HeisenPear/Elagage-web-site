@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a52;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d5a75;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#grad4)"/>
+
+  <!-- Icône document/loi -->
+  <rect x="450" y="120" width="300" height="200" fill="#fff" opacity="0.1" rx="10"/>
+  <text x="600" y="200" font-family="Arial, sans-serif" font-size="80" fill="#fff" text-anchor="middle">📜</text>
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="24" fill="#e0f2e0" text-anchor="middle">Code Civil • PLU • Loi</text>
+
+  <!-- Titre -->
+  <text x="600" y="370" font-family="Arial, sans-serif" font-size="48" fill="#fff" text-anchor="middle" font-weight="bold">RÉGLEMENTATION</text>
+  <text x="600" y="425" font-family="Arial, sans-serif" font-size="44" fill="#7CB342" text-anchor="middle" font-weight="bold">ÉLAGAGE TOURS 37</text>
+
+  <!-- Points clés -->
+  <text x="600" y="490" font-family="Arial, sans-serif" font-size="22" fill="#e0f2e0" text-anchor="middle">✓ Autorisations • Distances légales • Obligations</text>
+  <text x="600" y="530" font-family="Arial, sans-serif" font-size="22" fill="#e0f2e0" text-anchor="middle">✓ PLU Tours • Espaces Boisés Classés • Sanctions</text>
+
+  <!-- Badge conformité -->
+  <circle cx="150" cy="150" r="60" fill="#7CB342" opacity="0.3"/>
+  <text x="150" y="165" font-family="Arial, sans-serif" font-size="48" fill="#7CB342" text-anchor="middle">⚖️</text>
+</svg>
