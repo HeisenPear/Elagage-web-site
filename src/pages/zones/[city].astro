@@ -149,6 +149,15 @@ const keywords = [
   'crédit impôt élagage',
 ];
 
+// Configuration SEO anti-duplication
+// Seule la page Tours est indexée (zone principale)
+// Les autres pages ont noindex + canonical vers accueil pour éviter pénalité contenu dupliqué
+const isTours = cityName === 'Tours';
+const shouldNoindex = !isTours; // noindex pour toutes les villes sauf Tours
+const canonicalUrl = isTours
+  ? Astro.url.href // Tours pointe vers elle-même
+  : new URL('/', Astro.site).href; // Autres villes pointent vers accueil
+
 // Schema.org LocalBusiness avec areaServed pour la ville
 const localBusinessSchema = {
   ...getLocalBusinessSchema(),
@@ -178,6 +187,8 @@ const schemas = combineSchemas(localBusinessSchema, breadcrumbSchema);
   description={pageDescription}
   keywords={keywords}
   schema={schemas}
+  noindex={shouldNoindex}
+  canonical={canonicalUrl}
 >
   <!-- Hero Section ville - Mobile optimisé -->
   <section class="relative pt-32 md:pt-40 pb-12 md:pb-20 bg-gradient-to-br from-primary to-primary-900 text-white">
