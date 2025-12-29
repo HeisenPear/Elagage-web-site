@@ -16,6 +16,7 @@ interface Props {
   ogImage?: string;
   schema?: object | object[];
   noindex?: boolean;
+  canonical?: string;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   ogImage,
   schema,
   noindex = false,
+  canonical,
 } = Astro.props;
 ---
 
@@ -38,6 +40,7 @@ const {
       ogImage={ogImage}
       schema={schema}
       noindex={noindex}
+      canonical={canonical}
     />
   </head>
   <body class="antialiased">

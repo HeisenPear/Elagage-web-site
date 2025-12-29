@@ -1,7 +1,7 @@
 {
-  "name": "Nom Entreprise Élagage",
-  "short_name": "Élagage Pro",
-  "description": "Entreprise d'élagage professionnelle - Expert en élagage depuis 15 ans",
+  "name": "Élagage Abattage 37 - Élagueur Professionnel Tours",
+  "short_name": "Élagage Abattage 37",
+  "description": "Élagueur professionnel à Tours (37) - Élagage, abattage d'arbres, taille de haies - Devis gratuit 24h - Crédit d'impôt -50%",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F5F5F0",
@@ -11,6 +11,21 @@
       "src": "/favicon.ico",
       "sizes": "48x48",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ]
 }
