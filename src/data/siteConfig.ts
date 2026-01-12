@@ -79,30 +79,37 @@ export const siteConfig = {
 
   // Configuration SEO par défaut
   seo: {
-    title: "Élagueur Professionnel Tours (37) | Élagage Abattage 37 | Devis Gratuit 24h",
-    description: "🌳 Élagueur professionnel à Tours (37) | Élagage, abattage d'arbres en Indre-et-Loire | ✅ Assuré 8M€ ✅ Crédit d'impôt -50% | Devis gratuit 24h ☎️ 06 31 46 43 50",
+    title: "Élagage Tours (37) | Élagueur Professionnel | Élagage Abattage 37 | Devis Gratuit 24h",
+    description: "🌳 Élagage professionnel à Tours (37) | Élagage d'arbres, abattage en Indre-et-Loire | ✅ Assuré 8M€ ✅ Crédit d'impôt -50% | Devis gratuit 24h ☎️ 06 31 46 43 50",
     keywords: [
-      // Mots-clés principaux longue traîne
-      "élagueur près de chez moi Tours",
-      "élagueur professionnel Tours",
+      // Mots-clés principaux longue traîne - Focus "élagage"
       "élagage Tours",
+      "élagage arbre Tours",
+      "entreprise élagage Tours",
+      "élagage professionnel Tours",
+      "élagueur professionnel Tours",
+      "élagueur près de chez moi Tours",
       "élagueur Tours",
       "abattage arbre Tours",
-      "entreprise élagage Tours",
 
       // Mots-clés géolocalisés
       "élagage Indre-et-Loire",
-      "élagueur 37",
+      "élagage 37",
       "élagage Tours 37",
-      "élagueur Joué-lès-Tours",
+      "élagage Joué-lès-Tours",
       "élagage Amboise",
-      "élagueur Saint-Cyr-sur-Loire",
+      "élagage Saint-Cyr-sur-Loire",
+      "élagueur 37",
+      "élagueur Joué-lès-Tours",
 
-      // Mots-clés services
+      // Mots-clés services - Focus élagage
+      "élagage arbre fruitier Tours",
+      "élagage arbre d'ombrage",
+      "élagage raisonné Tours",
+      "élagage sanitaire",
       "taille haie Tours",
       "dessouchage Tours",
       "abattage arbre dangereux",
-      "élagage arbre fruitier",
       "entretien jardin Tours",
       "débroussaillage Tours",
 
@@ -169,7 +176,7 @@ export const siteConfig = {
       id: "elagage",
       slug: "elagage-arbres",
       name: "Élagage d'arbres",
-      shortDescription: "Élagage professionnel de tous types d'arbres (ombrage, fruitiers, ornementaux). Travail soigné et sécurisé en hauteur.",
+      shortDescription: "Élagage professionnel à Tours : élagage raisonné, élagage sanitaire, élagage de sécurité. Tous types d'arbres (ombrage, fruitiers, ornementaux). Travail soigné et sécurisé en hauteur.",
       icon: "tree",
       featured: true,
     },
