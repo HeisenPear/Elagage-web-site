@@ -133,30 +133,29 @@ export async function getStaticPaths() {
 const { city } = Astro.params;
 const { cityName } = Astro.props;
 
-// SEO ultra-optimisé pour la ville
-const pageTitle = `Élagueur ${cityName} (37) | Élagage Abattage | Devis Gratuit 24h`;
-const pageDescription = `🌳 Élagueur professionnel à ${cityName} (37) | ${siteConfig.business.name} | Élagage, abattage, taille haies | ✅ Crédit impôt -50% | ✅ RC Pro 8M€ | Devis gratuit ${siteConfig.business.phoneDisplay}`;
+// SEO ultra-optimisé pour la ville - Focus "élagage"
+const pageTitle = `Élagage ${cityName} (37) | Élagueur Professionnel | Devis Gratuit 24h`;
+const pageDescription = `🌳 Élagage professionnel à ${cityName} (37) | ${siteConfig.business.name} | Élagage d'arbres, abattage, taille haies | ✅ Crédit impôt -50% | ✅ RC Pro 8M€ | Devis gratuit ${siteConfig.business.phoneDisplay}`;
 const keywords = [
-  `élagueur ${cityName}`,
   `élagage ${cityName}`,
+  `élagage arbre ${cityName}`,
+  `entreprise élagage ${cityName}`,
+  `élagueur ${cityName}`,
   `élagueur professionnel ${cityName}`,
+  `élagage professionnel ${cityName}`,
   `abattage arbre ${cityName}`,
   `taille haie ${cityName}`,
-  `élagueur près de chez moi ${cityName}`,
   `prix élagage ${cityName}`,
   `devis élagage ${cityName}`,
+  `élagage arbre fruitier ${cityName}`,
+  `élagage raisonné ${cityName}`,
   'réduction fiscale élagage',
   'crédit impôt élagage',
 ];
 
-// Configuration SEO anti-duplication
-// Seule la page Tours est indexée (zone principale)
-// Les autres pages ont noindex + canonical vers accueil pour éviter pénalité contenu dupliqué
-const isTours = cityName === 'Tours';
-const shouldNoindex = !isTours; // noindex pour toutes les villes sauf Tours
-const canonicalUrl = isTours
-  ? Astro.url.href // Tours pointe vers elle-même
-  : new URL('/', Astro.site).href; // Autres villes pointent vers accueil
+// Configuration SEO
+// Toutes les pages de villes sont indexables avec leur propre URL canonique
+const canonicalUrl = Astro.url.href;
 
 // Schema.org LocalBusiness avec areaServed pour la ville
 const localBusinessSchema = {
@@ -187,7 +186,6 @@ const schemas = combineSchemas(localBusinessSchema, breadcrumbSchema);
   description={pageDescription}
   keywords={keywords}
   schema={schemas}
-  noindex={shouldNoindex}
   canonical={canonicalUrl}
 >
   <!-- Hero Section ville - Mobile optimisé -->
@@ -209,10 +207,10 @@ const schemas = combineSchemas(localBusinessSchema, breadcrumbSchema);
           📍 {cityName} • {siteConfig.serviceArea.department}
         </span>
         <h1 class="text-3xl md:text-5xl font-display font-bold mb-4 md:mb-6">
-          Élagueur professionnel à {cityName}
+          Élagage professionnel à {cityName}
         </h1>
         <p class="text-base md:text-xl text-white/90 mb-6 md:mb-8">
-          {siteConfig.business.name} intervient à {cityName} et ses environs pour tous vos travaux d'élagage, abattage et entretien d'espaces verts.
+          {siteConfig.business.name} - Spécialiste de l'élagage à {cityName} et ses environs. Élagage d'arbres, abattage, taille de haies et entretien d'espaces verts.
           <strong>Devis gratuit sous 24h</strong> • <strong>Intervention rapide</strong> • <strong>Crédit impôt -50%</strong>
         </p>
 
@@ -248,15 +246,15 @@ const schemas = combineSchemas(localBusinessSchema, breadcrumbSchema);
       <div class="max-w-4xl mx-auto animate-on-scroll">
         <div class="prose prose-lg max-w-none space-y-4 md:space-y-6 text-neutral-gray leading-relaxed">
           <h2 class="text-2xl md:text-3xl font-display font-bold text-primary mb-4 md:mb-6">
-            Pourquoi choisir un élagueur local à {cityName} ?
+            Élagage professionnel à {cityName} : votre expert local
           </h2>
 
           <p class="text-base md:text-lg">
-            Vous habitez <strong>{cityName}</strong> et recherchez un <strong>élagueur professionnel de proximité</strong> ?
-            <strong class="text-primary">{siteConfig.business.name}</strong> est l'entreprise d'élagage de référence dans votre commune.
+            Vous habitez <strong>{cityName}</strong> et recherchez une <strong>entreprise d'élagage professionnelle de proximité</strong> ?
+            <strong class="text-primary">{siteConfig.business.name}</strong> est le spécialiste de l'élagage de référence dans votre commune.
             Basés à <strong>{siteConfig.business.address.city}</strong>, nous intervenons régulièrement à <strong>{cityName}</strong>
-            pour tous vos travaux d'<strong>élagage</strong>, <strong>abattage d'arbres</strong>, <strong>taille de haies</strong>
-            et <strong>entretien d'espaces verts</strong>.
+            pour tous vos travaux d'<strong>élagage d'arbres</strong>, <strong>élagage fruitiers</strong>, <strong>abattage d'arbres</strong>,
+            <strong>taille de haies</strong> et <strong>entretien d'espaces verts</strong>.
           </p>
 
           <div class="grid sm:grid-cols-2 gap-4 md:gap-6 my-6 md:my-8">
@@ -290,16 +288,16 @@ const schemas = combineSchemas(localBusinessSchema, breadcrumbSchema);
           </div>
 
           <p class="text-base md:text-lg">
-            Avec <strong>{siteConfig.stats.yearsExperience} ans d'expérience</strong> dans le domaine de l'élagage en
-            <strong>{siteConfig.serviceArea.department}</strong>, nous sommes l'un des élagueurs les plus reconnus de la région.
-            Nos <strong>élagueurs grimpeurs certifiés</strong> interviennent avec du matériel professionnel récent et sont couverts
-            par notre <strong>assurance RC Professionnelle de 8 millions d'euros</strong>.
+            Avec <strong>{siteConfig.stats.yearsExperience} ans d'expérience</strong> dans l'<strong>élagage professionnel</strong> en
+            <strong>{siteConfig.serviceArea.department}</strong>, nous sommes l'une des entreprises d'élagage les plus reconnues de la région.
+            Nos <strong>élagueurs grimpeurs certifiés</strong> maîtrisent toutes les techniques d'<strong>élagage raisonné</strong> et d'<strong>élagage sanitaire</strong>.
+            Nous intervenons avec du matériel professionnel récent et sommes couverts par une <strong>assurance RC Professionnelle de 8 millions d'euros</strong>.
           </p>
 
           <p class="text-base md:text-lg">
             Que vous soyez <strong>particulier</strong> ou <strong>professionnel</strong> (syndic, mairie, entreprise) à {cityName},
-            nous adaptons nos prestations à vos besoins : élagage d'arbres d'ombrage, taille d'arbres fruitiers, abattage sécurisé,
-            dessouchage, taille de haies, débroussaillage et entretien complet de vos espaces verts.
+            nous adaptons nos prestations d'élagage à vos besoins : <strong>élagage d'arbres d'ombrage</strong>, <strong>élagage d'arbres fruitiers</strong>,
+            <strong>élagage de sécurité</strong>, abattage sécurisé, dessouchage, taille de haies, débroussaillage et entretien complet de vos espaces verts.
           </p>
         </div>
       </div>
