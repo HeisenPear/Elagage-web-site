@@ -80,7 +80,7 @@ export const siteConfig = {
   // Configuration SEO par défaut
   seo: {
     title: "Élagage Tours (37) | Élagueur Professionnel | Élagage Abattage 37 | Devis Gratuit 24h",
-    description: "🌳 Élagage professionnel à Tours (37) | Élagage d'arbres, abattage en Indre-et-Loire | ✅ Assuré 8M€ ✅ Crédit d'impôt -50% | Devis gratuit 24h ☎️ 06 31 46 43 50",
+    description: "Élagage professionnel à Tours (37). Élagueur certifié, assuré 8M€. Crédit d'impôt -50%. Devis gratuit 24h. Tél: 06 31 46 43 50",
     keywords: [
       // Mots-clés principaux longue traîne - Focus "élagage"
       "élagage Tours",
@@ -137,7 +137,7 @@ export const siteConfig = {
       "abattage arbre d'urgence",
       "élagage après tempête",
     ],
-    ogImage: "/images/og-image.svg", // Image 1200x630px
+    ogImage: "/images/og-image.jpg", // Image 1200x630px - IMPORTANT: Convertir og-image.svg en JPG
     twitterHandle: "", // Optionnel
   },
 
