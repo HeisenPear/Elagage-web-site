@@ -42,6 +42,14 @@ const {
       noindex={noindex}
       canonical={canonical}
     />
+    <!-- Google tag (gtag.js) - Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17858152606"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17858152606');
+    </script>
   </head>
   <body class="antialiased">
     <!-- Skip to content link pour accessibilité -->
@@ -100,14 +108,6 @@ const {
       }
     </script>
 
-    <!-- Analytics (Google Analytics 4 - à personnaliser avec votre ID) -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script> -->
   </body>
 </html>
 
