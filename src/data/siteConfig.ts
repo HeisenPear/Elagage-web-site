@@ -79,8 +79,8 @@ export const siteConfig = {
 
   // Configuration SEO par défaut
   seo: {
-    title: "Élagage Tours (37) | Élagueur Professionnel | Élagage Abattage 37 | Devis Gratuit 24h",
-    description: "Élagage professionnel à Tours (37). Élagueur certifié, assuré 8M€. Crédit d'impôt -50%. Devis gratuit 24h. Tél: 06 31 46 43 50",
+    title: "Élagueur Tours (37) | Élagage Professionnel | Devis Gratuit 24h",
+    description: "Élagueur certifié à Tours (37) - Élagage, abattage, dessouchage. Assuré 8M€. Crédit d'impôt -50%. Devis gratuit sous 24h. ☎ 06 31 46 43 50",
     keywords: [
       // Mots-clés principaux longue traîne - Focus "élagage"
       "élagage Tours",
