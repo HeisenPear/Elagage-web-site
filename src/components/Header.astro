@@ -1,13 +1,10 @@
 ---
 /**
- * Header avec navigation sticky moderne
- * - Transparent au chargement, devient opaque au scroll
- * - Menu burger minimaliste (toutes tailles écran)
- * - Overlay fullscreen avec animations stagger
+ * Header avec navigation sticky - Téléphone en CTA principal
+ * Design conversion-first : numéro visible et cliquable en permanence
  */
 import { siteConfig, getPhoneLink } from '@/data/siteConfig';
 import MobileMenu from '@/components/react/MobileMenu';
-import ZonesDropdown from '@/components/react/ZonesDropdown';
 
 const navLinks = [
   { name: 'Accueil', href: '/' },
@@ -19,97 +16,95 @@ const navLinks = [
 
 <header
   id="header"
-  class="fixed top-0 left-0 right-0 z-50 bg-white shadow-soft transition-all duration-500"
+  class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-all duration-300"
   data-header
 >
   <div class="container-custom">
-    <div class="flex items-center justify-between h-20 md:h-24">
+    <div class="flex items-center justify-between h-[70px] md:h-[80px]">
+
       <!-- Logo -->
       <a
         href="/"
-        class="flex items-center gap-3 text-primary font-display font-bold text-xl md:text-2xl transition-all duration-500 group"
-        aria-label="Retour à l'accueil"
+        class="flex items-center gap-2 md:gap-3 flex-shrink-0 group"
+        aria-label="Retour à l'accueil - Élagage Abattage 37"
       >
-        <!-- Logo entreprise -->
-        <div class="w-16 h-16 md:w-20 md:h-20 relative">
+        <div class="w-12 h-12 md:w-14 md:h-14 flex-shrink-0">
           <img
             src="/images/logos/Logo abatteur.webp"
             alt="Logo Élagage Abattage 37"
-            class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
-            width="80"
-            height="80"
+            class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            width="56"
+            height="56"
           />
         </div>
-        <span class="hidden sm:inline">{siteConfig.business.name}</span>
+        <div class="hidden sm:block">
+          <span class="block font-display font-bold text-primary text-base md:text-lg leading-tight">
+            {siteConfig.business.name}
+          </span>
+          <span class="block text-xs text-neutral-gray leading-tight">
+            Élagueur certifié · Tours (37)
+          </span>
+        </div>
       </a>
 
-      <!-- Navigation desktop (cachée sur mobile) -->
-      <nav class="hidden lg:flex items-center gap-8 transition-all duration-500" role="navigation" aria-label="Navigation principale" data-header-nav>
-        {
-          navLinks.map((link) => (
-            <a
-              href={link.href}
-              class="text-primary/90 hover:text-primary font-medium transition-colors duration-300 relative group"
-            >
-              {link.name}
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))
-        }
+      <!-- Navigation desktop -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8" role="navigation" aria-label="Navigation principale">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-primary/80 hover:text-primary font-medium text-sm xl:text-base transition-colors duration-200 relative group whitespace-nowrap"
+          >
+            {link.name}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        ))}
+      </nav>
 
-        <!-- Menu déroulant Zones d'intervention -->
-        <ZonesDropdown client:load />
-
-        <!-- Bouton téléphone desktop (caché sur mobile/tablette) -->
+      <!-- CTA Téléphone desktop - TOUJOURS VISIBLE -->
+      <div class="hidden md:flex items-center gap-3">
+        <!-- Devis gratuit -->
+        <a
+          href="/contact"
+          class="hidden lg:inline-flex items-center gap-2 px-4 py-2.5 text-primary border-2 border-primary/20 font-semibold text-sm rounded-lg hover:border-primary/40 transition-all duration-200 whitespace-nowrap"
+        >
+          Devis gratuit
+        </a>
+        <!-- Téléphone -->
         <a
           href={getPhoneLink()}
-          class="inline-flex items-center gap-3 px-6 py-3 bg-accent text-white font-bold rounded-lg transition-all duration-300 hover:bg-accent-hover hover:scale-105 hover:shadow-glow focus-visible:ring-4 focus-visible:ring-accent/30 whitespace-nowrap"
+          class="inline-flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-hover text-white font-bold text-sm xl:text-base rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg whitespace-nowrap"
           aria-label="Appeler maintenant"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          <svg class="w-4 h-4 xl:w-5 xl:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
           </svg>
           <span>{siteConfig.business.phoneDisplay}</span>
         </a>
-      </nav>
+      </div>
 
-      <!-- Menu burger -->
-      <MobileMenu client:load navLinks={navLinks} />
+      <!-- Mobile : téléphone + burger -->
+      <div class="flex md:hidden items-center gap-2">
+        <!-- Téléphone mobile compact -->
+        <a
+          href={getPhoneLink()}
+          class="flex items-center gap-1.5 px-3 py-2.5 bg-accent text-white font-bold text-sm rounded-lg"
+          aria-label="Appeler"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          <span>Appeler</span>
+        </a>
+        <!-- Menu burger -->
+        <MobileMenu client:load navLinks={navLinks} />
+      </div>
+
     </div>
   </div>
 </header>
 
-
 <style>
-  /* Smooth scroll anchor offset */
   :target {
-    scroll-margin-top: 100px;
-  }
-
-  /* Responsive mobile */
-  @media (max-width: 640px) {
-    /* Header plus compact sur mobile */
-    #header {
-      height: auto;
-    }
-
-    /* Logo plus petit sur mobile */
-    #header [data-header-logo] {
-      font-size: 1rem;
-      gap: 0.5rem;
-    }
-
-    /* Container avec moins de padding sur mobile */
-    #header .container-custom {
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-  }
-
-  /* Responsive tablette */
-  @media (min-width: 641px) and (max-width: 1023px) {
-    #header {
-      height: auto;
-    }
+    scroll-margin-top: 90px;
   }
 </style>

@@ -1,28 +1,20 @@
 ---
 /**
- * Hero Section fullscreen avec :
- * - Animation WebGL particules (fond)
- * - H1 avec animation lettres en cascade
- * - Sous-titre
- * - 2 CTA (primaire + secondaire)
- * - Scroll indicator animé
+ * Hero Section - Conversion-First, Mobile-First
+ * Téléphone comme CTA principal pour maximiser les appels
  */
-import ParticlesBackground from '@/components/react/ParticlesBackground';
 import { siteConfig, getPhoneLink } from '@/data/siteConfig';
 ---
 
 <section
   id="hero"
-  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary to-primary-900"
+  class="relative min-h-[100svh] flex items-center justify-center overflow-hidden"
 >
-  <!-- Particules WebGL background - DÉSACTIVÉ pour performance mobile -->
-  <!-- <ParticlesBackground client:idle particleCount={200} /> -->
-
-  <!-- Image de fond Loire Hero (optimisée pour LCP et CLS) -->
-  <div class="absolute inset-0 -z-5 opacity-30">
+  <!-- Image de fond Loire -->
+  <div class="absolute inset-0">
     <img
       src="/images/hero/loire-hero.webp"
-      alt="Paysage de la Loire à Tours, zone d'intervention de l'élagueur professionnel Élagage Abattage 37 en Indre-et-Loire"
+      alt="Élagueur professionnel à Tours en Indre-et-Loire - Élagage Abattage 37"
       class="w-full h-full object-cover object-center"
       width="1500"
       height="730"
@@ -30,188 +22,100 @@ import { siteConfig, getPhoneLink } from '@/data/siteConfig';
       fetchpriority="high"
       decoding="async"
     />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/85"></div>
   </div>
 
-  <!-- Gradient overlay noir pour meilleure lisibilité -->
-  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent -z-5"></div>
+  <!-- Contenu -->
+  <div class="relative z-10 w-full px-4 sm:px-6 text-center text-white pt-24 md:pt-28 pb-20">
+    <div class="max-w-4xl mx-auto">
 
-  <!-- Content -->
-  <div class="container-custom relative z-10 text-center pt-32 md:pt-24 pb-32">
-    <div class="max-w-5xl mx-auto space-y-8 animate-on-scroll">
-      <!-- H1 avec animation fade-in simple (SANS split-text pour préserver espaces insécables) -->
-      <h1
-        class="text-white font-display font-extrabold hero-title hero-text animate-fade-in-up"
-        style="font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.2; word-break: keep-all !important; overflow-wrap: normal !important; hyphens: none !important; white-space: normal !important;"
-      >
-        Élagueur Professionnel à <span class="whitespace-nowrap" style="word-break: keep-all !important;">Tours</span>
-        <span class="block text-xl md:text-3xl font-normal mt-4 text-white/95" style="word-break: keep-all !important; hyphens: none !important;">Élagage Abattage 37</span>
+      <!-- Avis Google -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-5 animate-on-scroll">
+        <div class="flex text-yellow-400 text-lg" aria-label="5 étoiles">★★★★★</div>
+        <span class="text-white/90 font-semibold text-sm">4.9/5 · 127 avis Google</span>
+        <span class="hidden sm:inline text-white/40">·</span>
+        <span class="hidden sm:inline text-white/70 text-sm">Élagueur n°1 à Tours</span>
+      </div>
+
+      <!-- H1 -->
+      <h1 class="font-display font-extrabold text-white mb-4 leading-tight" style="font-size: clamp(1.9rem, 6vw, 4.5rem);">
+        Élagueur Professionnel<br>
+        à <span class="text-accent">Tours (37)</span>
       </h1>
 
-      <!-- Sous-titre avec text-shadow pour contraste -->
-      <p
-        class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed hero-subtitle hero-text"
-        style="animation-delay: 0.2s;"
-      >
-        {siteConfig.business.tagline}. Devis&nbsp;gratuit sous&nbsp;24&nbsp;h, intervention&nbsp;rapide.
+      <!-- Sous-titre -->
+      <p class="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-7 leading-relaxed px-2">
+        Élagage · Abattage · Taille de haies · Dessouchage<br class="hidden sm:block">
+        <span class="font-semibold text-accent">Devis gratuit 24h</span> · Crédit d'impôt <strong>-50%</strong> · Assuré 8M€
       </p>
 
-      <!-- CTA Buttons -->
-      <div
-        class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
-        style="animation-delay: 0.4s;"
-      >
-        <!-- CTA Primaire : Devis gratuit -->
-        <a
-          href="/contact"
-          class="group relative inline-flex items-center gap-3 px-10 py-5 bg-accent text-white font-bold text-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-glow focus-visible:ring-4 focus-visible:ring-accent/30 w-full sm:w-auto justify-center"
-        >
-          <!-- Ripple effect on hover -->
-          <span class="absolute inset-0 bg-gradient-to-r from-accent-light to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-          <span class="relative z-10">Devis gratuit</span>
-          <svg
-            class="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 7l5 5m0 0l-5 5m5-5H6"
-            />
-          </svg>
-        </a>
-
-        <!-- CTA Secondaire : Appeler -->
+      <!-- CTA Principal : Téléphone MASSIF -->
+      <div class="mb-4 px-2">
         <a
           href={getPhoneLink()}
-          class="group inline-flex items-center gap-3 px-10 py-5 border-2 border-white text-white font-bold text-lg rounded-xl transition-all duration-300 hover:bg-white hover:text-primary hover:scale-105 focus-visible:ring-4 focus-visible:ring-white/30 w-full sm:w-auto justify-center"
+          class="group flex items-center justify-center gap-3 sm:gap-4 bg-accent hover:bg-accent-hover text-white font-extrabold rounded-2xl shadow-2xl hover:shadow-glow transition-all duration-300 hover:scale-105 w-full sm:w-auto sm:inline-flex mx-auto"
+          style="padding: clamp(0.9rem, 3vw, 1.5rem) clamp(1.5rem, 5vw, 3rem); font-size: clamp(1.3rem, 5vw, 1.875rem);"
+          aria-label="Appeler Élagage Abattage 37"
         >
-          <svg
-            class="w-5 h-5 transition-transform duration-300 group-hover:scale-110"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-            />
+          <svg class="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
           </svg>
-          <span>{siteConfig.business.phoneDisplay}</span>
+          <span class="tracking-wide">{siteConfig.business.phoneDisplay}</span>
+        </a>
+        <p class="text-white/55 mt-2 text-xs sm:text-sm">Disponible 7j/7 · Réponse immédiate</p>
+      </div>
+
+      <!-- CTA Secondaire : Devis -->
+      <div class="mb-8 px-2">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-white/80 text-white font-bold text-sm sm:text-base rounded-xl hover:bg-white hover:text-primary transition-all duration-300"
+        >
+          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          Demander un devis gratuit
         </a>
       </div>
 
-      <!-- Badges de réassurance -->
-      <div
-        class="flex flex-wrap items-center justify-center gap-4 pt-12"
-        style="animation-delay: 0.6s;"
-      >
-        {siteConfig.business.reassuranceBadges.map((badge) => (
-          <div
-            class={`
-              group relative px-6 py-3 rounded-xl backdrop-blur-sm transition-all duration-300
-              ${badge.highlight
-                ? 'bg-accent text-white shadow-lg hover:shadow-glow hover:scale-105'
-                : 'bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:border-white/30'
-              }
-            `}
-          >
-            <div class="flex items-center gap-3">
-              <!-- Icon dynamique selon le type -->
-              {badge.icon === 'target' && (
-                <svg class={`w-5 h-5 ${badge.highlight ? 'text-white' : 'text-accent'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              )}
-              {badge.icon === 'credit-card' && (
-                <svg class={`w-5 h-5 ${badge.highlight ? 'text-white' : 'text-accent'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                </svg>
-              )}
-              {badge.icon === 'shield-check' && (
-                <svg class={`w-5 h-5 ${badge.highlight ? 'text-white' : 'text-accent'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                </svg>
-              )}
-              <span class="font-semibold text-sm md:text-base whitespace-nowrap">
-                {badge.text}
-              </span>
-            </div>
-          </div>
-        ))}
+      <!-- Badges de confiance — grille 2 colonnes sur mobile -->
+      <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2 sm:gap-3 px-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-2 bg-accent text-white rounded-xl text-xs font-bold shadow-lg justify-center">
+          <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Crédit impôt -50%
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white rounded-xl text-xs font-semibold justify-center">
+          <svg class="w-3.5 h-3.5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          Assuré RC Pro 8M€
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white rounded-xl text-xs font-semibold justify-center">
+          <svg class="w-3.5 h-3.5 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          Élagueur certifié
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white rounded-xl text-xs font-semibold justify-center">
+          <svg class="w-3.5 h-3.5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Intervention &lt;48h
+        </span>
       </div>
+
     </div>
   </div>
 
-  <!-- Scroll indicator animé -->
-  <div class="absolute bottom-12 left-0 right-0 w-full flex justify-center">
-    <a
-      href="#services"
-      class="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors duration-300 group animate-on-scroll"
-      aria-label="Défiler vers les services"
-    >
-      <span class="text-sm font-medium uppercase tracking-wider">Découvrir</span>
-      <svg
-        class="w-6 h-10 animate-bounce"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 14l-7 7m0 0l-7-7m7 7V3"
-        />
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-0 right-0 flex justify-center">
+    <a href="#contact" class="flex flex-col items-center gap-1 text-white/40 hover:text-white/70 transition-colors" aria-label="Défiler vers le contact">
+      <span class="text-xs uppercase tracking-widest hidden sm:block">Devis gratuit</span>
+      <svg class="w-5 h-7 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
       </svg>
     </a>
   </div>
 </section>
-
-<script>
-  /**
-   * Script parallax SUPPRIMÉ pour optimisation performance mobile
-   * - Causait des animations non composées (modifie transform à chaque scroll)
-   * - Travail supplémentaire sur le thread principal
-   * - Impact négatif sur TBT et FID
-   *
-   * Alternative : CSS parallax natif avec background-attachment: fixed
-   * (non implémenté car moins fluide sur mobile)
-   */
-</script>
-
-<style>
-  /* Text shadow pour lisibilité maximale sur tous les fonds */
-  .hero-text {
-    text-shadow:
-      0 2px 10px rgba(0, 0, 0, 0.3),
-      0 4px 20px rgba(0, 0, 0, 0.2),
-      0 1px 3px rgba(0, 0, 0, 0.4);
-  }
-
-  /* Animation fade-in simple pour le titre (sans découper le texte) */
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Smooth scroll anchor */
-  #services {
-    scroll-margin-top: 100px;
-  }
-</style>

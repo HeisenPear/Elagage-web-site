@@ -5,7 +5,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { siteConfig, getPhoneLink } from '@/data/siteConfig';
-import ZonesDropdown from './ZonesDropdown';
 
 interface NavLink {
   name: string;
@@ -177,16 +176,6 @@ export default function MobileMenu({ navLinks }: MobileMenuProps) {
                     </motion.a>
                   ))}
 
-                  {/* Menu déroulant Zones d'intervention (mobile) */}
-                  <motion.div
-                    custom={navLinks.length}
-                    variants={linkVariants}
-                    initial="closed"
-                    animate="open"
-                    className="border-b border-white/10"
-                  >
-                    <ZonesDropdown isMobile={true} />
-                  </motion.div>
                 </div>
 
                 {/* CTA Buttons */}
