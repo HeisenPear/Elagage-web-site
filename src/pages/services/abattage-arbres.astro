@@ -1,0 +1,272 @@
+---
+/**
+ * Page service : Abattage d'arbres
+ * SEO cible : "abattage arbre Tours" / "abattage arbre Indre-et-Loire"
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig, getPhoneLink } from '@/data/siteConfig';
+import { getServiceSchema, getFAQSchema, getBreadcrumbSchema, combineSchemas } from '@/utils/schemas';
+
+const pageTitle = "Abattage d'arbres à Tours (37) – Sécurisé et professionnel";
+const pageDescription = "Abattage d'arbres à Tours et Indre-et-Loire. Démontage sécurisé, arbre dangereux, zone contrainte. Assuré RC Pro 8M€. Devis gratuit 24h. ☎ 06 31 46 43 50";
+
+const faqs = [
+  {
+    question: "Faut-il une autorisation pour abattre un arbre ?",
+    answer: "Cela dépend de votre commune et du PLU (Plan Local d'Urbanisme). À Tours et dans le 37, certaines zones protègent les arbres d'un certain diamètre. Nous vérifions votre situation avant intervention et vous accompagnons dans les démarches administratives si une déclaration préalable est nécessaire.",
+  },
+  {
+    question: "Combien coûte un abattage d'arbre à Tours ?",
+    answer: "Le prix d'un abattage varie selon la hauteur, le diamètre, l'accessibilité et la technique requise. Comptez 300-600€ pour un arbre de taille moyenne en espace ouvert, 600-1500€+ pour un démontage sécurisé en zone contrainte. Devis gratuit personnalisé sur place.",
+  },
+  {
+    question: "Peut-on abattre un arbre en zone résidentielle ?",
+    answer: "Oui, avec les techniques adaptées. Quand un abattage directionnel n'est pas possible, nos élagueurs grimpeurs démontent l'arbre section par section depuis la cime. Cette technique permet de travailler même entre deux maisons, sous des lignes électriques ou dans les petits jardins.",
+  },
+  {
+    question: "Que se passe-t-il après l'abattage ?",
+    answer: "Après abattage, nous proposons le débitage du tronc (bois de chauffage possible), l'évacuation complète des déchets verts, et le dessouchage si vous souhaitez récupérer l'espace. Nous laissons le chantier propre et le terrain remis en état.",
+  },
+  {
+    question: "Intervenez-vous pour les arbres dangereux en urgence ?",
+    answer: "Oui, nous intervenons en urgence 7j/7 pour les arbres dangereux : arbres penchés après tempête, branches menaçant une habitation, arbre arraché sur voirie. Appelez le 06 31 46 43 50 pour une intervention rapide.",
+  },
+];
+
+const schema = combineSchemas(
+  getServiceSchema("Abattage d'arbres", pageDescription, "abattage-arbres"),
+  getFAQSchema(faqs),
+  getBreadcrumbSchema([
+    { name: "Accueil", url: "/" },
+    { name: "Services", url: "/#services" },
+    { name: "Abattage d'arbres", url: "/services/abattage-arbres" },
+  ])
+);
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} schema={schema}>
+
+  <!-- HERO -->
+  <section class="pt-24 md:pt-32 pb-16 bg-gradient-to-br from-amber-900 to-amber-700 text-white relative overflow-hidden">
+    <div class="container-custom relative z-10">
+      <nav class="flex items-center gap-2 text-sm text-white/60 mb-8">
+        <a href="/" class="hover:text-white/90 transition-colors">Accueil</a>
+        <span>/</span>
+        <a href="/#services" class="hover:text-white/90 transition-colors">Services</a>
+        <span>/</span>
+        <span class="text-white">Abattage d'arbres</span>
+      </nav>
+      <div class="max-w-4xl">
+        <span class="inline-block px-4 py-1.5 bg-white/20 text-white font-semibold rounded-full text-sm uppercase tracking-wider mb-4">
+          Intervention urgence 7j/7
+        </span>
+        <h1 class="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight">
+          Abattage d'arbres à Tours (37)<br/>
+          <span class="text-yellow-300">Sécurisé & Professionnel</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/85 mb-8 max-w-3xl">
+          Abattage d'arbres dangereux, gênants ou malades. Démontage sécurisé en zone contrainte. Assuré RC Pro 8M€. Intervention 7j/7 en Indre-et-Loire.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href={getPhoneLink()} class="inline-flex items-center justify-center gap-3 px-7 py-4 bg-white text-amber-800 font-bold text-lg rounded-xl hover:bg-yellow-50 transition-all shadow-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            Urgence : {siteConfig.business.phoneDisplay}
+          </a>
+          <a href="/contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-amber-800 transition-all">
+            Devis gratuit
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom max-w-4xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-primary mb-6">
+        Abattage d'arbres : quand et comment intervenir ?
+      </h2>
+      <div class="space-y-4 text-neutral-gray leading-relaxed text-base md:text-lg">
+        <p>
+          L'<strong>abattage d'un arbre</strong> est une opération qui nécessite une expertise technique et du matériel professionnel pour garantir la sécurité des personnes et des biens. Chez <strong>Élagage Abattage 37</strong>, nous réalisons tous types d'abattages à <strong>Tours</strong> et dans tout l'<strong>Indre-et-Loire</strong> : arbres malades, arbres dangereux, arbres gênants pour une construction ou un aménagement.
+        </p>
+        <p>
+          Nos élagueurs grimpeurs certifiés maîtrisent deux grandes techniques : l'<strong>abattage directionnel</strong> (quand l'espace le permet) et le <strong>démontage section par section</strong> (pour les espaces contraints). Cette seconde technique, plus technique et plus coûteuse, est indispensable dans les jardins de particuliers en milieu urbain.
+        </p>
+        <p>
+          Nous intervenons en <strong>urgence 7j/7</strong> pour les arbres dangereux : arbre penché après tempête, branches menaçant une toiture, arbre déraciné. Appelez-nous au <a href={getPhoneLink()} class="text-accent font-bold hover:underline">{siteConfig.business.phoneDisplay}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNIQUES -->
+  <section class="py-14 md:py-20 bg-neutral-cream">
+    <div class="container-custom max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-4xl font-display font-bold text-primary mb-4">
+          Techniques d'abattage professionnelles
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          {
+            title: "Abattage directionnel",
+            icon: "M13 10V3L4 14h7v7l9-11h-7z",
+            desc: "L'arbre est abattu d'un seul tenant dans une direction maîtrisée. Technique rapide et économique, possible quand l'espace le permet. Le tronc est ensuite débité sur place en bûches.",
+            uses: "Jardins spacieux, zones rurales, bois",
+          },
+          {
+            title: "Démontage section par section",
+            icon: "M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4",
+            desc: "L'arbre est démonté depuis le sommet, section par section, avec des cordes de rétention. Chaque morceau est descendu au sol de façon contrôlée. Technique indispensable en milieu contraint.",
+            uses: "Jardins urbains, arbres près d'une maison",
+          },
+          {
+            title: "Abattage d'urgence",
+            icon: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z",
+            desc: "Intervention rapide 7j/7 pour les situations dangereuses : arbre sur une maison, arbre menaçant la voie publique, dégâts de tempête. Mise en sécurité immédiate.",
+            uses: "Tempête, arbre dangereux, urgence",
+          },
+        ].map(item => (
+          <article class="bg-white rounded-2xl p-6 md:p-8 shadow-soft">
+            <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon}/></svg>
+            </div>
+            <h3 class="text-lg font-display font-bold text-primary mb-3">{item.title}</h3>
+            <p class="text-sm text-neutral-gray leading-relaxed mb-4">{item.desc}</p>
+            <div class="bg-neutral-cream rounded-lg px-3 py-2">
+              <span class="text-xs font-semibold text-accent uppercase">Cas d'usage :</span>
+              <span class="text-xs text-neutral-gray ml-1">{item.uses}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TARIFS + PRESTATIONS -->
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
+      <div>
+        <h2 class="text-2xl font-display font-bold text-primary mb-6">Prix abattage d'arbre Tours</h2>
+        <div class="bg-neutral-cream rounded-2xl p-6 border border-neutral-200">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-neutral-300">
+                <th class="text-left pb-3 text-primary font-bold">Situation</th>
+                <th class="text-right pb-3 text-primary font-bold">Prix indicatif</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-200">
+              {[
+                ["Petit arbre < 6m (espace ouvert)", "250 – 500 €"],
+                ["Arbre moyen 6-12m (espace ouvert)", "400 – 800 €"],
+                ["Grand arbre > 12m (espace ouvert)", "700 – 1 500 €"],
+                ["Démontage zone contrainte", "+ 30 à 80 %"],
+                ["Abattage urgence 7j/7", "+ 20 à 50 %"],
+                ["Débitage + évacuation", "+ 100 – 300 €"],
+              ].map(([s, p]) => (
+                <tr>
+                  <td class="py-2.5 text-neutral-gray text-xs">{s}</td>
+                  <td class="py-2.5 text-right font-semibold text-primary text-xs">{p}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="text-xs text-neutral-gray mt-4">Crédit d'impôt -50% applicable. Devis gratuit personnalisé.</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-display font-bold text-primary mb-6">Prestations incluses</h2>
+        <div class="space-y-3">
+          {[
+            { t: "Évaluation préalable du chantier", d: "Visite gratuite pour déterminer la technique adaptée et établir le devis." },
+            { t: "Abattage sécurisé", d: "Intervention avec matériel professionnel (tronçonneuses Stihl, cordes certifiées, EPI)." },
+            { t: "Débitage du bois", d: "Le bois peut être laissé en bûches de chauffage sur place ou évacué selon votre choix." },
+            { t: "Évacuation des déchets", d: "Branches, feuilles, sciure — le chantier est laissé propre." },
+            { t: "Dessouchage (en option)", d: "Extraction de la souche par rogneuse professionnelle pour récupérer l'espace." },
+          ].map(item => (
+            <div class="flex gap-3 p-4 bg-neutral-cream rounded-xl border border-neutral-200">
+              <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="font-semibold text-sm text-primary">{item.t}</p>
+                <p class="text-xs text-neutral-gray mt-0.5">{item.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAILLAGE INTERNE -->
+  <section class="py-10 bg-neutral-cream border-t border-neutral-200">
+    <div class="container-custom max-w-4xl mx-auto">
+      <div class="flex flex-wrap gap-6">
+        <div>
+          <h3 class="font-bold text-primary mb-3 text-sm">Nos autres services</h3>
+          <div class="flex flex-wrap gap-3">
+            {[
+              { name: "Élagage d'arbres", slug: "elagage-arbres" },
+              { name: "Dessouchage", slug: "dessouchage-arbres" },
+              { name: "Taille de haies", slug: "taille-haies" },
+              { name: "Entretien espaces verts", slug: "entretien-espaces-verts" },
+            ].map(s => (
+              <a href={`/services/${s.slug}`} class="text-sm text-accent hover:underline font-medium">→ {s.name}</a>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h3 class="font-bold text-primary mb-3 text-sm">Articles utiles</h3>
+          <div class="flex flex-wrap gap-3">
+            <a href="/blog/que-faire-arbre-dangereux" class="text-sm text-accent hover:underline">→ Que faire si un arbre est dangereux ?</a>
+            <a href="/blog/prix-elagage-arbre-tarifs-tours" class="text-sm text-accent hover:underline">→ Prix élagage arbre</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-4xl font-display font-bold text-primary">Questions fréquentes sur l'abattage</h2>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((item, i) => (
+          <details class="group bg-neutral-cream rounded-xl border border-neutral-200 hover:border-accent/30 transition-colors overflow-hidden">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-bold text-primary hover:text-accent transition-colors">
+              <span class="flex items-center gap-3 text-base">
+                <span class="w-7 h-7 bg-accent/10 text-accent rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">{i + 1}</span>
+                {item.question}
+              </span>
+              <svg class="w-5 h-5 flex-shrink-0 text-accent transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-5 pt-4 text-neutral-gray text-sm leading-relaxed border-t border-neutral-200">{item.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24 bg-gradient-to-br from-amber-900 to-amber-700 text-white text-center">
+    <div class="container-custom max-w-2xl mx-auto">
+      <h2 class="text-2xl md:text-4xl font-display font-bold mb-4">Abattage d'arbre à Tours ?</h2>
+      <p class="text-white/75 mb-8">Intervention rapide · Devis gratuit · Urgence 7j/7</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getPhoneLink()} class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-amber-800 font-bold text-lg rounded-xl hover:bg-yellow-50 transition-all shadow-lg">
+          <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          {siteConfig.business.phoneDisplay}
+        </a>
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-amber-800 transition-all">
+          Devis en ligne
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

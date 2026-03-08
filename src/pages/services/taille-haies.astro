@@ -1,0 +1,239 @@
+---
+/**
+ * Page service : Taille de haies
+ * SEO cible : "taille haie Tours" / "entretien haie Indre-et-Loire"
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig, getPhoneLink } from '@/data/siteConfig';
+import { getServiceSchema, getFAQSchema, getBreadcrumbSchema, combineSchemas } from '@/utils/schemas';
+
+const pageTitle = "Taille de haies à Tours (37) – Entretien professionnel de haies";
+const pageDescription = "Taille et entretien de haies à Tours et Indre-et-Loire. Toutes hauteurs, toutes essences. Devis gratuit 24h. Crédit d'impôt -50%. ☎ 06 31 46 43 50";
+
+const faqs = [
+  {
+    question: "Quelle est la meilleure période pour tailler une haie ?",
+    answer: "La taille de régularisation se fait idéalement à la fin du printemps (mai-juin) et en fin d'été (août-septembre). À noter : il est interdit de tailler les haies du 1er avril au 31 juillet pour protéger les oiseaux nicheurs. En dehors de cette période, vous pouvez intervenir librement. Nous adaptons notre planning à ces contraintes réglementaires.",
+  },
+  {
+    question: "Combien coûte la taille d'une haie à Tours ?",
+    answer: "Le tarif dépend de la longueur, la hauteur et l'épaisseur de la haie, et de l'essence. En général, comptez 5 à 15€ par mètre linéaire. Une haie de 20m de thuyas taillée sur les 3 faces revient à 150-300€. Devis gratuit personnalisé sur place.",
+  },
+  {
+    question: "Que faites-vous des déchets de taille ?",
+    answer: "Nous ramassons et évacuons tous les déchets de taille. Sur demande, nous pouvons les broyer sur place pour constituer un paillage naturel pour votre jardin. Le chantier est laissé impeccable.",
+  },
+  {
+    question: "Pouvez-vous intervenir sur une grande haie haute ?",
+    answer: "Oui, nous intervenons sur toutes hauteurs avec le matériel adapté : haies basses de 1m aux haies de plus de 5m. Pour les grandes hauteurs, nous utilisons des équipements professionnels (nacelle, perches télescopiques) pour un résultat soigné et sécurisé.",
+  },
+];
+
+const schema = combineSchemas(
+  getServiceSchema("Taille de haies", pageDescription, "taille-haies"),
+  getFAQSchema(faqs),
+  getBreadcrumbSchema([
+    { name: "Accueil", url: "/" },
+    { name: "Services", url: "/#services" },
+    { name: "Taille de haies", url: "/services/taille-haies" },
+  ])
+);
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} schema={schema}>
+
+  <!-- HERO -->
+  <section class="pt-24 md:pt-32 pb-16 bg-gradient-to-br from-lime-900 to-lime-700 text-white relative overflow-hidden">
+    <div class="container-custom relative z-10">
+      <nav class="flex items-center gap-2 text-sm text-white/60 mb-8">
+        <a href="/" class="hover:text-white/90 transition-colors">Accueil</a>
+        <span>/</span>
+        <a href="/#services" class="hover:text-white/90 transition-colors">Services</a>
+        <span>/</span>
+        <span class="text-white">Taille de haies</span>
+      </nav>
+      <div class="max-w-4xl">
+        <h1 class="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight">
+          Taille de haies à Tours (37)<br/>
+          <span class="text-lime-300">Résultat soigné & durable</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/85 mb-8 max-w-3xl">
+          Taille et entretien de haies toutes hauteurs et toutes essences. Travail précis, propre et durable en Indre-et-Loire.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href={getPhoneLink()} class="inline-flex items-center justify-center gap-3 px-7 py-4 bg-white text-lime-800 font-bold text-lg rounded-xl hover:bg-lime-50 transition-all shadow-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            {siteConfig.business.phoneDisplay}
+          </a>
+          <a href="/contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-lime-800 transition-all">
+            Devis gratuit 24h
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom max-w-4xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-primary mb-6">
+        Taille de haies professionnelle à Tours et dans le 37
+      </h2>
+      <div class="space-y-4 text-neutral-gray leading-relaxed text-base md:text-lg">
+        <p>
+          Une <strong>haie bien taillée</strong> est à la fois esthétique, dense et en bonne santé. Chez <strong>Élagage Abattage 37</strong>, nous intervenons sur tous types de haies à <strong>Tours</strong> et dans tout le département <strong>Indre-et-Loire (37)</strong> : haies basses de jardin, haies hautes de séparation, haies champêtres, haies taillées en formes.
+        </p>
+        <p>
+          Nous maîtrisons la taille de toutes les essences courantes en Touraine : <strong>thuyas</strong>, <strong>lauriers palme</strong>, <strong>lauriers cerise</strong>, <strong>troènes</strong>, <strong>buis</strong>, <strong>photinias</strong>, <strong>charmilles</strong>, <strong>ifs</strong>, <strong>cyprès de Leyland</strong>. Notre objectif : un résultat net, droit et durable qui embellira votre propriété.
+        </p>
+        <p>
+          <strong>Bon à savoir :</strong> la taille de haies est éligible au <strong>crédit d'impôt services à la personne (-50%)</strong> pour votre résidence principale. Attestation fiscale fournie automatiquement avec chaque intervention.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPES DE TAILLE -->
+  <section class="py-14 md:py-20 bg-neutral-cream">
+    <div class="container-custom max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-4xl font-display font-bold text-primary mb-4">Types de taille de haies</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          {
+            title: "Taille de régularisation",
+            desc: "Entretien annuel ou semestriel pour maintenir la forme et la densité de la haie. On raccourcit les pousses de l'année pour garder un volume régulier. Réalisée 1 à 2 fois par an selon l'essence.",
+            ideal: "Thuyas, lauriers, troènes, photinias",
+          },
+          {
+            title: "Taille de formation",
+            desc: "Taille qui donne sa forme finale à la haie (trapézoïdale, rectangulaire, arrondie). Idéale pour les nouvelles haies ou la restructuration d'une haie déformée. Travail progressif sur 2-3 ans pour certaines essences.",
+            ideal: "Charmilles, buis, ifs, cyprès",
+          },
+          {
+            title: "Taille de rajeunissement",
+            desc: "Taille sévère pratiquée sur les vieilles haies devenues trop volumineuses ou dégarnies à la base. Stimule la repousse depuis le bas et redonne vigueur et densité à la haie. Résultat visible en 1-2 saisons.",
+            ideal: "Haies dégarnies, vieilles haies",
+          },
+        ].map(item => (
+          <article class="bg-white rounded-2xl p-6 shadow-soft">
+            <h3 class="text-lg font-display font-bold text-primary mb-3">{item.title}</h3>
+            <p class="text-sm text-neutral-gray leading-relaxed mb-4">{item.desc}</p>
+            <div class="bg-accent/10 rounded-lg px-3 py-2">
+              <span class="text-xs font-semibold text-accent">Essences : </span>
+              <span class="text-xs text-neutral-gray">{item.ideal}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ESSENCES + TARIFS -->
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
+      <div>
+        <h2 class="text-2xl font-display font-bold text-primary mb-6">Haies traitées en Indre-et-Loire</h2>
+        <div class="grid grid-cols-2 gap-2">
+          {["Thuyas", "Laurier palme", "Laurier cerise", "Troène", "Buis", "Photinia", "Charmille", "If", "Cyprès de Leyland", "Haie champêtre", "Bambou", "Viorne", "Forsythia", "Weigela", "Aubépine", "Cornouiller"].map(t => (
+            <span class="flex items-center gap-2 text-sm text-neutral-gray py-1.5 px-3 bg-neutral-cream rounded-lg">
+              <span class="text-accent text-xs">✓</span> {t}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h2 class="text-2xl font-display font-bold text-primary mb-6">Tarifs taille de haies Tours</h2>
+        <div class="bg-neutral-cream rounded-2xl p-6 border border-neutral-200">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-neutral-300">
+                <th class="text-left pb-3 text-primary font-bold">Prestation</th>
+                <th class="text-right pb-3 text-primary font-bold">Prix indicatif</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-200">
+              {[
+                ["Taille haie < 1,5m (au mètre)", "3 – 6 € /m"],
+                ["Taille haie 1,5 – 3m (au mètre)", "5 – 10 € /m"],
+                ["Taille haie 3 – 5m (au mètre)", "8 – 15 € /m"],
+                ["Haie > 5m (au mètre)", "Sur devis"],
+                ["Évacuation déchets incluse", "Oui"],
+                ["Forfait minimum intervention", "80 €"],
+              ].map(([l, p]) => (
+                <tr>
+                  <td class="py-2.5 text-neutral-gray text-xs">{l}</td>
+                  <td class="py-2.5 text-right font-semibold text-primary text-xs">{p}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div class="mt-4 p-3 bg-accent/10 rounded-xl border border-accent/20">
+            <p class="text-xs text-neutral-gray"><strong class="text-accent">Crédit d'impôt -50%</strong> applicable pour résidence principale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAILLAGE + FAQ -->
+  <section class="py-10 bg-neutral-cream border-t border-neutral-200">
+    <div class="container-custom max-w-4xl mx-auto">
+      <div class="flex flex-wrap gap-4 mb-2">
+        <div>
+          <h3 class="font-bold text-primary mb-2 text-sm">Nos autres services</h3>
+          <div class="flex flex-wrap gap-3">
+            {[
+              { name: "Élagage d'arbres", slug: "elagage-arbres" },
+              { name: "Abattage d'arbres", slug: "abattage-arbres" },
+              { name: "Dessouchage", slug: "dessouchage-arbres" },
+              { name: "Entretien espaces verts", slug: "entretien-espaces-verts" },
+            ].map(s => (
+              <a href={`/services/${s.slug}`} class="text-sm text-accent hover:underline font-medium">→ {s.name}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-4xl font-display font-bold text-primary">FAQ taille de haies</h2>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((item, i) => (
+          <details class="group bg-neutral-cream rounded-xl border border-neutral-200 hover:border-accent/30 transition-colors overflow-hidden">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-bold text-primary hover:text-accent transition-colors">
+              <span class="flex items-center gap-3 text-base">
+                <span class="w-7 h-7 bg-accent/10 text-accent rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">{i + 1}</span>
+                {item.question}
+              </span>
+              <svg class="w-5 h-5 flex-shrink-0 text-accent transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-5 pt-4 text-neutral-gray text-sm leading-relaxed border-t border-neutral-200">{item.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gradient-to-br from-lime-900 to-lime-700 text-white text-center">
+    <div class="container-custom max-w-2xl mx-auto">
+      <h2 class="text-2xl md:text-4xl font-display font-bold mb-4">Taille de haies à Tours ?</h2>
+      <p class="text-white/75 mb-8">Devis gratuit · Résultat soigné · Crédit d'impôt -50%</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getPhoneLink()} class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-lime-800 font-bold text-lg rounded-xl hover:bg-lime-50 transition-all shadow-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          {siteConfig.business.phoneDisplay}
+        </a>
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-lime-800 transition-all">
+          Devis en ligne
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,153 @@
+---
+/**
+ * Page service : Entretien espaces verts
+ * SEO cible : "entretien jardin Tours" / "entretien espaces verts 37"
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig, getPhoneLink } from '@/data/siteConfig';
+import { getServiceSchema, getFAQSchema, getBreadcrumbSchema, combineSchemas } from '@/utils/schemas';
+
+const pageTitle = "Entretien espaces verts à Tours (37) – Jardinage professionnel";
+const pageDescription = "Entretien jardin et espaces verts à Tours et Indre-et-Loire. Tonte, taille, débroussaillage, nettoyage. Contrats annuels. Crédit d'impôt -50%. Devis gratuit.";
+
+const faqs = [
+  {
+    question: "Proposez-vous des contrats d'entretien annuels ?",
+    answer: "Oui, nous proposons des contrats d'entretien annuels adaptés à votre jardin, avec des passages réguliers programmés à l'année. C'est la solution idéale pour maintenir votre jardin impeccable sans vous en soucier. Tarif préférentiel pour les contrats annuels.",
+  },
+  {
+    question: "Intervenez-vous chez les professionnels et copropriétés ?",
+    answer: "Oui, nous travaillons pour les particuliers, entreprises, copropriétés et collectivités. Nous établissons des devis personnalisés et pouvons gérer des espaces verts de toutes tailles. Facturation professionnelle avec TVA.",
+  },
+  {
+    question: "Puis-je bénéficier du crédit d'impôt pour l'entretien de mon jardin ?",
+    answer: "Oui ! Les travaux d'entretien de jardin (tonte, taille, débroussaillage) réalisés à votre résidence principale donnent droit à un crédit d'impôt de 50% dans la limite de 2 500€/an. Nous vous fournissons l'attestation fiscale annuelle.",
+  },
+];
+
+const schema = combineSchemas(
+  getServiceSchema("Entretien espaces verts", pageDescription, "entretien-espaces-verts"),
+  getFAQSchema(faqs),
+  getBreadcrumbSchema([
+    { name: "Accueil", url: "/" },
+    { name: "Services", url: "/#services" },
+    { name: "Entretien espaces verts", url: "/services/entretien-espaces-verts" },
+  ])
+);
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} schema={schema}>
+
+  <section class="pt-24 md:pt-32 pb-16 bg-gradient-to-br from-teal-900 to-teal-700 text-white">
+    <div class="container-custom">
+      <nav class="flex items-center gap-2 text-sm text-white/60 mb-8">
+        <a href="/" class="hover:text-white/90">Accueil</a>
+        <span>/</span>
+        <a href="/#services" class="hover:text-white/90">Services</a>
+        <span>/</span>
+        <span class="text-white">Entretien espaces verts</span>
+      </nav>
+      <div class="max-w-4xl">
+        <h1 class="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight">
+          Entretien espaces verts à Tours (37)<br/>
+          <span class="text-teal-300">Contrats annuels disponibles</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/85 mb-8 max-w-3xl">
+          Tonte, taille d'arbustes, débroussaillage, nettoyage — entretien complet de votre jardin. Pour particuliers et professionnels en Indre-et-Loire.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href={getPhoneLink()} class="inline-flex items-center justify-center gap-3 px-7 py-4 bg-white text-teal-800 font-bold text-lg rounded-xl hover:bg-teal-50 transition-all shadow-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            {siteConfig.business.phoneDisplay}
+          </a>
+          <a href="/contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-teal-800 transition-all">
+            Devis gratuit
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-4xl font-display font-bold text-primary mb-4">Nos prestations d'entretien</h2>
+        <p class="text-lg text-neutral-gray">Un jardin entretenu tout au long de l'année</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { title: "Tonte de pelouse", desc: "Tonte régulière avec matériel professionnel. Ramassage des tontes inclus. Fréquence adaptée à la saison (hebdomadaire en période de pousse, mensuelle en été).", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
+          { title: "Taille d'arbustes", desc: "Taille des massifs, haies libres, arbustes à fleurs, rosiers. Entretien de la forme et stimulation de la floraison selon les espèces.", icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" },
+          { title: "Débroussaillage", desc: "Élimination des mauvaises herbes, ronces, repousses indésirables. Nettoyage des zones délaissées. Traitement des zones difficiles d'accès.", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
+          { title: "Ramassage feuilles", desc: "Ramassage et évacuation des feuilles mortes en automne. Nettoyage complet des allées, pelouses et massifs. Terrain remis en état pour l'hiver.", icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" },
+          { title: "Nettoyage jardins", desc: "Grand nettoyage printanier ou automnal : taille de toutes les espèces, ramassage des déchets, remise en état générale du jardin après l'hiver ou avant l'été.", icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" },
+          { title: "Contrats annuels", desc: "Contrat d'entretien sur-mesure avec passages réguliers programmés. Tarif préférentiel, suivi personnalisé, jardinage sans contrainte. Pour particuliers et professionnels.", icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" },
+        ].map(item => (
+          <article class="bg-neutral-cream rounded-2xl p-6 border border-neutral-200">
+            <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon}/></svg>
+            </div>
+            <h3 class="font-bold text-primary mb-2">{item.title}</h3>
+            <p class="text-sm text-neutral-gray leading-relaxed">{item.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 bg-white border-t border-neutral-200">
+    <div class="container-custom max-w-4xl mx-auto">
+      <h3 class="font-bold text-primary mb-3 text-sm">Nos autres services</h3>
+      <div class="flex flex-wrap gap-3">
+        {[
+          { name: "Élagage d'arbres", slug: "elagage-arbres" },
+          { name: "Abattage d'arbres", slug: "abattage-arbres" },
+          { name: "Dessouchage", slug: "dessouchage-arbres" },
+          { name: "Taille de haies", slug: "taille-haies" },
+          { name: "Élagage fruitiers", slug: "elagage-fruitiers" },
+        ].map(s => (
+          <a href={`/services/${s.slug}`} class="text-sm text-accent hover:underline font-medium">→ {s.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-20 bg-neutral-cream">
+    <div class="container-custom max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-4xl font-display font-bold text-primary">Questions fréquentes</h2>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((item, i) => (
+          <details class="group bg-white rounded-xl border border-neutral-200 hover:border-accent/30 transition-colors overflow-hidden">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-bold text-primary hover:text-accent transition-colors">
+              <span class="flex items-center gap-3 text-base">
+                <span class="w-7 h-7 bg-accent/10 text-accent rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">{i + 1}</span>
+                {item.question}
+              </span>
+              <svg class="w-5 h-5 flex-shrink-0 text-accent transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-5 pt-4 text-neutral-gray text-sm leading-relaxed border-t border-neutral-200">{item.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gradient-to-br from-teal-900 to-teal-700 text-white text-center">
+    <div class="container-custom max-w-2xl mx-auto">
+      <h2 class="text-2xl md:text-4xl font-display font-bold mb-4">Entretien jardin à Tours ?</h2>
+      <p class="text-white/75 mb-8">Devis gratuit · Contrats annuels · Crédit d'impôt -50%</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getPhoneLink()} class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-teal-800 font-bold text-lg rounded-xl hover:bg-teal-50 transition-all shadow-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          {siteConfig.business.phoneDisplay}
+        </a>
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-teal-800 transition-all">
+          Devis en ligne
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
