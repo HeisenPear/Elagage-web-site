@@ -1,0 +1,314 @@
+---
+/**
+ * Pages villes dynamiques - SEO local Indre-et-Loire
+ * Génère une page par ville avec contenu substantiel 600-1000 mots
+ * URLs : /zones/elagueur-tours, /zones/elagueur-amboise, etc.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig, getPhoneLink } from '@/data/siteConfig';
+import { getLocalBusinessSchema, getFAQSchema, getBreadcrumbSchema, combineSchemas } from '@/utils/schemas';
+import { cityPages } from '@/data/cityPages';
+
+export async function getStaticPaths() {
+  const { cityPages } = await import('@/data/cityPages');
+  return cityPages.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+
+const schema = combineSchemas(
+  getLocalBusinessSchema(),
+  getFAQSchema(city.faq),
+  getBreadcrumbSchema([
+    { name: "Accueil", url: "/" },
+    { name: "Zones d'intervention", url: "/zones" },
+    { name: `Élagueur ${city.name}`, url: `/zones/${city.slug}` },
+  ])
+);
+
+// Autres villes pour maillage interne
+const otherCities = cityPages.filter(c => c.slug !== city.slug).slice(0, 4);
+---
+
+<BaseLayout
+  title={city.title}
+  description={city.description}
+  keywords={[
+    `élagueur ${city.name}`,
+    `élagage ${city.name}`,
+    `abattage arbre ${city.name}`,
+    `taille haie ${city.name}`,
+    `dessouchage ${city.name}`,
+    `élagueur ${city.postalCode}`,
+    `entreprise élagage ${city.name}`,
+  ]}
+  schema={schema}
+>
+
+  <!-- HERO -->
+  <section class="pt-24 md:pt-32 pb-16 bg-gradient-to-br from-primary-900 to-primary text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute top-10 right-10 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+    </div>
+    <div class="container-custom relative z-10">
+      <nav class="flex items-center gap-2 text-sm text-white/60 mb-8" aria-label="Fil d'Ariane">
+        <a href="/" class="hover:text-accent transition-colors">Accueil</a>
+        <span>/</span>
+        <a href="/zones" class="hover:text-accent transition-colors">Zones</a>
+        <span>/</span>
+        <span class="text-white">Élagueur {city.name}</span>
+      </nav>
+
+      <div class="max-w-4xl">
+        <span class="inline-block px-4 py-1.5 bg-accent/20 text-accent font-semibold rounded-full text-sm uppercase tracking-wider mb-4">
+          Intervention locale · {city.postalCode}
+        </span>
+        <h1 class="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight">
+          {city.h1}
+        </h1>
+        <p class="text-lg md:text-xl text-white/85 mb-8 max-w-3xl">
+          Élagueur certifié intervenant à <strong>{city.name}</strong> et ses environs. Devis gratuit sous 24h · Assuré RC Pro 8M€ · Crédit d'impôt -50%.
+        </p>
+
+        <!-- Badges confiance -->
+        <div class="flex flex-wrap gap-3 mb-8">
+          {[
+            "✓ Certifié CS Arboriste",
+            "✓ Assuré RC Pro 8M€",
+            "✓ Crédit d'impôt -50%",
+            "✓ Devis gratuit 24h",
+          ].map(badge => (
+            <span class="px-3 py-1.5 bg-white/10 text-white text-sm font-medium rounded-lg">{badge}</span>
+          ))}
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href={getPhoneLink()} class="btn-primary inline-flex text-lg justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            Appeler : {siteConfig.business.phoneDisplay}
+          </a>
+          <a href="/contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-primary transition-all">
+            Devis en ligne gratuit
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENU PRINCIPAL SEO -->
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom max-w-4xl mx-auto">
+
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-primary mb-6">
+        Votre élagueur professionnel à {city.name}
+      </h2>
+
+      <div class="space-y-4 text-neutral-gray leading-relaxed text-base md:text-lg mb-10">
+        <p>{city.intro}</p>
+        <p>
+          <strong>Élagage Abattage 37</strong> est l'<strong>élagueur professionnel de référence à {city.name}</strong> et dans toute l'<strong>Indre-et-Loire</strong>. Fondée par <strong>Rudy Cappello</strong>, élagueur grimpeur certifié avec plus de 10 ans d'expérience, notre entreprise intervient sur tous vos travaux arboricoles avec le soin et la rigueur qu'ils méritent.
+        </p>
+        <p set:html={city.specificContent} />
+        <p>
+          Nous sommes <strong>assurés RC Pro à hauteur de 8 000 000€</strong> et tous nos travaux sont couverts. Nos clients bénéficient du <strong>crédit d'impôt services à la personne (-50%)</strong> pour les travaux sur résidence principale. Attestation fiscale fournie automatiquement avec chaque intervention.
+        </p>
+      </div>
+
+      <!-- Quartiers / secteurs -->
+      <div class="bg-neutral-cream rounded-2xl p-6 border border-neutral-200 mb-10">
+        <h3 class="font-bold text-primary mb-3">
+          {city.slug === 'elagueur-indre-et-loire' ? 'Villes couvertes en Indre-et-Loire' : `Secteurs d'intervention à ${city.name}`}
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {city.neighborhoods.map(n => (
+            <span class="flex items-center gap-1.5 text-sm px-3 py-1.5 bg-white text-primary border border-neutral-200 rounded-lg">
+              <svg class="w-3 h-3 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+              {n}
+            </span>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES PROPOSÉS -->
+  <section class="py-14 md:py-20 bg-neutral-cream">
+    <div class="container-custom max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-4xl font-display font-bold text-primary mb-4">
+          Nos services d'élagage à {city.name}
+        </h2>
+        <p class="text-lg text-neutral-gray">Tous vos travaux arboricoles pris en charge</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {[
+          {
+            title: "Élagage d'arbres",
+            desc: `Élagage raisonné, sanitaire ou de sécurité à ${city.name}. Toutes essences, tous volumes. Élagueur grimpeur certifié.`,
+            link: "/services/elagage-arbres",
+            icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
+            color: "text-accent",
+          },
+          {
+            title: "Abattage d'arbres",
+            desc: `Abattage sécurisé d'arbres dangereux ou gênants à ${city.name}. Démontage section par section en zone contrainte.`,
+            link: "/services/abattage-arbres",
+            icon: "M13 10V3L4 14h7v7l9-11h-7z",
+            color: "text-amber-600",
+          },
+          {
+            title: "Dessouchage",
+            desc: `Extraction complète des souches par rogneuse professionnelle à ${city.name}. Terrain remis en état.`,
+            link: "/services/dessouchage-arbres",
+            icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z",
+            color: "text-orange-600",
+          },
+          {
+            title: "Taille de haies",
+            desc: `Taille et entretien de haies toutes hauteurs à ${city.name}. Thuyas, lauriers, troènes, charmilles. Résultat soigné.`,
+            link: "/services/taille-haies",
+            icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+            color: "text-lime-700",
+          },
+          {
+            title: "Entretien espaces verts",
+            desc: `Tonte, taille d'arbustes, débroussaillage, nettoyage à ${city.name}. Contrats annuels pour particuliers et professionnels.`,
+            link: "/services/entretien-espaces-verts",
+            icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
+            color: "text-teal-600",
+          },
+          {
+            title: "Élagage arbres fruitiers",
+            desc: `Taille spécialisée des arbres fruitiers à ${city.name}. Pommiers, poiriers, cerisiers, pruniers. Optimisez votre récolte.`,
+            link: "/services/elagage-fruitiers",
+            icon: "M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01",
+            color: "text-rose-600",
+          },
+        ].map(s => (
+          <a href={s.link} class="group bg-white rounded-2xl p-6 shadow-soft border border-neutral-200 hover:border-accent/30 hover:-translate-y-0.5 transition-all duration-200">
+            <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-accent transition-colors duration-200">
+              <svg class={`w-5 h-5 ${s.color} group-hover:text-white transition-colors duration-200`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={s.icon}/></svg>
+            </div>
+            <h3 class="font-bold text-primary mb-2 group-hover:text-accent transition-colors">{s.title}</h3>
+            <p class="text-sm text-neutral-gray leading-relaxed">{s.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ARBRES + AVANTAGES -->
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
+
+      <div>
+        <h2 class="text-2xl font-display font-bold text-primary mb-5">
+          Arbres traités à {city.name}
+        </h2>
+        <div class="space-y-2">
+          {city.treeTypes.map(t => (
+            <div class="flex items-center gap-3 py-2 px-4 bg-neutral-cream rounded-lg border border-neutral-200">
+              <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="text-sm text-neutral-gray">{t}</span>
+            </div>
+          ))}
+        </div>
+        <p class="text-sm text-neutral-gray mt-4">
+          Un arbre d'une autre essence ? <a href={getPhoneLink()} class="text-accent font-semibold hover:underline">Appelez-nous</a>, nous intervenons sur toutes les espèces.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-display font-bold text-primary mb-5">
+          Pourquoi nous choisir à {city.name} ?
+        </h2>
+        <div class="space-y-4">
+          {[
+            { title: "Élagueur local certifié", desc: `Rudy Cappello, élagueur grimpeur certifié CS Arboriste, intervient personnellement sur vos chantiers à ${city.name}.` },
+            { title: "Devis gratuit sous 24h", desc: "Réponse sous 24h, déplacement sans engagement pour évaluer votre chantier." },
+            { title: "Assurance RC Pro 8M€", desc: "Tous vos chantiers couverts. Attestation d'assurance fournie avant intervention." },
+            { title: "Crédit d'impôt -50%", desc: "50% de réduction fiscale pour les travaux sur votre résidence principale. Attestation fournie." },
+          ].map(item => (
+            <div class="flex gap-3">
+              <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <div>
+                <p class="font-semibold text-primary text-sm">{item.title}</p>
+                <p class="text-sm text-neutral-gray mt-0.5">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AUTRES VILLES (MAILLAGE INTERNE) -->
+  <section class="py-10 bg-neutral-cream border-t border-neutral-200">
+    <div class="container-custom max-w-5xl mx-auto">
+      <h3 class="font-bold text-primary mb-4">Autres zones d'intervention</h3>
+      <div class="flex flex-wrap gap-3">
+        {otherCities.map(c => (
+          <a href={`/zones/${c.slug}`} class="inline-flex items-center gap-1.5 px-3 py-2 bg-white text-primary border border-neutral-200 hover:border-accent hover:text-accent rounded-lg text-sm font-medium transition-all">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            Élagueur {c.name}
+          </a>
+        ))}
+        <a href="/zones" class="inline-flex items-center gap-1.5 px-3 py-2 bg-accent/10 text-accent border border-accent/30 hover:bg-accent hover:text-white rounded-lg text-sm font-semibold transition-all">
+          Voir toutes les zones →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-4xl font-display font-bold text-primary">
+          FAQ – Élagage à {city.name}
+        </h2>
+      </div>
+      <div class="space-y-4">
+        {city.faq.map((item, i) => (
+          <details class="group bg-neutral-cream rounded-xl border border-neutral-200 hover:border-accent/30 transition-colors overflow-hidden">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-bold text-primary hover:text-accent transition-colors">
+              <span class="flex items-center gap-3 text-base">
+                <span class="w-7 h-7 bg-accent/10 text-accent rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">{i + 1}</span>
+                {item.question}
+              </span>
+              <svg class="w-5 h-5 flex-shrink-0 text-accent transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-5 pt-4 text-neutral-gray text-sm leading-relaxed border-t border-neutral-200">{item.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINALE -->
+  <section class="py-16 md:py-24 bg-gradient-to-br from-primary-900 to-primary text-white text-center">
+    <div class="container-custom max-w-2xl mx-auto">
+      <div class="flex justify-center text-yellow-400 text-xl mb-4">★★★★★</div>
+      <h2 class="text-2xl md:text-4xl font-display font-bold mb-2">
+        Besoin d'un élagueur à {city.name} ?
+      </h2>
+      <p class="text-white/70 mb-8">Devis gratuit · Intervention sous 48h · Assuré RC Pro 8M€</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getPhoneLink()} class="btn-primary inline-flex justify-center text-lg">
+          <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          {siteConfig.business.phoneDisplay}
+        </a>
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-primary transition-all">
+          Devis en ligne
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

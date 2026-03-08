@@ -230,10 +230,10 @@ const services = [
 
               <!-- CTA -->
               <a
-                href="/contact"
+                href={`/services/${service.slug === 'elagage' ? 'elagage-arbres' : service.slug === 'abattage' ? 'abattage-arbres' : service.slug === 'taille-haies' ? 'taille-haies' : service.slug === 'dessouchage' ? 'dessouchage-arbres' : service.slug === 'entretien-espaces-verts' ? 'entretien-espaces-verts' : service.slug === 'elagage-fruitiers' ? 'elagage-fruitiers' : 'elagage-arbres'}`}
                 class="inline-flex items-center gap-2 w-full justify-center px-4 py-3 bg-primary/5 hover:bg-accent text-primary hover:text-white font-semibold text-sm rounded-xl transition-all duration-300 border border-primary/10 hover:border-accent"
               >
-                Demander un devis gratuit
+                En savoir plus
                 <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                 </svg>
@@ -481,13 +481,26 @@ const services = [
             Communes desservies en Indre-et-Loire (37)
           </h3>
           <div class="flex flex-wrap gap-2">
-            {siteConfig.serviceArea.cities.map((city, index) => (
-              <span class={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all ${index === 0 ? 'bg-accent text-white shadow-sm' : 'bg-neutral-cream text-primary hover:bg-accent/10 border border-neutral-200'}`}>
+            {[
+              { name: "Tours", slug: "elagueur-tours", featured: true },
+              { name: "Joué-lès-Tours", slug: "elagueur-joue-les-tours" },
+              { name: "Amboise", slug: "elagueur-amboise" },
+              { name: "Saint-Cyr-sur-Loire", slug: "elagueur-saint-cyr-sur-loire" },
+              { name: "Montlouis-sur-Loire", slug: "elagueur-montlouis-sur-loire" },
+            ].map((city) => (
+              <a href={`/zones/${city.slug}`} class={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all ${city.featured ? 'bg-accent text-white shadow-sm' : 'bg-neutral-cream text-primary hover:bg-accent/10 border border-neutral-200 hover:border-accent/30'}`}>
+                <svg class="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                </svg>
+                Élagueur {city.name}
+              </a>
+            ))}
+            {siteConfig.serviceArea.cities.filter(c => !["Tours", "Joué-lès-Tours", "Amboise", "Saint-Cyr-sur-Loire", "Montlouis-sur-Loire"].includes(c)).map((city) => (
+              <span class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium bg-neutral-cream text-primary border border-neutral-200">
                 <svg class="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
                 </svg>
                 {city}
-                {index === 0 && <span class="text-xs font-bold">(principal)</span>}
               </span>
             ))}
           </div>
