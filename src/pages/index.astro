@@ -31,9 +31,10 @@ const stats = [
 ];
 
 // Services data (static pour SEO optimal - pas de React island)
+// SEO: URLs directes vers pages services pour maillage interne optimisé
 const services = [
   {
-    slug: 'elagage',
+    url: '/services/elagage-arbres',
     icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>`,
     title: "Élagage d'arbres",
     subtitle: "Élagage raisonné & sanitaire",
@@ -42,7 +43,7 @@ const services = [
     color: "from-primary to-primary-600",
   },
   {
-    slug: 'abattage',
+    url: '/services/abattage-arbres',
     icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>`,
     title: "Abattage d'arbres",
     subtitle: "Sécurisé & professionnel",
@@ -51,7 +52,7 @@ const services = [
     color: "from-amber-600 to-amber-500",
   },
   {
-    slug: 'taille-haies',
+    url: '/services/taille-haies',
     icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
     title: "Taille de haies",
     subtitle: "Précis & esthétique",
@@ -60,7 +61,7 @@ const services = [
     color: "from-lime-600 to-lime-500",
   },
   {
-    slug: 'dessouchage',
+    url: '/services/dessouchage-arbres',
     icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
     title: "Dessouchage",
     subtitle: "Rogneuse professionnelle",
@@ -69,7 +70,7 @@ const services = [
     color: "from-orange-600 to-orange-500",
   },
   {
-    slug: 'entretien-espaces-verts',
+    url: '/services/entretien-espaces-verts',
     icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
     title: "Entretien espaces verts",
     subtitle: "Contrats annuels disponibles",
@@ -78,7 +79,7 @@ const services = [
     color: "from-teal-600 to-teal-500",
   },
   {
-    slug: 'elagage-fruitiers',
+    url: '/services/elagage-fruitiers',
     icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>`,
     title: "Élagage arbres fruitiers",
     subtitle: "Optimiser la production",
@@ -168,7 +169,8 @@ const services = [
   <!-- ============================================ -->
   <section class="py-12 bg-gradient-to-br from-primary-800 to-primary text-white">
     <div class="container-custom">
-      <StatsCounter client:idle stats={stats} />
+      <!-- SEO: client:visible = hydrate quand l'élément entre dans le viewport, évite les "0" avant scroll -->
+      <StatsCounter client:visible stats={stats} />
     </div>
   </section>
 
@@ -229,8 +231,9 @@ const services = [
               </ul>
 
               <!-- CTA -->
+              <!-- SEO: lien direct vers la page service (pas d'ancre #) -->
               <a
-                href={`/services/${service.slug === 'elagage' ? 'elagage-arbres' : service.slug === 'abattage' ? 'abattage-arbres' : service.slug === 'taille-haies' ? 'taille-haies' : service.slug === 'dessouchage' ? 'dessouchage-arbres' : service.slug === 'entretien-espaces-verts' ? 'entretien-espaces-verts' : service.slug === 'elagage-fruitiers' ? 'elagage-fruitiers' : 'elagage-arbres'}`}
+                href={service.url}
                 class="inline-flex items-center gap-2 w-full justify-center px-4 py-3 bg-primary/5 hover:bg-accent text-primary hover:text-white font-semibold text-sm rounded-xl transition-all duration-300 border border-primary/10 hover:border-accent"
               >
                 En savoir plus

@@ -1,6 +1,7 @@
 /**
  * Composant Stats avec animations counter
- * Déclenché au scroll avec IntersectionObserver
+ * SEO fix: valeurs réelles dans le HTML statique (fallback sans JS)
+ * Animation déclenchée à la visibilité via IntersectionObserver
  */
 import { useEffect, useRef, useState } from 'react';
 
@@ -16,15 +17,37 @@ interface StatsCounterProps {
 }
 
 export default function StatsCounter({ stats }: StatsCounterProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [counts, setCounts] = useState<number[]>(stats.map(() => 0));
+  const targetValues = stats.map((s) =>
+    typeof s.value === 'number' ? s.value : parseInt(s.value)
+  );
+  // SEO fix: initialiser avec les vraies valeurs pour que le HTML statique les affiche
+  const [counts, setCounts] = useState<number[]>(targetValues);
+  const hasAnimatedRef = useRef(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
+        if (entry.isIntersecting && !hasAnimatedRef.current) {
+          hasAnimatedRef.current = true;
+          observer.disconnect();
+
+          const steps = 60;
+          const increments = targetValues.map((v) => v / steps);
+          let frame = 0;
+          setCounts(stats.map(() => 0));
+
+          const interval = setInterval(() => {
+            frame++;
+            if (frame >= steps) {
+              clearInterval(interval);
+              setCounts([...targetValues]);
+              return;
+            }
+            setCounts((prev) =>
+              prev.map((c, i) => Math.min(c + increments[i], targetValues[i]))
+            );
+          }, 2000 / steps);
         }
       },
       { threshold: 0.3 }
@@ -35,41 +58,7 @@ export default function StatsCounter({ stats }: StatsCounterProps) {
     }
 
     return () => observer.disconnect();
-  }, [isVisible]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    const durations = stats.map(() => 2000); // 2s pour chaque counter
-    const steps = 60; // 60 frames
-    const increments = stats.map((stat, i) => {
-      const value = typeof stat.value === 'number' ? stat.value : parseInt(stat.value);
-      return value / steps;
-    });
-
-    let frame = 0;
-    const interval = setInterval(() => {
-      frame++;
-      setCounts((prevCounts) =>
-        prevCounts.map((count, i) => {
-          const stat = stats[i];
-          const targetValue = typeof stat.value === 'number' ? stat.value : parseInt(stat.value);
-          const newCount = Math.min(count + increments[i], targetValue);
-          return newCount;
-        })
-      );
-
-      if (frame >= steps) {
-        clearInterval(interval);
-        // Set final values
-        setCounts(
-          stats.map((stat) => (typeof stat.value === 'number' ? stat.value : parseInt(stat.value)))
-        );
-      }
-    }, durations[0] / steps);
-
-    return () => clearInterval(interval);
-  }, [isVisible, stats]);
+  }, []);
 
   return (
     <div ref={sectionRef} className="grid grid-cols-2 lg:grid-cols-4 gap-8">

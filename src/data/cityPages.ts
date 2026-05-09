@@ -30,15 +30,16 @@ export const cityPages: CityPageData[] = [
     slug: "elagueur-tours",
     name: "Tours",
     postalCode: "37000",
-    h1: "Élagueur à Tours – Élagage et abattage d'arbres professionnels",
+    // SEO: H1 format normalisé "Élagueur [Ville] (37) — Élagage & Abattage"
+    h1: "Élagueur Tours (37) — Élagage & Abattage d'arbres",
     title: "Élagueur Tours (37) | Élagage & Abattage d'arbres – Devis Gratuit 24h",
     description: "Élagueur professionnel à Tours (37). Élagage, abattage, dessouchage, taille de haies. Certifié, assuré RC Pro 8M€. Crédit d'impôt -50%. Devis gratuit sous 24h. ☎ 06 31 46 43 50",
     population: "136 000 habitants",
     area: "Agglomération Tours Val-de-Loire",
-    neighborhoods: ["Tours Centre", "Tours Nord", "Tours Sud", "Saint-Symphorien", "La Rotisserie", "Velpeau", "Les Prébendes"],
+    neighborhoods: ["Tours Centre", "Tours Nord", "Tours Sud", "Saint-Symphorien", "La Rotisserie", "Velpeau", "Les Prébendes", "La Riche", "Saint-Avertin", "Chambray-lès-Tours", "Grammont"],
     landmarks: ["bords de Loire", "vieille ville de Tours", "quartier des halles", "parc de Grandmont"],
-    intro: "Tours, préfecture d'Indre-et-Loire et capitale de la Touraine, est une ville verte avec de nombreux parcs, jardins et propriétés arborées. Avec ses quartiers résidentiels boisés comme Saint-Symphorien, ses propriétés à colombages entourées d'arbres anciens et ses jardins des bords de Loire, la demande en services d'élagage et d'abattage est importante.",
-    specificContent: "En tant qu'<strong>élagueur à Tours</strong>, nous connaissons parfaitement les enjeux locaux : respect du PLU de Tours Métropole, protection des arbres remarquables, proximité des réseaux aériens ENEDIS dans les quartiers denses. Nous intervenons régulièrement dans tous les quartiers tourangeaux, de <strong>Tours Centre</strong> aux communes périphériques.",
+    intro: "Tours, préfecture d'Indre-et-Loire et capitale de la Touraine, est une ville verte avec de nombreux parcs, jardins et propriétés arborées. Avec ses quartiers résidentiels boisés comme Saint-Symphorien, ses propriétés à colombages entourées d'arbres anciens et ses allées plantées de tilleuls centenaires, la demande en services d'élagage et d'abattage professionnels est importante. La ville compte plusieurs dizaines de milliers d'arbres d'alignement sur ses boulevards et avenues, auxquels s'ajoutent les arbres privés dans les jardins pavillonnaires des quartiers résidentiels.",
+    specificContent: "En tant qu'<strong>élagueur à Tours</strong>, nous connaissons parfaitement les enjeux locaux : respect du PLU de Tours Métropole, protection des arbres remarquables, coordination avec ENEDIS pour les branches proches des réseaux aériens dans les quartiers denses. Nous intervenons dans tous les secteurs de Tours sans surcoût de déplacement : <strong>Tours Centre</strong> (rue Nationale, place Jean-Jaurès), <strong>Tours Nord</strong> (avenue Grammont, boulevard Preuilly), <strong>Tours Sud</strong> (Joué-lès-Tours, Saint-Avertin), les <strong>Prébendes</strong>, <strong>Velpeau</strong>, <strong>Saint-Symphorien</strong>, <strong>La Rotisserie</strong>, <strong>La Riche</strong> et <strong>Chambray-lès-Tours</strong>. Basés au 2 rue du Manoir à Joué-lès-Tours, à moins de 5 km du centre-ville de Tours, nous garantissons une intervention sous 24h pour les urgences et sous 72h pour les chantiers planifiés. Notre connaissance du tissu urbain tourangeau, des espèces arborées locales — platanes, tilleuls, chênes, marronniers — et des contraintes réglementaires du PLU de Tours Métropole nous permet d'accompagner chaque client avec expertise.",
     treeTypes: ["Platanes des bords de Loire", "Chênes dans les propriétés", "Tilleuls des avenues", "Thuyas et conifères", "Pommiers et poiriers"],
     faq: [
       {
@@ -59,7 +60,8 @@ export const cityPages: CityPageData[] = [
     slug: "elagueur-amboise",
     name: "Amboise",
     postalCode: "37400",
-    h1: "Élagueur à Amboise – Élagage et abattage d'arbres en Val de Loire",
+    // SEO: H1 format normalisé
+    h1: "Élagueur Amboise (37) — Élagage & Abattage d'arbres",
     title: "Élagueur Amboise (37) | Élagage & Abattage professionnels – Devis Gratuit",
     description: "Élagueur à Amboise (37). Élagage, abattage, dessouchage. Certifié, assuré RC Pro 8M€. Intervention rapide en Val de Loire. Devis gratuit 24h. ☎ 06 31 46 43 50",
     population: "13 000 habitants",
@@ -84,7 +86,8 @@ export const cityPages: CityPageData[] = [
     slug: "elagueur-joue-les-tours",
     name: "Joué-lès-Tours",
     postalCode: "37300",
-    h1: "Élagueur à Joué-lès-Tours – Élagage et abattage d'arbres professionnels",
+    // SEO: H1 format normalisé
+    h1: "Élagueur Joué-lès-Tours (37) — Élagage & Abattage d'arbres",
     title: "Élagueur Joué-lès-Tours (37) | Élagage & Abattage – Devis Gratuit 24h",
     description: "Élagueur professionnel à Joué-lès-Tours (37). Entreprise locale. Élagage, abattage, dessouchage. Assuré RC Pro 8M€. Crédit d'impôt -50%. Devis gratuit. ☎ 06 31 46 43 50",
     population: "37 000 habitants",
@@ -109,7 +112,8 @@ export const cityPages: CityPageData[] = [
     slug: "elagueur-saint-cyr-sur-loire",
     name: "Saint-Cyr-sur-Loire",
     postalCode: "37540",
-    h1: "Élagueur à Saint-Cyr-sur-Loire – Élagage et abattage d'arbres",
+    // SEO: H1 format normalisé
+    h1: "Élagueur Saint-Cyr-sur-Loire (37) — Élagage & Abattage d'arbres",
     title: "Élagueur Saint-Cyr-sur-Loire (37) | Élagage & Abattage – Devis Gratuit",
     description: "Élagueur à Saint-Cyr-sur-Loire (37). Commune résidentielle boisée. Élagage, abattage, dessouchage, taille de haies. Assuré 8M€. Devis gratuit 24h. ☎ 06 31 46 43 50",
     population: "16 000 habitants",
@@ -134,7 +138,8 @@ export const cityPages: CityPageData[] = [
     slug: "elagueur-montlouis-sur-loire",
     name: "Montlouis-sur-Loire",
     postalCode: "37270",
-    h1: "Élagueur à Montlouis-sur-Loire – Élagage et abattage d'arbres",
+    // SEO: H1 format normalisé
+    h1: "Élagueur Montlouis-sur-Loire (37) — Élagage & Abattage d'arbres",
     title: "Élagueur Montlouis-sur-Loire (37) | Élagage & Abattage – Devis Gratuit",
     description: "Élagueur à Montlouis-sur-Loire (37). Vignoble et jardins de Touraine. Élagage, abattage, dessouchage. Assuré 8M€. Devis gratuit 24h. ☎ 06 31 46 43 50",
     population: "11 000 habitants",
