@@ -6,7 +6,7 @@
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { siteConfig, getPhoneLink } from '@/data/siteConfig';
-import { getLocalBusinessSchema, getFAQSchema, getBreadcrumbSchema, combineSchemas } from '@/utils/schemas';
+import { getCityLocalBusinessSchema, getFAQSchema, getBreadcrumbSchema, combineSchemas } from '@/utils/schemas';
 import { cityPages } from '@/data/cityPages';
 
 export async function getStaticPaths() {
@@ -19,8 +19,9 @@ export async function getStaticPaths() {
 
 const { city } = Astro.props;
 
+// SEO: schema LocalBusiness avec serviceArea pointant sur cette ville précisément
 const schema = combineSchemas(
-  getLocalBusinessSchema(),
+  getCityLocalBusinessSchema(city.name, city.postalCode),
   getFAQSchema(city.faq),
   getBreadcrumbSchema([
     { name: "Accueil", url: "/" },

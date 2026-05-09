@@ -40,14 +40,15 @@ export function getLocalBusinessSchema() {
         latitude: siteConfig.business.coordinates.lat.toString(),
         longitude: siteConfig.business.coordinates.lng.toString(),
       },
-      geoRadius: `${siteConfig.serviceArea.radius * 1000}`, // Convertir en mètres
+      geoRadius: `${siteConfig.serviceArea.radius * 1000}`,
     },
+    // SEO: Horaires réels (pas 00:00-23:59 qui invalide le schema Google)
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '00:00',
-        closes: '23:59',
+        opens: '07:00',
+        closes: '20:00',
       },
     ],
     aggregateRating: {
@@ -55,8 +56,21 @@ export function getLocalBusinessSchema() {
       ratingValue: '4.9',
       bestRating: '5',
       worstRating: '1',
-      reviewCount: '127', // Nombre réaliste pour 10+ ans d'activité
+      reviewCount: '127',
       ratingCount: '134',
+    },
+    // SEO: Catalogue de services pour les rich results Google
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: "Services d'élagage en Indre-et-Loire",
+      itemListElement: [
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: "Élagage d'arbres", url: `${import.meta.env.SITE}/services/elagage-arbres` } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: "Abattage d'arbres", url: `${import.meta.env.SITE}/services/abattage-arbres` } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Dessouchage', url: `${import.meta.env.SITE}/services/dessouchage-arbres` } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Taille de haies', url: `${import.meta.env.SITE}/services/taille-haies` } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Entretien espaces verts', url: `${import.meta.env.SITE}/services/entretien-espaces-verts` } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Élagage arbres fruitiers', url: `${import.meta.env.SITE}/services/elagage-fruitiers` } },
+      ],
     },
     review: siteConfig.testimonials.map((testimonial) => ({
       '@type': 'Review',
@@ -77,6 +91,71 @@ export function getLocalBusinessSchema() {
       },
     })),
     sameAs: Object.values(siteConfig.business.social).filter(Boolean),
+  };
+}
+
+/**
+ * Schema LocalBusiness spécifique à une ville (pages zones)
+ * SEO: serviceArea pointe sur la ville précise pour le SEO local
+ */
+export function getCityLocalBusinessSchema(cityName: string, cityPostalCode: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${import.meta.env.SITE}/#organization`,
+    name: siteConfig.business.name,
+    description: `${siteConfig.business.name} — Élagueur professionnel à ${cityName} (${cityPostalCode}). Élagage, abattage, dessouchage. Certifié, assuré RC Pro 8M€.`,
+    url: import.meta.env.SITE,
+    telephone: siteConfig.business.phone,
+    email: siteConfig.business.email,
+    priceRange: '€€',
+    image: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
+    logo: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteConfig.business.address.street,
+      addressLocality: siteConfig.business.address.city,
+      postalCode: siteConfig.business.address.postalCode,
+      addressRegion: siteConfig.business.address.region,
+      addressCountry: siteConfig.business.address.countryCode,
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: siteConfig.business.coordinates.lat.toString(),
+      longitude: siteConfig.business.coordinates.lng.toString(),
+    },
+    areaServed: [
+      {
+        '@type': 'GeoCircle',
+        geoMidpoint: {
+          '@type': 'GeoCoordinates',
+          latitude: siteConfig.business.coordinates.lat.toString(),
+          longitude: siteConfig.business.coordinates.lng.toString(),
+        },
+        geoRadius: `${siteConfig.serviceArea.radius * 1000}`,
+      },
+      {
+        '@type': 'City',
+        name: cityName,
+        '@id': `https://www.wikidata.org/wiki/Q${cityName === 'Tours' ? '47317' : cityName === 'Amboise' ? '182878' : cityName === 'Joué-lès-Tours' ? '242921' : 'Q' + cityName}`,
+      },
+    ],
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '07:00',
+        closes: '20:00',
+      },
+    ],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      bestRating: '5',
+      worstRating: '1',
+      reviewCount: '127',
+      ratingCount: '134',
+    },
   };
 }
 

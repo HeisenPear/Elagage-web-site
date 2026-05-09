@@ -23,23 +23,36 @@ export default defineConfig({
           item.priority = 1.0;
           item.changefreq = 'daily';
         }
-        // Articles blog = haute priorité (contenu éditorial)
-        else if (item.url.includes('/blog/') && !item.url.endsWith('/blog/')) {
+        // SEO: Services principaux = priorité haute (trafic commercial)
+        else if (item.url.includes('/services/elagage-arbres') || item.url.includes('/services/abattage-arbres')) {
+          item.priority = 0.9;
+          item.changefreq = 'monthly';
+        }
+        else if (item.url.includes('/services/taille-haies') || item.url.includes('/services/dessouchage-arbres')) {
           item.priority = 0.8;
           item.changefreq = 'monthly';
         }
-        // Page blog index
-        else if (item.url.endsWith('/blog/')) {
-          item.priority = 0.7;
-          item.changefreq = 'weekly';
-        }
-        // Pages services détail
         else if (item.url.includes('/services/')) {
           item.priority = 0.7;
           item.changefreq = 'monthly';
         }
-        // Pages contact et galerie
-        else if (item.url.includes('/contact') || item.url.includes('/galerie')) {
+        // Pages zones = SEO local important
+        else if (item.url.includes('/zones/')) {
+          item.priority = 0.7;
+          item.changefreq = 'monthly';
+        }
+        // Articles blog
+        else if (item.url.includes('/blog/') && !item.url.endsWith('/blog/')) {
+          item.priority = 0.6;
+          item.changefreq = 'monthly';
+        }
+        // Page blog index
+        else if (item.url.endsWith('/blog/')) {
+          item.priority = 0.5;
+          item.changefreq = 'weekly';
+        }
+        // Contact
+        else if (item.url.includes('/contact')) {
           item.priority = 0.6;
           item.changefreq = 'monthly';
         }
