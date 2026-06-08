@@ -211,6 +211,11 @@ export default function ContactForm() {
       console.log('Email sent successfully:', response);
       setSubmitStatus('success');
 
+      // Conversion Google Ads : signale au tag (BaseLayout) qu'un devis a été envoyé.
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('lead:form-submit', { detail: { service: formData.service } }));
+      }
+
       // Reset form après 3 secondes
       setTimeout(() => {
         setFormData({
