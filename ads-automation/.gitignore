@@ -1,0 +1,8 @@
+# NE JAMAIS committer les secrets
+google-ads.yaml
+*.token
+client_secret*.json
+__pycache__/
+*.pyc
+.venv/
+venv/

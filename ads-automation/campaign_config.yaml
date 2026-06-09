@@ -1,0 +1,337 @@
+# ============================================================================
+# Configuration de la campagne Google Ads — Élagage Abattage 37
+# ----------------------------------------------------------------------------
+# Tout est éditable ici. Le script setup_campaign.py lit ce fichier et crée
+# la campagne via l'API. Aucune valeur n'est codée en dur dans le script.
+# ============================================================================
+
+# --- Compte ---
+# Numéro de compte Google Ads (10 chiffres, sans tirets).
+customer_id: "INSÉRER_CUSTOMER_ID"
+
+# --- URL du site ---
+# IMPORTANT : remplacer par le VRAI domaine de production.
+final_url_base: "https://www.elagage-touraine.fr"
+
+# --- Campagne ---
+campaign:
+  name: "[Search] Élagage Tours - Indre-et-Loire"
+
+  # ENABLED = diffuse immédiatement | PAUSED = créée mais ne diffuse pas.
+  status: "ENABLED"
+
+  # GARDE-FOU PRINCIPAL : plafond mensuel ≈ daily × 30,4.
+  # 15 €/j ≈ 456 €/mois maximum.
+  daily_budget_eur: 15
+
+  bidding:
+    # MAXIMIZE_CLICKS : recommandé au lancement (pas d'historique de conversion).
+    # MAXIMIZE_CONVERSIONS : à activer après ~15-30 conversions.
+    # MANUAL_CPC : contrôle total manuel.
+    strategy: "MAXIMIZE_CLICKS"
+    # Plafond du coût par clic (garde-fou anti-dérapage). 0 = pas de plafond.
+    cpc_bid_ceiling_eur: 2.0
+
+  # Ciblage géographique par proximité (coordonnées de Joué-lès-Tours).
+  geo:
+    latitude: 47.3524
+    longitude: 0.6642
+    radius_km: 50
+    # PRESENCE = personnes physiquement dans la zone (évite les clics hors zone).
+    target_type: "PRESENCE"
+
+  language: "fr" # français = languageConstants/1002
+
+# --- Actions de conversion ---
+# Créées par le script. Il affiche ensuite les labels (send_to) à coller dans
+# les variables d'environnement du site (Vercel).
+conversion_actions:
+  - name: "Appel téléphonique (clic site)"
+    category: "PHONE_CALL_LEAD"
+    value_eur: 40
+    env_var: "PUBLIC_GADS_CONV_CALL"
+  - name: "Formulaire de devis"
+    category: "SUBMIT_LEAD_FORM"
+    value_eur: 50
+    env_var: "PUBLIC_GADS_CONV_FORM"
+  - name: "Clic email"
+    category: "CONTACT"
+    value_eur: 20
+    env_var: "PUBLIC_GADS_CONV_EMAIL"
+
+# --- Mots-clés négatifs (niveau campagne) ---
+negative_keywords:
+  - gratuit
+  - gratuitement
+  - emploi
+  - recrutement
+  - "offre d'emploi"
+  - salaire
+  - formation
+  - "devenir élagueur"
+  - "cap élagueur"
+  - diplôme
+  - métier
+  - location
+  - louer
+  - matériel
+  - tronçonneuse
+  - nacelle
+  - occasion
+  - leboncoin
+  - "bois de chauffage"
+  - "acheter bois"
+  - "prix du bois"
+  - tuto
+  - tutoriel
+  - "comment élaguer"
+  - "soi-même"
+  - définition
+  - wikipedia
+  - mairie
+  - "service public"
+  - onf
+  - permis
+
+# --- Groupes d'annonces ---
+# match : EXACT | PHRASE | BROAD
+ad_groups:
+  - name: "Élagage (générique)"
+    final_url_path: "/services/elagage-arbres"
+    keywords:
+      - { text: "élagage tours", match: "PHRASE" }
+      - { text: "élagage tours", match: "EXACT" }
+      - { text: "élagueur tours", match: "PHRASE" }
+      - { text: "élagueur tours", match: "EXACT" }
+      - { text: "entreprise élagage tours", match: "PHRASE" }
+      - { text: "élagage arbre tours", match: "PHRASE" }
+      - { text: "élagueur professionnel tours", match: "PHRASE" }
+      - { text: "élagage indre et loire", match: "PHRASE" }
+      - { text: "élagueur 37", match: "PHRASE" }
+      - { text: "élagage 37", match: "PHRASE" }
+      - { text: "prix élagage tours", match: "PHRASE" }
+      - { text: "devis élagage tours", match: "PHRASE" }
+      - { text: "élagueur grimpeur tours", match: "PHRASE" }
+    rsa:
+      path1: "elagage"
+      path2: "Tours"
+      headlines:
+        - "Élagueur Tours (37)"
+        - "Élagage Professionnel"
+        - "Devis Gratuit sous 24h"
+        - "Élagueur Certifié Tours"
+        - "Crédit d'Impôt -50%"
+        - "Assuré RC Pro 8M€"
+        - "+10 Ans d'Expérience"
+        - "Élagage Arbre Tours"
+        - "Paiement en Plusieurs Fois"
+        - "Élagueur Grimpeur 37"
+        - "Travail Soigné & Sécurisé"
+        - "Intervention Rapide 37"
+        - "Élagage Raisonné"
+        - "Devis Gratuit en 24h"
+        - "Tours & Indre-et-Loire"
+      descriptions:
+        - "Élagage professionnel à Tours et en Indre-et-Loire. Devis gratuit sous 24h."
+        - "Élagueur certifié, assuré 8M€. Crédit d'impôt 50%. Travail soigné et sécurisé."
+        - "+10 ans d'expérience. Tous types d'arbres. Paiement en plusieurs fois possible."
+        - "Intervention rapide dans tout le 37. Devis gratuit et sans engagement."
+
+  - name: "Abattage"
+    final_url_path: "/services/abattage-arbres"
+    keywords:
+      - { text: "abattage arbre tours", match: "PHRASE" }
+      - { text: "abattage arbre tours", match: "EXACT" }
+      - { text: "abattage tours", match: "PHRASE" }
+      - { text: "abattre un arbre tours", match: "PHRASE" }
+      - { text: "abattage arbre dangereux", match: "PHRASE" }
+      - { text: "entreprise abattage arbre 37", match: "PHRASE" }
+      - { text: "prix abattage arbre", match: "PHRASE" }
+      - { text: "couper arbre tours", match: "PHRASE" }
+    rsa:
+      path1: "abattage"
+      path2: "Tours"
+      headlines:
+        - "Abattage Arbre Tours (37)"
+        - "Abattage Sécurisé"
+        - "Arbre Dangereux ?"
+        - "Devis Gratuit sous 24h"
+        - "Assuré RC Pro 8M€"
+        - "Abattage Professionnel"
+        - "Élagueur Certifié 37"
+        - "Intervention Rapide"
+        - "+10 Ans d'Expérience"
+        - "Crédit d'Impôt -50%"
+        - "Matériel Professionnel"
+        - "Abattage Arbre 37"
+        - "Chantier Propre Garanti"
+        - "Paiement Plusieurs Fois"
+        - "Tours & Indre-et-Loire"
+      descriptions:
+        - "Abattage sécurisé d'arbres dangereux ou gênants à Tours. Devis gratuit 24h."
+        - "Techniques pro, matériel adapté. Assuré 8M€. Chantier propre garanti."
+        - "Élagueur certifié +10 ans. Intervention rapide dans tout l'Indre-et-Loire."
+        - "Évacuation des déchets verts incluse. Devis gratuit et sans engagement."
+
+  - name: "Dessouchage"
+    final_url_path: "/services/dessouchage-arbres"
+    keywords:
+      - { text: "dessouchage tours", match: "PHRASE" }
+      - { text: "dessouchage arbre 37", match: "PHRASE" }
+      - { text: "enlever souche arbre", match: "PHRASE" }
+      - { text: "rognage souche tours", match: "PHRASE" }
+      - { text: "enlèvement souche tours", match: "PHRASE" }
+    rsa:
+      path1: "dessouchage"
+      path2: "Tours"
+      headlines:
+        - "Dessouchage Tours (37)"
+        - "Rognage de Souche"
+        - "Devis Gratuit sous 24h"
+        - "Enlèvement de Souche"
+        - "Rogneuse Professionnelle"
+        - "Assuré RC Pro 8M€"
+        - "+10 Ans d'Expérience"
+        - "Terrain Prêt à Aménager"
+        - "Élagueur Certifié 37"
+        - "Intervention Rapide"
+        - "Crédit d'Impôt -50%"
+        - "Dessouchage Arbre 37"
+        - "Chantier Propre"
+        - "Devis Gratuit en 24h"
+        - "Tours & Indre-et-Loire"
+      descriptions:
+        - "Extraction complète des souches à la rogneuse pro. Devis gratuit sous 24h."
+        - "Terrain prêt pour un nouvel aménagement. Assuré 8M€. Chantier propre."
+        - "Élagueur certifié +10 ans. Intervention rapide dans tout le 37."
+        - "Devis gratuit et sans engagement. Paiement en plusieurs fois possible."
+
+  - name: "Taille de haies / Entretien"
+    final_url_path: "/services/taille-haies"
+    keywords:
+      - { text: "taille de haie tours", match: "PHRASE" }
+      - { text: "taille haie tours", match: "PHRASE" }
+      - { text: "entreprise taille haie 37", match: "PHRASE" }
+      - { text: "entretien jardin tours", match: "PHRASE" }
+      - { text: "entretien espaces verts tours", match: "PHRASE" }
+      - { text: "débroussaillage tours", match: "PHRASE" }
+    rsa:
+      path1: "taille-haies"
+      path2: "Tours"
+      headlines:
+        - "Taille de Haies Tours (37)"
+        - "Entretien Espaces Verts"
+        - "Devis Gratuit sous 24h"
+        - "Crédit d'Impôt -50%"
+        - "Assuré RC Pro 8M€"
+        - "Entretien Jardin Tours"
+        - "+10 Ans d'Expérience"
+        - "Haies Nettes & Soignées"
+        - "Élagueur Certifié 37"
+        - "Débroussaillage 37"
+        - "Intervention Rapide"
+        - "Paiement Plusieurs Fois"
+        - "Chantier Propre Garanti"
+        - "Devis Gratuit en 24h"
+        - "Tours & Indre-et-Loire"
+      descriptions:
+        - "Taille et entretien de haies à Tours. Crédit d'impôt 50%. Devis gratuit 24h."
+        - "Entretien complet de vos espaces verts. Assuré 8M€. Travail soigné."
+        - "+10 ans d'expérience. Intervention rapide dans tout l'Indre-et-Loire."
+        - "Déchets verts évacués. Devis gratuit et sans engagement."
+
+  - name: "Urgence"
+    final_url_path: "/contact"
+    keywords:
+      - { text: "élagage urgence tours", match: "PHRASE" }
+      - { text: "abattage arbre urgent", match: "PHRASE" }
+      - { text: "arbre dangereux", match: "PHRASE" }
+      - { text: "élagage après tempête", match: "PHRASE" }
+      - { text: "arbre tombé sur maison", match: "PHRASE" }
+      - { text: "intervention arbre urgence 37", match: "PHRASE" }
+    rsa:
+      path1: "urgence"
+      path2: "Tours"
+      headlines:
+        - "Élagage Urgence Tours"
+        - "Arbre Dangereux ? 24h/24"
+        - "Intervention Rapide 37"
+        - "Abattage d'Urgence"
+        - "Après Tempête : on Intervient"
+        - "Élagueur Urgence 24h/24"
+        - "Assuré RC Pro 8M€"
+        - "Devis Immédiat"
+        - "Branche sur Toiture ?"
+        - "Élagueur Certifié Tours"
+        - "Intervention le Jour Même"
+        - "Sécurisation Arbre 37"
+        - "+10 Ans d'Expérience"
+        - "Tours & Indre-et-Loire"
+        - "Devis Gratuit sous 24h"
+      descriptions:
+        - "Arbre dangereux, branche tombée ? Intervention d'urgence à Tours. Appelez !"
+        - "Sécurisation et abattage d'urgence. Élagueur certifié, assuré 8M€."
+        - "Intervention rapide dans tout le 37, le jour même si nécessaire."
+        - "Après tempête, on dégage et sécurise. Devis immédiat par téléphone."
+
+  - name: "Géo prioritaires"
+    final_url_path: "/zones"
+    keywords:
+      - { text: "élagage joué-lès-tours", match: "PHRASE" }
+      - { text: "élagueur joué-lès-tours", match: "PHRASE" }
+      - { text: "élagage saint-cyr-sur-loire", match: "PHRASE" }
+      - { text: "élagage amboise", match: "PHRASE" }
+      - { text: "élagueur amboise", match: "PHRASE" }
+      - { text: "élagage chambray-lès-tours", match: "PHRASE" }
+      - { text: "élagage saint-avertin", match: "PHRASE" }
+      - { text: "élagage montlouis-sur-loire", match: "PHRASE" }
+    rsa:
+      path1: "elagage"
+      path2: "37"
+      headlines:
+        - "Élagueur Près de Chez Vous"
+        - "Élagage Local en 37"
+        - "Devis Gratuit sous 24h"
+        - "Basés à Joué-lès-Tours"
+        - "Pas de Frais de Déplacement"
+        - "Assuré RC Pro 8M€"
+        - "+10 Ans d'Expérience"
+        - "Crédit d'Impôt -50%"
+        - "Élagueur Certifié 37"
+        - "Intervention Rapide"
+        - "Élagage & Abattage"
+        - "Paiement Plusieurs Fois"
+        - "Travail Soigné & Sécurisé"
+        - "Devis Gratuit en 24h"
+        - "Tours & Indre-et-Loire"
+      descriptions:
+        - "Élagueur local en Indre-et-Loire. Devis gratuit sous 24h. Intervention rapide."
+        - "Basés à Joué-lès-Tours, pas de frais de déplacement. Assuré 8M€."
+        - "+10 ans d'expérience. Élagage, abattage, dessouchage, taille de haies."
+        - "Crédit d'impôt 50%. Devis gratuit et sans engagement."
+
+# --- Extensions (assets) au niveau campagne ---
+extensions:
+  sitelinks:
+    - { text: "Élagage d'arbres", path: "/services/elagage-arbres", desc1: "Élagage raisonné & sanitaire", desc2: "Tous types d'arbres" }
+    - { text: "Abattage d'arbres", path: "/services/abattage-arbres", desc1: "Abattage sécurisé", desc2: "Arbres dangereux ou gênants" }
+    - { text: "Dessouchage", path: "/services/dessouchage-arbres", desc1: "Rognage de souche", desc2: "Terrain prêt à aménager" }
+    - { text: "Taille de haies", path: "/services/taille-haies", desc1: "Taille & entretien", desc2: "Crédit d'impôt 50%" }
+    - { text: "Devis gratuit", path: "/contact", desc1: "Réponse sous 24h", desc2: "Sans engagement" }
+    - { text: "Nos zones", path: "/zones", desc1: "Tours et tout le 37", desc2: "Intervention rapide" }
+  callouts:
+    - "Devis gratuit sous 24h"
+    - "Assuré RC Pro 8M€"
+    - "Crédit d'impôt -50%"
+    - "+10 ans d'expérience"
+    - "Paiement en plusieurs fois"
+    - "Chantier propre garanti"
+  structured_snippet:
+    header: "SERVICES"
+    values:
+      - "Élagage"
+      - "Abattage"
+      - "Dessouchage"
+      - "Taille de haies"
+      - "Entretien espaces verts"
+      - "Élagage fruitiers"
