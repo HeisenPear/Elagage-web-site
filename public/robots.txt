@@ -4,7 +4,8 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
-Disallow: /_astro/
+# /_astro/ (JS + CSS) laissé crawlable : Google en a besoin pour rendre
+# correctement les pages et évaluer les Core Web Vitals.
 
 # Sitemaps
 Sitemap: https://www.elagageabattage37.com/sitemap-index.xml
