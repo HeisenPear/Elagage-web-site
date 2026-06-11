@@ -10,8 +10,23 @@
 customer_id: "INSÉRER_CUSTOMER_ID"
 
 # --- URL du site ---
-# IMPORTANT : remplacer par le VRAI domaine de production.
-final_url_base: "https://www.elagage-touraine.fr"
+# Domaine de production réel.
+final_url_base: "https://www.elagageabattage37.com"
+
+# --- Connexion automatique du tracking (Vercel) ---
+# Si renseigné, le programme pousse lui-même les labels de conversion dans les
+# variables d'environnement Vercel ET déclenche un redéploiement → le tracking
+# s'active sans aucune action manuelle.
+# Laisser token + deploy_hook_url vides pour désactiver (les labels seront
+# alors juste affichés à coller à la main).
+vercel:
+  enabled: true
+  project_id: "prj_viL20tFRVV3Ytjw547SFsHFbTkbH"
+  team_slug: "heisenpears-projects"
+  # Vercel → Account Settings → Tokens (https://vercel.com/account/tokens)
+  token: ""
+  # Vercel → Project → Settings → Git → Deploy Hooks (créer un hook sur "main")
+  deploy_hook_url: ""
 
 # --- Campagne ---
 campaign:

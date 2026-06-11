@@ -27,8 +27,10 @@ Pré-requis : un fichier `google-ads.yaml` rempli dans ce dossier
 """
 
 import argparse
-import math
+import json
 import sys
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 import yaml
@@ -364,6 +366,67 @@ def add_extensions(client, customer_id, cfg, campaign_resource):
 
 
 # --------------------------------------------------------------------------- #
+# Connexion automatique du tracking (Vercel)
+# --------------------------------------------------------------------------- #
+def push_labels_to_vercel(cfg, labels):
+    """Pousse les labels dans Vercel et déclenche un redéploiement.
+
+    Le site Astro étant statique, les variables d'env sont injectées au build :
+    un redéploiement est donc nécessaire pour activer le tracking.
+    Renvoie True si la connexion automatique a été effectuée.
+    """
+    vc = cfg.get("vercel", {})
+    if not vc.get("enabled") or not vc.get("token"):
+        return False
+
+    project = vc["project_id"]
+    slug = vc.get("team_slug", "")
+    token = vc["token"]
+    base = f"https://api.vercel.com/v10/projects/{project}/env?upsert=true"
+    if slug:
+        base += f"&slug={slug}"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+
+    print("\n→ Connexion du tracking à Vercel (variables d'env)…")
+    for env_var, value in labels.items():
+        if not value or value.startswith("("):
+            print(f"  ⚠ {env_var} : label introuvable, ignoré.")
+            continue
+        body = json.dumps({
+            "key": env_var,
+            "value": value,
+            "type": "plain",
+            "target": ["production", "preview"],
+        }).encode("utf-8")
+        req = urllib.request.Request(base, data=body, headers=headers, method="POST")
+        try:
+            urllib.request.urlopen(req, timeout=30)
+            print(f"  ✅ {env_var} défini dans Vercel.")
+        except urllib.error.HTTPError as e:
+            print(f"  ⚠ {env_var} : échec Vercel ({e.code}). À coller à la main.")
+
+    # Déclenche le redéploiement via le Deploy Hook.
+    hook = vc.get("deploy_hook_url")
+    if hook:
+        try:
+            urllib.request.urlopen(
+                urllib.request.Request(hook, data=b"{}",
+                                       headers={"Content-Type": "application/json"},
+                                       method="POST"),
+                timeout=30,
+            )
+            print("  ✅ Redéploiement déclenché — le tracking sera actif après le build.")
+        except urllib.error.HTTPError as e:
+            print(f"  ⚠ Redéploiement non déclenché ({e.code}). Lance-le depuis Vercel.")
+    else:
+        print("  ⚠ Pas de deploy_hook_url : redéploie manuellement pour activer le tracking.")
+    return True
+
+
+# --------------------------------------------------------------------------- #
 # Orchestration
 # --------------------------------------------------------------------------- #
 def run(client, cfg):
@@ -400,9 +463,16 @@ def run(client, cfg):
 
     print("\n✅ Campagne créée avec succès.")
     print(f"   Statut : {cfg['campaign'].get('status')}")
+
+    # Connexion automatique du tracking (Vercel), si configurée.
+    auto = push_labels_to_vercel(cfg, labels)
+
     print("\n──────────────────────────────────────────────────────────")
-    print(" LABELS DE CONVERSION — à coller dans les variables d'env du site")
-    print(" (Vercel → Settings → Environment Variables), puis redéployer :")
+    print(" LABELS DE CONVERSION")
+    if auto:
+        print(" (poussés automatiquement dans Vercel — copie ci-dessous pour archive)")
+    else:
+        print(" À coller dans Vercel → Settings → Environment Variables, puis redéployer :")
     print("──────────────────────────────────────────────────────────")
     for env_var, label in labels.items():
         print(f"   {env_var}={label}")
