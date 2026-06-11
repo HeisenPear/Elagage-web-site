@@ -7,6 +7,22 @@ import { siteConfig } from '@/data/siteConfig';
  * Schema LocalBusiness - Page d'accueil principale
  */
 export function getLocalBusinessSchema() {
+  const gr = siteConfig.business.googleReviews;
+  // N'injecte la note agrégée QUE si de vrais avis Google sont renseignés.
+  const realRating =
+    gr?.enabled && gr.ratingValue && gr.reviewCount
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: gr.ratingValue.toString(),
+            bestRating: '5',
+            worstRating: '1',
+            reviewCount: gr.reviewCount.toString(),
+            ratingCount: gr.reviewCount.toString(),
+          },
+        }
+      : {};
+
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -79,14 +95,7 @@ export function getLocalBusinessSchema() {
         closes: '20:00',
       },
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      bestRating: '5',
-      worstRating: '1',
-      reviewCount: '127',
-      ratingCount: '134',
-    },
+    ...realRating,
     // SEO: Catalogue de services pour les rich results Google
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -100,24 +109,6 @@ export function getLocalBusinessSchema() {
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Élagage arbres fruitiers', url: `${import.meta.env.SITE}/services/elagage-fruitiers` } },
       ],
     },
-    review: siteConfig.testimonials.map((testimonial) => ({
-      '@type': 'Review',
-      author: {
-        '@type': 'Person',
-        name: testimonial.name,
-      },
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: testimonial.rating.toString(),
-        bestRating: '5',
-      },
-      reviewBody: testimonial.text,
-      datePublished: testimonial.date,
-      publisher: {
-        '@type': 'Organization',
-        name: testimonial.source === 'Google' ? 'Google' : testimonial.source,
-      },
-    })),
     sameAs: Object.values(siteConfig.business.social).filter(Boolean),
   };
 }
@@ -192,14 +183,21 @@ export function getCityLocalBusinessSchema(cityName: string, cityPostalCode: str
         closes: '20:00',
       },
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      bestRating: '5',
-      worstRating: '1',
-      reviewCount: '127',
-      ratingCount: '134',
-    },
+    // Note agrégée injectée uniquement si de vrais avis Google sont renseignés.
+    ...(siteConfig.business.googleReviews?.enabled &&
+    siteConfig.business.googleReviews.ratingValue &&
+    siteConfig.business.googleReviews.reviewCount
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: siteConfig.business.googleReviews.ratingValue.toString(),
+            bestRating: '5',
+            worstRating: '1',
+            reviewCount: siteConfig.business.googleReviews.reviewCount.toString(),
+            ratingCount: siteConfig.business.googleReviews.reviewCount.toString(),
+          },
+        }
+      : {}),
   };
 }
 
