@@ -100,7 +100,27 @@ imprime les **labels de conversion** à coller dans les variables d'env du site.
 
 ---
 
-## 🔁 Après le lancement
+## 🔌 Connexion automatique du tracking (recommandé)
+
+Le site Astro est **statique** : les variables d'env sont injectées **au build**.
+Pour que le tracking s'active sans aucune manipulation, le programme peut
+**pousser lui-même les labels dans Vercel et déclencher le redéploiement**.
+
+Pour l'activer, renseigne dans la section `vercel:` de `campaign_config.yaml` :
+1. **token** : Vercel → Account Settings → Tokens → crée un token.
+2. **deploy_hook_url** : Vercel → Projet → Settings → Git → Deploy Hooks →
+   crée un hook sur la branche `main`, copie l'URL.
+
+(`project_id` et `team_slug` sont déjà pré-remplis.)
+
+→ Au lancement, le programme crée la campagne **puis** :
+- écrit `PUBLIC_GADS_CONV_CALL/FORM/EMAIL` dans Vercel (production + preview),
+- déclenche un redéploiement → le tracking devient actif tout seul.
+
+Si `token`/`deploy_hook_url` sont vides, le programme affiche simplement les
+labels à coller à la main (méthode ci-dessous).
+
+## 🔁 Après le lancement (si connexion auto désactivée)
 
 1. **Colle les labels** affichés dans Vercel → Settings → Environment Variables :
    ```
@@ -109,10 +129,13 @@ imprime les **labels de conversion** à coller dans les variables d'env du site.
    PUBLIC_GADS_CONV_EMAIL=AW-17858152606/zzzz
    ```
 2. **Redéploie** le site → le tracking de conversion devient actif.
-3. **Vérifie** avec l'extension Chrome *Google Tag Assistant* (clique le
-   téléphone, envoie le formulaire → les events `conversion` partent).
-4. Active le **suivi des appels** dans l'interface (extension d'appel) pour
-   compter aussi les appels passés directement depuis l'annonce.
+
+## ✅ Dans tous les cas, à vérifier
+
+- **Google Tag Assistant** (extension Chrome) : clique le téléphone, envoie le
+  formulaire → les events `conversion` partent.
+- Active le **suivi des appels** dans l'interface (extension d'appel) pour
+  compter aussi les appels passés directement depuis l'annonce.
 
 ---
 
