@@ -75,6 +75,17 @@ export const siteConfig = {
       instagram: "",
       linkedin: "",
     },
+
+    // Avis Google (fiche Google Business Profile)
+    // ⚠️ Renseigner UNIQUEMENT avec les VRAIES valeurs de la fiche Google.
+    // Tant que enabled = false, aucune note n'est injectée dans les données
+    // structurées (Schema.org) — cela évite toute pénalité Google pour avis fictifs.
+    googleReviews: {
+      enabled: false,
+      placeId: "", // ID de la fiche Google Business Profile
+      ratingValue: null as number | null, // ex. 4.9
+      reviewCount: null as number | null, // ex. 38
+    },
   },
 
   // Configuration SEO par défaut
