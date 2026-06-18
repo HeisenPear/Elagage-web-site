@@ -28,6 +28,15 @@ const {
   noindex = false,
   canonical,
 } = Astro.props;
+
+// Google Ads — identifiant du compte et labels des actions de conversion.
+// Les labels (format "AW-XXXXXXXXXX/abc123XYZ") se récupèrent dans Google Ads
+// > Objectifs > Conversions > [action] > Configurer le tag manuellement.
+// Tant qu'ils sont vides, le tracking reste inactif (aucune erreur côté visiteur).
+const GADS_ID = import.meta.env.PUBLIC_GADS_ID || 'AW-17858152606';
+const GADS_CONV_CALL = import.meta.env.PUBLIC_GADS_CONV_CALL || '';
+const GADS_CONV_FORM = import.meta.env.PUBLIC_GADS_CONV_FORM || '';
+const GADS_CONV_EMAIL = import.meta.env.PUBLIC_GADS_CONV_EMAIL || '';
 ---
 
 <!doctype html>
@@ -43,12 +52,38 @@ const {
       canonical={canonical}
     />
     <!-- Google tag (gtag.js) - Google Ads -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17858152606"></script>
-    <script is:inline>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GADS_ID}`}></script>
+    <script is:inline define:vars={{ GADS_ID, GADS_CONV_CALL, GADS_CONV_FORM, GADS_CONV_EMAIL }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'AW-17858152606');
+      gtag('config', GADS_ID);
+
+      // --- Suivi des conversions Google Ads ---
+      // Helper global réutilisable : déclenche une conversion si le label existe.
+      window.trackConversion = function (sendTo, params) {
+        if (!sendTo) return; // label non configuré → on ne fait rien
+        gtag('event', 'conversion', Object.assign({ send_to: sendTo }, params || {}));
+      };
+
+      // 1) Clics sur le numéro de téléphone (liens tel:) — partout sur le site.
+      // 2) Clics sur l'email (liens mailto:).
+      // Délégation d'événement : capte aussi les CTA injectés dynamiquement.
+      document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest ? e.target.closest('a[href^="tel:"], a[href^="mailto:"]') : null;
+        if (!link) return;
+        var href = link.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          window.trackConversion(GADS_CONV_CALL, { event_category: 'contact', event_label: 'appel_telephone' });
+        } else if (href.indexOf('mailto:') === 0) {
+          window.trackConversion(GADS_CONV_EMAIL, { event_category: 'contact', event_label: 'clic_email' });
+        }
+      }, true);
+
+      // 3) Envoi réussi du formulaire de devis (événement émis par ContactForm).
+      window.addEventListener('lead:form-submit', function () {
+        window.trackConversion(GADS_CONV_FORM, { event_category: 'contact', event_label: 'formulaire_devis' });
+      });
     </script>
   </head>
   <body class="antialiased">

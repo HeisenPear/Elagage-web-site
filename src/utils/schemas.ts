@@ -7,6 +7,22 @@ import { siteConfig } from '@/data/siteConfig';
  * Schema LocalBusiness - Page d'accueil principale
  */
 export function getLocalBusinessSchema() {
+  const gr = siteConfig.business.googleReviews;
+  // N'injecte la note agrégée QUE si de vrais avis Google sont renseignés.
+  const realRating =
+    gr?.enabled && gr.ratingValue && gr.reviewCount
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: gr.ratingValue.toString(),
+            bestRating: '5',
+            worstRating: '1',
+            reviewCount: gr.reviewCount.toString(),
+            ratingCount: gr.reviewCount.toString(),
+          },
+        }
+      : {};
+
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -33,15 +49,43 @@ export function getLocalBusinessSchema() {
       latitude: siteConfig.business.coordinates.lat.toString(),
       longitude: siteConfig.business.coordinates.lng.toString(),
     },
-    areaServed: {
-      '@type': 'GeoCircle',
-      geoMidpoint: {
-        '@type': 'GeoCoordinates',
-        latitude: siteConfig.business.coordinates.lat.toString(),
-        longitude: siteConfig.business.coordinates.lng.toString(),
+    // SEO local : cercle d'intervention + liste explicite des communes desservies
+    areaServed: [
+      {
+        '@type': 'GeoCircle',
+        geoMidpoint: {
+          '@type': 'GeoCoordinates',
+          latitude: siteConfig.business.coordinates.lat.toString(),
+          longitude: siteConfig.business.coordinates.lng.toString(),
+        },
+        geoRadius: `${siteConfig.serviceArea.radius * 1000}`,
       },
-      geoRadius: `${siteConfig.serviceArea.radius * 1000}`,
+      ...siteConfig.serviceArea.cities.map((cityName) => ({
+        '@type': 'City',
+        name: cityName,
+      })),
+    ],
+    // Carte Google + point de contact (renforce l'intention d'appel)
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${siteConfig.business.coordinates.lat},${siteConfig.business.coordinates.lng}`,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: siteConfig.business.phone,
+      contactType: 'customer service',
+      areaServed: 'FR',
+      availableLanguage: ['French'],
     },
+    // Domaines d'expertise (signal sémantique pour Google)
+    knowsAbout: [
+      'Élagage',
+      "Abattage d'arbres",
+      'Dessouchage',
+      'Taille de haies',
+      'Soin aux arbres',
+      'Arboriculture',
+      "Démontage d'arbre",
+      'Taille raisonnée',
+      'Entretien des espaces verts',
+    ],
     // SEO: Horaires réels (pas 00:00-23:59 qui invalide le schema Google)
     openingHoursSpecification: [
       {
@@ -51,14 +95,7 @@ export function getLocalBusinessSchema() {
         closes: '20:00',
       },
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      bestRating: '5',
-      worstRating: '1',
-      reviewCount: '127',
-      ratingCount: '134',
-    },
+    ...realRating,
     // SEO: Catalogue de services pour les rich results Google
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -72,24 +109,6 @@ export function getLocalBusinessSchema() {
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Élagage arbres fruitiers', url: `${import.meta.env.SITE}/services/elagage-fruitiers` } },
       ],
     },
-    review: siteConfig.testimonials.map((testimonial) => ({
-      '@type': 'Review',
-      author: {
-        '@type': 'Person',
-        name: testimonial.name,
-      },
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: testimonial.rating.toString(),
-        bestRating: '5',
-      },
-      reviewBody: testimonial.text,
-      datePublished: testimonial.date,
-      publisher: {
-        '@type': 'Organization',
-        name: testimonial.source === 'Google' ? 'Google' : testimonial.source,
-      },
-    })),
     sameAs: Object.values(siteConfig.business.social).filter(Boolean),
   };
 }
@@ -98,7 +117,27 @@ export function getLocalBusinessSchema() {
  * Schema LocalBusiness spécifique à une ville (pages zones)
  * SEO: serviceArea pointe sur la ville précise pour le SEO local
  */
+// Identifiants Wikidata des communes (pour lier l'entité ville à Google KG).
+const CITY_WIKIDATA: Record<string, string> = {
+  'Tours': 'Q47317',
+  'Amboise': 'Q182878',
+  'Joué-lès-Tours': 'Q242921',
+  'Saint-Cyr-sur-Loire': 'Q749973',
+  'Montlouis-sur-Loire': 'Q691846',
+  'Chambray-lès-Tours': 'Q691634',
+  'Saint-Avertin': 'Q629864',
+  'Ballan-Miré': 'Q649432',
+  'Fondettes': 'Q629797',
+  'La Riche': 'Q629849',
+  'Saint-Pierre-des-Corps': 'Q629860',
+};
+
 export function getCityLocalBusinessSchema(cityName: string, cityPostalCode: string) {
+  const wikidataId = CITY_WIKIDATA[cityName];
+  const cityEntity: Record<string, unknown> = { '@type': 'City', name: cityName };
+  if (wikidataId) {
+    cityEntity['@id'] = `https://www.wikidata.org/wiki/${wikidataId}`;
+  }
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -134,11 +173,7 @@ export function getCityLocalBusinessSchema(cityName: string, cityPostalCode: str
         },
         geoRadius: `${siteConfig.serviceArea.radius * 1000}`,
       },
-      {
-        '@type': 'City',
-        name: cityName,
-        '@id': `https://www.wikidata.org/wiki/Q${cityName === 'Tours' ? '47317' : cityName === 'Amboise' ? '182878' : cityName === 'Joué-lès-Tours' ? '242921' : 'Q' + cityName}`,
-      },
+      cityEntity,
     ],
     openingHoursSpecification: [
       {
@@ -148,14 +183,21 @@ export function getCityLocalBusinessSchema(cityName: string, cityPostalCode: str
         closes: '20:00',
       },
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      bestRating: '5',
-      worstRating: '1',
-      reviewCount: '127',
-      ratingCount: '134',
-    },
+    // Note agrégée injectée uniquement si de vrais avis Google sont renseignés.
+    ...(siteConfig.business.googleReviews?.enabled &&
+    siteConfig.business.googleReviews.ratingValue &&
+    siteConfig.business.googleReviews.reviewCount
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: siteConfig.business.googleReviews.ratingValue.toString(),
+            bestRating: '5',
+            worstRating: '1',
+            reviewCount: siteConfig.business.googleReviews.reviewCount.toString(),
+            ratingCount: siteConfig.business.googleReviews.reviewCount.toString(),
+          },
+        }
+      : {}),
   };
 }
 

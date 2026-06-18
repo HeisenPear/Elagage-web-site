@@ -1,0 +1,23 @@
+# ============================================================================
+# Identifiants d'accès à l'API Google Ads
+# ----------------------------------------------------------------------------
+# Copier ce fichier en "google-ads.yaml" (dans ce dossier) et le remplir.
+# Ce fichier contient des SECRETS : il est ignoré par git (voir .gitignore).
+#
+# Comment obtenir ces valeurs : voir le README.md de ce dossier.
+# ============================================================================
+
+# Jeton développeur — Google Ads > Outils > Configuration > API Center
+developer_token: "INSÉRER_VOTRE_DEVELOPER_TOKEN"
+
+# OAuth2 — créés dans Google Cloud Console
+client_id: "INSÉRER_VOTRE_CLIENT_ID.apps.googleusercontent.com"
+client_secret: "INSÉRER_VOTRE_CLIENT_SECRET"
+refresh_token: "INSÉRER_VOTRE_REFRESH_TOKEN"
+
+# Compte administrateur (MCC) qui gère le compte — uniquement si vous passez
+# par un compte de gestion. Sinon, laisser commenté.
+# login_customer_id: "1234567890"
+
+# Utiliser les objets proto-plus (recommandé, requis par le script)
+use_proto_plus: true

@@ -1,0 +1,4 @@
+# Bibliothèque officielle Google Ads API
+google-ads>=25.0.0
+# Lecture du fichier de configuration de campagne
+PyYAML>=6.0

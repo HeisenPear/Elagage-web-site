@@ -123,6 +123,12 @@ const schema = getLocalBusinessSchema();
             { name: "Amboise", slug: "elagueur-amboise", desc: "Val de Loire UNESCO · Patrimoine arboré" },
             { name: "Saint-Cyr-sur-Loire", slug: "elagueur-saint-cyr-sur-loire", desc: "Commune résidentielle boisée" },
             { name: "Montlouis-sur-Loire", slug: "elagueur-montlouis-sur-loire", desc: "Vignoble et jardins de Touraine" },
+            { name: "Chambray-lès-Tours", slug: "elagueur-chambray-les-tours", desc: "Sud de l'agglomération · CHRU" },
+            { name: "Saint-Avertin", slug: "elagueur-saint-avertin", desc: "Bords du Cher · Quartiers boisés" },
+            { name: "Ballan-Miré", slug: "elagueur-ballan-mire", desc: "Sud-ouest boisé · Forêt & golf" },
+            { name: "Fondettes", slug: "elagueur-fondettes", desc: "Coteaux de la Loire rive droite" },
+            { name: "La Riche", slug: "elagueur-la-riche", desc: "Aux portes de Tours · Milieu urbain" },
+            { name: "Saint-Pierre-des-Corps", slug: "elagueur-saint-pierre-des-corps", desc: "Est tourangeau · Bords de Loire" },
             { name: "Indre-et-Loire (37)", slug: "elagueur-indre-et-loire", desc: "Tout le département couvert" },
           ].map(city => (
             <a
@@ -145,7 +151,7 @@ const schema = getLocalBusinessSchema();
         <div class="mb-8 animate-on-scroll">
           <h3 class="text-sm font-bold text-primary mb-3">Autres communes desservies</h3>
           <div class="flex flex-wrap gap-2">
-            {siteConfig.serviceArea.cities.filter(c => !["Tours", "Joué-lès-Tours", "Amboise", "Saint-Cyr-sur-Loire", "Montlouis-sur-Loire"].includes(c)).map(city => (
+            {siteConfig.serviceArea.cities.filter(c => !["Tours", "Joué-lès-Tours", "Amboise", "Saint-Cyr-sur-Loire", "Montlouis-sur-Loire", "Chambray-lès-Tours", "Saint-Avertin", "Ballan-Miré", "Fondettes", "La Riche", "Saint-Pierre-des-Corps"].includes(c)).map(city => (
               <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-cream text-primary border border-neutral-200 rounded-lg text-sm font-medium">
                 <svg class="w-3 h-3 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
                 {city}
