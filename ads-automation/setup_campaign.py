@@ -28,6 +28,7 @@ Pré-requis : un fichier `google-ads.yaml` rempli dans ce dossier
 
 import argparse
 import json
+import os
 import sys
 import urllib.error
 import urllib.request
@@ -376,12 +377,15 @@ def push_labels_to_vercel(cfg, labels):
     Renvoie True si la connexion automatique a été effectuée.
     """
     vc = cfg.get("vercel", {})
-    if not vc.get("enabled") or not vc.get("token"):
+    # Secrets Vercel : lus depuis la config OU, de préférence, depuis les variables
+    # d'environnement VERCEL_TOKEN / VERCEL_DEPLOY_HOOK_URL — afin de ne JAMAIS
+    # écrire ces secrets dans campaign_config.yaml (fichier suivi par git).
+    token = vc.get("token") or os.environ.get("VERCEL_TOKEN", "")
+    if not vc.get("enabled") or not token:
         return False
 
     project = vc["project_id"]
     slug = vc.get("team_slug", "")
-    token = vc["token"]
     base = f"https://api.vercel.com/v10/projects/{project}/env?upsert=true"
     if slug:
         base += f"&slug={slug}"
@@ -409,7 +413,7 @@ def push_labels_to_vercel(cfg, labels):
             print(f"  ⚠ {env_var} : échec Vercel ({e.code}). À coller à la main.")
 
     # Déclenche le redéploiement via le Deploy Hook.
-    hook = vc.get("deploy_hook_url")
+    hook = vc.get("deploy_hook_url") or os.environ.get("VERCEL_DEPLOY_HOOK_URL", "")
     if hook:
         try:
             urllib.request.urlopen(
