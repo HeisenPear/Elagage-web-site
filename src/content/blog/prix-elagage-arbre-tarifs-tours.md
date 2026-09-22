@@ -12,7 +12,7 @@ image:
   alt: "Ce qui fait varier le prix d'un élagage d'arbre à Tours"
 ---
 
-**En résumé :** le prix d'un élagage dépend surtout de quatre choses — la taille de l'arbre, l'accès au jardin, ce qu'il y a dessous (toiture, ligne, véranda) et le volume de branches à évacuer. Deux arbres de même hauteur peuvent demander un travail très différent. C'est pourquoi nous ne publions pas de grille de tarifs : le prix est fixé par écrit après avoir vu l'arbre, gratuitement et sans engagement.
+**En résumé :** le prix d'un élagage dépend surtout de quatre choses — la taille de l'arbre, l'accès au jardin, ce qu'il y a dessous (toiture, ligne, véranda) et le volume de branches à évacuer. Deux arbres de même hauteur peuvent demander un travail très différent. C'est pourquoi nous ne publions pas de grille de tarifs : le prix est fixé par écrit à partir de photos de l'arbre, gratuitement et sans engagement.
 
 Méfiez-vous des « prix au mètre » trouvés en ligne : ils ne tiennent compte ni de l'essence, ni de l'accès, ni des obstacles, et se transforment souvent en suppléments le jour du chantier.
 
@@ -70,8 +70,8 @@ Certains devis annoncent « -50 % grâce au crédit d'impôt » sur un élagage.
 
 ## Comment obtenir un prix rapidement
 
-1. **Envoyez une photo par SMS** au 06 31 46 43 50, avec la maison ou une personne pour donner l'échelle, et votre commune. Rudy vous donne une première idée.
-2. **Il passe voir l'arbre** gratuitement pour vérifier l'accès et les contraintes.
-3. **Vous recevez un devis écrit et détaillé**, sans engagement.
+1. **Envoyez deux ou trois photos par SMS** au 06 31 46 43 50 : l'arbre entier (avec la maison ou une personne pour donner l'échelle), l'accès au jardin, et votre commune.
+2. **Rudy étudie vos photos** et vous rappelle si un détail manque (accès, lignes, évacuation).
+3. **Vous recevez un devis écrit et détaillé**, gratuit et sans engagement. Le déplacement se fait pour l'intervention.
 
 Nous intervenons à Tours, Joué-lès-Tours, Saint-Avertin, Saint-Cyr-sur-Loire, Chambray-lès-Tours et dans un rayon d'environ 50 km. Voir notre page [élagage d'arbres](/services/elagage-arbres/) ou [appelez directement](tel:+33631464350).

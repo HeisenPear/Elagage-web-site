@@ -9,7 +9,7 @@ featured: true
 relatedCities: ["Tours", "Joué-lès-Tours", "Amboise", "Saint-Cyr-sur-Loire", "Montlouis-sur-Loire"]
 ---
 
-**En résumé :** le prix d'un abattage dépend avant tout de la **place autour de l'arbre**. S'il peut tomber d'un seul tenant, le chantier est rapide. S'il est entouré d'une maison, d'une clôture ou de lignes, il faut le démonter morceau par morceau depuis le haut, en retenant chaque tronçon à la corde — c'est plus long. Viennent ensuite la taille de l'arbre, son état, l'accès au jardin, et ce que vous souhaitez faire du bois et de la souche. Nous ne publions donc pas de tarif : le devis est gratuit, écrit et établi après avoir vu l'arbre.
+**En résumé :** le prix d'un abattage dépend avant tout de la **place autour de l'arbre**. S'il peut tomber d'un seul tenant, le chantier est rapide. S'il est entouré d'une maison, d'une clôture ou de lignes, il faut le démonter morceau par morceau depuis le haut, en retenant chaque tronçon à la corde — c'est plus long. Viennent ensuite la taille de l'arbre, son état, l'accès au jardin, et ce que vous souhaitez faire du bois et de la souche. Nous ne publions donc pas de tarif : le devis est gratuit, écrit et établi à partir de photos de l'arbre.
 
 ## Les critères qui déterminent le prix
 
@@ -67,8 +67,8 @@ Un abattage bradé cache souvent l'absence d'assurance, un travail non déclaré
 
 ## Obtenir un prix rapidement
 
-1. Envoyez une photo de l'arbre par SMS au **06 31 46 43 50** (avec la maison pour l'échelle) et votre commune ;
-2. Rudy passe voir l'arbre gratuitement ;
-3. Vous recevez un devis écrit, sans engagement.
+1. Envoyez deux ou trois photos de l'arbre par SMS au **06 31 46 43 50** (avec la maison pour l'échelle), l'accès au jardin et votre commune ;
+2. Rudy étudie vos photos et vous rappelle si besoin ;
+3. Vous recevez un devis écrit, gratuit et sans engagement. Le déplacement se fait pour l'intervention.
 
 Voir notre page [abattage et démontage d'arbres](/services/abattage-arbres/).

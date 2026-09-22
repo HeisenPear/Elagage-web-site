@@ -27,7 +27,7 @@ export const siteConfig = {
     foundedYear: 2009 as number | null,
     tagline: 'Élagueur à Tours et en Indre-et-Loire',
     description:
-      "Élagage Abattage 37 est l'entreprise d'élagage de Rudy Capello, élagueur grimpeur basé à Joué-lès-Tours (37). Élagage, abattage et démontage d'arbres, dessouchage, taille de haies et entretien d'espaces verts à Tours et dans un rayon de 50 km. Devis gratuit sur place.",
+      "Élagage Abattage 37 est l'entreprise d'élagage de Rudy Capello, élagueur grimpeur basé à Joué-lès-Tours (37). Élagage, abattage et démontage d'arbres, dessouchage, taille de haies et entretien d'espaces verts à Tours et dans un rayon de 50 km. Devis gratuit sur photo.",
 
     phone: '+33631464350',
     phoneDisplay: '06 31 46 43 50',
@@ -103,7 +103,7 @@ export const siteConfig = {
   seo: {
     title: 'Élagueur à Tours (37) : élagage, abattage, dessouchage',
     description:
-      "Élagueur grimpeur à Tours et Joué-lès-Tours : élagage, abattage, dessouchage, taille de haies. Devis gratuit sur place, chantier nettoyé. Appelez Rudy au 06 31 46 43 50.",
+      "Élagueur grimpeur à Tours et Joué-lès-Tours : élagage, abattage, dessouchage, taille de haies. Devis gratuit sur photo, chantier nettoyé. Appelez Rudy au 06 31 46 43 50.",
     ogImage: '/images/og-image.jpg',
   },
 
@@ -129,7 +129,7 @@ export const siteConfig = {
     {
       question: "Combien coûte un élagage ou un abattage ?",
       answer:
-        "Nous n'affichons pas de tarif : le prix dépend de la hauteur et de l'essence de l'arbre, de l'accès au jardin, de la proximité de la maison ou des lignes électriques et de l'évacuation des branches. Rudy se déplace gratuitement pour établir un devis écrit, détaillé et sans engagement. Pour aller plus vite, envoyez une photo de l'arbre par SMS au 06 31 46 43 50.",
+        "Nous n'affichons pas de tarif : le prix dépend de la hauteur et de l'essence de l'arbre, de l'accès au jardin, de la proximité de la maison ou des lignes électriques et de l'évacuation des branches. Le devis est gratuit, écrit et sans engagement : envoyez deux ou trois photos de l'arbre par SMS au 06 31 46 43 50 (avec la maison ou une personne pour donner l'échelle) et votre commune, ou décrivez-le au téléphone. Rudy se déplace ensuite pour l'intervention.",
     },
     {
       question: "Dans quelles communes intervenez-vous ?",

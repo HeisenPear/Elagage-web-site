@@ -181,7 +181,7 @@ Après un événement climatique (tempête, neige lourde, vent fort), inspectez 
 
 Un arbre dangereux n'attend pas. Plus vous attendez, plus le risque s'aggrave — surtout avant une période de vents ou d'orages.
 
-**Notre conseil :** À la moindre doute, appelez un élagueur professionnel pour une évaluation. Le déplacement et le diagnostic sont souvent gratuits, et peuvent vous éviter des milliers d'euros de dégâts — ou pire.
+**Notre conseil :** À la moindre doute, appelez un élagueur professionnel pour une évaluation. Un premier avis sur photos ne coûte rien et peut vous éviter des milliers d'euros de dégâts — ou pire.
 
 ---
 

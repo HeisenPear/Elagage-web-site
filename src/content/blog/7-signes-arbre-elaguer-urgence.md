@@ -440,7 +440,7 @@ Un élagage préventif coûte **3 à 5 fois moins cher** qu'un abattage d'urgenc
 ## Questions fréquentes
 
 **Combien coûte une inspection d'arbre ?**
-Le premier diagnostic visuel est fait **gratuitement** lors de la visite pour le devis. Pour un arbre à fort enjeu, une expertise approfondie (sondage du bois, test de traction) peut être confiée à un expert arboricole, sur devis.
+Un premier avis est donné **gratuitement** sur photos, avec le devis. Pour un arbre à fort enjeu, une expertise approfondie (sondage du bois, test de traction) peut être confiée à un expert arboricole, sur devis.
 
 **Puis-je élaguer moi-même un arbre dangereux ?**
 ❌ **Non**. Danger mortel (chute, électrocution). Assurance habitation ne couvre pas.

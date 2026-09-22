@@ -1,7 +1,7 @@
 ---
 /**
  * Pages services — URL : /services/[slug]/ (mêmes URL que les anciennes pages).
- * Contenu dans servicePages.ts. Aucun prix : devis gratuit sur place.
+ * Contenu dans servicePages.ts. Aucun prix : devis gratuit sur photo.
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
@@ -57,7 +57,7 @@ const schema = combineSchemas(
             <Icon name="camera" class="w-5 h-5" /> Photo par SMS
           </a>
         </div>
-        <p class="mt-3 text-sm text-white/70">Devis gratuit sur place · {siteConfig.business.hours.display}</p>
+        <p class="mt-3 text-sm text-white/70">Devis gratuit sur photo · {siteConfig.business.hours.display}</p>
       </div>
       {service.image && (
         <figure class="lg:col-span-2 rounded-2xl overflow-hidden bg-forest-700 max-h-[420px]">
@@ -85,7 +85,7 @@ const schema = combineSchemas(
           ))}
         </ul>
         <p class="text-[15px] text-neutral-black/70">
-          Pas de grille tarifaire : chaque arbre est différent. Le prix est fixé par écrit après la visite, sans engagement de votre part.
+          Pas de grille tarifaire : chaque arbre est différent. Le prix est fixé par écrit à partir de vos photos, sans engagement de votre part.
         </p>
       </div>
     </div>

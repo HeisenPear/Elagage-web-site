@@ -27,7 +27,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- E-mail : ${b.email}`,
     `- Disponibilité : ${b.hours.display}`,
     `- Zone : Tours, métropole de Tours et Indre-et-Loire, rayon d'environ ${siteConfig.serviceArea.radius} km autour de ${b.address.city}`,
-    `- Devis : gratuit, écrit, après visite ou sur photo envoyée par SMS. Aucun tarif n'est publié : chaque prix est établi sur devis.`,
+    `- Devis : gratuit et écrit, établi sur photos envoyées par SMS ou sur description au téléphone ; le déplacement se fait uniquement pour l'intervention. Aucun tarif n'est publié : chaque prix est établi sur devis.`,
     `- Assurance : ${b.insurance}`,
     '- Méthode : travail en grimpe (cordes, rétention des branches), pas d\'étêtage, chantier nettoyé.',
     '',

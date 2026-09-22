@@ -64,7 +64,7 @@ const schema = combineSchemas(
         <h1 class="text-3xl md:text-5xl font-display font-bold leading-tight mb-5">{city.h1}</h1>
         <p class="text-lg md:text-xl text-white/85 mb-7">
           Élagage, abattage, dessouchage et taille de haies {isDepartment ? 'en Indre-et-Loire' : `à ${city.name}`}.
-          Rudy se déplace gratuitement pour voir l'arbre et vous remettre un devis écrit.
+          Envoyez une photo de l'arbre : Rudy vous remet un devis écrit et gratuit.
         </p>
         <div class="flex flex-col sm:flex-row gap-3">
           <CallButton size="xl" cta={`ville-${city.slug}`} />
@@ -110,7 +110,7 @@ const schema = combineSchemas(
           <Icon name="camera" class="w-5 h-5" /> Photo par SMS
         </a>
         <ul class="mt-5 space-y-2 text-[15px] text-neutral-black/80">
-          <li class="flex gap-2"><Icon name="tick" class="w-5 h-5 text-forest flex-shrink-0" /> Déplacement et devis gratuits</li>
+          <li class="flex gap-2"><Icon name="tick" class="w-5 h-5 text-forest flex-shrink-0" /> Devis gratuit sur photo</li>
           <li class="flex gap-2"><Icon name="tick" class="w-5 h-5 text-forest flex-shrink-0" /> {siteConfig.business.insuranceShort}</li>
           <li class="flex gap-2"><Icon name="tick" class="w-5 h-5 text-forest flex-shrink-0" /> Branches évacuées, chantier propre</li>
         </ul>

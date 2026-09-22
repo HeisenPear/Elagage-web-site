@@ -75,7 +75,7 @@ Dans les jardins de Tours, de La Riche ou de Saint-Cyr, l'accès se fait souvent
 
 ## Le prix d'un élagage
 
-Il dépend de la taille de l'arbre, de l'accès, des obstacles (toiture, lignes) et de l'évacuation des branches. Nous expliquons tout dans [ce qui fait varier le prix d'un élagage](/blog/prix-elagage-arbre-tarifs-tours/). Le devis est gratuit : envoyez une photo de l'arbre par SMS au **06 31 46 43 50**, Rudy vous répond et passe voir l'arbre.
+Il dépend de la taille de l'arbre, de l'accès, des obstacles (toiture, lignes) et de l'évacuation des branches. Nous expliquons tout dans [ce qui fait varier le prix d'un élagage](/blog/prix-elagage-arbre-tarifs-tours/). Le devis est gratuit : envoyez une photo de l'arbre par SMS au **06 31 46 43 50**, Rudy vous répond avec un devis écrit.
 
 ## Élaguer soi-même ?
 

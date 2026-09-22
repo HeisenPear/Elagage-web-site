@@ -1,6 +1,6 @@
 /**
  * Contenu des pages services (/services/[slug]/).
- * Aucun prix : chaque intervention fait l'objet d'un devis gratuit sur place.
+ * Aucun prix : chaque intervention fait l'objet d'un devis gratuit sur photo.
  */
 
 export interface ServiceSection {
@@ -34,7 +34,7 @@ export const servicePages: ServicePage[] = [
     icon: 'tree',
     title: "Élagage d'arbres à Tours (37) – Élagueur grimpeur | Devis gratuit",
     description:
-      "Élagage d'arbres à Tours et en Indre-et-Loire par un élagueur grimpeur : taille douce, allègement, branches mortes, arbres près des toitures. Devis gratuit sur place. ☎ 06 31 46 43 50",
+      "Élagage d'arbres à Tours et en Indre-et-Loire par un élagueur grimpeur : taille douce, allègement, branches mortes, arbres près des toitures. Devis gratuit sur photo. ☎ 06 31 46 43 50",
     h1: "Élagage d'arbres à Tours et en Indre-et-Loire",
     lead:
       "Un arbre trop grand, qui fait de l'ombre, touche la toiture ou perd des branches ? Rudy intervient en grimpe, avec cordes et harnais, pour tailler proprement sans abîmer l'arbre — même dans les jardins étroits où aucune nacelle ne passe.",
@@ -71,7 +71,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     includes: [
-      'Visite et devis écrit gratuits',
+      'Devis écrit gratuit, établi sur photos',
       'Intervention en grimpe (cordes, harnais), nacelle non nécessaire',
       'Rétention des branches au-dessus des toitures, clôtures et massifs',
       'Broyage et évacuation des branches, chantier nettoyé',
@@ -89,7 +89,7 @@ export const servicePages: ServicePage[] = [
         heading: 'Élagage en ville : jardins étroits, maisons mitoyennes, lignes',
         paragraphs: [
           "À Tours, Saint-Cyr-sur-Loire ou La Riche, beaucoup de jardins sont accessibles uniquement par un couloir ou un portillon. La grimpe permet d'intervenir partout : pas besoin de faire entrer un engin, et votre pelouse n'est pas marquée.",
-          "Pour les branches situées près des lignes électriques, les distances de sécurité imposent des précautions particulières ; selon le cas, une mise hors tension par Enedis peut être nécessaire. Nous vous indiquons la démarche lors de la visite.",
+          "Pour les branches situées près des lignes électriques, les distances de sécurité imposent des précautions particulières ; selon le cas, une mise hors tension par Enedis peut être nécessaire. Nous vous indiquons la démarche au moment du devis.",
         ],
       },
       {
@@ -103,7 +103,7 @@ export const servicePages: ServicePage[] = [
       {
         question: "Combien coûte l'élagage d'un arbre ?",
         answer:
-          "Le prix dépend de la hauteur et de l'essence, de l'accès au jardin, de la proximité d'une toiture ou d'une ligne et du volume de branches à évacuer. Nous n'affichons donc pas de tarif : Rudy se déplace gratuitement et vous remet un devis écrit et détaillé. Une photo envoyée par SMS permet souvent de donner une première idée.",
+          "Le prix dépend de la hauteur et de l'essence, de l'accès au jardin, de la proximité d'une toiture ou d'une ligne et du volume de branches à évacuer. Nous n'affichons donc pas de tarif : envoyez des photos de l'arbre par SMS et Rudy vous remet un devis écrit, détaillé et gratuit.",
       },
       {
         question: 'Faut-il une nacelle pour élaguer un grand arbre ?',
@@ -167,7 +167,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     includes: [
-      'Visite et devis écrit gratuits, repérage des risques (lignes, toiture, voisins)',
+      'Devis écrit gratuit sur photos, avec repérage des risques (lignes, toiture, voisins)',
       'Balisage de la zone et protection des abords',
       'Démontage ou abattage selon la place disponible',
       'Débitage du bois en bûches (laissé sur place si vous le souhaitez)',
@@ -178,7 +178,7 @@ export const servicePages: ServicePage[] = [
       {
         heading: 'Abattre ou élaguer ? Un avis honnête avant tout',
         paragraphs: [
-          "Un arbre qui gêne n'est pas forcément à abattre : une réduction bien menée suffit parfois. À l'inverse, un arbre au pied creux ou attaqué par un champignon (amadouvier, armillaire…) peut rester debout des années avant de tomber sans prévenir. Lors de la visite, Rudy regarde le collet, l'ancrage, les fissures et le bois mort, et vous dit franchement ce qu'il ferait chez lui.",
+          "Un arbre qui gêne n'est pas forcément à abattre : une réduction bien menée suffit parfois. À l'inverse, un arbre au pied creux ou attaqué par un champignon (amadouvier, armillaire…) peut rester debout des années avant de tomber sans prévenir. Sur vos photos (pied de l'arbre, tronc, couronne), Rudy regarde le collet, l'ancrage, les fissures et le bois mort, et vous dit franchement ce qu'il ferait chez lui.",
         ],
       },
       {
@@ -193,7 +193,7 @@ export const servicePages: ServicePage[] = [
       {
         question: "Combien coûte l'abattage d'un arbre ?",
         answer:
-          "Tout dépend de la hauteur et du diamètre, de la place autour de l'arbre (abattage direct ou démontage par tronçons), des obstacles (maison, lignes, voisins) et de ce que vous souhaitez faire du bois et de la souche. Nous n'affichons pas de tarif : le devis est gratuit, écrit et établi sur place.",
+          "Tout dépend de la hauteur et du diamètre, de la place autour de l'arbre (abattage direct ou démontage par tronçons), des obstacles (maison, lignes, voisins) et de ce que vous souhaitez faire du bois et de la souche. Nous n'affichons pas de tarif : le devis est gratuit, écrit et établi sur photos.",
       },
       {
         question: "Peut-on abattre un arbre collé à la maison ?",
@@ -252,7 +252,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     includes: [
-      'Visite et devis écrit gratuits',
+      'Devis écrit gratuit, établi sur photos',
       'Vérification de la présence de réseaux enterrés à proximité',
       'Rognage de la souche sous le niveau du sol',
       'Copeaux laissés en paillage ou évacués, au choix',
@@ -269,7 +269,7 @@ export const servicePages: ServicePage[] = [
       {
         heading: 'Précautions avant le dessouchage',
         paragraphs: [
-          "Une souche proche d'une canalisation, d'un câble enterré ou d'une fondation demande des précautions : nous repérons les réseaux avant de commencer et adaptons la profondeur de rognage. Signalez-nous toute installation enterrée (arrosage automatique, fourreau électrique, fosse) lors de la visite.",
+          "Une souche proche d'une canalisation, d'un câble enterré ou d'une fondation demande des précautions : nous repérons les réseaux avant de commencer et adaptons la profondeur de rognage. Signalez-nous toute installation enterrée (arrosage automatique, fourreau électrique, fosse) lors de votre demande de devis.",
         ],
       },
     ],
@@ -277,7 +277,7 @@ export const servicePages: ServicePage[] = [
       {
         question: 'Combien coûte le dessouchage ?',
         answer:
-          "Le prix dépend surtout du diamètre de la souche, de l'essence, de l'accès et du nombre de souches. Nous n'affichons pas de tarif : envoyez une photo par SMS avec un objet pour l'échelle, ou demandez un devis gratuit sur place.",
+          "Le prix dépend surtout du diamètre de la souche, de l'essence, de l'accès et du nombre de souches. Nous n'affichons pas de tarif : envoyez une photo par SMS avec un objet pour l'échelle : le devis est gratuit.",
       },
       {
         question: 'La rogneuse peut-elle accéder à mon jardin ?',
@@ -329,7 +329,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     includes: [
-      'Visite et devis écrit gratuits',
+      'Devis écrit gratuit, établi sur photos',
       'Taille des faces et du dessus, à la hauteur convenue',
       'Ramassage, broyage et évacuation des déchets verts',
       'Nettoyage des allées, pelouses et trottoirs',
@@ -358,7 +358,7 @@ export const servicePages: ServicePage[] = [
       {
         question: 'Peut-on réduire fortement une haie de thuyas ?',
         answer:
-          "En hauteur, oui. En largeur, il faut rester dans la partie verte : le thuya ne repart pas du bois nu. Si la haie est trop large, il vaut parfois mieux la remplacer ; nous vous conseillons lors de la visite.",
+          "En hauteur, oui. En largeur, il faut rester dans la partie verte : le thuya ne repart pas du bois nu. Si la haie est trop large, il vaut parfois mieux la remplacer ; nous vous conseillons au vu de vos photos.",
       },
       {
         question: 'Proposez-vous des contrats annuels ?',
@@ -411,7 +411,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     includes: [
-      'Visite et devis écrit gratuits',
+      'Devis écrit gratuit, établi sur photos',
       'Matériel professionnel, aucun besoin de votre côté',
       'Évacuation des déchets verts',
       'Interventions ponctuelles ou contrat annuel',
@@ -430,7 +430,7 @@ export const servicePages: ServicePage[] = [
       {
         question: "Combien coûte l'entretien d'un jardin ?",
         answer:
-          "Cela dépend de la surface, de l'état du terrain, de la fréquence des passages et du volume de déchets. Nous n'affichons pas de tarif : chaque devis est gratuit et établi après visite.",
+          "Cela dépend de la surface, de l'état du terrain, de la fréquence des passages et du volume de déchets. Nous n'affichons pas de tarif : chaque devis est gratuit et établi sur photos.",
       },
       {
         question: 'Intervenez-vous pour les copropriétés et les entreprises ?',
@@ -479,7 +479,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     includes: [
-      'Visite et devis écrit gratuits',
+      'Devis écrit gratuit, établi sur photos',
       'Conseils sur la période de taille propre à chaque espèce',
       'Évacuation ou broyage des branches',
       'Suivi possible chaque année',
@@ -497,7 +497,7 @@ export const servicePages: ServicePage[] = [
       {
         question: "Combien coûte la taille d'un arbre fruitier ?",
         answer:
-          "Le prix dépend du nombre d'arbres, de leur taille et de leur état (entretien régulier ou restauration). Nous n'affichons pas de tarif : devis gratuit sur place.",
+          "Le prix dépend du nombre d'arbres, de leur taille et de leur état (entretien régulier ou restauration). Nous n'affichons pas de tarif : devis gratuit sur photo.",
       },
       {
         question: 'Peut-on sauver un vieux pommier ?',

@@ -40,7 +40,7 @@ const factSheet = [
   ['Zone', `Tours, métropole et Indre-et-Loire, rayon d'environ ${siteConfig.serviceArea.radius} km`],
   ['Prestations', servicePages.map((s) => s.name).join(', ')],
   ['Assurance', b.insurance],
-  ['Devis', 'Gratuit, écrit, sur place ou sur photo'],
+  ['Devis', 'Gratuit et écrit, établi sur photos ; déplacement pour l\'intervention'],
 ];
 ---
 
@@ -55,7 +55,7 @@ const factSheet = [
         <Breadcrumbs items={breadcrumbs} />
         <h1 class="text-3xl md:text-5xl font-display font-bold leading-tight mb-5">{b.founder}, votre élagueur en Touraine</h1>
         <p class="text-lg md:text-xl text-white/85 mb-7">
-          {b.name} n'est pas une plateforme ni un centre d'appels. C'est l'entreprise de Rudy : il répond au téléphone, vient voir votre arbre, établit le devis et réalise le chantier.
+          {b.name} n'est pas une plateforme ni un centre d'appels. C'est l'entreprise de Rudy : il répond au téléphone, étudie vos photos, établit le devis et réalise le chantier.
         </p>
         <CallButton size="xl" cta="a-propos" label={`Appeler Rudy · ${b.phoneDisplay}`} />
       </div>
@@ -79,7 +79,7 @@ const factSheet = [
           <strong>Un avis honnête.</strong> Si un arbre peut être conservé, on vous le dit. S'il est dangereux, on vous explique pourquoi. Et si une démarche est nécessaire en mairie (espace boisé classé, abords d'un monument historique), on vous l'indique avant l'intervention.
         </p>
         <p>
-          <strong>Un prix écrit, sans surprise.</strong> Nous n'affichons pas de grille de tarifs, parce que deux arbres de même hauteur ne demandent jamais le même travail. Le devis est gratuit, détaillé et établi après avoir vu l'arbre — ou sur photo pour une première idée.
+          <strong>Un prix écrit, sans surprise.</strong> Nous n'affichons pas de grille de tarifs, parce que deux arbres de même hauteur ne demandent jamais le même travail. Le devis est gratuit, détaillé et établi à partir de vos photos ; Rudy se déplace pour l'intervention.
         </p>
         <p>
           <strong>Un chantier rendu propre.</strong> Branches broyées et évacuées, allées soufflées. Le bois peut rester sur place en bûches et le broyat servir de paillage.
