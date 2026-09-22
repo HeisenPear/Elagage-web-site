@@ -1,0 +1,38 @@
+---
+/** Grille des prestations — liens vers les pages services. */
+import Icon from '@/components/ui/Icon.astro';
+import { servicePages } from '@/data/servicePages';
+
+interface Props {
+  title?: string;
+  intro?: string;
+  exclude?: string;
+  headingLevel?: 'h2' | 'h3';
+}
+const { title = 'Nos prestations', intro, exclude, headingLevel = 'h2' } = Astro.props;
+const items = servicePages.filter((s) => s.slug !== exclude);
+const Heading = headingLevel;
+---
+
+<section id="services" class="py-16 md:py-20 bg-neutral-cream">
+  <div class="container-custom">
+    <div class="max-w-2xl mb-10">
+      <Heading class="text-3xl md:text-4xl font-display font-bold text-forest mb-3">{title}</Heading>
+      {intro && <p class="text-lg text-neutral-black/75">{intro}</p>}
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+      {items.map((s) => (
+        <a href={`/services/${s.slug}/`} class="group flex flex-col p-6 rounded-2xl bg-white border border-neutral-200 hover:border-forest/30 hover:shadow-soft transition">
+          <span class="w-12 h-12 rounded-xl bg-forest/5 text-forest flex items-center justify-center mb-4 group-hover:bg-accent transition-colors">
+            <Icon name={s.icon} class="w-6 h-6" />
+          </span>
+          <h3 class="text-xl font-bold text-forest mb-2">{s.name}</h3>
+          <p class="text-neutral-black/75 text-[15px] leading-relaxed mb-4 flex-1">{s.lead.split('. ')[0]}.</p>
+          <span class="inline-flex items-center gap-1.5 text-forest font-semibold text-[15px]">
+            Voir la prestation <Icon name="arrow" class="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,316 +1,204 @@
 /**
- * Configuration centralisée du site
- * À personnaliser avec les vraies informations de l'élagueur
+ * Configuration centralisée du site — SOURCE UNIQUE des informations entreprise.
+ *
+ * Règles :
+ * - Aucun prix affiché sur le site (tout passe par un devis gratuit).
+ * - Aucune donnée inventée : pas de faux avis, pas de note Google, pas de
+ *   statistiques non vérifiables. Une affirmation fausse repérée par un visiteur
+ *   (ex. « 127 avis » alors que la fiche Google en compte 0) coûte l'appel.
+ * - Toute affirmation (assurance, certification, horaires) doit pouvoir être
+ *   prouvée sur demande (attestation, diplôme).
  */
 
+export interface Testimonial {
+  name: string; // prénom + initiale, avec accord du client
+  city: string;
+  text: string;
+  date: string; // AAAA-MM
+  source: 'Google' | 'Direct';
+}
+
 export const siteConfig = {
-  // Informations entreprise
   business: {
-    name: "Élagage Abattage 37",
-    tagline: "Votre élagueur professionnel à Tours et en Indre-et-Loire",
-    description: "Entreprise d'élagage et d'abattage d'arbres professionnelle à Tours (37). Plus de 10 ans d'expérience. Réduction fiscale jusqu'à 2 500€. Assuré RC Pro 8M€. Paiement en plusieurs fois possible.",
+    name: 'Élagage Abattage 37',
+    // Orthographe du registre officiel (INSEE) : Capello, un seul « p ».
+    founder: 'Rudy Capello',
+    // Année de création au registre (SIREN 510 816 473, créé le 03/03/2009).
+    foundedYear: 2009 as number | null,
+    tagline: 'Élagueur à Tours et en Indre-et-Loire',
+    description:
+      "Élagage Abattage 37 est l'entreprise d'élagage de Rudy Capello, élagueur grimpeur basé à Joué-lès-Tours (37). Élagage, abattage et démontage d'arbres, dessouchage, taille de haies et entretien d'espaces verts à Tours et dans un rayon de 50 km. Devis gratuit sur place.",
 
-    // Coordonnées
-    phone: "+33631464350",
-    phoneDisplay: "06 31 46 43 50",
-    email: "elagueur.abatteur37@gmail.com",
+    phone: '+33631464350',
+    phoneDisplay: '06 31 46 43 50',
+    email: 'elagueur.abatteur37@gmail.com',
 
-    // Adresse physique
     address: {
-      street: "2 rue du manoir",
-      city: "Joué-lès-Tours",
-      postalCode: "37300",
-      region: "Indre-et-Loire",
-      country: "France",
-      countryCode: "FR",
+      street: '2 rue du Manoir',
+      city: 'Joué-lès-Tours',
+      postalCode: '37300',
+      region: 'Indre-et-Loire',
+      country: 'France',
+      countryCode: 'FR',
+    },
+    // Géocodage Base Adresse Nationale de l'adresse ci-dessus.
+    coordinates: { lat: 47.359495, lng: 0.690233 },
+
+    // Horaires (une seule source : affichage + données structurées).
+    hours: {
+      display: '24h/24, 7j/7',
+      short: '24h/24',
+      opens: '00:00',
+      closes: '23:59',
+      days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     },
 
-    // Coordonnées GPS pour Google Maps (Joué-lès-Tours)
-    coordinates: {
-      lat: 47.3524,
-      lng: 0.6642,
+    siret: '510 816 473 00019',
+    siren: '510816473',
+
+    // Garanties affichées (à justifier sur demande).
+    insurance: 'Assurance responsabilité civile professionnelle Allianz',
+    insuranceShort: 'Assuré RC Pro',
+    certification: 'Élagueur grimpeur formé (CS Arboriste-élagueur)',
+    paymentInFewTimes: true,
+
+    // Identité légale (registre officiel) — affichée dans les mentions légales.
+    // ⚠️ Le siège déclaré (Veigné) diffère de l'adresse publique ci-dessus :
+    // à harmoniser (mise à jour du registre OU de l'adresse du site et de la fiche Google).
+    legal: {
+      name: 'Rudy Capello',
+      form: 'Entrepreneur individuel',
+      address: '90 rue de la Bichottière, 37250 Veigné',
+      vat: 'FR72510816473',
+      // Médiateur de la consommation (obligatoire, art. L612-1 Code de la consommation).
+      mediator: null as null | { name: string; url: string },
     },
 
-    // Horaires d'ouverture
-    openingHours: {
-      weekdays: "24h/24",
-      saturday: "24h/24",
-      sunday: "24h/24",
-    },
+    // Pas de crédit d'impôt annoncé : l'élagage en hauteur (cordes, harnais),
+    // l'abattage et le dessouchage sont exclus des « petits travaux de jardinage »
+    // (BOFiP BOI-IR-RICI-150-10 §50, rép. min. Sénat 08/12/2022), et il faudrait
+    // de toute façon une déclaration SAP.
 
-    // Badges de réassurance (nouveauté)
-    reassuranceBadges: [
-      {
-        icon: "target",
-        text: "Réduction fiscale jusqu'à 2 500€",
-        highlight: true,
-      },
-      {
-        icon: "credit-card",
-        text: "Paiement en plusieurs fois",
-        highlight: false,
-      },
-      {
-        icon: "shield-check",
-        text: "Assuré RC Pro 8M€",
-        highlight: false,
-      },
-    ],
-
-    // Certifications et labels
-    certifications: [
-      "Élagueur professionnel certifié",
-      "Plus de 10 ans d'expérience",
-      "Assurance RC Pro 8 000 000€",
-      "Réduction fiscale jusqu'à 2 500€",
-      "Paiement facilité en plusieurs fois",
-    ],
-
-    // Informations légales
-    siret: "510 816 473 00019",
-
-    // Réseaux sociaux
     social: {
-      facebook: "",
-      instagram: "",
-      linkedin: "",
+      facebook: '',
+      instagram: '',
     },
 
-    // Avis Google (fiche Google Business Profile)
-    // ⚠️ Renseigner UNIQUEMENT avec les VRAIES valeurs de la fiche Google.
-    // Tant que enabled = false, aucune note n'est injectée dans les données
-    // structurées (Schema.org) — cela évite toute pénalité Google pour avis fictifs.
+    // Fiche Google Business Profile propre à CE site (aucune pour l'instant).
+    // ⚠️ Ne jamais y mettre une fiche ou un site tiers : ce site doit rester
+    // totalement indépendant de toute autre présence en ligne.
+    googleBusiness: {
+      url: '',
+    },
+
+    // Note Google : uniquement celle d'une fiche rattachée à CE site.
+    // Affichée en texte avec lien ; jamais dans le JSON-LD.
     googleReviews: {
       enabled: false,
-      placeId: "", // ID de la fiche Google Business Profile
-      ratingValue: null as number | null, // ex. 4.9
-      reviewCount: null as number | null, // ex. 38
+      ratingValue: null as number | null,
+      reviewCount: null as number | null,
     },
   },
 
-  // Configuration SEO par défaut
   seo: {
-    title: "Élagueur Tours (37) | Élagage Professionnel | Devis Gratuit 24h",
-    description: "Élagueur certifié à Tours (37) - Élagage, abattage, dessouchage. Assuré 8M€. Crédit d'impôt -50%. Devis gratuit sous 24h. ☎ 06 31 46 43 50",
-    keywords: [
-      // Mots-clés principaux longue traîne - Focus "élagage"
-      "élagage Tours",
-      "élagage arbre Tours",
-      "entreprise élagage Tours",
-      "élagage professionnel Tours",
-      "élagueur professionnel Tours",
-      "élagueur près de chez moi Tours",
-      "élagueur Tours",
-      "abattage arbre Tours",
-
-      // Mots-clés géolocalisés
-      "élagage Indre-et-Loire",
-      "élagage 37",
-      "élagage Tours 37",
-      "élagage Joué-lès-Tours",
-      "élagage Amboise",
-      "élagage Saint-Cyr-sur-Loire",
-      "élagueur 37",
-      "élagueur Joué-lès-Tours",
-
-      // Mots-clés services - Focus élagage
-      "élagage arbre fruitier Tours",
-      "élagage arbre d'ombrage",
-      "élagage raisonné Tours",
-      "élagage sanitaire",
-      "taille haie Tours",
-      "dessouchage Tours",
-      "abattage arbre dangereux",
-      "entretien jardin Tours",
-      "débroussaillage Tours",
-
-      // Mots-clés commerciaux
-      "prix élagage Tours",
-      "tarif élagueur Tours",
-      "devis élagage gratuit Tours",
-      "élagueur pas cher Tours",
-      "coût élagage arbre",
-
-      // Mots-clés techniques
-      "élagueur certifié Tours",
-      "élagueur grimpeur Tours",
-      "élagage raisonné",
-      "taille douce arbre",
-
-      // Mots-clés avantages fiscaux
-      "réduction fiscale élagage",
-      "crédit impôt élagage",
-      "crédit impôt jardin",
-      "aide fiscale entretien jardin",
-
-      // Mots-clés urgence
-      "élagueur urgence Tours",
-      "abattage arbre d'urgence",
-      "élagage après tempête",
-    ],
-    ogImage: "/images/og-image.jpg", // Image 1200x630px - IMPORTANT: Convertir og-image.svg en JPG
-    twitterHandle: "", // Optionnel
+    title: 'Élagueur à Tours (37) : élagage, abattage, dessouchage',
+    description:
+      "Élagueur grimpeur à Tours et Joué-lès-Tours : élagage, abattage, dessouchage, taille de haies. Devis gratuit sur place, chantier nettoyé. Appelez Rudy au 06 31 46 43 50.",
+    ogImage: '/images/og-image.jpg',
   },
 
-  // Zone d'intervention (pour SEO local)
   serviceArea: {
-    mainCity: "Tours",
-    department: "Indre-et-Loire (37)",
-    radius: 50, // km
+    mainCity: 'Tours',
+    department: 'Indre-et-Loire (37)',
+    radius: 50, // km autour de Joué-lès-Tours
+    // Communes citées (celles avec une page dédiée sont dans cityPages.ts)
     cities: [
-      "Tours",
-      "Amboise",
-      "Joué-lès-Tours",
-      "Saint-Cyr-sur-Loire",
-      "Chambray-lès-Tours",
-      "Saint-Pierre-des-Corps",
-      "Ballan-Miré",
-      "La Riche",
-      "Saint-Avertin",
-      "Fondettes",
-      "Montlouis-sur-Loire",
-      "Véretz",
-      "Rochecorbon",
-      "Vouvray",
-      "Azay-le-Rideau",
-      "Langeais",
-      "Chinon",
-      "Loches",
-      "Montbazon",
-      "Bléré",
+      'Tours', 'Joué-lès-Tours', 'Saint-Cyr-sur-Loire', 'Saint-Avertin', 'Chambray-lès-Tours',
+      'La Riche', 'Saint-Pierre-des-Corps', 'Ballan-Miré', 'Fondettes', 'Montlouis-sur-Loire',
+      'Amboise', 'Veigné', 'Montbazon', 'Vouvray', 'Rochecorbon', 'Luynes', 'Monts',
+      'Esvres-sur-Indre', 'Larçay', 'Véretz', 'Notre-Dame-d\'Oé', 'Mettray', 'Savonnières', 'Druye',
+      'Azay-le-Rideau', 'Langeais', 'Bléré', 'Loches', 'Chinon', 'Sorigny',
     ],
   },
 
-  // Services proposés
-  services: [
-    {
-      id: "elagage",
-      slug: "elagage-arbres",
-      name: "Élagage d'arbres",
-      shortDescription: "Élagage professionnel à Tours : élagage raisonné, élagage sanitaire, élagage de sécurité. Tous types d'arbres (ombrage, fruitiers, ornementaux). Travail soigné et sécurisé en hauteur.",
-      icon: "tree",
-      featured: true,
-    },
-    {
-      id: "abattage",
-      slug: "abattage-arbres",
-      name: "Abattage d'arbres",
-      shortDescription: "Abattage sécurisé d'arbres dangereux ou gênants. Techniques professionnelles avec matériel adapté.",
-      icon: "axe",
-      featured: true,
-    },
-    {
-      id: "taille-haies",
-      slug: "taille-haies",
-      name: "Taille de haies",
-      shortDescription: "Taille et entretien de haies. Formation, restructuration et taille d'entretien régulière.",
-      icon: "hedge",
-      featured: true,
-    },
-    {
-      id: "dessouchage",
-      slug: "dessouchage-arbres",
-      name: "Dessouchage",
-      shortDescription: "Extraction complète des souches avec rogneuse professionnelle. Terrain prêt pour nouvel aménagement.",
-      icon: "tool",
-      featured: true,
-    },
-    {
-      id: "entretien-espaces-verts",
-      slug: "entretien-espaces-verts",
-      name: "Entretien espaces verts",
-      shortDescription: "Entretien complet de vos espaces verts : tonte, débroussaillage, taille, nettoyage.",
-      icon: "hedge",
-      featured: true,
-    },
-    {
-      id: "elagage-fruitiers",
-      slug: "elagage-fruitiers",
-      name: "Élagage fruitiers",
-      shortDescription: "Taille spécialisée d'arbres fruitiers pour optimiser la production et la santé de vos arbres.",
-      icon: "apple",
-      featured: false,
-    },
-  ],
+  // Vrais avis clients uniquement (avec accord). Section masquée si vide.
+  testimonials: [] as Testimonial[],
 
-  // Statistiques (pour section chiffres clés)
-  stats: {
-    treesPerYear: 500,
-    yearsExperience: 10,
-    satisfactionRate: 98,
-    responseTime: "48h",
-  },
-
-  // Avis clients (quelques exemples, idéalement connecter à Google Reviews)
-  testimonials: [
-    {
-      id: 1,
-      name: "Jean Dupont",
-      city: "Tours",
-      rating: 5,
-      text: "Excellent travail sur l'élagage de nos chênes centenaires. Équipe professionnelle, ponctuelle et soigneuse. Je recommande vivement !",
-      date: "2024-12",
-      source: "Google",
-    },
-    {
-      id: 2,
-      name: "Marie Martin",
-      city: "Amboise",
-      rating: 5,
-      text: "Intervention rapide après une tempête. Abattage sécurisé d'un arbre dangereux. Prix honnête et chantier propre. Merci !",
-      date: "2024-11",
-      source: "Google",
-    },
-    {
-      id: 3,
-      name: "Pierre Leroy",
-      city: "Joué-lès-Tours",
-      rating: 5,
-      text: "15 ans que je fais appel à eux pour l'entretien annuel de mon jardin. Toujours impeccable, professionnels et de bon conseil.",
-      date: "2024-10",
-      source: "Google",
-    },
-  ],
-
-  // FAQ (pour section FAQ et schema.org FAQPage)
+  // FAQ générale : réponses autonomes et factuelles (reprises par Google et les IA).
   faq: [
     {
-      question: "Combien coûte un élagage d'arbre ?",
-      answer: "Le tarif d'un élagage varie selon la hauteur de l'arbre, sa complexité et son accessibilité. Le prix est établi sur devis personnalisé. Nous proposons un devis gratuit sous 24h pour évaluer précisément vos besoins.",
+      question: "Combien coûte un élagage ou un abattage ?",
+      answer:
+        "Nous n'affichons pas de tarif : le prix dépend de la hauteur et de l'essence de l'arbre, de l'accès au jardin, de la proximité de la maison ou des lignes électriques et de l'évacuation des branches. Rudy se déplace gratuitement pour établir un devis écrit, détaillé et sans engagement. Pour aller plus vite, envoyez une photo de l'arbre par SMS au 06 31 46 43 50.",
+    },
+    {
+      question: "Dans quelles communes intervenez-vous ?",
+      answer:
+        "Nous sommes basés à Joué-lès-Tours et intervenons dans un rayon d'environ 50 km : Tours et toute la métropole (Saint-Cyr-sur-Loire, Saint-Avertin, Chambray-lès-Tours, La Riche, Fondettes, Ballan-Miré…), ainsi qu'Amboise, Montlouis-sur-Loire, Montbazon, Azay-le-Rideau ou Loches. Un doute pour votre commune ? Appelez, la réponse est immédiate.",
+    },
+    {
+      question: "Intervenez-vous en urgence après une tempête ?",
+      answer:
+        "Oui. Arbre tombé, branche cassée sur une toiture, arbre penché qui menace la maison : appelez directement le 06 31 46 43 50. Si Rudy est dans un arbre et ne peut pas décrocher, laissez un message ou envoyez une photo par SMS : il rappelle dès qu'il redescend et organise la mise en sécurité au plus vite.",
     },
     {
       question: "Quelle est la meilleure période pour élaguer ?",
-      answer: "La période idéale pour l'élagage se situe généralement en hiver (novembre à mars) lorsque l'arbre est en repos végétatif. Cependant, certaines essences se taillent différemment. Nous adaptons nos interventions selon les espèces.",
+      answer:
+        "Pour la plupart des arbres, la fin de l'automne et l'hiver (novembre à début mars, hors fortes gelées), quand l'arbre est au repos. Évitez si possible la période de nidification, de mi-mars à fin juillet : détruire un nid occupé est interdit. Les fruitiers à noyau (cerisier, prunier) se taillent plutôt en fin d'été. Un arbre dangereux, lui, se traite toute l'année.",
     },
     {
       question: "Faut-il une autorisation pour abattre un arbre ?",
-      answer: "Cela dépend de votre commune et du PLU (Plan Local d'Urbanisme). Dans certaines zones protégées, une déclaration préalable est obligatoire. Nous vous accompagnons dans ces démarches administratives si nécessaire.",
+      answer:
+        "Sur un terrain privé, l'abattage est libre dans la majorité des cas. Une déclaration préalable en mairie est obligatoire si l'arbre est en espace boisé classé ou protégé par le PLU, et l'avis de l'Architecte des Bâtiments de France est requis aux abords d'un monument historique — fréquent à Tours et Amboise. Nous vous disons quoi vérifier avant l'intervention.",
     },
     {
-      question: "Êtes-vous assurés pour les travaux en hauteur ?",
-      answer: "Oui, nous disposons d'une assurance Responsabilité Civile Professionnelle de 8 000 000€ couvrant tous nos chantiers. Tous nos élagueurs sont certifiés et formés aux techniques de grimpe et de sécurité.",
+      question: "Les branches de mon voisin dépassent chez moi, que faire ?",
+      answer:
+        "L'article 673 du Code civil permet d'exiger de votre voisin qu'il coupe les branches qui avancent sur votre terrain ; vous ne pouvez pas les couper vous-même sans son accord. Les arbres de plus de 2 m doivent être plantés à au moins 2 m de la limite de propriété (article 671). Nous intervenons à la demande du propriétaire de l'arbre, avec l'accord des deux voisins si besoin.",
     },
     {
-      question: "Puis-je bénéficier d'une réduction fiscale ?",
-      answer: "Oui ! Les travaux d'entretien de jardin, incluant l'élagage et la taille de haies, donnent droit à un crédit d'impôt de 50% dans la limite de 2 500€ par an (soit 5 000€ de dépenses). Nous vous fournissons tous les documents nécessaires.",
+      question: "Êtes-vous assuré pour les travaux en hauteur ?",
+      answer:
+        "Oui, nous sommes couverts par une assurance responsabilité civile professionnelle. L'attestation vous est fournie sur simple demande avant le chantier.",
     },
     {
-      question: "Proposez-vous un paiement en plusieurs fois ?",
-      answer: "Oui, nous proposons des facilités de paiement en plusieurs fois pour les chantiers importants. Contactez-nous pour étudier ensemble la solution de paiement la plus adaptée à votre situation.",
+      question: "L'élagage donne-t-il droit au crédit d'impôt de 50 % ?",
+      answer:
+        "Non, pas l'élagage en hauteur. L'administration fiscale exclut des « petits travaux de jardinage » l'élagage qui nécessite de grimper dans l'arbre ou d'utiliser cordes et harnais, ainsi que l'abattage et le dessouchage (BOFiP BOI-IR-RICI-150-10, réponse ministérielle du 8 décembre 2022). Seul l'entretien réalisé à hauteur d'homme peut y ouvrir droit, et uniquement via un organisme déclaré de services à la personne. Méfiez-vous des devis qui promettent « -50 % » sur un abattage : le fisc peut refuser la réduction.",
     },
     {
-      question: "Que faites-vous des déchets verts après l'élagage ?",
-      answer: "Nous évacuons systématiquement tous les déchets verts (branches, feuilles, souches) et laissons le chantier propre. Sur demande, nous pouvons également broyer les branches sur place pour votre compost ou paillage.",
+      question: "Que deviennent les branches et le bois ?",
+      answer:
+        "Le chantier est rendu propre : les branches sont broyées et évacuées. Sur demande, nous laissons le broyat sur place pour pailler vos massifs, et le bois débité en bûches pour votre cheminée.",
     },
   ],
 };
 
-// Helper pour générer le lien téléphone
 export function getPhoneLink() {
   return `tel:${siteConfig.business.phone}`;
 }
 
-// Helper pour générer le lien email
-export function getEmailLink(subject = "Demande de devis") {
+export function getEmailLink(subject = 'Demande de devis élagage') {
   return `mailto:${siteConfig.business.email}?subject=${encodeURIComponent(subject)}`;
+}
+
+// Lien SMS pré-rempli (format compatible iPhone et Android).
+export function getSmsLink(body = "Bonjour, je souhaite un devis. Voici une photo de l'arbre. Commune : ") {
+  return `sms:${siteConfig.business.phone}?&body=${encodeURIComponent(body)}`;
+}
+
+// Libellé des avis Google (« 4,9/5 · plus de 140 avis »), null si désactivé.
+// Le nombre est arrondi à la dizaine inférieure pour rester vrai quand il augmente.
+export function getReviewsLabel() {
+  const gr = siteConfig.business.googleReviews;
+  if (!gr.enabled || !gr.ratingValue || !gr.reviewCount) return null;
+  const rating = gr.ratingValue.toFixed(1).replace('.', ',');
+  const count = gr.reviewCount >= 20 ? `plus de ${Math.floor(gr.reviewCount / 10) * 10}` : String(gr.reviewCount);
+  return { rating, count, text: `${rating}/5 · ${count} avis Google`, url: siteConfig.business.googleBusiness.url };
+}
+
+// Nombre d'années d'activité, calculé depuis l'immatriculation (null si inconnue).
+export function getYearsInBusiness() {
+  const y = siteConfig.business.foundedYear;
+  return y ? new Date().getFullYear() - y : null;
 }

@@ -1,0 +1,38 @@
+---
+/** Communes desservies : pages dédiées en liens, autres communes en texte. */
+import Icon from '@/components/ui/Icon.astro';
+import { siteConfig } from '@/data/siteConfig';
+import { cityPages } from '@/data/cityPages';
+
+interface Props {
+  title?: string;
+  current?: string;
+}
+const { title = "Zones d'intervention autour de Tours", current } = Astro.props;
+const linked = cityPages.filter((c) => c.slug !== current && c.slug !== 'elagueur-indre-et-loire');
+const linkedNames = new Set(cityPages.map((c) => c.name));
+const others = siteConfig.serviceArea.cities.filter((c) => !linkedNames.has(c));
+---
+
+<section class="py-16 md:py-20 bg-white">
+  <div class="container-custom">
+    <div class="max-w-2xl mb-8">
+      <h2 class="text-3xl md:text-4xl font-display font-bold text-forest mb-3">{title}</h2>
+      <p class="text-lg text-neutral-black/75">
+        Basés à {siteConfig.business.address.city}, nous intervenons dans un rayon d'environ {siteConfig.serviceArea.radius} km : toute la métropole de Tours et une grande partie de l'Indre-et-Loire.
+      </p>
+    </div>
+    <ul class="flex flex-wrap gap-2 mb-6">
+      {linked.map((c) => (
+        <li>
+          <a href={`/zones/${c.slug}/`} class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-neutral-cream border border-neutral-200 text-forest font-medium hover:border-forest/40">
+            <Icon name="pin" class="w-4 h-4 text-forest/60" /> Élagueur {c.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="text-neutral-black/70 text-[15px]">
+      Également : {others.join(', ')}… et toute l'<a href="/zones/elagueur-indre-et-loire/" class="underline text-forest">Indre-et-Loire</a>.
+    </p>
+  </div>
+</section>

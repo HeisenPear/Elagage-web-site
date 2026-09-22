@@ -1,121 +1,76 @@
 ---
 /**
- * Hero Section - Conversion-First, Mobile-First
- * Téléphone comme CTA principal pour maximiser les appels
+ * Hero de la page d'accueil : vraie photo de chantier, promesse claire,
+ * appel en CTA principal, SMS photo en alternative (pour ceux qui n'osent pas appeler).
  */
-import { siteConfig, getPhoneLink } from '@/data/siteConfig';
+import Icon from '@/components/ui/Icon.astro';
+import CallButton from '@/components/ui/CallButton.astro';
+import GoogleRating from '@/components/ui/GoogleRating.astro';
+import { siteConfig, getSmsLink } from '@/data/siteConfig';
+
+const b = siteConfig.business;
+const chips = [
+  'Devis gratuit sur place',
+  b.insuranceShort,
+  'Travail en grimpe',
+  'Chantier nettoyé',
+  b.foundedYear ? `Depuis ${b.foundedYear}` : null,
+].filter(Boolean) as string[];
 ---
 
-<section
-  id="hero"
-  class="relative min-h-[100svh] flex items-center justify-center overflow-hidden"
->
-  <!-- Image de fond Loire -->
-  <div class="absolute inset-0">
-    <img
-      src="/images/hero/loire-hero.webp"
-      alt="Élagueur professionnel à Tours en Indre-et-Loire - Élagage Abattage 37"
-      class="w-full h-full object-cover object-center"
-      width="1500"
-      height="730"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/85"></div>
-  </div>
+<section class="relative isolate overflow-hidden bg-forest text-white">
+  <img
+    src="/images/chantiers/elagueur-grimpeur-demontage-conifere.webp"
+    srcset="/images/chantiers/elagueur-grimpeur-demontage-conifere-800.webp 800w, /images/chantiers/elagueur-grimpeur-demontage-conifere.webp 1200w"
+    sizes="100vw"
+    alt="Élagueur grimpeur encordé en train de démonter un grand conifère"
+    width="1200"
+    height="742"
+    fetchpriority="high"
+    decoding="async"
+    class="absolute inset-0 -z-10 w-full h-full object-cover object-[70%_center]"
+  />
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-forest/80 via-forest/60 to-forest/90 md:bg-gradient-to-r md:from-forest/95 md:via-forest/80 md:to-forest/30"></div>
 
-  <!-- Contenu -->
-  <div class="relative z-10 w-full px-4 sm:px-6 text-center text-white pt-24 md:pt-28 pb-20">
-    <div class="max-w-4xl mx-auto">
-
-      <!-- Avis Google -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-5 animate-on-scroll">
-        <div class="flex text-yellow-400 text-lg" aria-label="5 étoiles">★★★★★</div>
-        <span class="text-white/90 font-semibold text-sm">4.9/5 · 127 avis Google</span>
-        <span class="hidden sm:inline text-white/40">·</span>
-        <span class="hidden sm:inline text-white/70 text-sm">Élagueur n°1 à Tours</span>
-      </div>
-
-      <!-- H1 -->
-      <h1 class="font-display font-extrabold text-white mb-4 leading-tight" style="font-size: clamp(1.9rem, 6vw, 4.5rem);">
-        Élagueur Professionnel<br>
-        à <span class="text-accent">Tours (37)</span>
+  <div class="container-custom py-12 md:py-24 lg:py-28">
+    <div class="max-w-2xl">
+      <p class="inline-flex items-center gap-2 text-sm font-semibold text-accent mb-4">
+        <Icon name="pin" class="w-4 h-4" /> {b.address.city} · Tours · Indre-et-Loire (37)
+      </p>
+      <h1 class="font-display font-bold leading-[1.08] mb-5 text-[2.1rem] sm:text-5xl lg:text-6xl">
+        Élagueur à Tours et en Indre-et-Loire
       </h1>
-
-      <!-- Sous-titre -->
-      <p class="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-7 leading-relaxed px-2">
-        Élagage · Abattage · Taille de haies · Dessouchage<br class="hidden sm:block">
-        <span class="font-semibold text-accent">Devis gratuit 24h</span> · Crédit d'impôt <strong>-50%</strong> · Assuré 8M€
+      <p class="text-lg md:text-xl text-white/90 leading-relaxed mb-7">
+        Élagage, abattage, dessouchage et taille de haies. Un arbre qui gêne, qui inquiète ou qui a souffert de la tempête&nbsp;?
+        Rudy vient le voir gratuitement et vous remet un devis écrit.
       </p>
 
-      <!-- CTA Principal : Téléphone MASSIF -->
-      <div class="mb-4 px-2">
+      <div class="flex flex-col sm:flex-row gap-3 mb-3">
+        <CallButton size="xl" cta="hero" />
         <a
-          href={getPhoneLink()}
-          class="group flex items-center justify-center gap-3 sm:gap-4 bg-accent hover:bg-accent-hover text-white font-extrabold rounded-2xl shadow-2xl hover:shadow-glow transition-all duration-300 hover:scale-105 w-full sm:w-auto sm:inline-flex mx-auto"
-          style="padding: clamp(0.9rem, 3vw, 1.5rem) clamp(1.5rem, 5vw, 3rem); font-size: clamp(1.3rem, 5vw, 1.875rem);"
-          aria-label="Appeler Élagage Abattage 37"
+          href={getSmsLink()}
+          data-cta="hero"
+          class="lg:hidden inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-white/60 font-bold"
         >
-          <svg class="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-          </svg>
-          <span class="tracking-wide">{siteConfig.business.phoneDisplay}</span>
+          <Icon name="camera" class="w-5 h-5" /> Envoyer une photo par SMS
         </a>
-        <p class="text-white/55 mt-2 text-xs sm:text-sm">Disponible 7j/7 · Réponse immédiate</p>
-      </div>
-
-      <!-- CTA Secondaire : Devis -->
-      <div class="mb-8 px-2">
         <a
-          href="/contact"
-          class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-white/80 text-white font-bold text-sm sm:text-base rounded-xl hover:bg-white hover:text-primary transition-all duration-300"
+          href="#rappel"
+          class="hidden lg:inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-white/60 font-bold hover:bg-white hover:text-forest transition-colors"
         >
-          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
-          Demander un devis gratuit
+          Être rappelé
         </a>
       </div>
+      <p class="text-sm text-white/75 mb-3">C'est Rudy qui décroche · {b.hours.display}</p>
+      <GoogleRating tone="dark" class="mb-7" />
 
-      <!-- Badges de confiance — grille 2 colonnes sur mobile -->
-      <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2 sm:gap-3 px-2">
-        <span class="inline-flex items-center gap-1.5 px-3 py-2 bg-accent text-white rounded-xl text-xs font-bold shadow-lg justify-center">
-          <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
-          Crédit impôt -50%
-        </span>
-        <span class="inline-flex items-center gap-1.5 px-3 py-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white rounded-xl text-xs font-semibold justify-center">
-          <svg class="w-3.5 h-3.5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-          </svg>
-          Assuré RC Pro 8M€
-        </span>
-        <span class="inline-flex items-center gap-1.5 px-3 py-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white rounded-xl text-xs font-semibold justify-center">
-          <svg class="w-3.5 h-3.5 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-          </svg>
-          Élagueur certifié
-        </span>
-        <span class="inline-flex items-center gap-1.5 px-3 py-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white rounded-xl text-xs font-semibold justify-center">
-          <svg class="w-3.5 h-3.5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
-          Intervention &lt;48h
-        </span>
-      </div>
-
+      <ul class="flex flex-wrap gap-2">
+        {chips.map((c) => (
+          <li class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-sm font-medium">
+            <Icon name="tick" class="w-4 h-4 text-accent" /> {c}
+          </li>
+        ))}
+      </ul>
     </div>
-  </div>
-
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-6 left-0 right-0 flex justify-center">
-    <a href="#contact" class="flex flex-col items-center gap-1 text-white/40 hover:text-white/70 transition-colors" aria-label="Défiler vers le contact">
-      <span class="text-xs uppercase tracking-widest hidden sm:block">Devis gratuit</span>
-      <svg class="w-5 h-7 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-      </svg>
-    </a>
   </div>
 </section>

@@ -1,0 +1,45 @@
+---
+/** « Comment ça se passe » : lève les freins avant l'appel. */
+import Icon from '@/components/ui/Icon.astro';
+
+const steps = [
+  {
+    icon: 'phone' as const,
+    title: 'Vous appelez (ou envoyez une photo)',
+    text: "Vous tombez directement sur Rudy, pas sur un standard. Décrivez l'arbre ou envoyez une photo par SMS : il vous dit tout de suite si c'est faisable.",
+  },
+  {
+    icon: 'doc' as const,
+    title: 'Visite et devis gratuits',
+    text: "Rudy passe voir l'arbre, repère les contraintes (toiture, lignes, accès, voisins) et vous remet un devis écrit et détaillé. Sans engagement.",
+  },
+  {
+    icon: 'tree' as const,
+    title: 'Intervention en sécurité',
+    text: "À la date convenue, l'équipe intervient avec le matériel adapté : grimpe, rétention des branches à la corde, protection de vos abords.",
+  },
+  {
+    icon: 'broom' as const,
+    title: 'Chantier rendu propre',
+    text: "Branches broyées et évacuées, allées soufflées. Le bois peut être laissé en bûches et le broyat en paillage si vous le souhaitez.",
+  },
+];
+---
+
+<section class="py-16 md:py-20 bg-white">
+  <div class="container-custom">
+    <h2 class="text-3xl md:text-4xl font-display font-bold text-forest mb-10 max-w-2xl">Comment ça se passe</h2>
+    <ol class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {steps.map((step, i) => (
+        <li class="relative p-6 rounded-2xl bg-neutral-cream">
+          <span class="absolute top-5 right-5 font-display text-4xl font-bold text-forest/10" aria-hidden="true">{i + 1}</span>
+          <span class="w-11 h-11 rounded-xl bg-accent text-forest flex items-center justify-center mb-4">
+            <Icon name={step.icon} class="w-5 h-5" />
+          </span>
+          <h3 class="font-bold text-forest text-lg mb-2">{step.title}</h3>
+          <p class="text-neutral-black/75 text-[15px] leading-relaxed">{step.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

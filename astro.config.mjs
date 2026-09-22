@@ -8,12 +8,15 @@ import compress from 'astro-compress';
 export default defineConfig({
   site: 'https://www.elagageabattage37.com', // Nom de domaine principal
   output: 'static',
+  trailingSlash: 'always',
   integrations: [
     react(),
     tailwind({
       applyBaseStyles: false, // On gère le CSS de base nous-mêmes
     }),
     sitemap({
+      // Les pages noindex n'ont rien à faire dans le sitemap.
+      filter: (page) => !page.includes('/mentions-legales'),
       changefreq: 'weekly',
       lastmod: new Date(),
       // Configuration SEO : concentration du PageRank sur homepage
@@ -24,7 +27,7 @@ export default defineConfig({
           item.changefreq = 'daily';
         }
         // SEO: Services principaux = priorité haute (trafic commercial)
-        else if (item.url.includes('/services/elagage-arbres') || item.url.includes('/services/abattage-arbres')) {
+        else if (item.url.includes('/services/elagage-arbres') || item.url.includes('/services/abattage-arbres') || item.url.includes('/elagueur-urgence')) {
           item.priority = 0.9;
           item.changefreq = 'monthly';
         }
@@ -79,10 +82,5 @@ export default defineConfig({
   image: {
     domains: [],
     remotePatterns: [],
-  },
-  vite: {
-    ssr: {
-      noExternal: ['swiper', 'three'],
-    },
   },
 });

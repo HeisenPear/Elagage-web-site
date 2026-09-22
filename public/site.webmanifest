@@ -1,11 +1,11 @@
 {
-  "name": "Élagage Abattage 37 - Élagueur Professionnel Tours",
+  "name": "Élagage Abattage 37 – Élagueur à Tours",
   "short_name": "Élagage Abattage 37",
-  "description": "Élagueur professionnel à Tours (37) - Élagage, abattage d'arbres, taille de haies - Devis gratuit 24h - Crédit d'impôt -50%",
+  "description": "Élagueur à Tours et en Indre-et-Loire : élagage, abattage, dessouchage, taille de haies. Devis gratuit.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F5F5F0",
-  "theme_color": "#0A2E1C",
+  "theme_color": "#1E3312",
   "icons": [
     {
       "src": "/favicon.ico",

@@ -6,6 +6,7 @@ const blogCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     publishDate: z.date(),
+    updatedDate: z.date().optional(),
     author: z.string().default('Élagage Abattage 37'),
     image: z.object({
       src: z.string(),
@@ -14,7 +15,7 @@ const blogCollection = defineCollection({
     category: z.enum(['elagage', 'abattage', 'conseils', 'reglementation', 'saisonnier']),
     tags: z.array(z.string()),
     featured: z.boolean().default(false),
-    seoKeywords: z.array(z.string()),
+    seoKeywords: z.array(z.string()).optional(),
     relatedCities: z.array(z.string()).optional(),
   }),
 });

@@ -1,0 +1,111 @@
+---
+/**
+ * Qui sommes-nous — page d'identité (E-E-A-T) : qui est Rudy, fiche entreprise
+ * factuelle et vérifiable. C'est la page que les moteurs IA lisent pour décrire l'entreprise.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import CallButton from '@/components/ui/CallButton.astro';
+import Icon from '@/components/ui/Icon.astro';
+import RealisationsGrid from '@/components/sections/RealisationsGrid.astro';
+import CtaBand from '@/components/sections/CtaBand.astro';
+import { siteConfig } from '@/data/siteConfig';
+import { servicePages } from '@/data/servicePages';
+import { getBusinessSchema, getFounderSchema, getBreadcrumbSchema, combineSchemas } from '@/utils/schemas';
+
+const b = siteConfig.business;
+const breadcrumbs = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Qui sommes-nous', url: '/a-propos/' },
+];
+const schema = combineSchemas(
+  { ...getFounderSchema() },
+  getBusinessSchema(),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    url: new URL('/a-propos/', Astro.site).href,
+    about: { '@id': new URL('/#organization', Astro.site).href },
+  },
+  getBreadcrumbSchema(breadcrumbs),
+);
+
+const factSheet = [
+  ['Entreprise', `${b.name} (activité de ${b.legal.name}, ${b.legal.form.toLowerCase()})`],
+  ['Gérant', `${b.founder}, élagueur grimpeur`],
+  ...(b.foundedYear ? [['Création', String(b.foundedYear)]] : []),
+  ['Adresse', `${b.address.street}, ${b.address.postalCode} ${b.address.city}`],
+  ['Téléphone', b.phoneDisplay],
+  ['Disponibilité', b.hours.display],
+  ['Zone', `Tours, métropole et Indre-et-Loire, rayon d'environ ${siteConfig.serviceArea.radius} km`],
+  ['Prestations', servicePages.map((s) => s.name).join(', ')],
+  ['Assurance', b.insurance],
+  ['Devis', 'Gratuit, écrit, sur place ou sur photo'],
+];
+---
+
+<BaseLayout
+  title={`Qui sommes-nous – ${b.founder}, élagueur grimpeur | ${b.name}`}
+  description={`${b.name}, c'est ${b.founder}, élagueur grimpeur en Indre-et-Loire. Un seul interlocuteur du devis au nettoyage, travail en grimpe, matériel professionnel. Fiche entreprise et coordonnées.`}
+  schema={schema}
+>
+  <section class="bg-forest text-white">
+    <div class="container-custom py-10 md:py-16 grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <Breadcrumbs items={breadcrumbs} />
+        <h1 class="text-3xl md:text-5xl font-display font-bold leading-tight mb-5">{b.founder}, votre élagueur en Touraine</h1>
+        <p class="text-lg md:text-xl text-white/85 mb-7">
+          {b.name} n'est pas une plateforme ni un centre d'appels. C'est l'entreprise de Rudy : il répond au téléphone, vient voir votre arbre, établit le devis et réalise le chantier.
+        </p>
+        <CallButton size="xl" cta="a-propos" label={`Appeler Rudy · ${b.phoneDisplay}`} />
+      </div>
+      <figure class="rounded-2xl overflow-hidden aspect-[4/3] bg-forest-700">
+        <img src="/images/chantiers/dessouchage-rogneuse-jardin.webp" alt="Dessouchage à la rogneuse sur chenilles dans un jardin de particulier" width="900" height="1200" fetchpriority="high" class="w-full h-full object-cover object-[center_40%]" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom grid lg:grid-cols-5 gap-12">
+      <div class="lg:col-span-3 space-y-5 text-lg text-neutral-black/85 leading-relaxed">
+        <h2 class="text-2xl md:text-3xl font-display font-bold text-forest">Notre façon de travailler</h2>
+        <p>
+          <strong>La grimpe plutôt que l'engin.</strong> La plupart des jardins de la métropole tourangelle ne laissent pas passer une nacelle. Rudy travaille encordé dans l'arbre : il peut intervenir partout, et les branches lourdes sont descendues à la corde plutôt que de tomber sur une toiture, une clôture ou un massif.
+        </p>
+        <p>
+          <strong>Tailler juste, pas tailler fort.</strong> Nous ne pratiquons pas l'étêtage, qui affaiblit l'arbre et le rend dangereux quelques années plus tard. Quand un arbre doit être réduit, on le fait progressivement, en coupant au bon endroit.
+        </p>
+        <p>
+          <strong>Un avis honnête.</strong> Si un arbre peut être conservé, on vous le dit. S'il est dangereux, on vous explique pourquoi. Et si une démarche est nécessaire en mairie (espace boisé classé, abords d'un monument historique), on vous l'indique avant l'intervention.
+        </p>
+        <p>
+          <strong>Un prix écrit, sans surprise.</strong> Nous n'affichons pas de grille de tarifs, parce que deux arbres de même hauteur ne demandent jamais le même travail. Le devis est gratuit, détaillé et établi après avoir vu l'arbre — ou sur photo pour une première idée.
+        </p>
+        <p>
+          <strong>Un chantier rendu propre.</strong> Branches broyées et évacuées, allées soufflées. Le bois peut rester sur place en bûches et le broyat servir de paillage.
+        </p>
+      </div>
+
+      <aside class="lg:col-span-2">
+        <div class="rounded-2xl border border-neutral-200 overflow-hidden">
+          <h2 class="px-6 py-4 bg-neutral-cream font-bold text-forest text-lg">Fiche entreprise</h2>
+          <dl class="divide-y divide-neutral-200 text-[15px]">
+            {factSheet.map(([k, v]) => (
+              <div class="px-6 py-3 grid grid-cols-3 gap-3">
+                <dt class="text-neutral-gray">{k}</dt>
+                <dd class="col-span-2 text-neutral-black">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <p class="mt-4 text-sm text-neutral-gray flex gap-2">
+          <Icon name="doc" class="w-4 h-4 mt-0.5 flex-shrink-0" />
+          Attestation d'assurance fournie sur simple demande avant tout chantier.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <RealisationsGrid title="Quelques chantiers" />
+  <CtaBand cta="a-propos-fin" />
+</BaseLayout>

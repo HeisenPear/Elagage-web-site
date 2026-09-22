@@ -1,211 +1,68 @@
 ---
-/**
- * Page Mentions Légales
- * Informations légales obligatoires selon la loi française
- */
+/** Mentions légales, données personnelles et cookies. */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { siteConfig } from '@/data/siteConfig';
 
-const title = 'Mentions Légales | ' + siteConfig.business.name;
-const description = 'Mentions légales et informations légales du site ' + siteConfig.business.name;
+const b = siteConfig.business;
+const h2 = 'text-2xl font-display font-bold text-forest mt-10 mb-3';
 ---
 
-<BaseLayout title={title} description={description} noindex={true}>
-  <div class="min-h-screen bg-neutral-cream">
-    <!-- Header -->
-    <div class="bg-gradient-to-br from-primary to-primary-900 text-white py-20">
-      <div class="container-custom">
-        <h1 class="text-4xl md:text-5xl font-display font-bold text-center">
-          Mentions Légales
-        </h1>
-      </div>
+<BaseLayout title={`Mentions légales | ${b.name}`} description={`Mentions légales, données personnelles et cookies du site ${b.name}.`} noindex={true}>
+  <section class="py-12 md:py-16 bg-white">
+    <div class="container-custom max-w-3xl text-neutral-black/85 leading-relaxed">
+      <h1 class="text-3xl md:text-4xl font-display font-bold text-forest mb-6">Mentions légales</h1>
+
+      <h2 class={h2}>Éditeur du site</h2>
+      <p>
+        {b.legal.name}, {b.legal.form.toLowerCase()}, exerçant sous le nom commercial « {b.name} »<br />
+        Siège : {b.legal.address}<br />
+        SIREN {b.siren.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')} — SIRET {b.siret}<br />
+        TVA intracommunautaire : {b.legal.vat}<br />
+        Téléphone : <a href={`tel:${b.phone}`} class="underline">{b.phoneDisplay}</a> — E-mail : <a href={`mailto:${b.email}`} class="underline">{b.email}</a>
+      </p>
+      <p class="mt-3">Directeur de la publication : {b.legal.name}.</p>
+
+      <h2 class={h2}>Hébergement</h2>
+      <p>Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis — vercel.com</p>
+
+      {b.legal.mediator && (
+        <>
+          <h2 class={h2}>Médiation de la consommation</h2>
+          <p>
+            Conformément à l'article L612-1 du Code de la consommation, vous pouvez recourir gratuitement au médiateur de la consommation :
+            {' '}<a href={b.legal.mediator.url} class="underline" rel="noopener">{b.legal.mediator.name}</a>.
+          </p>
+        </>
+      )}
+
+      <h2 class={h2}>Propriété intellectuelle</h2>
+      <p>Les textes et photographies de ce site sont la propriété de {b.legal.name}. Toute reproduction sans autorisation écrite est interdite.</p>
+
+      <h2 id="donnees" class={h2}>Données personnelles</h2>
+      <p>
+        Les informations saisies dans le formulaire « Être rappelé » (nom, téléphone, commune, message) servent uniquement à vous recontacter au sujet de votre demande et à établir un devis.
+        Elles sont transmises par e-mail via le service EmailJS, ne sont ni revendues ni utilisées à des fins de prospection, et sont conservées au maximum 3 ans après le dernier contact.
+      </p>
+      <p class="mt-3">
+        Vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à <a href={`mailto:${b.email}`} class="underline">{b.email}</a>.
+        En cas de difficulté, vous pouvez saisir la CNIL (cnil.fr).
+      </p>
+
+      <h2 id="cookies" class={h2}>Cookies</h2>
+      <p>
+        La mesure d'audience (Vercel Web Analytics) fonctionne sans cookie et sans donnée permettant de vous identifier.
+        Un cookie Google Ads est déposé <strong>uniquement si vous l'acceptez</strong> dans le bandeau : il sert à savoir si une annonce Google vous a amené sur le site et si vous nous avez contactés ensuite. Votre choix est conservé dans votre navigateur.
+      </p>
+      <button type="button" id="reset-consent" class="mt-4 px-4 py-2 rounded-lg border border-forest text-forest font-semibold hover:bg-neutral-cream">
+        Modifier mon choix sur les cookies
+      </button>
     </div>
+  </section>
 
-    <!-- Content -->
-    <div class="container-custom py-16">
-      <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-soft p-8 md:p-12 space-y-8">
-
-        <!-- 1. Éditeur du site -->
-        <section class="space-y-4">
-          <h2 class="text-2xl font-display font-bold text-primary border-b-2 border-accent pb-2">
-            1. Éditeur du site
-          </h2>
-          <div class="space-y-2 text-neutral-gray">
-            <p><strong>Raison sociale :</strong> {siteConfig.business.name}</p>
-            <p><strong>SIRET :</strong> {siteConfig.business.siret}</p>
-            <p>
-              <strong>Adresse :</strong><br />
-              {siteConfig.business.address.street}<br />
-              {siteConfig.business.address.postalCode} {siteConfig.business.address.city}
-            </p>
-            <p><strong>Téléphone :</strong> <a href={`tel:${siteConfig.business.phone}`} class="text-accent hover:underline">{siteConfig.business.phoneDisplay}</a></p>
-            <p><strong>Email :</strong> <a href={`mailto:${siteConfig.business.email}`} class="text-accent hover:underline">{siteConfig.business.email}</a></p>
-          </div>
-        </section>
-
-        <!-- 2. Directeur de la publication -->
-        <section class="space-y-4">
-          <h2 class="text-2xl font-display font-bold text-primary border-b-2 border-accent pb-2">
-            2. Directeur de la publication
-          </h2>
-          <div class="space-y-2 text-neutral-gray">
-            <p>Le directeur de la publication du site est le représentant légal de l'entreprise {siteConfig.business.name}.</p>
-          </div>
-        </section>
-
-        <!-- 3. Hébergement -->
-        <section class="space-y-4">
-          <h2 class="text-2xl font-display font-bold text-primary border-b-2 border-accent pb-2">
-            3. Hébergement du site
-          </h2>
-          <div class="space-y-2 text-neutral-gray">
-            <p><strong>Hébergeur :</strong> Vercel Inc.</p>
-            <p>
-              <strong>Adresse :</strong><br />
-              340 S Lemon Ave #4133<br />
-              Walnut, CA 91789<br />
-              États-Unis
-            </p>
-            <p><strong>Site web :</strong> <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">vercel.com</a></p>
-          </div>
-        </section>
-
-        <!-- 4. Propriété intellectuelle -->
-        <section class="space-y-4">
-          <h2 class="text-2xl font-display font-bold text-primary border-b-2 border-accent pb-2">
-            4. Propriété intellectuelle
-          </h2>
-          <div class="space-y-2 text-neutral-gray">
-            <p>
-              L'ensemble du contenu de ce site (textes, images, vidéos, logos, etc.) est la propriété exclusive de {siteConfig.business.name} ou de ses partenaires.
-            </p>
-            <p>
-              Toute reproduction, distribution, modification, adaptation, retransmission ou publication de ces différents éléments est strictement interdite sans l'accord exprès par écrit de {siteConfig.business.name}.
-            </p>
-            <p>
-              Cette représentation ou reproduction, par quelque procédé que ce soit, constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle.
-            </p>
-          </div>
-        </section>
-
-        <!-- 5. Protection des données personnelles -->
-        <section class="space-y-4">
-          <h2 class="text-2xl font-display font-bold text-primary border-b-2 border-accent pb-2">
-            5. Protection des données personnelles (RGPD)
-          </h2>
-          <div class="space-y-4 text-neutral-gray">
-            <div>
-              <h3 class="font-semibold text-lg text-primary mb-2">5.1. Responsable du traitement</h3>
-              <p>Le responsable du traitement des données personnelles collectées sur ce site est {siteConfig.business.name}.</p>
-            </div>
-
-            <div>
-              <h3 class="font-semibold text-lg text-primary mb-2">5.2. Données collectées</h3>
-              <p>Les données personnelles collectées via le formulaire de contact sont :</p>
-              <ul class="list-disc list-inside ml-4 space-y-1">
-                <li>Nom et prénom</li>
-                <li>Adresse email</li>
-                <li>Numéro de téléphone</li>
-                <li>Message et informations relatives à votre demande</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="font-semibold text-lg text-primary mb-2">5.3. Finalité du traitement</h3>
-              <p>Ces données sont collectées uniquement pour :</p>
-              <ul class="list-disc list-inside ml-4 space-y-1">
-                <li>Traiter vos demandes de devis</li>
-                <li>Vous recontacter dans le cadre de votre demande</li>
-                <li>Vous envoyer des informations commerciales (avec votre consentement préalable)</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="font-semibold text-lg text-primary mb-2">5.4. Durée de conservation</h3>
-              <p>Vos données personnelles sont conservées pendant une durée maximale de 3 ans à compter de notre dernier contact.</p>
-            </div>
-
-            <div>
-              <h3 class="font-semibold text-lg text-primary mb-2">5.5. Vos droits</h3>
-              <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :</p>
-              <ul class="list-disc list-inside ml-4 space-y-1">
-                <li><strong>Droit d'accès :</strong> obtenir la confirmation que des données vous concernant sont traitées et en obtenir une copie</li>
-                <li><strong>Droit de rectification :</strong> faire corriger des données inexactes ou incomplètes</li>
-                <li><strong>Droit à l'effacement :</strong> demander la suppression de vos données</li>
-                <li><strong>Droit d'opposition :</strong> vous opposer au traitement de vos données</li>
-                <li><strong>Droit à la portabilité :</strong> recevoir vos données dans un format structuré</li>
-                <li><strong>Droit de limitation :</strong> demander la limitation du traitement de vos données</li>
-              </ul>
-              <p class="mt-4">
-                Pour exercer ces droits, vous pouvez nous contacter par email à <a href={`mailto:${siteConfig.business.email}`} class="text-accent hover:underline font-semibold">{siteConfig.business.email}</a> ou par courrier à l'adresse indiquée ci-dessus.
-              </p>
-              <p class="mt-2">
-                Vous disposez également du droit d'introduire une réclamation auprès de la CNIL (Commission Nationale de l'Informatique et des Libertés) : <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">www.cnil.fr</a>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 6. Cookies -->
-        <section class="space-y-4">
-          <h2 class="text-2xl font-display font-bold text-primary border-b-2 border-accent pb-2">
-            6. Cookies
-          </h2>
-          <div class="space-y-2 text-neutral-gray">
-            <p>
-              Ce site n'utilise aucun cookie de suivi ou de publicité. Aucune donnée personnelle n'est collectée via des cookies sans votre consentement préalable.
-            </p>
-            <p>
-              Si des outils d'analyse statistique sont activés ultérieurement (Google Analytics, etc.), vous en serez informé et pourrez donner ou refuser votre consentement via un bandeau dédié.
-            </p>
-          </div>
-        </section>
-
-        <!-- 7. Liens externes -->
-        <section class="space-y-4">
-          <h2 class="text-2xl font-display font-bold text-primary border-b-2 border-accent pb-2">
-            7. Liens externes
-          </h2>
-          <div class="space-y-2 text-neutral-gray">
-            <p>
-              Ce site peut contenir des liens vers des sites externes. {siteConfig.business.name} n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.
-            </p>
-          </div>
-        </section>
-
-        <!-- 8. Crédits -->
-        <section class="space-y-4">
-          <h2 class="text-2xl font-display font-bold text-primary border-b-2 border-accent pb-2">
-            8. Crédits
-          </h2>
-          <div class="space-y-2 text-neutral-gray">
-            <p><strong>Conception et développement :</strong> Site développé avec Astro, React et TailwindCSS</p>
-            <p><strong>Typographies :</strong> Inter et Space Grotesk (Google Fonts)</p>
-            <p><strong>Icônes :</strong> Lucide React</p>
-          </div>
-        </section>
-
-        <!-- 9. Contact -->
-        <section class="space-y-4">
-          <h2 class="text-2xl font-display font-bold text-primary border-b-2 border-accent pb-2">
-            9. Nous contacter
-          </h2>
-          <div class="space-y-2 text-neutral-gray">
-            <p>Pour toute question concernant ces mentions légales, vous pouvez nous contacter :</p>
-            <ul class="list-none space-y-2 ml-4">
-              <li>📧 Email : <a href={`mailto:${siteConfig.business.email}`} class="text-accent hover:underline font-semibold">{siteConfig.business.email}</a></li>
-              <li>📞 Téléphone : <a href={`tel:${siteConfig.business.phone}`} class="text-accent hover:underline font-semibold">{siteConfig.business.phoneDisplay}</a></li>
-              <li>📍 Adresse : {siteConfig.business.address.street}, {siteConfig.business.address.postalCode} {siteConfig.business.address.city}</li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- Date de dernière mise à jour -->
-        <div class="text-sm text-neutral-gray/60 text-center pt-8 border-t border-neutral-cream">
-          <p>Dernière mise à jour : Janvier 2025</p>
-        </div>
-
-      </div>
-    </div>
-  </div>
+  <script is:inline>
+    document.getElementById('reset-consent')?.addEventListener('click', function () {
+      try { localStorage.removeItem('cookie-consent'); } catch (e) {}
+      location.reload();
+    });
+  </script>
 </BaseLayout>

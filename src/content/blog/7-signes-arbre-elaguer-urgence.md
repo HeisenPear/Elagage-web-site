@@ -414,7 +414,7 @@ Chute totale de l'arbre (pivot racinaire compromis).
 
 - **Diagnostic précis** : détection maladies, parasites
 - **Équipement adapté** : nacelle, grimpe, outils pro
-- **Sécurité maximale** : formation, assurance RC Pro 8M€
+- **Sécurité maximale** : formation, assurance responsabilité civile professionnelle
 - **Conseil personnalisé** : élagage ou abattage ?
 - **Respect de l'arbre** : taille raisonnée
 
@@ -440,7 +440,7 @@ Un élagage préventif coûte **3 à 5 fois moins cher** qu'un abattage d'urgenc
 ## Questions fréquentes
 
 **Combien coûte une inspection d'arbre ?**
-Diagnostic simple : généralement **gratuit** lors de la demande de devis. Expertise approfondie (sondage, test traction) : 100-300 €.
+Le premier diagnostic visuel est fait **gratuitement** lors de la visite pour le devis. Pour un arbre à fort enjeu, une expertise approfondie (sondage du bois, test de traction) peut être confiée à un expert arboricole, sur devis.
 
 **Puis-je élaguer moi-même un arbre dangereux ?**
 ❌ **Non**. Danger mortel (chute, électrocution). Assurance habitation ne couvre pas.

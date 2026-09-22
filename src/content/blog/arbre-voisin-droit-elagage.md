@@ -15,9 +15,6 @@ seoKeywords:
   - "arbre limite propriété"
   - "réglementation arbre voisinage"
 relatedCities: ["Tours", "Indre-et-Loire"]
-image:
-  src: "/images/blog/arbre-voisin-droit.svg"
-  alt: "Branches d'un arbre du voisin qui empiètent sur une propriété"
 ---
 
 Les arbres ne connaissent pas les limites de propriété. Quand les branches de l'arbre de votre voisin envahissent votre jardin, ou que ses racines soulèvent votre terrasse, la question du droit se pose immanquablement.
@@ -171,6 +168,6 @@ Nous pouvons également **accompagner votre démarche** en vous fournissant un r
 
 Appelez-nous au **06 31 46 43 50** pour un conseil gratuit et un devis d'élagage en limite de propriété. Nous intervenons dans tout le département 37.
 
-→ [Notre service d'élagage d'arbres](/services/elagage-arbres)
-→ [Que faire si un arbre est dangereux ?](/blog/que-faire-arbre-dangereux)
-→ [Réglementation élagage à Tours](/blog/reglementation-elagage-tours-37)
+→ [Notre service d'élagage d'arbres](/services/elagage-arbres/)
+→ [Que faire si un arbre est dangereux ?](/blog/que-faire-arbre-dangereux/)
+→ [Réglementation élagage à Tours](/blog/reglementation-elagage-tours-37/)

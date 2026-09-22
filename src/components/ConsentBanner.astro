@@ -1,0 +1,42 @@
+---
+/**
+ * Bandeau cookies minimal, conforme CNIL : refuser est aussi simple qu'accepter,
+ * aucune balise publicitaire n'est chargée avant un clic sur « Accepter ».
+ * Placé au-dessus de la barre d'appel mobile pour ne jamais la masquer.
+ */
+---
+
+<div
+  id="consent-banner"
+  class="hidden fixed z-[60] left-3 right-3 bottom-[80px] lg:bottom-5 lg:left-5 lg:right-auto lg:max-w-sm bg-white text-neutral-black rounded-xl shadow-lift border border-neutral-200 p-4 text-sm leading-snug"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Cookies"
+>
+  <p class="mb-3">
+    Nous utilisons un cookie Google Ads pour savoir si nos annonces vous ont amené ici. Rien d'autre.
+    <a href="/mentions-legales/#cookies" class="underline">En savoir plus</a>
+  </p>
+  <div class="flex gap-2">
+    <button type="button" data-consent="denied" class="flex-1 px-3 py-2 rounded-lg border border-neutral-300 font-semibold hover:bg-neutral-cream">Refuser</button>
+    <button type="button" data-consent="granted" class="flex-1 px-3 py-2 rounded-lg border border-forest bg-forest text-white font-semibold hover:bg-forest-700">Accepter</button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var banner = document.getElementById('consent-banner');
+    if (!banner) return;
+    var choice = null;
+    try { choice = localStorage.getItem('cookie-consent'); } catch (e) {}
+    if (!choice) banner.classList.remove('hidden');
+    banner.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-consent]');
+      if (!btn) return;
+      var value = btn.getAttribute('data-consent');
+      try { localStorage.setItem('cookie-consent', value); } catch (err) {}
+      if (value === 'granted' && window.loadGoogleAds) window.loadGoogleAds();
+      banner.classList.add('hidden');
+    });
+  })();
+</script>

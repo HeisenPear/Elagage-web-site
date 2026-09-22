@@ -1,0 +1,37 @@
+---
+/** Bandeau d'appel à l'action de fin de page : appel en priorité, SMS photo en second. */
+import CallButton from '@/components/ui/CallButton.astro';
+import Icon from '@/components/ui/Icon.astro';
+import GoogleRating from '@/components/ui/GoogleRating.astro';
+import { siteConfig, getSmsLink } from '@/data/siteConfig';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  cta?: string;
+}
+const {
+  title = 'Un arbre à tailler, abattre ou dessoucher ?',
+  subtitle = "Appelez Rudy directement : il vous conseille au téléphone et passe voir l'arbre gratuitement pour un devis écrit.",
+  cta = 'bandeau-fin',
+} = Astro.props;
+---
+
+<section class="py-16 md:py-20 bg-forest text-white">
+  <div class="container-custom max-w-3xl text-center">
+    <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">{title}</h2>
+    <p class="text-lg text-white/80 mb-8">{subtitle}</p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <CallButton size="xl" cta={cta} />
+      <a
+        href={getSmsLink()}
+        data-cta={cta}
+        class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-white/60 font-bold hover:bg-white hover:text-forest transition-colors"
+      >
+        <Icon name="camera" class="w-5 h-5" /> Envoyer une photo par SMS
+      </a>
+    </div>
+    <GoogleRating tone="dark" class="mt-6 justify-center" />
+    <p class="mt-3 text-sm text-white/60">{siteConfig.business.hours.display} · Devis gratuit et sans engagement · {siteConfig.business.address.city} ({siteConfig.business.address.postalCode})</p>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+/** Note Google réelle de la fiche, avec lien vers les avis (rien si désactivé). */
+import { getReviewsLabel } from '@/data/siteConfig';
+
+interface Props {
+  tone?: 'dark' | 'light';
+  class?: string;
+}
+const { tone = 'light', class: extra = '' } = Astro.props;
+const r = getReviewsLabel();
+---
+
+{r && (
+  <a
+    href={r.url}
+    target="_blank"
+    rel="noopener"
+    class:list={[
+      'inline-flex items-center gap-2 text-sm font-semibold hover:underline',
+      tone === 'dark' ? 'text-white' : 'text-forest',
+      extra,
+    ]}
+  >
+    <span class="text-[#F5B301] tracking-tight text-base" aria-hidden="true">★★★★★</span>
+    <span>{r.rating}/5 · {r.count} avis Google</span>
+  </a>
+)}

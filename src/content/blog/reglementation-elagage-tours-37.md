@@ -1,5 +1,5 @@
 ---
-title: "Réglementation Élagage à Tours (37) : Autorisations et Obligations 2025"
+title: "Réglementation de l'élagage à Tours (37) : autorisations et obligations"
 description: "Guide complet de la réglementation élagage à Tours et en Indre-et-Loire. Autorisations, distances légales, obligations et sanctions en 2025."
 publishDate: 2025-12-12
 author: "Élagage Abattage 37"
@@ -95,8 +95,8 @@ Zones boisées protégées identifiées au PLU.
 4. Possible obligation de replanter
 
 **Sanctions** :
-- Amende jusqu'à **30 000 €**
-- Obligation de replanter (2 arbres pour 1 abattu)
+- Amende pouvant atteindre **300 000 €** (art. L480-4 du Code de l'urbanisme)
+- Obligation de replanter
 - Remise en état des lieux
 
 ---
@@ -177,7 +177,7 @@ Le propriétaire doit :
 
 **Défaut d'entretien** :
 - Enedis peut intervenir d'office
-- Frais facturés au propriétaire (jusqu'à 500 €/arbre)
+- Frais facturés au propriétaire de l'arbre
 - Responsabilité en cas d'incendie ou coupure de courant
 
 ---
@@ -313,7 +313,7 @@ Le propriétaire doit :
 
 | Infraction | Amende | Autres sanctions |
 |------------|--------|------------------|
-| **Abattage sans autorisation (EBC)** | Jusqu'à 30 000 € | Obligation de replanter |
+| **Abattage sans autorisation (EBC)** | Jusqu'à 300 000 € (art. L480-4 C. urb.) | Obligation de replanter |
 | **Destruction nid d'oiseaux** | Jusqu'à 150 000 € | Peine de prison (3 ans) |
 | **Non-respect distances** | Variable | Abattage forcé |
 | **Défaut élagage lignes électriques** | Frais d'intervention Enedis | Responsabilité coupures |
@@ -322,14 +322,9 @@ Le propriétaire doit :
 
 ## 10. Aides et financements
 
-### 💰 Crédit d'impôt 50%
+### Crédit d'impôt : attention aux promesses
 
-**Élagage éligible** au crédit d'impôt services à la personne :
-- ✅ Résidence principale
-- ✅ Entreprise déclarée
-- ✅ Plafond : 5 000 € de dépenses/an (2 500 € de crédit)
-
-📄 **Documents nécessaires** : Facture conforme + attestation fiscale
+Le crédit d'impôt « services à la personne » (50 %) ne couvre que les **petits travaux de jardinage réalisés à hauteur d'homme**. L'élagage qui nécessite de grimper dans l'arbre ou d'utiliser cordes et harnais, l'abattage et le dessouchage en sont **exclus** (BOFiP BOI-IR-RICI-150-10 ; réponse ministérielle publiée au JO Sénat du 8 décembre 2022). La prestation doit en outre être réalisée par un organisme déclaré de services à la personne. Un devis qui promet « -50 % » sur un élagage en hauteur ou un abattage vous expose à un redressement.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "Que faire si un arbre est dangereux ? Guide complet 2026"
+title: "Que faire si un arbre est dangereux ?"
 description: "Arbre penché, mort, endommagé par la tempête ? Découvrez comment identifier un arbre dangereux, vos obligations légales et les étapes à suivre pour intervenir rapidement."
 publishDate: 2026-01-15
 author: "Élagage Abattage 37"
@@ -15,9 +15,6 @@ seoKeywords:
   - "arbre mort dangereux"
   - "responsabilité arbre dangereux"
 relatedCities: ["Tours", "Joué-lès-Tours", "Amboise", "Saint-Cyr-sur-Loire"]
-image:
-  src: "/images/blog/arbre-dangereux.svg"
-  alt: "Arbre dangereux menaçant une habitation après tempête"
 ---
 
 Un arbre peut devenir dangereux progressivement — ou du jour au lendemain après une tempête. Savoir **reconnaître les signes d'un arbre dangereux** et connaître les **démarches à suivre** peut éviter des accidents graves.
@@ -125,15 +122,11 @@ Faites appel à un **élagueur professionnel certifié** qui :
 
 L'élagage de sécurité consiste à supprimer les parties problématiques tout en conservant l'arbre. C'est souvent la solution préférable, moins coûteuse que l'abattage et qui préserve le patrimoine arboré.
 
-**Prix moyen élagage sécurité à Tours :** 300 – 800€ selon l'arbre.
-
 ### Le haubanage (consolidation)
 
 **Quand l'utiliser :** Arbre avec une fourche à risque, mais viable et de valeur.
 
 Le haubanage consiste à installer des câbles en acier ou en fibres synthétiques entre les branches majeures pour limiter les mouvements et réduire le risque de casse. Solution conservative qui préserve l'arbre.
-
-**Prix moyen haubanage :** 200 – 600€.
 
 ### L'abattage
 
@@ -141,9 +134,7 @@ Le haubanage consiste à installer des câbles en acier ou en fibres synthétiqu
 
 L'abattage est la solution définitive. Selon l'espace disponible, on procède soit par **abattage directionnel** (arbre abattu d'un bloc), soit par **démontage section par section** (en zone contrainte).
 
-**Prix moyen abattage à Tours :** 300 – 1500€+ selon la situation.
-
-Lire aussi : [Combien coûte un abattage d'arbre à Tours ?](/blog/prix-abattage-arbre)
+Lire aussi : [Ce qui fait le prix d'un abattage d'arbre](/blog/prix-abattage-arbre/)
 
 ---
 
@@ -198,5 +189,5 @@ Un arbre dangereux n'attend pas. Plus vous attendez, plus le risque s'aggrave �
 
 Appelez-nous au **06 31 46 43 50** pour une intervention d'urgence ou un diagnostic gratuit. Nous intervenons 7j/7 dans tout le département 37.
 
-→ [Voir notre service d'abattage d'arbres](/services/abattage-arbres)
-→ [En savoir plus sur l'élagage de sécurité](/services/elagage-arbres)
+→ [Voir notre service d'abattage d'arbres](/services/abattage-arbres/)
+→ [En savoir plus sur l'élagage de sécurité](/services/elagage-arbres/)

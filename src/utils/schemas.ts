@@ -1,255 +1,184 @@
 /**
- * Générateurs de schemas Schema.org JSON-LD pour SEO optimisé
+ * Données structurées Schema.org (JSON-LD).
+ * Une seule entité entreprise (@id stable) référencée partout, un fondateur
+ * identifié (Rudy Capello) : Google et les moteurs IA relient ainsi toutes les
+ * pages à la même entreprise locale. Aucun prix. Pas d'aggregateRating : la note
+ * Google (reprise d'un autre site) est interdite dans les données structurées.
  */
-import { siteConfig } from '@/data/siteConfig';
+import { siteConfig, getYearsInBusiness } from '@/data/siteConfig';
+import { servicePages } from '@/data/servicePages';
 
-/**
- * Schema LocalBusiness - Page d'accueil principale
- */
-export function getLocalBusinessSchema() {
-  const gr = siteConfig.business.googleReviews;
-  // N'injecte la note agrégée QUE si de vrais avis Google sont renseignés.
-  const realRating =
-    gr?.enabled && gr.ratingValue && gr.reviewCount
-      ? {
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: gr.ratingValue.toString(),
-            bestRating: '5',
-            worstRating: '1',
-            reviewCount: gr.reviewCount.toString(),
-            ratingCount: gr.reviewCount.toString(),
-          },
-        }
-      : {};
+const SITE = (import.meta.env.SITE || 'https://www.elagageabattage37.com').replace(/\/$/, '');
+const BUSINESS_ID = `${SITE}/#organization`;
+const FOUNDER_ID = `${SITE}/#rudy-capello`;
+const WEBSITE_ID = `${SITE}/#website`;
+const LOGO = `${SITE}/images/logos/logo-512.png`;
 
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': `${import.meta.env.SITE}/#organization`,
-    name: siteConfig.business.name,
-    description: siteConfig.business.description,
-    url: import.meta.env.SITE,
-    telephone: siteConfig.business.phone,
-    email: siteConfig.business.email,
-    taxID: siteConfig.business.siret,
-    priceRange: '€€',
-    image: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
-    logo: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: siteConfig.business.address.street,
-      addressLocality: siteConfig.business.address.city,
-      postalCode: siteConfig.business.address.postalCode,
-      addressRegion: siteConfig.business.address.region,
-      addressCountry: siteConfig.business.address.countryCode,
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: siteConfig.business.coordinates.lat.toString(),
-      longitude: siteConfig.business.coordinates.lng.toString(),
-    },
-    // SEO local : cercle d'intervention + liste explicite des communes desservies
-    areaServed: [
-      {
-        '@type': 'GeoCircle',
-        geoMidpoint: {
-          '@type': 'GeoCoordinates',
-          latitude: siteConfig.business.coordinates.lat.toString(),
-          longitude: siteConfig.business.coordinates.lng.toString(),
-        },
-        geoRadius: `${siteConfig.serviceArea.radius * 1000}`,
-      },
-      ...siteConfig.serviceArea.cities.map((cityName) => ({
-        '@type': 'City',
-        name: cityName,
-      })),
-    ],
-    // Carte Google + point de contact (renforce l'intention d'appel)
-    hasMap: `https://www.google.com/maps/search/?api=1&query=${siteConfig.business.coordinates.lat},${siteConfig.business.coordinates.lng}`,
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: siteConfig.business.phone,
-      contactType: 'customer service',
-      areaServed: 'FR',
-      availableLanguage: ['French'],
-    },
-    // Domaines d'expertise (signal sémantique pour Google)
-    knowsAbout: [
-      'Élagage',
-      "Abattage d'arbres",
-      'Dessouchage',
-      'Taille de haies',
-      'Soin aux arbres',
-      'Arboriculture',
-      "Démontage d'arbre",
-      'Taille raisonnée',
-      'Entretien des espaces verts',
-    ],
-    // SEO: Horaires réels (pas 00:00-23:59 qui invalide le schema Google)
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '07:00',
-        closes: '20:00',
-      },
-    ],
-    ...realRating,
-    // SEO: Catalogue de services pour les rich results Google
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: "Services d'élagage en Indre-et-Loire",
-      itemListElement: [
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: "Élagage d'arbres", url: `${import.meta.env.SITE}/services/elagage-arbres` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: "Abattage d'arbres", url: `${import.meta.env.SITE}/services/abattage-arbres` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Dessouchage', url: `${import.meta.env.SITE}/services/dessouchage-arbres` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Taille de haies', url: `${import.meta.env.SITE}/services/taille-haies` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Entretien espaces verts', url: `${import.meta.env.SITE}/services/entretien-espaces-verts` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Élagage arbres fruitiers', url: `${import.meta.env.SITE}/services/elagage-fruitiers` } },
-      ],
-    },
-    sameAs: Object.values(siteConfig.business.social).filter(Boolean),
-  };
-}
+export const abs = (path: string) => (path.startsWith('http') ? path : `${SITE}${path.startsWith('/') ? '' : '/'}${path}`);
 
-/**
- * Schema LocalBusiness spécifique à une ville (pages zones)
- * SEO: serviceArea pointe sur la ville précise pour le SEO local
- */
-// Identifiants Wikidata des communes (pour lier l'entité ville à Google KG).
+// Identifiants Wikidata des communes (relie l'entité ville au Knowledge Graph).
+// Vérifiés via l'API Wikidata le 22/09/2026 — ne pas en ajouter sans vérifier.
 const CITY_WIKIDATA: Record<string, string> = {
-  'Tours': 'Q47317',
-  'Amboise': 'Q182878',
-  'Joué-lès-Tours': 'Q242921',
-  'Saint-Cyr-sur-Loire': 'Q749973',
-  'Montlouis-sur-Loire': 'Q691846',
-  'Chambray-lès-Tours': 'Q691634',
-  'Saint-Avertin': 'Q629864',
-  'Ballan-Miré': 'Q649432',
-  'Fondettes': 'Q629797',
-  'La Riche': 'Q629849',
-  'Saint-Pierre-des-Corps': 'Q629860',
+  'Tours': 'Q288',
+  'Amboise': 'Q205116',
+  'Joué-lès-Tours': 'Q269364',
+  'Saint-Cyr-sur-Loire': 'Q656494',
+  'Montlouis-sur-Loire': 'Q638668',
+  'Chambray-lès-Tours': 'Q641181',
+  'Saint-Avertin': 'Q932130',
+  'Ballan-Miré': 'Q632428',
+  'Fondettes': 'Q527676',
+  'La Riche': 'Q661814',
+  'Luynes': 'Q693979',
 };
 
-export function getCityLocalBusinessSchema(cityName: string, cityPostalCode: string) {
-  const wikidataId = CITY_WIKIDATA[cityName];
-  const cityEntity: Record<string, unknown> = { '@type': 'City', name: cityName };
-  if (wikidataId) {
-    cityEntity['@id'] = `https://www.wikidata.org/wiki/${wikidataId}`;
-  }
+function cityEntity(name: string) {
+  const id = CITY_WIKIDATA[name];
+  return id
+    ? { '@type': 'City', name, sameAs: `https://www.wikidata.org/wiki/${id}` }
+    : { '@type': 'City', name };
+}
+
+const address = {
+  '@type': 'PostalAddress',
+  streetAddress: siteConfig.business.address.street,
+  addressLocality: siteConfig.business.address.city,
+  postalCode: siteConfig.business.address.postalCode,
+  addressRegion: siteConfig.business.address.region,
+  addressCountry: siteConfig.business.address.countryCode,
+};
+
+const geo = {
+  '@type': 'GeoCoordinates',
+  latitude: siteConfig.business.coordinates.lat,
+  longitude: siteConfig.business.coordinates.lng,
+};
+
+function sameAs() {
+  const b = siteConfig.business;
+  return [b.googleBusiness.url, b.social.facebook, b.social.instagram].filter(Boolean);
+}
+
+/** Entreprise locale — entité principale, présente sur toutes les pages. */
+export function getBusinessSchema() {
+  const b = siteConfig.business;
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': `${import.meta.env.SITE}/#organization`,
-    name: siteConfig.business.name,
-    description: `${siteConfig.business.name} — Élagueur professionnel à ${cityName} (${cityPostalCode}). Élagage, abattage, dessouchage. Certifié, assuré RC Pro 8M€.`,
-    url: import.meta.env.SITE,
-    telephone: siteConfig.business.phone,
-    email: siteConfig.business.email,
-    priceRange: '€€',
-    image: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
-    logo: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: siteConfig.business.address.street,
-      addressLocality: siteConfig.business.address.city,
-      postalCode: siteConfig.business.address.postalCode,
-      addressRegion: siteConfig.business.address.region,
-      addressCountry: siteConfig.business.address.countryCode,
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: siteConfig.business.coordinates.lat.toString(),
-      longitude: siteConfig.business.coordinates.lng.toString(),
-    },
+    '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
+    '@id': BUSINESS_ID,
+    name: b.name,
+    alternateName: `${b.name} – ${b.founder}`,
+    description: b.description,
+    url: `${SITE}/`,
+    telephone: b.phone,
+    email: b.email,
+    image: [abs('/images/chantiers/elagueur-grimpeur-demontage-conifere.webp'), abs('/images/chantiers/dessouchage-rogneuse-jardin.webp')],
+    logo: LOGO,
+    address,
+    geo,
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${b.name} ${b.address.city}`)}`,
+    ...(b.foundedYear ? { foundingDate: String(b.foundedYear) } : {}),
+    founder: { '@id': FOUNDER_ID },
+    openingHoursSpecification: [
+      { '@type': 'OpeningHoursSpecification', dayOfWeek: b.hours.days, opens: b.hours.opens, closes: b.hours.closes },
+    ],
     areaServed: [
       {
         '@type': 'GeoCircle',
-        geoMidpoint: {
-          '@type': 'GeoCoordinates',
-          latitude: siteConfig.business.coordinates.lat.toString(),
-          longitude: siteConfig.business.coordinates.lng.toString(),
-        },
-        geoRadius: `${siteConfig.serviceArea.radius * 1000}`,
+        geoMidpoint: geo,
+        geoRadius: siteConfig.serviceArea.radius * 1000,
       },
-      cityEntity,
+      ...siteConfig.serviceArea.cities.map(cityEntity),
     ],
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '07:00',
-        closes: '20:00',
-      },
+    knowsAbout: [
+      'Élagage', "Abattage d'arbres", "Démontage d'arbres par rétention", 'Dessouchage', 'Rognage de souches',
+      'Taille de haies', 'Taille douce', "Taille d'arbres fruitiers", 'Débroussaillage', 'Arboriculture ornementale',
     ],
-    // Note agrégée injectée uniquement si de vrais avis Google sont renseignés.
-    ...(siteConfig.business.googleReviews?.enabled &&
-    siteConfig.business.googleReviews.ratingValue &&
-    siteConfig.business.googleReviews.reviewCount
-      ? {
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: siteConfig.business.googleReviews.ratingValue.toString(),
-            bestRating: '5',
-            worstRating: '1',
-            reviewCount: siteConfig.business.googleReviews.reviewCount.toString(),
-            ratingCount: siteConfig.business.googleReviews.reviewCount.toString(),
-          },
-        }
-      : {}),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: "Travaux d'élagage et d'entretien d'arbres",
+      itemListElement: servicePages.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.name, url: abs(`/services/${s.slug}/`) },
+      })),
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: b.phone,
+      contactType: 'customer service',
+      availableLanguage: 'French',
+      areaServed: 'FR',
+    },
+    ...(sameAs().length ? { sameAs: sameAs() } : {}),
   };
 }
 
-/**
- * Schema Service - Pages services individuelles
- */
-export function getServiceSchema(serviceName: string, serviceDescription: string, serviceSlug: string) {
+/** Rudy Capello — fondateur, élagueur grimpeur (E-E-A-T). */
+export function getFounderSchema() {
+  const years = getYearsInBusiness();
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': FOUNDER_ID,
+    name: siteConfig.business.founder,
+    jobTitle: 'Élagueur grimpeur, gérant',
+    worksFor: { '@id': BUSINESS_ID },
+    url: abs('/a-propos/'),
+    ...(years ? { description: `Élagueur grimpeur en Indre-et-Loire, à la tête de ${siteConfig.business.name} depuis ${siteConfig.business.foundedYear}.` } : {}),
+    knowsAbout: ['Élagage', "Abattage d'arbres", 'Grimpe arboricole', 'Dessouchage'],
+    workLocation: { '@type': 'Place', address },
+  };
+}
+
+export function getWebSiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': WEBSITE_ID,
+    url: `${SITE}/`,
+    name: siteConfig.business.name,
+    inLanguage: 'fr-FR',
+    publisher: { '@id': BUSINESS_ID },
+  };
+}
+
+/** Page service : le service est rattaché à l'entreprise et aux communes desservies. */
+export function getServiceSchema(serviceName: string, serviceDescription: string, serviceSlug: string, cityNames?: string[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': abs(`/services/${serviceSlug}/#service`),
     serviceType: serviceName,
     name: serviceName,
     description: serviceDescription,
-    provider: {
-      '@id': `${import.meta.env.SITE}/#organization`,
-    },
-    areaServed: {
-      '@type': 'City',
-      name: siteConfig.serviceArea.mainCity,
-    },
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceRange: '€€',
-    },
-    url: `${import.meta.env.SITE}/services/${serviceSlug}`,
+    url: abs(`/services/${serviceSlug}/`),
+    provider: { '@id': BUSINESS_ID },
+    areaServed: (cityNames ?? siteConfig.serviceArea.cities.slice(0, 12)).map(cityEntity),
   };
 }
 
-/**
- * Schema FAQPage - Pour pages avec FAQ
- */
-export function getFAQSchema(faqs?: typeof siteConfig.faq) {
-  const faqData = faqs || siteConfig.faq;
+/** Page ville : l'entreprise, avec la commune mise en avant dans areaServed. */
+export function getCityBusinessSchema(cityName: string, pageUrl: string) {
+  const base = getBusinessSchema();
+  return {
+    ...base,
+    areaServed: [cityEntity(cityName), ...(base.areaServed as object[])],
+    subjectOf: { '@type': 'WebPage', url: abs(pageUrl) },
+  };
+}
 
+export function getFAQSchema(faqs: { question: string; answer: string }[] = siteConfig.faq) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqData.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
     })),
   };
 }
 
-/**
- * Schema BreadcrumbList - Pour toutes les pages non-homepage
- */
 export function getBreadcrumbSchema(breadcrumbs: { name: string; url: string }[]) {
   return {
     '@context': 'https://schema.org',
@@ -258,134 +187,35 @@ export function getBreadcrumbSchema(breadcrumbs: { name: string; url: string }[]
       '@type': 'ListItem',
       position: index + 1,
       name: crumb.name,
-      item: crumb.url,
+      item: abs(crumb.url),
     })),
   };
 }
 
-/**
- * Schema Review - Pour les avis clients
- */
-export function getReviewSchema(review: typeof siteConfig.testimonials[0]) {
+export function getArticleSchema(opts: {
+  title: string;
+  description: string;
+  url: string;
+  datePublished: Date;
+  dateModified?: Date;
+  image?: string;
+}) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Review',
-    itemReviewed: {
-      '@type': 'LocalBusiness',
-      '@id': `${import.meta.env.SITE}/#organization`,
-    },
-    author: {
-      '@type': 'Person',
-      name: review.name,
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: review.city,
-      },
-    },
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: review.rating.toString(),
-      bestRating: '5',
-    },
-    reviewBody: review.text,
-    datePublished: review.date,
-  };
-}
-
-/**
- * Schema Article - Pour le blog (si ajouté ultérieurement)
- */
-export function getArticleSchema(
-  title: string,
-  description: string,
-  datePublished: string,
-  dateModified: string,
-  imageUrl: string,
-  authorName: string = siteConfig.business.name
-) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: title,
-    description: description,
-    image: imageUrl,
-    datePublished: datePublished,
-    dateModified: dateModified,
-    author: {
-      '@type': 'Person',
-      name: authorName,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.business.name,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
-      },
-    },
-  };
-}
-
-/**
- * Schema Organization - Définit clairement l'organisation pour Google
- */
-export function getOrganizationSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': `${import.meta.env.SITE}/#organization`,
-    name: siteConfig.business.name,
-    alternateName: siteConfig.business.name,
-    legalName: siteConfig.business.name,
-    url: import.meta.env.SITE,
-    logo: {
-      '@type': 'ImageObject',
-      url: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
-      width: 400,
-      height: 400,
-    },
-    description: siteConfig.business.description,
-    email: siteConfig.business.email,
-    telephone: siteConfig.business.phone,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: siteConfig.business.address.street,
-      addressLocality: siteConfig.business.address.city,
-      postalCode: siteConfig.business.address.postalCode,
-      addressRegion: siteConfig.business.address.region,
-      addressCountry: siteConfig.business.address.countryCode,
-    },
-    sameAs: Object.values(siteConfig.business.social).filter(Boolean),
-  };
-}
-
-/**
- * Schema WebSite - Search box (si recherche ajoutée)
- */
-export function getWebSiteSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    '@id': `${import.meta.env.SITE}/#website`,
-    url: import.meta.env.SITE,
-    name: siteConfig.business.name,
-    description: siteConfig.business.description,
-    publisher: {
-      '@type': 'Organization',
-      '@id': `${import.meta.env.SITE}/#organization`,
-      name: siteConfig.business.name,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${import.meta.env.SITE}/images/logos/Logo%20abatteur.webp`,
-      },
-    },
+    '@type': 'BlogPosting',
+    headline: opts.title,
+    description: opts.description,
+    url: abs(opts.url),
+    mainEntityOfPage: abs(opts.url),
+    image: abs(opts.image || '/images/og-image.jpg'),
+    datePublished: opts.datePublished.toISOString(),
+    dateModified: (opts.dateModified || opts.datePublished).toISOString(),
     inLanguage: 'fr-FR',
+    author: { '@id': FOUNDER_ID, '@type': 'Person', name: siteConfig.business.founder, url: abs('/a-propos/') },
+    publisher: { '@id': BUSINESS_ID, '@type': 'Organization', name: siteConfig.business.name, logo: { '@type': 'ImageObject', url: LOGO } },
   };
 }
 
-/**
- * Combine plusieurs schemas
- */
-export function combineSchemas(...schemas: object[]) {
-  return schemas.filter(Boolean);
+export function combineSchemas(...schemas: (object | null | undefined | false)[]) {
+  return schemas.filter(Boolean) as object[];
 }

@@ -1,176 +1,120 @@
 ---
 /**
- * Layout de base pour toutes les pages
- * Inclut Header, Footer, SEO, et structure HTML de base
+ * Layout de base : <head> SEO, header, footer, barre d'appel mobile,
+ * consentement cookies (CNIL) et suivi des conversions Google Ads.
  */
 import SEOHead from '@/components/SEOHead.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import FloatingContactButton from '@/components/react/FloatingContactButton';
+import MobileCallBar from '@/components/MobileCallBar.astro';
+import ConsentBanner from '@/components/ConsentBanner.astro';
 import '@/styles/global.css';
 
 interface Props {
   title?: string;
   description?: string;
-  keywords?: string[];
   ogImage?: string;
+  ogType?: 'website' | 'article';
   schema?: object | object[];
   noindex?: boolean;
   canonical?: string;
+  preloadImage?: string;
 }
 
-const {
-  title,
-  description,
-  keywords,
-  ogImage,
-  schema,
-  noindex = false,
-  canonical,
-} = Astro.props;
+const { title, description, ogImage, ogType, schema, noindex = false, canonical, preloadImage } = Astro.props;
 
 // Google Ads — identifiant du compte et labels des actions de conversion.
 // Les labels (format "AW-XXXXXXXXXX/abc123XYZ") se récupèrent dans Google Ads
 // > Objectifs > Conversions > [action] > Configurer le tag manuellement.
-// Tant qu'ils sont vides, le tracking reste inactif (aucune erreur côté visiteur).
+// Tant qu'ils sont vides, le suivi reste inactif (aucune erreur côté visiteur).
 const GADS_ID = import.meta.env.PUBLIC_GADS_ID || 'AW-17858152606';
 const GADS_CONV_CALL = import.meta.env.PUBLIC_GADS_CONV_CALL || '';
+const GADS_CONV_SMS = import.meta.env.PUBLIC_GADS_CONV_SMS || import.meta.env.PUBLIC_GADS_CONV_CALL || '';
 const GADS_CONV_FORM = import.meta.env.PUBLIC_GADS_CONV_FORM || '';
 const GADS_CONV_EMAIL = import.meta.env.PUBLIC_GADS_CONV_EMAIL || '';
 ---
 
 <!doctype html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
   <head>
     <SEOHead
       title={title}
       description={description}
-      keywords={keywords}
       ogImage={ogImage}
+      ogType={ogType}
       schema={schema}
       noindex={noindex}
       canonical={canonical}
+      preloadImage={preloadImage}
     />
-    <!-- Google tag (gtag.js) - Google Ads -->
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GADS_ID}`}></script>
-    <script is:inline define:vars={{ GADS_ID, GADS_CONV_CALL, GADS_CONV_FORM, GADS_CONV_EMAIL }}>
+
+    <!-- Vercel Web Analytics : sans cookie, exempté de consentement.
+         S'active dans Vercel > Projet > Analytics (sinon le script est ignoré). -->
+    <script defer src="/_vercel/insights/script.js" is:inline></script>
+
+    <!-- Google Ads : la balise n'est chargée QU'APRÈS acceptation des cookies (CNIL). -->
+    <script is:inline define:vars={{ GADS_ID, GADS_CONV_CALL, GADS_CONV_SMS, GADS_CONV_FORM, GADS_CONV_EMAIL }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', GADS_ID);
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied'
+      });
 
-      // --- Suivi des conversions Google Ads ---
-      // Helper global réutilisable : déclenche une conversion si le label existe.
+      var adsLoaded = false;
+      window.loadGoogleAds = function () {
+        if (adsLoaded) return;
+        adsLoaded = true;
+        gtag('consent', 'update', {
+          ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'
+        });
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GADS_ID;
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', GADS_ID);
+      };
+      try { if (localStorage.getItem('cookie-consent') === 'granted') window.loadGoogleAds(); } catch (e) {}
+
+      // Conversion : n'envoie rien si le label n'est pas configuré ou sans consentement.
       window.trackConversion = function (sendTo, params) {
-        if (!sendTo) return; // label non configuré → on ne fait rien
+        if (!sendTo || !adsLoaded) return;
         gtag('event', 'conversion', Object.assign({ send_to: sendTo }, params || {}));
       };
 
-      // 1) Clics sur le numéro de téléphone (liens tel:) — partout sur le site.
-      // 2) Clics sur l'email (liens mailto:).
-      // Délégation d'événement : capte aussi les CTA injectés dynamiquement.
+      // Clics sur tel:, sms: et mailto: partout sur le site (délégation d'événement).
       document.addEventListener('click', function (e) {
-        var link = e.target && e.target.closest ? e.target.closest('a[href^="tel:"], a[href^="mailto:"]') : null;
+        var link = e.target && e.target.closest ? e.target.closest('a[href^="tel:"], a[href^="sms:"], a[href^="mailto:"]') : null;
         if (!link) return;
         var href = link.getAttribute('href') || '';
+        var where = link.getAttribute('data-cta') || 'autre';
         if (href.indexOf('tel:') === 0) {
-          window.trackConversion(GADS_CONV_CALL, { event_category: 'contact', event_label: 'appel_telephone' });
-        } else if (href.indexOf('mailto:') === 0) {
-          window.trackConversion(GADS_CONV_EMAIL, { event_category: 'contact', event_label: 'clic_email' });
+          window.trackConversion(GADS_CONV_CALL, { event_category: 'contact', event_label: 'appel_' + where });
+        } else if (href.indexOf('sms:') === 0) {
+          window.trackConversion(GADS_CONV_SMS, { event_category: 'contact', event_label: 'sms_' + where });
+        } else {
+          window.trackConversion(GADS_CONV_EMAIL, { event_category: 'contact', event_label: 'email_' + where });
         }
       }, true);
 
-      // 3) Envoi réussi du formulaire de devis (événement émis par ContactForm).
+      // Envoi réussi du formulaire (événement émis par ContactForm).
       window.addEventListener('lead:form-submit', function () {
-        window.trackConversion(GADS_CONV_FORM, { event_category: 'contact', event_label: 'formulaire_devis' });
+        window.trackConversion(GADS_CONV_FORM, { event_category: 'contact', event_label: 'formulaire_rappel' });
       });
     </script>
   </head>
-  <body class="antialiased">
-    <!-- Skip to content link pour accessibilité -->
-    <a href="#main-content" class="skip-to-content">
-      Aller au contenu principal
-    </a>
+  <body class="antialiased pb-[68px] lg:pb-0">
+    <a href="#main-content" class="skip-to-content">Aller au contenu principal</a>
 
-    <!-- Header sticky -->
     <Header />
 
-    <!-- Main content -->
-    <main id="main-content" role="main">
+    <main id="main-content">
       <slot />
     </main>
 
-    <!-- Footer -->
     <Footer />
-
-    <!-- Bouton de contact flottant (téléphone) - defer pour performance -->
-    <FloatingContactButton client:idle />
-
-    <!-- Scroll natif fluide via CSS uniquement (pas de JS lourd) -->
-
-    <!-- Animations au scroll simplifiées (Intersection Observer natif) -->
-    <script>
-      // Animation fade-in simple avec Intersection Observer (ultra performant)
-      if ('IntersectionObserver' in window) {
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -10% 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              // Optionnel : arrêter d'observer après l'animation
-              // observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-
-        // Observer tous les éléments .animate-on-scroll
-        document.addEventListener('DOMContentLoaded', () => {
-          document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-          });
-        });
-      } else {
-        // Fallback : afficher directement sans animation
-        document.addEventListener('DOMContentLoaded', () => {
-          document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            el.classList.add('is-visible');
-          });
-        });
-      }
-    </script>
-
+    <MobileCallBar />
+    <ConsentBanner />
   </body>
 </html>
-
-<style is:global>
-  /* Progress bar au top pour indiquer scroll progress */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #7CB342, #0A2E1C);
-    width: 0%;
-    z-index: 9999;
-    transition: width 0.1s ease-out;
-  }
-
-  /* Animation du progress bar via JS */
-  @supports (animation-timeline: scroll()) {
-    body::before {
-      animation: scroll-progress linear;
-      animation-timeline: scroll();
-    }
-  }
-
-  @keyframes scroll-progress {
-    to {
-      width: 100%;
-    }
-  }
-</style>
