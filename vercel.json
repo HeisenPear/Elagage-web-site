@@ -12,8 +12,7 @@
     }
   },
   "redirects": [
-    { "source": "/zones/:city(tours|joue-les-tours|amboise|saint-cyr-sur-loire|montlouis-sur-loire|chambray-les-tours|saint-avertin|ballan-mire|fondettes|la-riche|saint-pierre-des-corps|veigne|montbazon|monts|vouvray|rochecorbon|luynes|azay-le-rideau){/}?", "destination": "/zones/elagueur-:city/", "permanent": true },
-    { "source": "/zones/:city(veretz|langeais|chinon|loches|blere){/}?", "destination": "/zones/elagueur-indre-et-loire/", "permanent": true },
+    { "source": "/zones/:city(tours|joue-les-tours|amboise|saint-cyr-sur-loire|montlouis-sur-loire|chambray-les-tours|saint-avertin|ballan-mire|fondettes|la-riche|saint-pierre-des-corps|veigne|montbazon|monts|vouvray|rochecorbon|luynes|azay-le-rideau|veretz|langeais|chinon|loches|blere){/}?", "destination": "/zones/elagueur-:city/", "permanent": true },
     { "source": "/galerie{/}?", "destination": "/a-propos/", "permanent": true },
     { "source": "/urgence{/}?", "destination": "/elagueur-urgence/", "permanent": true },
     { "source": "/prix{/}?", "destination": "/blog/prix-elagage-arbre-tarifs-tours/", "permanent": true }

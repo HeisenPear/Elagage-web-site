@@ -1,7 +1,8 @@
 ---
 title: "Réglementation de l'élagage à Tours (37) : autorisations et obligations"
-description: "Guide complet de la réglementation élagage à Tours et en Indre-et-Loire. Autorisations, distances légales, obligations et sanctions en 2025."
+description: "Guide complet de la réglementation élagage à Tours et en Indre-et-Loire. Autorisations, distances légales, obligations et sanctions à connaître avant de tailler ou d'abattre."
 publishDate: 2025-12-12
+updatedDate: 2026-11-24
 author: "Élagage Abattage 37"
 category: "reglementation"
 tags: ["réglementation", "loi élagage", "autorisation", "PLU Tours", "obligations"]
@@ -20,7 +21,7 @@ image:
   alt: "Réglementation et obligations d'élagage à Tours"
 ---
 
-## Réglementation élagage : ce qu'il faut savoir en 2025
+## Réglementation élagage : ce qu'il faut savoir
 
 L'élagage et l'abattage d'arbres sont **strictement encadrés par la loi** en France. À Tours et dans l'Indre-et-Loire, plusieurs textes réglementaires s'appliquent.
 
