@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import compress from 'astro-compress';
 
@@ -11,9 +10,6 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     react(),
-    tailwind({
-      applyBaseStyles: false, // On gère le CSS de base nous-mêmes
-    }),
     sitemap({
       // Les pages noindex n'ont rien à faire dans le sitemap.
       filter: (page) => !page.includes('/mentions-legales'),

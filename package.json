@@ -10,22 +10,27 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.2",
-    "@astrojs/sitemap": "^3.6.0",
-    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/react": "^7.1.9",
+    "@astrojs/sitemap": "^3.7.6",
     "@emailjs/browser": "^4.4.1",
-    "astro": "^5.16.3",
+    "astro": "^7.4.13",
+    "autoprefixer": "^10.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sharp": "^0.33.5",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.13"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.5.10",
+    "@astrojs/check": "^0.9.12",
     "@types/node": "^22.7.5",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
-    "astro-compress": "^2.3.1",
+    "astro-compress": "^2.4.3",
     "typescript": "^5.6.3"
+  },
+  "overrides": {
+    "sharp": "$sharp",
+    "svgo": "^4.0.3",
+    "deepmerge-ts": "^8.0.0"
   }
 }

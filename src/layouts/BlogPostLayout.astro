@@ -18,7 +18,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { title, description, publishDate, updatedDate, image, category } = entry.data;
-const url = `/blog/${entry.slug}/`;
+const url = `/blog/${entry.id}/`;
 const fmt = (d: Date) => new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
 
 const breadcrumbs = [
@@ -75,8 +75,8 @@ const related = servicePages.filter((s) =>
           Appelez Rudy ou envoyez-lui une photo : il vous dit ce qu'il ferait et vous envoie un devis écrit et gratuit.
         </p>
         <div class="flex flex-col sm:flex-row gap-3">
-          <CallButton size="lg" cta={`blog-${entry.slug}`} />
-          <a href={getSmsLink()} data-cta={`blog-${entry.slug}`} class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-forest/20 text-forest font-bold">
+          <CallButton size="lg" cta={`blog-${entry.id}`} />
+          <a href={getSmsLink()} data-cta={`blog-${entry.id}`} class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-forest/20 text-forest font-bold">
             <Icon name="camera" class="w-5 h-5" /> Photo par SMS
           </a>
         </div>
