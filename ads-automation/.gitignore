@@ -2,6 +2,8 @@
 google-ads.yaml
 *.token
 client_secret*.json
+vercel.env
+*.env
 __pycache__/
 *.pyc
 .venv/

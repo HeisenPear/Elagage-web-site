@@ -206,12 +206,11 @@ Certaines essences sont trop vigoureuses :
 |---------|---------|----------|
 | **Arbre** | Conservé et vivant | Supprimé définitivement |
 | **Durée** | 2-8h selon hauteur | 4h-2 jours |
-| **Prix moyen** | 300-800 € | 500-2 000 € |
 | **Fréquence** | Tous les 3-7 ans | Une fois (définitif) |
 | **Impact esthétique** | Amélioration forme | Perte de l'arbre |
 | **Écologie** | Préservation biodiversité | Impact négatif |
 | **Autorisations** | Rarement nécessaire | Parfois obligatoire (PLU) |
-| **Dessouchage** | Non nécessaire | Recommandé (+100-400 €) |
+| **Dessouchage** | Non nécessaire | Recommandé |
 
 ---
 
@@ -274,11 +273,9 @@ Certaines essences sont trop vigoureuses :
 
 ### 5️⃣ Quel est mon budget ?
 
-**Comparaison** :
-- **Élagage** : 300-800 € (conserve l'arbre)
-- **Abattage + dessouchage** : 600-2 400 € (suppression totale)
+Un élagage conserve l'arbre et coûte généralement moins cher qu'un abattage suivi d'un dessouchage, mais il faudra le renouveler tous les quelques années. Un abattage est définitif. Le devis gratuit permet de comparer les deux options pour votre arbre.
 
-→ **Budget limité** + **Arbre sain** = Élagage
+→ **Arbre sain** + **budget serré** = élagage, le plus souvent
 
 ---
 
@@ -288,7 +285,6 @@ Certaines essences sont trop vigoureuses :
 
 **Situation** : Branches à 2m de la façade, arbre sain
 **Solution** : **Élagage de sécurité** (suppression branches problématiques)
-**Coût** : 600-800 €
 
 ---
 
@@ -296,7 +292,6 @@ Certaines essences sont trop vigoureuses :
 
 **Situation** : Champignons au pied, cavité de 60% du tronc
 **Solution** : **Abattage d'urgence** (risque de chute)
-**Coût** : 800-1 200 €
 
 ---
 
@@ -304,7 +299,6 @@ Certaines essences sont trop vigoureuses :
 
 **Situation** : Obscurcit jardin, racines près fondations
 **Solution** : **Abattage** (conifère ne supporte pas taille sévère)
-**Coût** : 900-1 500 €
 
 ---
 
@@ -312,7 +306,6 @@ Certaines essences sont trop vigoureuses :
 
 **Situation** : Arbre remarquable, quelques branches mortes
 **Solution** : **Élagage sanitaire** (préservation patrimoine)
-**Coût** : 500-700 €
 
 ---
 
@@ -335,7 +328,7 @@ Certaines essences sont trop vigoureuses :
 - Zones protégées
 - Arbres remarquables
 
-🚨 **Sanctions** : Amende jusqu'à 30 000 € + obligation de replanter
+🚨 **Sanctions** : amende pouvant atteindre 300 000 € (art. L480-4 du Code de l'urbanisme) + obligation de replanter
 
 ---
 
@@ -345,7 +338,7 @@ Certaines essences sont trop vigoureuses :
 
 1. **Diagnostic précis** : Évaluation santé de l'arbre
 2. **Conseils objectifs** : Élagage ou abattage selon besoin réel
-3. **Sécurité maximale** : Assurance RC Pro 8M€
+3. **Sécurité maximale** : Assurance responsabilité civile professionnelle
 4. **Respect de l'arbre** : Techniques professionnelles
 5. **Conformité légale** : Respect réglementation
 

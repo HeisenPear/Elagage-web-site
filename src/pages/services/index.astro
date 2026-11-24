@@ -1,0 +1,38 @@
+---
+/** Page d'index des prestations. */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import CallButton from '@/components/ui/CallButton.astro';
+import ServicesGrid from '@/components/sections/ServicesGrid.astro';
+import ProcessSteps from '@/components/sections/ProcessSteps.astro';
+import RealisationsGrid from '@/components/sections/RealisationsGrid.astro';
+import CtaBand from '@/components/sections/CtaBand.astro';
+import { getBreadcrumbSchema, getBusinessSchema, combineSchemas } from '@/utils/schemas';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Services', url: '/services/' },
+];
+const schema = combineSchemas(getBusinessSchema(), getBreadcrumbSchema(breadcrumbs));
+---
+
+<BaseLayout
+  title="Élagage, abattage, dessouchage, haies à Tours (37) | Nos prestations"
+  description="Toutes nos prestations d'élagueur à Tours et en Indre-et-Loire : élagage, abattage et démontage d'arbres, dessouchage, taille de haies, arbres fruitiers, entretien d'espaces verts. Devis gratuit."
+  schema={schema}
+>
+  <section class="bg-forest text-white">
+    <div class="container-custom py-10 md:py-16 max-w-3xl">
+      <Breadcrumbs items={breadcrumbs} />
+      <h1 class="text-3xl md:text-5xl font-display font-bold leading-tight mb-5">Nos prestations d'élagueur à Tours et en Indre-et-Loire</h1>
+      <p class="text-lg md:text-xl text-white/85 mb-7">
+        Du simple élagage d'entretien au démontage d'un grand arbre collé à la maison, en passant par la souche et la haie : un seul interlocuteur pour tous vos travaux d'arbres.
+      </p>
+      <CallButton size="xl" cta="services-hub" />
+    </div>
+  </section>
+  <ServicesGrid title="Choisissez votre prestation" headingLevel="h2" />
+  <ProcessSteps />
+  <RealisationsGrid />
+  <CtaBand cta="services-hub-fin" />
+</BaseLayout>

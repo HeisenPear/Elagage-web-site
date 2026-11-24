@@ -1,0 +1,28 @@
+---
+/** FAQ en <details> natif (zéro JS). Le JSON-LD FAQPage est ajouté par la page. */
+import Icon from '@/components/ui/Icon.astro';
+
+interface Props {
+  items: { question: string; answer: string }[];
+  title?: string;
+  id?: string;
+}
+const { items, title = 'Questions fréquentes', id = 'faq' } = Astro.props;
+---
+
+<section id={id} class="py-16 md:py-20 bg-white">
+  <div class="container-custom max-w-3xl">
+    <h2 class="text-3xl md:text-4xl font-display font-bold text-forest mb-8">{title}</h2>
+    <div class="divide-y divide-neutral-200 border-y border-neutral-200">
+      {items.map((item) => (
+        <details class="group py-1">
+          <summary class="flex items-start justify-between gap-4 py-4 cursor-pointer list-none font-semibold text-forest text-lg">
+            <span>{item.question}</span>
+            <Icon name="chevron" class="w-5 h-5 mt-1 flex-shrink-0 transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="pb-5 text-neutral-black/80 leading-relaxed">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+---
+/**
+ * Bouton d'appel (lien tel:) — le CTA n°1 du site.
+ * data-cta identifie l'emplacement dans le suivi des conversions.
+ */
+import Icon from '@/components/ui/Icon.astro';
+import { siteConfig, getPhoneLink } from '@/data/siteConfig';
+
+interface Props {
+  size?: 'md' | 'lg' | 'xl';
+  variant?: 'accent' | 'dark' | 'light';
+  label?: string;
+  cta: string;
+  class?: string;
+  full?: boolean;
+}
+
+const { size = 'lg', variant = 'accent', label, cta, class: extra = '', full = false } = Astro.props;
+
+const sizes = {
+  md: 'px-5 py-3 text-base gap-2',
+  lg: 'px-6 py-4 text-lg gap-2.5',
+  xl: 'px-7 py-5 text-xl md:text-2xl gap-3',
+};
+const variants = {
+  accent: 'bg-accent text-forest hover:bg-accent-hover shadow-lg shadow-accent/20',
+  dark: 'bg-forest text-white hover:bg-forest-700',
+  light: 'bg-white text-forest hover:bg-neutral-cream',
+};
+---
+
+<a
+  href={getPhoneLink()}
+  data-cta={cta}
+  class:list={[
+    'inline-flex items-center justify-center rounded-xl font-extrabold tracking-tight transition-colors',
+    sizes[size],
+    variants[variant],
+    full && 'w-full',
+    extra,
+  ]}
+>
+  <Icon name="phone" class={size === 'xl' ? 'w-6 h-6 md:w-7 md:h-7' : 'w-5 h-5'} />
+  <span>{label ?? siteConfig.business.phoneDisplay}</span>
+</a>

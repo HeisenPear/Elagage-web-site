@@ -1,81 +1,55 @@
 ---
 /**
- * Composant SEO Head optimisé
- * Gère tous les meta tags, Open Graph, Twitter Cards, et Schema.org
+ * Balises <head> : title, description, canonical, Open Graph, favicon, JSON-LD.
  */
 import { siteConfig } from '@/data/siteConfig';
 
 interface Props {
   title?: string;
   description?: string;
-  keywords?: string[];
   ogImage?: string;
   ogType?: 'website' | 'article';
   canonical?: string;
   noindex?: boolean;
-  schema?: object | object[]; // Schema.org JSON-LD
+  schema?: object | object[] | null;
+  /** Image à précharger (LCP) — uniquement sur les pages qui l'affichent en haut. */
+  preloadImage?: string;
 }
 
 const {
   title = siteConfig.seo.title,
   description = siteConfig.seo.description,
-  keywords = siteConfig.seo.keywords,
   ogImage = siteConfig.seo.ogImage,
   ogType = 'website',
-  canonical = Astro.url.href,
+  canonical = new URL(Astro.url.pathname, Astro.site).href,
   noindex = false,
   schema = null,
+  preloadImage,
 } = Astro.props;
 
-// Construction de l'URL absolue pour l'image OG
 const absoluteOgImage = new URL(ogImage, Astro.site).href;
 ---
 
-<!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
-{keywords && <meta name="keywords" content={keywords.join(', ')} />}
-<meta name="author" content={siteConfig.business.name} />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta charset="UTF-8" />
-
-<!-- Additional SEO Meta Tags -->
-<meta name="language" content="French" />
-<meta name="revisit-after" content="7 days" />
-<meta name="rating" content="general" />
-<meta name="distribution" content="global" />
-<meta name="HandheldFriendly" content="True" />
-<meta name="MobileOptimized" content="320" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-<!-- Business Contact Info -->
-<meta name="contact" content={siteConfig.business.email} />
-<meta name="telephone" content={siteConfig.business.phone} />
-<meta name="address" content={`${siteConfig.business.address.street}, ${siteConfig.business.address.postalCode} ${siteConfig.business.address.city}`} />
-
-<!-- Application/Site Name - Force Google à afficher le bon nom -->
-<meta name="application-name" content={siteConfig.business.name} />
-<meta name="apple-mobile-web-app-title" content={siteConfig.business.name} />
-<meta property="og:site_name" content={siteConfig.business.name} />
-<meta name="publisher" content={siteConfig.business.name} />
-
-<!-- Canonical URL -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
+{noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />}
 
-<!-- Robots -->
-{noindex && <meta name="robots" content="noindex, nofollow" />}
-
-<!-- Google Search Console Verification -->
+<meta name="author" content={siteConfig.business.name} />
+<meta name="format-detection" content="telephone=yes" />
 <meta name="google-site-verification" content="google5134ab9840b5a242" />
 
-<!-- Geo Tags pour SEO local -->
-<meta name="geo.region" content={`${siteConfig.business.address.countryCode}-${siteConfig.business.address.postalCode.substring(0, 2)}`} />
+<!-- SEO local -->
+<meta name="geo.region" content="FR-37" />
 <meta name="geo.placename" content={siteConfig.business.address.city} />
 <meta name="geo.position" content={`${siteConfig.business.coordinates.lat};${siteConfig.business.coordinates.lng}`} />
+<meta name="ICBM" content={`${siteConfig.business.coordinates.lat}, ${siteConfig.business.coordinates.lng}`} />
 
-<!-- Open Graph / Facebook -->
+<!-- Open Graph (aperçu WhatsApp, Facebook, SMS) -->
 <meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={siteConfig.business.name} />
 <meta property="og:url" content={canonical} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -83,42 +57,21 @@ const absoluteOgImage = new URL(ogImage, Astro.site).href;
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:locale" content="fr_FR" />
-
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content={canonical} />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={absoluteOgImage} />
-{siteConfig.seo.twitterHandle && <meta name="twitter:site" content={siteConfig.seo.twitterHandle} />}
 
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
-<!-- Preconnect pour optimisation Google Fonts -->
+<meta name="theme-color" content="#1E3312" />
+
+<!-- Polices (chargement non bloquant) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" /></noscript>
 
-<!-- Google Fonts avec chargement asynchrone (évite render-blocking) -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" media="print" onload="this.media='all'" />
-<noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" />
-</noscript>
+{preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
 
-<!-- Preload image hero critique pour LCP -->
-<link rel="preload" as="image" href="/images/hero/loire-hero.webp" fetchpriority="high" />
-
-<!-- Schema.org JSON-LD -->
-{schema && (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-)}
-
-<!-- Theme Color -->
-<meta name="theme-color" content="#0A2E1C" />
-
-<!-- DNS Prefetch pour améliorer la performance -->
-<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+{schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}

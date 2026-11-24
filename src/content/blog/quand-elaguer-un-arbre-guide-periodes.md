@@ -132,7 +132,7 @@ Certaines situations **ne peuvent pas attendre** :
 - **Maladie grave** nécessitant une intervention rapide
 - **Arbre mort** ou en voie de dépérissement
 
-Dans ces cas, **l'urgence prime sur le calendrier**. Nous intervenons **24h/24** pour sécuriser votre propriété à Tours et dans toute l'Indre-et-Loire.
+Dans ces cas, **l'urgence prime sur le calendrier**. Nous intervenons **7j/7** pour sécuriser votre propriété à Tours et dans toute l'Indre-et-Loire.
 
 ---
 
@@ -195,7 +195,7 @@ Selon l'**article L411-1 du Code de l'environnement**, il est **interdit de dét
 
 ## Pourquoi faire appel à un élagueur professionnel ?
 
-Un **élagueur certifié** comme notre équipe à Tours maîtrise :
+Un **élagueur grimpeur** expérimenté maîtrise :
 
 ✅ **Le calendrier précis** pour chaque essence
 ✅ **Les techniques de taille** respectueuses de l'arbre

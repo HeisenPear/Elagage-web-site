@@ -1,0 +1,31 @@
+---
+/**
+ * Barre d'action fixe en bas d'écran sur mobile (toujours visible, zéro JS).
+ * Deux options : appeler, ou envoyer une photo par SMS pour ceux qui n'osent pas appeler.
+ */
+import Icon from '@/components/ui/Icon.astro';
+import { getPhoneLink, getSmsLink } from '@/data/siteConfig';
+---
+
+<nav
+  class="lg:hidden fixed bottom-0 inset-x-0 z-50 grid grid-cols-[1fr_auto] gap-2 p-2 bg-white/95 backdrop-blur border-t border-neutral-200 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
+  aria-label="Contact rapide"
+>
+  <a
+    href={getPhoneLink()}
+    data-cta="barre-mobile"
+    class="flex items-center justify-center gap-2 h-[52px] rounded-xl bg-accent text-forest font-extrabold text-lg active:scale-[0.98] transition-transform"
+  >
+    <Icon name="phone" class="w-5 h-5" />
+    Appeler Rudy
+  </a>
+  <a
+    href={getSmsLink()}
+    data-cta="barre-mobile"
+    class="flex items-center justify-center gap-2 h-[52px] px-4 rounded-xl bg-forest text-white font-bold active:scale-[0.98] transition-transform"
+    aria-label="Envoyer une photo de l'arbre par SMS"
+  >
+    <Icon name="camera" class="w-5 h-5" />
+    <span class="text-sm leading-tight text-left">Photo<br />par SMS</span>
+  </a>
+</nav>

@@ -1,0 +1,104 @@
+---
+/**
+ * Page urgence : requêtes « élagueur urgence Tours », « arbre tombé tempête ».
+ * Visiteur stressé → appel immédiat, consignes de sécurité, rien d'autre.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import CallButton from '@/components/ui/CallButton.astro';
+import Icon from '@/components/ui/Icon.astro';
+import FaqList from '@/components/sections/FaqList.astro';
+import ZonesLinks from '@/components/sections/ZonesLinks.astro';
+import { siteConfig, getSmsLink } from '@/data/siteConfig';
+import { getServiceSchema, getFAQSchema, getBreadcrumbSchema, combineSchemas } from '@/utils/schemas';
+
+const b = siteConfig.business;
+const url = '/elagueur-urgence/';
+const breadcrumbs = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Urgence arbre', url },
+];
+
+const faq = [
+  {
+    question: 'Qui appeler quand un arbre tombe sur la route ou sur une ligne électrique ?',
+    answer: "Si l'arbre bloque la voie publique ou menace des personnes, appelez le 18 ou le 112. S'il touche une ligne électrique, n'approchez pas et appelez le numéro dépannage d'Enedis (09 726 750 suivi du numéro de votre département, 37). Pour un arbre tombé dans votre propriété, appelez-nous directement.",
+  },
+  {
+    question: "Mon assurance habitation prend-elle en charge un arbre tombé ?",
+    answer: "Les dégâts causés par la chute d'un arbre lors d'une tempête sont généralement couverts par la garantie tempête du contrat habitation, parfois aussi le déblaiement. Prenez des photos avant toute intervention, déclarez le sinistre rapidement et demandez-nous un devis que vous pourrez transmettre à votre assureur.",
+  },
+  {
+    question: "L'arbre du voisin est tombé chez moi, qui paie ?",
+    answer: "En principe, c'est l'assurance du propriétaire de l'arbre qui intervient s'il était mal entretenu ; en cas de tempête reconnue, chacun est souvent indemnisé par sa propre assurance. Dans tous les cas, photographiez les lieux et prévenez votre voisin et votre assureur avant de faire débiter l'arbre.",
+  },
+  siteConfig.faq[0],
+];
+
+const schema = combineSchemas(
+  getServiceSchema("Intervention d'urgence sur arbre (tempête, arbre tombé)", "Mise en sécurité d'arbres tombés, cassés ou dangereux après tempête à Tours et en Indre-et-Loire.", 'urgence'),
+  getFAQSchema(faq),
+  getBreadcrumbSchema(breadcrumbs),
+);
+(schema[0] as Record<string, unknown>)['url'] = new URL(url, Astro.site).href;
+(schema[0] as Record<string, unknown>)['@id'] = new URL(`${url}#service`, Astro.site).href;
+---
+
+<BaseLayout
+  title="Élagueur urgence Tours (37) – Arbre tombé, tempête | 06 31 46 43 50"
+  description="Arbre tombé, branche cassée sur la toiture, arbre penché après une tempête à Tours ou en Indre-et-Loire ? Appelez Rudy au 06 31 46 43 50 pour une mise en sécurité au plus vite."
+  schema={schema}
+>
+  <section class="bg-forest text-white">
+    <div class="container-custom py-10 md:py-16 max-w-3xl">
+      <Breadcrumbs items={breadcrumbs} />
+      <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-forest text-sm font-bold mb-4">
+        <Icon name="alert" class="w-4 h-4" /> Urgence arbre
+      </p>
+      <h1 class="text-3xl md:text-5xl font-display font-bold leading-tight mb-5">Arbre tombé ou dangereux après une tempête ?</h1>
+      <p class="text-lg md:text-xl text-white/85 mb-7">
+        Appelez directement Rudy. S'il est en hauteur et ne peut pas décrocher, laissez un message ou envoyez une photo par SMS : il rappelle dès qu'il redescend et organise la mise en sécurité au plus vite.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <CallButton size="xl" cta="urgence" />
+        <a href={getSmsLink("URGENCE arbre. Commune : . Voici une photo.")} data-cta="urgence" class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-white/60 font-bold">
+          <Icon name="camera" class="w-5 h-5" /> Photo par SMS
+        </a>
+      </div>
+      <p class="mt-3 text-sm text-white/70">{b.hours.display} · Tours, métropole et Indre-et-Loire</p>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-20 bg-white">
+    <div class="container-custom grid lg:grid-cols-2 gap-10">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-display font-bold text-forest mb-5">En attendant, les bons réflexes</h2>
+        <ol class="space-y-4 text-lg text-neutral-black/85">
+          <li class="flex gap-3"><span class="font-bold text-forest">1.</span> Éloignez tout le monde de l'arbre et de la zone où il pourrait tomber — y compris les enfants et les animaux.</li>
+          <li class="flex gap-3"><span class="font-bold text-forest">2.</span> Ne touchez à rien si un câble électrique est en contact avec l'arbre : appelez Enedis, et le 18 en cas de danger.</li>
+          <li class="flex gap-3"><span class="font-bold text-forest">3.</span> Ne tentez pas de tronçonner un arbre couché ou une branche suspendue : les tensions dans le bois sont imprévisibles.</li>
+          <li class="flex gap-3"><span class="font-bold text-forest">4.</span> Prenez des photos (pour l'assurance) sous plusieurs angles.</li>
+          <li class="flex gap-3"><span class="font-bold text-forest">5.</span> Appelez-nous : nous sécurisons d'abord, nous débitons et évacuons ensuite.</li>
+        </ol>
+      </div>
+      <div class="rounded-2xl bg-neutral-cream p-6 md:p-8">
+        <h2 class="text-2xl font-display font-bold text-forest mb-5">Ce que nous faisons</h2>
+        <ul class="space-y-3 text-neutral-black/85">
+          {[
+            "Mise en sécurité d'un arbre couché sur une toiture, une clôture ou une voiture",
+            'Retrait des branches cassées suspendues dans le houppier',
+            "Démontage d'un arbre penché ou déraciné qui menace de tomber",
+            'Débitage, broyage et évacuation',
+            "Devis détaillé à transmettre à votre assurance",
+          ].map((t) => (
+            <li class="flex gap-3"><Icon name="tick" class="w-5 h-5 mt-0.5 text-forest flex-shrink-0" />{t}</li>
+          ))}
+        </ul>
+        <a href="/services/abattage-arbres/" class="mt-6 inline-flex items-center gap-1.5 font-semibold text-forest underline">Abattage et démontage d'arbres <Icon name="arrow" class="w-4 h-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <FaqList items={faq} title="Urgence arbre : vos questions" />
+  <ZonesLinks title="Communes où nous intervenons en urgence" />
+</BaseLayout>

@@ -23,6 +23,13 @@ export default {
           hover: '#8FA401',
           light: '#B8CC33',
         },
+        // Vert très foncé : titres, fonds sombres et texte sur les boutons vert vif
+        // (le blanc sur #A4BD01 n'offre qu'un contraste de 1,9:1 — illisible au soleil).
+        forest: {
+          DEFAULT: '#1E3312',
+          700: '#2A4619',
+          600: '#365A20',
+        },
         secondary: {
           DEFAULT: '#FFA500', // Orange (CTA secondaires, accents)
           hover: '#FF8C00',

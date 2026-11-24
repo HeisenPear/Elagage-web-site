@@ -1,245 +1,63 @@
 ---
-/**
- * Page Zones d'intervention - Optimisée mobile-first pour SEO local
- */
+/** Zones d'intervention : hub vers toutes les pages communes. */
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import CallButton from '@/components/ui/CallButton.astro';
+import Icon from '@/components/ui/Icon.astro';
+import CtaBand from '@/components/sections/CtaBand.astro';
 import { siteConfig } from '@/data/siteConfig';
-import { getLocalBusinessSchema } from '@/utils/schemas';
+import { cityPages } from '@/data/cityPages';
+import { getBusinessSchema, getBreadcrumbSchema, combineSchemas } from '@/utils/schemas';
 
-// SEO optimisé pour "élagueur près de chez moi"
-const pageTitle = `Élagueur près de chez moi ${siteConfig.serviceArea.department} | Zones d'intervention`;
-const pageDescription = `Trouvez votre élagueur local en ${siteConfig.serviceArea.department}. ${siteConfig.business.name} intervient dans 20+ villes : ${siteConfig.serviceArea.cities.slice(0, 5).join(', ')}... Devis gratuit 24h.`;
-const keywords = [
-  'élagueur près de chez moi',
-  `élagueur ${siteConfig.serviceArea.mainCity}`,
-  'élagueur local Indre-et-Loire',
-  'zone intervention élagage 37',
-  ...siteConfig.serviceArea.cities.map(city => `élagueur ${city}`)
+const breadcrumbs = [
+  { name: 'Accueil', url: '/' },
+  { name: "Zones d'intervention", url: '/zones/' },
 ];
-
-// Schema.org pour les zones
-const schema = getLocalBusinessSchema();
+const schema = combineSchemas(getBusinessSchema(), getBreadcrumbSchema(breadcrumbs));
+const communes = cityPages.filter((c) => c.slug !== 'elagueur-indre-et-loire');
+const linkedNames = new Set(cityPages.map((c) => c.name));
+const others = siteConfig.serviceArea.cities.filter((c) => !linkedNames.has(c));
 ---
 
 <BaseLayout
-  title={pageTitle}
-  description={pageDescription}
-  keywords={keywords}
+  title="Zones d'intervention : élagueur à Tours et en Indre-et-Loire (37)"
+  description={`Élagueur intervenant à Tours, Joué-lès-Tours, Saint-Avertin, Veigné, Amboise, Montlouis et dans un rayon de ${siteConfig.serviceArea.radius} km. Trouvez votre commune et appelez pour un devis gratuit.`}
   schema={schema}
 >
-  <!-- Hero Section mobile-optimisé -->
-  <section class="pt-24 md:pt-32 pb-12 md:pb-20 bg-gradient-to-br from-primary to-primary-900 text-white">
-    <div class="container-custom">
-      <div class="max-w-4xl mx-auto text-center animate-on-scroll">
-        <span class="inline-block px-4 py-2 bg-accent/20 text-accent font-semibold rounded-full text-xs md:text-sm uppercase tracking-wider mb-4">
-          🌳 Élagueur de proximité
-        </span>
-        <h1 class="text-3xl md:text-5xl lg:text-6xl font-display font-bold mb-4 md:mb-6">
-          Élagueur près de chez vous en {siteConfig.serviceArea.department}
-        </h1>
-        <p class="text-base md:text-xl text-white/90 mb-6 md:mb-8">
-          Intervention rapide dans {siteConfig.serviceArea.cities.length} villes • Rayon {siteConfig.serviceArea.radius} km autour de {siteConfig.serviceArea.mainCity}
-        </p>
-
-        <!-- CTA mobile-optimized -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
-          <a href={`tel:${siteConfig.business.phone}`} class="w-full sm:w-auto btn-primary inline-flex text-base md:text-lg justify-center">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-            </svg>
-            <span>Appeler : {siteConfig.business.phoneDisplay}</span>
-          </a>
-          <a href="#villes" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 md:px-8 py-3 md:py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary transition-all text-base md:text-lg">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            <span>Voir ma ville</span>
-          </a>
-        </div>
-      </div>
+  <section class="bg-forest text-white">
+    <div class="container-custom py-10 md:py-16 max-w-3xl">
+      <Breadcrumbs items={breadcrumbs} />
+      <h1 class="text-3xl md:text-5xl font-display font-bold leading-tight mb-5">Zones d'intervention autour de Tours</h1>
+      <p class="text-lg md:text-xl text-white/85 mb-7">
+        Basés à {siteConfig.business.address.city}, nous intervenons dans toute la métropole de Tours et dans un rayon d'environ {siteConfig.serviceArea.radius} km en Indre-et-Loire.
+      </p>
+      <CallButton size="xl" cta="zones-hub" />
     </div>
   </section>
 
-  <!-- Section SEO intro "élagueur près de chez moi" -->
-  <section class="py-12 md:py-20 bg-white">
+  <section class="py-14 md:py-20 bg-white">
     <div class="container-custom">
-      <div class="max-w-4xl mx-auto animate-on-scroll">
-        <div class="prose prose-lg max-w-none space-y-4 md:space-y-6 text-neutral-gray leading-relaxed">
-          <h2 class="text-2xl md:text-3xl font-display font-bold text-primary mb-4 md:mb-6">
-            Vous cherchez un élagueur près de chez vous en Indre-et-Loire ?
-          </h2>
-
-          <p class="text-base md:text-lg">
-            <strong class="text-primary">{siteConfig.business.name}</strong> est votre <strong>élagueur local de confiance</strong> intervenant dans toute la région
-            <strong>{siteConfig.serviceArea.department}</strong>. Avec <strong>{siteConfig.stats.yearsExperience} ans d'expérience</strong> et des centaines de clients satisfaits,
-            nous sommes l'un des élagueurs les plus reconnus de la région de {siteConfig.serviceArea.mainCity}.
-          </p>
-
-          <div class="grid sm:grid-cols-3 gap-4 my-6 md:my-8">
-            <div class="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-4 md:p-6 text-center border border-accent/20">
-              <div class="text-2xl md:text-3xl font-bold text-accent mb-1 md:mb-2">{siteConfig.serviceArea.cities.length}+</div>
-              <div class="text-xs md:text-sm text-neutral-gray">Villes couvertes</div>
-            </div>
-            <div class="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-4 md:p-6 text-center border border-primary/20">
-              <div class="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">{siteConfig.serviceArea.radius} km</div>
-              <div class="text-xs md:text-sm text-neutral-gray">Rayon d'action</div>
-            </div>
-            <div class="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl p-4 md:p-6 text-center border border-secondary/20">
-              <div class="text-2xl md:text-3xl font-bold text-secondary mb-1 md:mb-2">-50%</div>
-              <div class="text-xs md:text-sm text-neutral-gray">Crédit d'impôt</div>
-            </div>
-          </div>
-
-          <p class="text-base md:text-lg">
-            En tant qu'<strong>élagueur de proximité</strong>, nous intervenons rapidement (sous <strong>48h</strong>)
-            pour tous vos travaux d'<strong>élagage</strong>, <strong>abattage</strong>, <strong>taille de haies</strong>
-            et <strong>entretien d'espaces verts</strong>. Notre entreprise familiale est <strong>assurée RC Pro 8M€</strong>
-            et tous nos élagueurs sont certifiés professionnels.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section Liste des villes (Grid mobile-optimisée) -->
-  <section id="villes" class="py-12 md:py-20 bg-gradient-to-br from-neutral-cream to-white">
-    <div class="container-custom">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-8 md:mb-12 animate-on-scroll">
-          <h2 class="text-2xl md:text-4xl font-display font-bold text-primary mb-3 md:mb-4">
-            Sélectionnez votre ville
-          </h2>
-          <p class="text-sm md:text-lg text-neutral-gray">
-            Cliquez sur votre ville pour voir nos services et obtenir un devis gratuit
-          </p>
-        </div>
-
-        <!-- Pages villes avec contenu dédié -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 md:mb-10 animate-on-scroll">
-          {[
-            { name: "Tours", slug: "elagueur-tours", desc: "Capitale de la Touraine · 136 000 hab.", featured: true },
-            { name: "Joué-lès-Tours", slug: "elagueur-joue-les-tours", desc: "Notre commune · Intervention prioritaire" },
-            { name: "Amboise", slug: "elagueur-amboise", desc: "Val de Loire UNESCO · Patrimoine arboré" },
-            { name: "Saint-Cyr-sur-Loire", slug: "elagueur-saint-cyr-sur-loire", desc: "Commune résidentielle boisée" },
-            { name: "Montlouis-sur-Loire", slug: "elagueur-montlouis-sur-loire", desc: "Vignoble et jardins de Touraine" },
-            { name: "Chambray-lès-Tours", slug: "elagueur-chambray-les-tours", desc: "Sud de l'agglomération · CHRU" },
-            { name: "Saint-Avertin", slug: "elagueur-saint-avertin", desc: "Bords du Cher · Quartiers boisés" },
-            { name: "Ballan-Miré", slug: "elagueur-ballan-mire", desc: "Sud-ouest boisé · Forêt & golf" },
-            { name: "Fondettes", slug: "elagueur-fondettes", desc: "Coteaux de la Loire rive droite" },
-            { name: "La Riche", slug: "elagueur-la-riche", desc: "Aux portes de Tours · Milieu urbain" },
-            { name: "Saint-Pierre-des-Corps", slug: "elagueur-saint-pierre-des-corps", desc: "Est tourangeau · Bords de Loire" },
-            { name: "Indre-et-Loire (37)", slug: "elagueur-indre-et-loire", desc: "Tout le département couvert" },
-          ].map(city => (
-            <a
-              href={`/zones/${city.slug}`}
-              class={`group flex items-center gap-3 p-4 rounded-xl border transition-all hover:-translate-y-0.5 ${city.featured ? 'bg-accent text-white border-accent shadow-md' : 'bg-white text-primary border-neutral-200 hover:border-accent/50 shadow-soft'}`}
-            >
-              <svg class={`w-5 h-5 flex-shrink-0 ${city.featured ? 'text-white' : 'text-accent'}`} fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-              </svg>
-              <div>
-                <div class={`font-bold text-sm ${city.featured ? 'text-white' : 'text-primary group-hover:text-accent transition-colors'}`}>Élagueur {city.name}</div>
-                <div class={`text-xs mt-0.5 ${city.featured ? 'text-white/75' : 'text-neutral-gray'}`}>{city.desc}</div>
-              </div>
-              <svg class={`w-4 h-4 ml-auto flex-shrink-0 ${city.featured ? 'text-white/60' : 'text-accent/40 group-hover:text-accent transition-colors'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </a>
-          ))}
-        </div>
-
-        <!-- Autres villes (sans page dédiée) -->
-        <div class="mb-8 animate-on-scroll">
-          <h3 class="text-sm font-bold text-primary mb-3">Autres communes desservies</h3>
-          <div class="flex flex-wrap gap-2">
-            {siteConfig.serviceArea.cities.filter(c => !["Tours", "Joué-lès-Tours", "Amboise", "Saint-Cyr-sur-Loire", "Montlouis-sur-Loire", "Chambray-lès-Tours", "Saint-Avertin", "Ballan-Miré", "Fondettes", "La Riche", "Saint-Pierre-des-Corps"].includes(c)).map(city => (
-              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-cream text-primary border border-neutral-200 rounded-lg text-sm font-medium">
-                <svg class="w-3 h-3 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-                {city}
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-forest mb-8">Choisissez votre commune</h2>
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {communes.map((c) => (
+          <li>
+            <a href={`/zones/${c.slug}/`} class="flex items-center justify-between gap-3 p-4 rounded-xl bg-neutral-cream border border-neutral-200 hover:border-forest/40">
+              <span>
+                <span class="block font-bold text-forest">{c.name}</span>
+                <span class="block text-sm text-neutral-gray">{c.postalCode}</span>
               </span>
-            ))}
-          </div>
-        </div>
-        <p class="text-sm text-neutral-gray mb-8 animate-on-scroll">
-          Intervention dans toutes ces communes et les alentours. Pour un devis personnalisé dans votre ville, appelez-nous au <a href={`tel:${siteConfig.business.phone}`} class="text-accent font-bold hover:underline">{siteConfig.business.phoneDisplay}</a> ou utilisez notre formulaire de contact.
-        </p>
-
-        <!-- CTA si ville non listée -->
-        <div class="max-w-2xl mx-auto animate-on-scroll">
-          <div class="bg-gradient-to-br from-accent/10 to-primary/10 rounded-2xl p-6 md:p-8 border border-accent/20 text-center">
-            <div class="w-14 h-14 md:w-16 md:h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-            </div>
-            <h3 class="text-lg md:text-xl font-bold text-primary mb-2 md:mb-3">
-              Votre ville n'est pas dans la liste ?
-            </h3>
-            <p class="text-sm md:text-base text-neutral-gray mb-4 md:mb-6">
-              Nous intervenons également dans d'autres communes du {siteConfig.serviceArea.department} selon la demande.
-              <strong>Contactez-nous pour vérifier</strong> si nous pouvons intervenir chez vous !
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a href={`tel:${siteConfig.business.phone}`} class="w-full sm:w-auto btn-primary inline-flex justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                </svg>
-                <span>Appeler maintenant</span>
-              </a>
-              <a href="/contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all">
-                <span>Devis en ligne</span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
+              <Icon name="arrow" class="w-4 h-4 text-forest/60" />
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-10 p-6 rounded-2xl bg-neutral-cream">
+        <h2 class="text-xl font-bold text-forest mb-2">Nous intervenons aussi à…</h2>
+        <p class="text-neutral-black/80">{others.join(', ')} et dans les communes voisines. <a href="/zones/elagueur-indre-et-loire/" class="underline text-forest">Tout le département</a>.</p>
+        <p class="mt-3 text-neutral-black/80">Votre commune n'est pas citée ? Appelez : la réponse est immédiate.</p>
       </div>
     </div>
   </section>
 
-  <!-- Section Carte Google Maps -->
-  <section class="py-12 md:py-20 bg-white">
-    <div class="container-custom">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-8 md:mb-12 animate-on-scroll">
-          <h2 class="text-2xl md:text-4xl font-display font-bold text-primary mb-3 md:mb-4">
-            Notre zone de couverture
-          </h2>
-          <p class="text-sm md:text-lg text-neutral-gray">
-            {siteConfig.serviceArea.radius} km autour de {siteConfig.serviceArea.mainCity} • Intervention dans toute l'{siteConfig.serviceArea.department}
-          </p>
-        </div>
-
-        <!-- Google Maps Embed (à remplacer par vraie iframe) -->
-        <div class="animate-on-scroll">
-          <div class="aspect-video md:aspect-[21/9] bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl shadow-lift overflow-hidden">
-            <iframe
-              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d84549.89469107384!2d${siteConfig.business.coordinates.lng}!3d${siteConfig.business.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fcd4fde792d591%3A0xa97fa01ba0a2d1db!2sJou%C3%A9-l%C3%A8s-Tours!5e0!3m2!1sfr!2sfr!4v1234567890123!5m2!1sfr!2sfr`}
-              width="100%"
-              height="100%"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title={`Carte des zones d'intervention de ${siteConfig.business.name}`}
-            ></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA téléphone sticky mobile (visible uniquement sur mobile) -->
-  <div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-gradient-to-r from-accent to-accent/90 shadow-2xl border-t-4 border-white/20 backdrop-blur-sm">
-    <a
-      href={`tel:${siteConfig.business.phone}`}
-      class="flex items-center justify-center gap-3 px-6 py-4 text-white font-bold text-lg"
-    >
-      <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-      </svg>
-      <span>Appeler : {siteConfig.business.phoneDisplay}</span>
-    </a>
-  </div>
+  <CtaBand cta="zones-hub-fin" />
 </BaseLayout>
