@@ -3,9 +3,14 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import compress from 'astro-compress';
 
+// Adresse publique du site. Par défaut le domaine principal ; on peut la
+// changer sans toucher au code via la variable d'environnement SITE_URL
+// (ex. https://elagage-touraine-site.vercel.app si le domaine est indisponible).
+const SITE_URL = (process.env.SITE_URL || 'https://www.elagageabattage37.com').replace(/\/$/, '');
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.elagageabattage37.com', // Nom de domaine principal
+  site: SITE_URL,
   output: 'static',
   trailingSlash: 'always',
   integrations: [
@@ -18,7 +23,7 @@ export default defineConfig({
       // Configuration SEO : concentration du PageRank sur homepage
       serialize(item) {
         // Page accueil = priorité max (cible "élagage tours")
-        if (item.url === 'https://www.elagageabattage37.com/') {
+        if (item.url === `${SITE_URL}/`) {
           item.priority = 1.0;
           item.changefreq = 'daily';
         }
