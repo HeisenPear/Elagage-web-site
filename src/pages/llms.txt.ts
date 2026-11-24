@@ -42,7 +42,7 @@ export const GET: APIRoute = async ({ site }) => {
     '## Questions fréquentes',
     ...siteConfig.faq.flatMap((f) => [`### ${f.question}`, f.answer, '']),
     '## Conseils',
-    ...posts.map((p) => `- [${p.data.title}](${u(`/blog/${p.slug}/`)}) : ${p.data.description}`),
+    ...posts.map((p) => `- [${p.data.title}](${u(`/blog/${p.id}/`)}) : ${p.data.description}`),
     '',
     '## Pages clés',
     `- [Qui sommes-nous](${u('/a-propos/')})`,

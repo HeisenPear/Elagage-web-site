@@ -1,4 +1,10 @@
-# Élagage Abattage 37 — www.elagageabattage37.com
+/**
+ * robots.txt généré au build : l'URL du sitemap suit l'adresse du site
+ * (SITE_URL), quel que soit le domaine utilisé.
+ */
+import type { APIRoute } from 'astro';
+
+const RULES = `# Élagage Abattage 37
 # Tout le site est ouvert aux moteurs de recherche et aux moteurs de réponse IA.
 
 User-agent: *
@@ -33,6 +39,11 @@ User-agent: MJ12bot
 Disallow: /
 
 User-agent: DotBot
-Disallow: /
+Disallow: /`;
 
-Sitemap: https://www.elagageabattage37.com/sitemap-index.xml
+export const GET: APIRoute = ({ site }) => {
+  const sitemap = new URL('/sitemap-index.xml', site).href;
+  return new Response(`${RULES}\n\nSitemap: ${sitemap}\n`, {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
+};

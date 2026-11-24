@@ -121,7 +121,7 @@ export const servicePages: ServicePage[] = [
           "Elles sont broyées et évacuées, le chantier est rendu propre. Si vous le souhaitez, nous laissons le broyat pour pailler vos massifs et le bois débité en bûches.",
       },
     ],
-    relatedPosts: ['quand-elaguer-un-arbre-guide-periodes', 'arbre-voisin-droit-elagage', '7-signes-arbre-elaguer-urgence'],
+    relatedPosts: ['elagage-hiver-tours', 'quand-elaguer-un-arbre-guide-periodes', '7-signes-arbre-elaguer-urgence'],
   },
   {
     slug: 'abattage-arbres',
@@ -211,7 +211,7 @@ export const servicePages: ServicePage[] = [
           "Ce n'est pas obligatoire, mais une souche peut rejeter, attirer des champignons et empêche de replanter au même endroit. Le dessouchage à la rogneuse se fait le jour même ou lors d'un second passage.",
       },
     ],
-    relatedPosts: ['que-faire-arbre-dangereux', 'elagage-vs-abattage-differences', 'reglementation-elagage-tours-37'],
+    relatedPosts: ['arbre-tombe-tempete-que-faire', 'que-faire-arbre-dangereux', 'elagage-vs-abattage-differences'],
   },
   {
     slug: 'dessouchage-arbres',
@@ -366,7 +366,7 @@ export const servicePages: ServicePage[] = [
           "Oui, pour les particuliers comme pour les copropriétés et les entreprises : une ou deux tailles par an programmées à l'avance, sans avoir à y penser.",
       },
     ],
-    relatedPosts: ['arbre-voisin-droit-elagage', 'elagage-printemps-mars-avril-tours'],
+    relatedPosts: ['taille-haies-avant-mars-nidification', 'arbre-voisin-droit-elagage'],
   },
   {
     slug: 'entretien-espaces-verts',

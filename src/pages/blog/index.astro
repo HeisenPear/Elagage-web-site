@@ -52,7 +52,7 @@ const schema = combineSchemas(
   <section class="py-12 md:py-16 bg-neutral-cream">
     <div class="container-custom grid md:grid-cols-2 lg:grid-cols-3 gap-5">
       {posts.map((post) => (
-        <a href={`/blog/${post.slug}/`} class="group flex flex-col p-6 rounded-2xl bg-white border border-neutral-200 hover:border-forest/30 hover:shadow-soft transition">
+        <a href={`/blog/${post.id}/`} class="group flex flex-col p-6 rounded-2xl bg-white border border-neutral-200 hover:border-forest/30 hover:shadow-soft transition">
           <span class="text-xs font-semibold uppercase tracking-wider text-forest/60 mb-2">{labels[post.data.category]}</span>
           <h2 class="text-xl font-bold text-forest leading-snug mb-3">{post.data.title}</h2>
           <p class="text-neutral-black/75 text-[15px] leading-relaxed mb-4 flex-1">{post.data.description}</p>
